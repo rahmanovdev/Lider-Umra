@@ -9,6 +9,11 @@
   will-change: transform;
   z-index: -20;
 
+  @media (max-width: 990px) {
+    margin-top: 80px;
+    height: 600px;
+  }
+
   .imageWrapper {
     position: absolute;
     inset: 0;
@@ -146,6 +151,8 @@
     width: 90%;
     height: auto;
     padding: 50px 16px;
+    margin-top: 80px;
+    // padding: 0 16px 50px;
 
     .content {
       padding: 100px 0 0 30px;
@@ -196,6 +203,7 @@
     width: 92%;
     height: auto;
     padding: 40px 20px;
+
 
     .content {
       padding: 200px 0 0 30px;

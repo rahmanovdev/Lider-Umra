@@ -24,7 +24,6 @@ export const FoodSection: React.FC = () => {
 			{foodInfo.map(food => (
 				<div key={food.id} className={styles.foodContent}>
 					<div className={styles.foodSlider}>
-						{/* Эгер сүрөттөр бар болсо гана ImageSlider көрсөтөбүз */}
 						{food.images && food.images.length > 0 ? (
 							<ImageSlider images={food.images} height={400} />
 						) : (

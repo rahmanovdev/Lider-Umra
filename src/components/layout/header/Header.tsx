@@ -1,17 +1,52 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import scss from './Header.module.scss';
 import logo from '../../../../public/assets/images/logo.svg';
 import Image from 'next/image';
 import { IoCall } from 'react-icons/io5';
-import Language from '../../../../public/assets/images/Global.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FiHome } from 'react-icons/fi';
+import { HiOutlineMenuAlt3 } from 'react-icons/hi';
+import { BsFillAirplaneEnginesFill } from 'react-icons/bs';
+import MobileMenu from './components/MobileMenu/MobileMenu';
+
+interface Language {
+	code: string;
+	name: string;
+	flag: string;
+}
+
+const LANGUAGES: Language[] = [
+	{
+		code: 'KG',
+		name: 'Кыргызча',
+		flag: '/assets/header/kyrgyzstan-flag-icon.svg'
+	},
+	{
+		code: 'RU',
+		name: 'Русский',
+		flag: '/assets/header/russia-flag-icon.svg'
+	}
+];
 
 const Header: React.FC = () => {
 	const pathname = usePathname();
 	const [showLanguage, setShowLanguage] = useState(false);
-	const [currentLanguage, setCurrentLanguage] = useState('Русский');
+	const [currentLang, setCurrentLang] = useState<Language>(LANGUAGES[0]);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+	useEffect(() => {
+		if (isMobileMenuOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+
+		return () => {
+			document.body.style.overflow = '';
+		};
+	}, [isMobileMenuOpen]);
 
 	const isActiveLink = (path: string) => {
 		if (path === '/') {
@@ -21,17 +56,17 @@ const Header: React.FC = () => {
 	};
 
 	return (
-		<header className={scss.header}>
-			<div className='container'>
+		<>
+			<header className={scss.header}>
 				<div className={scss.content}>
 					<div className={scss.header_start}>
 						<Link href='/'>
 							<Image
 								src={logo}
-								alt='Logo Lider Umarh'
+								alt='Logo'
 								width={120}
 								height={60}
-								quality={70}
+								quality={75}
 								priority
 							/>
 						</Link>
@@ -42,7 +77,7 @@ const Header: React.FC = () => {
 						<ul>
 							<li>
 								<Link href='/' className={isActiveLink('/') ? scss.active : ''}>
-									Главная
+									Башкы
 								</Link>
 							</li>
 							<li>
@@ -50,18 +85,18 @@ const Header: React.FC = () => {
 									href='/packages'
 									className={isActiveLink('/packages') ? scss.active : ''}
 								>
-									Тур пакеты
+									Тур пакеттер
 								</Link>
 							</li>
 							<li className={scss.dropdown}>
 								<span className={isActiveLink('/about') ? scss.active : ''}>
-									О нас
+									Биз жөнүндө
 								</span>
 								<div className={scss.dropdown_menu}>
 									<div className={scss.submenu_content}>
-										<Link href='/aboutUs'>О Компании</Link>
+										<Link href='/aboutUs'>Компания жөнүндө</Link>
 										<Link href='/gallery'>Галерея</Link>
-										<Link href='/contact'>Контакты</Link>
+										<Link href='/contact'>Байланыш</Link>
 									</div>
 								</div>
 							</li>
@@ -70,7 +105,7 @@ const Header: React.FC = () => {
 									href='/usefulinfo'
 									className={isActiveLink('/usefulinfo') ? scss.active : ''}
 								>
-									Полезная информация
+									Пайдалуу маалымат
 								</Link>
 							</li>
 						</ul>
@@ -91,38 +126,80 @@ const Header: React.FC = () => {
 							onMouseEnter={() => setShowLanguage(true)}
 							onMouseLeave={() => setShowLanguage(false)}
 						>
-							<Image
-								src={Language}
-								alt='Language'
-								width={20}
-								height={20}
-								quality={70}
-								priority
-							/>
-							<span>{currentLanguage}</span>
-							{showLanguage && (
-								<div className={scss.language_dropdown}>
+							<div className={scss.flag_container}>
+								<Image
+									src={currentLang.flag}
+									alt={currentLang.code}
+									width={20}
+									height={20}
+									quality={75}
+								/>
+								<span className={scss.lang_code}>{currentLang.code}</span>
+							</div>
+							<div
+								className={`${scss.language_dropdown} ${
+									showLanguage ? scss.show : ''
+								}`}
+							>
+								{LANGUAGES.map(lang => (
 									<button
-										onClick={() => setCurrentLanguage('Кыргызча')}
-										className={
-											currentLanguage === 'Кыргызча' ? scss.active : ''
-										}
+										key={lang.code}
+										onClick={() => {
+											setCurrentLang(lang);
+											setShowLanguage(false);
+										}}
 									>
-										Кыргызча
+										<Image
+											src={lang.flag}
+											alt={lang.code}
+											width={20}
+											height={20}
+											quality={75}
+										/>
+										{lang.name}
 									</button>
-									<button
-										onClick={() => setCurrentLanguage('Русский')}
-										className={currentLanguage === 'Русский' ? scss.active : ''}
-									>
-										Русский
-									</button>
-								</div>
-							)}
+								))}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</header>
+			</header>
+
+			<nav className={scss.bottom_nav}>
+				<div className={scss.nav_content}>
+					<Link
+						href='/'
+						className={`${scss.nav_item} ${
+							isActiveLink('/') ? scss.active : ''
+						}`}
+					>
+						<FiHome />
+						<span>Башкы</span>
+					</Link>
+					<Link
+						href='/packages'
+						className={`${scss.nav_item} ${
+							isActiveLink('/packages') ? scss.active : ''
+						}`}
+					>
+						<BsFillAirplaneEnginesFill />
+						<span>Турлар</span>
+					</Link>
+					<button
+						className={scss.nav_item}
+						onClick={() => setIsMobileMenuOpen(true)}
+					>
+						<HiOutlineMenuAlt3 />
+						<span>Меню</span>
+					</button>
+				</div>
+			</nav>
+
+			<MobileMenu
+				isOpen={isMobileMenuOpen}
+				onClose={() => setIsMobileMenuOpen(false)}
+			/>
+		</>
 	);
 };
 
