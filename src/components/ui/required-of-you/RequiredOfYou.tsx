@@ -50,7 +50,7 @@ const requireds_of_you = [
 		description: 'Супругам нужно иметь свидетельство о браке (подлинник).',
 		Icon: FaPassport
 	},
-	{
+	{ 
 		id: 'rf-3',
 		title: 'Фото',
 		description:
