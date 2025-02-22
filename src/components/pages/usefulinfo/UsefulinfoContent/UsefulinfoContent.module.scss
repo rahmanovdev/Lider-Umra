@@ -1,13 +1,36 @@
 .use_full_info_content {
+	/* Переменные для базовых стилей (для экранов от 1330px и выше) */
+	--content-gap: 35px; /* Увеличил для большего комфорта на больших экранах */
+	--row-gap: 25px;
+	--item-padding: 20px;
+	--item-border: 1px solid #ddd;
+	--item-border-radius: 20px;
+	--item-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	--item-height: 340px; /* Увеличил высоту для большего пространства */
+	--content-bottom: 20px;
+	--content-left-right: 20px;
+	--content-padding: 15px;
+	--content-background: rgba(
+		255,
+		255,
+		255,
+		0.7
+	); /* Немного более плотный фон для читаемости */
+	--content-backdrop-blur: 6px;
+	--content-border-radius: 15px;
+	--h2-font-size: 18px;
+	--p-font-size: 14px;
+	--fr-2-width: 600px; /* Увеличил ширину для большего комфорта */
+
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: var(--content-gap);
 
 	.row {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 20px;
+		gap: var(--row-gap);
 	}
 
 	a {
@@ -15,40 +38,39 @@
 	}
 
 	.item {
-		padding: 16px;
-		border: 1px solid #ddd;
-		border-radius: 4px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: var(--item-padding);
+		border: var(--item-border);
+		border-radius: var(--item-border-radius);
+		box-shadow: var(--item-box-shadow);
 		background-size: cover;
 		background-repeat: no-repeat;
 		width: 100%;
-		height: 340px;
+		height: var(--item-height);
 		position: relative;
 		overflow: hidden;
-		border-radius: 16px;
 
 		.content {
 			position: absolute;
-			bottom: 16px;
-			left: 16px;
-			right: 16px;
-			background: rgba(255, 255, 255, 0.5);
-			backdrop-filter: blur(5px);
-			padding: 12px;
-			border-radius: 12px;
+			bottom: var(--content-bottom);
+			left: var(--content-left-right);
+			right: var(--content-left-right);
+			background: var(--content-background);
+			backdrop-filter: blur(var(--content-backdrop-blur));
+			padding: var(--content-padding);
+			border-radius: var(--content-border-radius);
 
 			h2,
 			p {
-				color: white;
+				color: #333; /* Темный текст для контраста с светлым фоном */
 			}
 
 			h2 {
 				font-weight: bold;
-				font-size: 16px;
+				font-size: var(--h2-font-size);
 			}
 
 			p {
-				font-size: 14px;
+				font-size: var(--p-font-size);
 			}
 		}
 
@@ -63,13 +85,137 @@
 		}
 
 		&.fr-2 {
-			max-width: 600px;
-			min-width: 600px;
+			max-width: var(--fr-2-width);
+			min-width: var(--fr-2-width);
 		}
 
 		&.fr-1 {
-			max-width: 290px;
-			min-width: 290px;
+			max-width: 100%;
+			min-width: 100%;
 		}
+		&:is(.is_one) {
+			max-width: 50% !important;
+			min-width: 50% !important;
+		}
+	}
+
+	/* Кнопка "Күчтөс" (как на изображении) */
+	.item a {
+		display: inline-block;
+		padding: 10px 20px;
+		background: #007bff; /* Синий цвет, как на изображении */
+		color: white;
+		border-radius: 8px;
+		font-size: 14px;
+		text-decoration: none;
+		transition: background 0.3s;
+
+		&:hover {
+			background: #0056b3; /* Темнее при наведении */
+		}
+	}
+}
+
+/* Адаптивность через медиа-запросы, начиная с 1330px */
+@media (max-width: 1290px) {
+	.use_full_info_content {
+		--content-gap: 15px;
+		--row-gap: 15px;
+		--item-padding: 18px;
+		--item-border-radius: 18px;
+		--item-height: 350px;
+		--content-bottom: 18px;
+		--content-left-right: 18px;
+		--content-padding: 12px;
+		--content-border-radius: 12px;
+		--h2-font-size: 16px;
+		--p-font-size: 13px;
+		--fr-2-width: 580px;
+	}
+}
+
+@media (max-width: 1190px) {
+	.use_full_info_content {
+		--fr-2-width: 500px;
+	}
+}
+
+@media (max-width: 1090px) {
+	.use_full_info_content {
+		--fr-2-width: 100%;
+	}
+}
+
+@media (max-width: 1024px) {
+	.use_full_info_content {
+		--content-gap: 30px;
+		--row-gap: 20px;
+		--item-padding: 16px;
+		--item-border-radius: 16px;
+		--item-height: 300px;
+		--content-bottom: 16px;
+		--content-left-right: 16px;
+		--content-padding: 10px;
+		--content-border-radius: 10px;
+		--h2-font-size: 15px;
+		--p-font-size: 12px;
+	}
+}
+
+@media (max-width: 768px) {
+	.use_full_info_content {
+		--content-gap: 15px;
+		--row-gap: 10px;
+		--item-padding: 14px;
+		--item-border-radius: 14px;
+		--item-height: 220px;
+		--content-bottom: 14px;
+		--content-left-right: 14px;
+		--content-padding: 8px;
+		--content-border-radius: 8px;
+		--h2-font-size: 14px;
+		--p-font-size: 11px;
+	}
+
+	.item {
+		max-width: 100% !important;
+		min-width: 100% !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.use_full_info_content {
+		--content-gap: 10px;
+		--row-gap: 5px;
+		--item-padding: 12px;
+		--item-border-radius: 12px;
+		--item-height: 200px;
+		--content-bottom: 12px;
+		--content-left-right: 12px;
+		--content-padding: 6px;
+		--content-border-radius: 6px;
+		--h2-font-size: 13px;
+		--p-font-size: 10px;
+	}
+}
+
+@media (max-width: 400px) {
+	.row {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+
+@media (max-width: 360px) {
+	.use_full_info_content {
+		--item-padding: 10px;
+		--item-border-radius: 10px;
+		--item-height: 180px;
+		--content-bottom: 10px;
+		--content-left-right: 10px;
+		--content-padding: 5px;
+		--content-border-radius: 5px;
+		--h2-font-size: 12px;
+		--p-font-size: 9px;
 	}
 }

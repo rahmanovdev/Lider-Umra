@@ -26,7 +26,9 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={`${interSans.variable}  ${montserrat.variable}`}>
-				<LayoutClient>{children}</LayoutClient>
+				<div className='wrapper'>
+					<LayoutClient>{children}</LayoutClient>
+				</div>
 			</body>
 		</html>
 	);

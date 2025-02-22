@@ -1,10 +1,20 @@
 .Main {
-	width: 390px;
-	border-radius: 25px;
-	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.15);
-	padding: 2rem 1.2rem;
-	transition: all 0.25s;
-	background: #f0fbfc;
+	/* Переменные для базовых стилей */
+	--main-width: 400px; /* Базовая ширина одной карточки */
+	--main-border-radius: 20px; /* Увеличил радиус для мягкости */
+	--main-box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1); /* Мягче тень */
+	--main-padding: 1.5rem 1rem; /* Уменьшил padding для баланса */
+	--main-transition: all 0.25s;
+	--main-background: #e6f7ff; /* Светло-голубой фон, как на изображении */
+
+	/* Применение переменных */
+	width: var(--main-width);
+	border-radius: var(--main-border-radius);
+	box-shadow: var(--main-box-shadow);
+	padding: var(--main-padding);
+	transition: var(--main-transition);
+	background: var(--main-background);
+	box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
 
 	&.comfort {
 		transform: scale(1.04);
@@ -12,28 +22,31 @@
 
 	.starRating {
 		display: inline-flex;
-		gap: 4px;
+		gap: 6px; /* Увеличил gap для эстетики */
 		align-items: center;
 		margin-left: auto;
 
 		.star {
 			color: #ffd700;
-			font-size: 18px;
+			font-size: var(--star-font-size, 20px); /* Увеличил размер звездочек */
 		}
 	}
 
 	h2 {
 		text-align: center;
-		font-size: 2.4rem;
+		font-size: var(--h2-font-size, 2rem); /* Уменьшил немного для баланса */
 		font-weight: 600;
-		line-height: 1;
-		margin-bottom: 0.5em;
+		line-height: 1.2;
+		margin-bottom: 0.8em; /* Увеличил отступ для гармонии */
+		color: #333; /* Темный текст для контраста */
 	}
 
 	.img_block {
 		img {
 			width: 100%;
-			height: 212px;
+			height: var(--img-height, 220px); /* Увеличил высоту изображения */
+			object-fit: cover; /* Для красивого отображения изображений */
+			border-radius: 10px 10px 0 0; /* Закругление только верха изображения */
 		}
 	}
 
@@ -41,34 +54,39 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin-top: 10px;
-		margin-bottom: 25px;
+		margin-top: var(--data-margin-top, 15px); /* Увеличил отступ */
+		margin-bottom: var(--data-margin-bottom, 20px); /* Увеличил отступ */
 
 		p {
-			font-size: 16px;
-			font-family: 400;
+			font-size: var(--data-font-size, 16px);
+			font-weight: 400;
+			color: #666; /* Серая текст для контраста */
 
 			span {
-				font-size: 21px;
+				font-size: var(
+					--data-span-font-size,
+					18px
+				); /* Уменьшил немного для баланса */
 				font-weight: 700;
+				color: #333;
 			}
 		}
 
 		.line {
-			width: 33px;
-			height: 1px;
-			background: black;
+			width: var(--data-line-width, 40px); /* Увеличил ширину линии */
+			height: 2px; /* Увеличил толщину линии */
+			background: #333;
 		}
 	}
 
 	.card_container {
-		margin-top: 15px;
-		padding: 0 15px;
+		margin-top: var(--card-margin-top, 20px); /* Увеличил отступ */
+		padding: 0 var(--card-padding, 15px);
 		width: 100%;
 
 		.divider {
-			margin: 13px 0;
-			height: 0.1px;
+			margin: var(--divider-margin, 15px) 0; /* Увеличил отступ */
+			height: 1px; /* Увеличил высоту линии */
 			border-radius: 100px;
 			background: #acacac;
 			border: none;
@@ -79,15 +97,18 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			margin-bottom: 10px; /* Добавил отступ для разделения строк */
 
 			h4 {
-				font-size: 14px;
+				font-size: var(--line-h4-font-size, 14px);
 				font-weight: 500;
+				color: #666;
 			}
 
 			h5 {
-				font-size: 16px;
+				font-size: var(--line-h5-font-size, 16px);
 				font-weight: 500;
+				color: #333;
 			}
 		}
 	}
@@ -95,17 +116,112 @@
 	.link {
 		display: flex;
 		justify-content: center;
-		margin-top: 20px;
+		margin-top: var(--link-margin-top, 25px); /* Увеличил отступ */
 
 		a {
-			border-radius: 100px;
-			width: 90%;
-			padding: 8px 0;
-			background: var(--default-primary-gradient);
-			font-size: 1rem;
-			font-weight: 400;
+			border-radius: 50px; /* Увеличил радиус для большей округлости */
+			width: 80%; /* Уменьшил ширину кнопки для визуальной легкости */
+			padding: var(--link-padding, 10px) 0; /* Увеличил padding для удобства */
+			background: linear-gradient(
+				45deg,
+				#007bff,
+				#00c0ff
+			); /* Градиент для кнопки, как на изображении */
+			font-size: var(--link-font-size, 16px); /* Увеличил размер текста */
+			font-weight: 500;
 			color: white;
 			text-align: center;
+			text-decoration: none; /* Убираем подчеркивание ссылки */
+			cursor: pointer; /* Курсор для интерактивности */
+			transition: background 0.3s; /* Анимация для градиента при наведении */
+
+			&:hover {
+				background: linear-gradient(45deg, #0056b3, #0099cc);
+			}
 		}
+	}
+}
+
+@media (max-width: 1300px) {
+	.Main {
+		--main-width: 100%;
+		--main-border-radius: 18px;
+		--main-padding: 1.4rem 0.9rem;
+		--h2-font-size: 1.8rem;
+		--img-height: 200px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.Main {
+		--main-width: 100%;
+		--main-border-radius: 16px;
+		--main-padding: 1.2rem 0.8rem;
+		--h2-font-size: 1.6rem;
+		--img-height: 180px;
+		--data-font-size: 15px;
+		--data-span-font-size: 17px;
+		--star-font-size: 18px;
+		--link-font-size: 15px;
+	}
+}
+
+@media (max-width: 768px) {
+	.Main {
+		--main-border-radius: 14px;
+		--main-padding: 1rem 0.7rem;
+		--h2-font-size: 1.5rem;
+		--img-height: 160px;
+		--data-margin-bottom: 18px;
+		--card-padding: 12px;
+	}
+}
+
+@media (max-width: 600px) {
+	.Main {
+		--main-border-radius: 12px;
+		--main-padding: 1rem 0.7rem;
+		--h2-font-size: 1.4rem;
+		--img-height: 150px;
+		--data-font-size: 14px;
+		--data-span-font-size: 16px;
+		--link-margin-top: 20px;
+		--star-font-size: 16px;
+		--link-font-size: 14px;
+	}
+}
+
+@media (max-width: 400px) {
+	.Main {
+		--main-width: 100%;
+		--main-border-radius: 10px;
+		--main-padding: 0.8rem 0.6rem;
+		--h2-font-size: 1.2rem;
+		--img-height: 130px;
+		--card-margin-top: 15px;
+		--data-margin-top: 12px;
+		--data-margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 360px) {
+	.Main {
+		--main-border-radius: 8px;
+		--main-padding: 0.7rem 0.5rem;
+		--h2-font-size: 1.1rem;
+		--img-height: 120px;
+		--data-font-size: 13px;
+		--data-span-font-size: 15px;
+		--link-font-size: 12px;
+	}
+}
+
+@media (max-width: 320px) {
+	.Main {
+		--main-border-radius: 6px;
+		--main-padding: 0.6rem 0.4rem;
+		--h2-font-size: 1rem;
+		--img-height: 110px;
+		--star-font-size: 14px;
 	}
 }
