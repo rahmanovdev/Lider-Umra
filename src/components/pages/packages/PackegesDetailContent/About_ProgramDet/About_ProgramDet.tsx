@@ -6,7 +6,7 @@ interface AboutProgramDetProps {
 	tourData: TOURS.ITourPackages;
 }
 
-const About_ProgramDet = ({ tourData }: AboutProgramDetProps) => {
+const About_ProgramDet = ({}: AboutProgramDetProps) => {
 	return (
 		<section className={scss.About_ProgramDet}>
 			<div className='container'>

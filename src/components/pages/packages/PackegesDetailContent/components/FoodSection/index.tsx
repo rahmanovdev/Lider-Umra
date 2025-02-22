@@ -1,8 +1,5 @@
 'use client';
-import Image from 'next/image';
 import styles from './styles.module.scss';
-import { useState } from 'react';
-import clsx from 'clsx';
 import { useGetFoodInfoQuery } from '@/redux/api/tour-details';
 import { ImageSlider } from '../shared/ImageSlider'; // ImageSlider компонентин импорттойбуз
 

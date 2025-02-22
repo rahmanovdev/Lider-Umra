@@ -1,9 +1,6 @@
-"use client";
-import HomePage from "@/components/pages/HomePage";
-import React from "react";
-import { useGetToursQuery } from "@/redux/api/tour";
-
-
+'use client';
+import HomePage from '@/components/pages/HomePage';
+import React from 'react';
 
 const page = () => (
 	<div>

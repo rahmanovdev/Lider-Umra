@@ -1,14 +1,7 @@
 import React from 'react';
 import scss from './AboutSection.module.scss';
-import card1 from '../../../../../public/assets/images/about_card1.svg';
-import card2 from '../../../../../public/assets/images/about_card2.svg';
-import card3 from '../../../../../public/assets/images/about_card3.svg';
 import Image from 'next/image';
-import emblemCard from '../../../../../public/assets/images/emblem_card.svg';
 import BgOrnament from '../../../../../public/assets/images/bg_ornament.svg';
-import star from '../../../../../public/assets/images/star.svg';
-import star2 from '../../../../../public/assets/images/star2.svg';
-import star3 from '../../../../../public/assets/images/star3.svg';
 import lamp from '../../../../../public/assets/images/lamp.svg';
 import AboutCards from '@/components/ui/cards/about_cards/AboutCards';
 
