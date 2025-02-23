@@ -29,35 +29,35 @@ const Footer = () => {
             </p>
           </div>
           <div className={scss.center}>
-            <h2>Quick links</h2>
+            <h2>Тез шилтемелер</h2>
             <div className={scss.nav}>
-            <p>Home</p>
-            <p>Privacy Policy</p>
+            <p>Башкы</p>
+            <p>Купуя саясаты</p>
             <p>{"FAQ'"}s</p>
-            <p>Glossary</p>
-            <p>Contact Us</p>
-            <p>Term Of Use</p>
+            <p>Глоссарий</p>
+            <p>Байланыш</p>
+            <p>Колдонуу мооноту</p>
             </div>
           </div>
           <div className={scss.center}>
-            <h2>Company</h2>
+            <h2>Компания</h2>
             <div className={scss.nav}>
-            <p>Blogs</p>
-            <p>About us</p>
-            <p>Careers</p>
+            <p>Блог</p>
+            <p>Биз жонундо</p>
+            <p>Карьера</p>
             </div>
           </div>
           <div className={scss.center}>
-            <h2>Resourses</h2>
+            <h2>Ресурстар</h2>
             <div className={scss.nav}>
             <p>Umrah Packages</p>
             <p>Umrah + Holidays</p>
-            <p>Hotels</p>
-            <p>Destination</p>
+            <p>Мейманканалар</p>
+            <p>Коздогон жер</p>
             </div>
           </div>
           <div className={scss.right_block}>
-            <h2>Contact Us</h2>
+            <h2>Байланыш</h2>
             <div className={scss.logo}>
             <IoLogoYoutube/>
             <FaInstagram/>
