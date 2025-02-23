@@ -66,7 +66,7 @@ Indicators.displayName = 'Indicators';
 
 const HeroSection: React.FC = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const [isLoading, setIsLoading] = useState(true);
+	const [, setIsLoading] = useState(true);
 
 	const handleSlideChange = useCallback((index: number) => {
 		setCurrentSlide(index);

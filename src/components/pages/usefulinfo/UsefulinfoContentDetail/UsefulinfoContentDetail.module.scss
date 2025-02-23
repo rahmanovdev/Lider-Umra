@@ -11,6 +11,14 @@
 }
 
 .pageContainer {
+	--bg-primary: #ffffff;
+	--text-primary: #000000;
+	--text-secondary: #404040;
+	--circle-bg: #e5e5e5;
+	--circle-border: #d4d4d4;
+	--line-color: #e5e5e5;
+	--progress-from: var(--color-primary);
+	--progress-via: var(--color-primary);
 	gap: 4rem;
 	min-height: 100vh;
 	max-width: var(--container-max-width);
@@ -115,10 +123,12 @@
 	top: 0;
 	overflow: hidden;
 	width: 4px;
-	background: linear-gradient(to bottom,
-			var(--line-color) 10%,
-			var(--line-color) 90%,
-			transparent 100%);
+	background: linear-gradient(
+		to bottom,
+		var(--line-color) 10%,
+		var(--line-color) 90%,
+		transparent 100%
+	);
 	mask-image: linear-gradient(to bottom, black 10%, black 90%);
 }
 
@@ -128,9 +138,11 @@
 	right: 0;
 	top: 0;
 	width: 4px;
-	background: linear-gradient(to top,
-			var(--progress-from) 0%,
-			var(--progress-via) 10%,
-			transparent 100%);
+	background: linear-gradient(
+		to top,
+		var(--progress-from) 0%,
+		var(--progress-via) 10%,
+		transparent 100%
+	);
 	border-radius: 9999px;
 }

@@ -67,13 +67,13 @@ interface AboutProgramDetProps {
 	tourData: TOURS.ITourPackages;
 }
 
-const AboutProgramDet = ({ tourData }: AboutProgramDetProps) => {
+const AboutProgramDet = ({}: AboutProgramDetProps) => {
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 	const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 	const [isHovered, setIsHovered] = useState(false);
 	const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-	const startInterval = () => {
+	const startInterval = React.useCallback(() => {
 		if (intervalRef.current) {
 			clearInterval(intervalRef.current);
 		}
@@ -85,7 +85,7 @@ const AboutProgramDet = ({ tourData }: AboutProgramDetProps) => {
 				);
 			}
 		}, 50000);
-	};
+	}, [isHovered]);
 
 	useEffect(() => {
 		startInterval();
@@ -95,7 +95,7 @@ const AboutProgramDet = ({ tourData }: AboutProgramDetProps) => {
 				clearInterval(intervalRef.current);
 			}
 		};
-	}, [isHovered]);
+	}, [isHovered, startInterval]);
 
 	const handleMouseEnter = () => {
 		setIsHovered(true);

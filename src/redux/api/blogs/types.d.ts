@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
  namespace BLOG {
 	interface DetailDescription {
 		id: number;

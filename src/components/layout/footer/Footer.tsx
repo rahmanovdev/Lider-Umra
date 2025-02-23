@@ -33,7 +33,7 @@ const Footer = () => {
             <div className={scss.nav}>
             <p>Home</p>
             <p>Privacy Policy</p>
-            <p>FAQ's</p>
+            <p>{"FAQ'"}s</p>
             <p>Glossary</p>
             <p>Contact Us</p>
             <p>Term Of Use</p>

@@ -1,4 +1,4 @@
-// redux/api/hotels/types.d.ts
+/* eslint-disable @typescript-eslint/no-unused-vars */
 namespace HOTEL {
 	interface IHotel {
 		id: number;

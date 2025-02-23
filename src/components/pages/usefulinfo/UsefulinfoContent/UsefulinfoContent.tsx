@@ -3,6 +3,7 @@ import { useGetBlogsQuery } from '@/redux/api/blogs';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './UsefulinfoContent.module.scss';
+import { useSize } from '@/hooks/use-size';
 
 interface LayoutItem {
 	fr: number;
@@ -10,7 +11,7 @@ interface LayoutItem {
 }
 const UsefulinfoContent = () => {
 	const { data: blogs, isLoading } = useGetBlogsQuery();
-
+	const size = useSize();
 	if (isLoading) {
 		return <div>Жүктөлүүдө...</div>;
 	}
@@ -23,13 +24,22 @@ const UsefulinfoContent = () => {
 		const rows: LayoutItem[][] = [];
 		let index = 0;
 
-		const layouts = [
-			[{ fr: 1 }, { fr: 1 }, { fr: 2 }],
-			[{ fr: 1 }, { fr: 2 }, { fr: 1 }],
-			[{ fr: 2 }, { fr: 1 }, { fr: 1 }],
-			[{ fr: 1 }, { fr: 1 }, { fr: 1 }, { fr: 1 }],
-			[{ fr: 2 }, { fr: 2 }]
-		];
+		// Проверяем ширину экрана
+		const layouts =
+			size.width <= 1090
+				? [
+						[{ fr: 2 }, { fr: 2 }],
+						[{ fr: 2 }, { fr: 2 }],
+						[{ fr: 2 }, { fr: 2 }],
+						[{ fr: 2 }, { fr: 2 }]
+				  ]
+				: [
+						[{ fr: 1 }, { fr: 1 }, { fr: 2 }],
+						[{ fr: 1 }, { fr: 2 }, { fr: 1 }],
+						[{ fr: 2 }, { fr: 1 }, { fr: 1 }],
+						[{ fr: 1 }, { fr: 1 }, { fr: 1 }, { fr: 1 }],
+						[{ fr: 2 }, { fr: 2 }]
+				  ];
 
 		layouts.forEach(layout => {
 			const row = layout
@@ -39,8 +49,17 @@ const UsefulinfoContent = () => {
 					return blog ? { ...item, blog } : null;
 				})
 				.filter(Boolean) as LayoutItem[];
-			if (row.length && row) rows.push(row);
+			if (row.length) rows.push(row);
 		});
+
+		while (index < blogs.length) {
+			const remainingRow = [
+				{ fr: 2, blog: blogs[index] },
+				blogs[index + 1] ? { fr: 2, blog: blogs[index + 1] } : null
+			].filter(Boolean) as LayoutItem[];
+			rows.push(remainingRow);
+			index += 2;
+		}
 
 		return rows;
 	};
@@ -50,9 +69,13 @@ const UsefulinfoContent = () => {
 		<div className={styles.use_full_info_content}>
 			{rows.map((row, rowIndex) => (
 				<div className={styles.row} key={rowIndex}>
-					{row.map((item, blogIndex) => (
+					{row.map(item => (
 						<Link href={`/usefulinfo/${item.blog.id}`} key={item.blog.id}>
-							<div className={`${styles['fr-' + item.fr]} ${styles.item}`}>
+							<div
+								className={`${styles['fr-' + item.fr]} ${
+									row.length == 1 && styles.is_one
+								} ${styles.item}`}
+							>
 								<Image
 									src={item.blog.image || '/images/placeholder.jpg'}
 									alt={item.blog.name}
