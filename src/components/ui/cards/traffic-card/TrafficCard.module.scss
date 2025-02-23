@@ -1,20 +1,18 @@
 .Main {
-	/* Переменные для базовых стилей */
-	--main-width: 400px; /* Базовая ширина одной карточки */
-	--main-border-radius: 20px; /* Увеличил радиус для мягкости */
-	--main-box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1); /* Мягче тень */
-	--main-padding: 1.5rem 1rem; /* Уменьшил padding для баланса */
+	--main-width: 400px;
+	--main-border-radius: 20px;
+	--main-box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
+	--main-padding: 1.5rem 1rem;
 	--main-transition: all 0.25s;
-	--main-background: #e6f7ff; /* Светло-голубой фон, как на изображении */
+	--main-background: #e6f7ff;
 
-	/* Применение переменных */
 	width: var(--main-width);
 	border-radius: var(--main-border-radius);
 	box-shadow: var(--main-box-shadow);
 	padding: var(--main-padding);
 	transition: var(--main-transition);
 	background: var(--main-background);
-	box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+	box-sizing: border-box;
 
 	&.comfort {
 		transform: scale(1.04);
@@ -22,31 +20,31 @@
 
 	.starRating {
 		display: inline-flex;
-		gap: 6px; /* Увеличил gap для эстетики */
+		gap: 6px;
 		align-items: center;
 		margin-left: auto;
 
 		.star {
 			color: #ffd700;
-			font-size: var(--star-font-size, 20px); /* Увеличил размер звездочек */
+			font-size: var(--star-font-size, 20px);
 		}
 	}
 
 	h2 {
 		text-align: center;
-		font-size: var(--h2-font-size, 2rem); /* Уменьшил немного для баланса */
+		font-size: var(--h2-font-size, 2rem);
 		font-weight: 600;
 		line-height: 1.2;
-		margin-bottom: 0.8em; /* Увеличил отступ для гармонии */
-		color: #333; /* Темный текст для контраста */
+		margin-bottom: 0.8em;
+		color: #333;
 	}
 
 	.img_block {
 		img {
 			width: 100%;
-			height: var(--img-height, 220px); /* Увеличил высоту изображения */
-			object-fit: cover; /* Для красивого отображения изображений */
-			border-radius: 10px 10px 0 0; /* Закругление только верха изображения */
+			height: var(--img-height, 220px);
+			object-fit: cover;
+			border-radius: 10px 10px 0 0;
 		}
 	}
 
@@ -54,39 +52,36 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin-top: var(--data-margin-top, 15px); /* Увеличил отступ */
-		margin-bottom: var(--data-margin-bottom, 20px); /* Увеличил отступ */
+		margin-top: var(--data-margin-top, 15px);
+		margin-bottom: var(--data-margin-bottom, 20px);
 
 		p {
 			font-size: var(--data-font-size, 16px);
 			font-weight: 400;
-			color: #666; /* Серая текст для контраста */
+			color: #666;
 
 			span {
-				font-size: var(
-					--data-span-font-size,
-					18px
-				); /* Уменьшил немного для баланса */
+				font-size: var(--data-span-font-size, 18px);
 				font-weight: 700;
 				color: #333;
 			}
 		}
 
 		.line {
-			width: var(--data-line-width, 40px); /* Увеличил ширину линии */
-			height: 2px; /* Увеличил толщину линии */
+			width: var(--data-line-width, 40px);
+			height: 2px;
 			background: #333;
 		}
 	}
 
 	.card_container {
-		margin-top: var(--card-margin-top, 20px); /* Увеличил отступ */
+		margin-top: var(--card-margin-top, 20px);
 		padding: 0 var(--card-padding, 15px);
 		width: 100%;
 
 		.divider {
-			margin: var(--divider-margin, 15px) 0; /* Увеличил отступ */
-			height: 1px; /* Увеличил высоту линии */
+			margin: var(--divider-margin, 15px) 0;
+			height: 1px;
 			border-radius: 100px;
 			background: #acacac;
 			border: none;
@@ -97,7 +92,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			margin-bottom: 10px; /* Добавил отступ для разделения строк */
+			margin-bottom: 10px;
 
 			h4 {
 				font-size: var(--line-h4-font-size, 14px);
@@ -116,24 +111,20 @@
 	.link {
 		display: flex;
 		justify-content: center;
-		margin-top: var(--link-margin-top, 25px); /* Увеличил отступ */
+		margin-top: var(--link-margin-top, 25px);
 
 		a {
-			border-radius: 50px; /* Увеличил радиус для большей округлости */
-			width: 80%; /* Уменьшил ширину кнопки для визуальной легкости */
-			padding: var(--link-padding, 10px) 0; /* Увеличил padding для удобства */
-			background: linear-gradient(
-				45deg,
-				#007bff,
-				#00c0ff
-			); /* Градиент для кнопки, как на изображении */
-			font-size: var(--link-font-size, 16px); /* Увеличил размер текста */
+			border-radius: 50px;
+			width: 80%;
+			padding: var(--link-padding, 10px) 0;
+			background: linear-gradient(45deg, #007bff, #00c0ff);
+			font-size: var(--link-font-size, 16px);
 			font-weight: 500;
 			color: white;
 			text-align: center;
-			text-decoration: none; /* Убираем подчеркивание ссылки */
-			cursor: pointer; /* Курсор для интерактивности */
-			transition: background 0.3s; /* Анимация для градиента при наведении */
+			text-decoration: none;
+			cursor: pointer;
+			transition: background 0.3s;
 
 			&:hover {
 				background: linear-gradient(45deg, #0056b3, #0099cc);
@@ -154,7 +145,8 @@
 
 @media (max-width: 1024px) {
 	.Main {
-		--main-width: 100%;
+		margin: 0 auto;
+		--main-width: 90%;
 		--main-border-radius: 16px;
 		--main-padding: 1.2rem 0.8rem;
 		--h2-font-size: 1.6rem;
@@ -179,6 +171,7 @@
 
 @media (max-width: 600px) {
 	.Main {
+		--main-width: 98%;
 		--main-border-radius: 12px;
 		--main-padding: 1rem 0.7rem;
 		--h2-font-size: 1.4rem;
