@@ -1,19 +1,19 @@
 'use client';
-import * as React from 'react';
-import scss from './StepsHajjSection.module.scss';
 import Image from 'next/image';
+import * as React from 'react';
 import img1 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage1.png';
 import img2 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage2.png';
 import img3 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage3.png';
 import img4 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage4.png';
 import img5 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage5.png';
+import scss from './StepsHajjSection.module.scss';
 
 const colors: { [key: number]: string } = {
-	1: 'rgb(220, 255, 220)', // Mint
-	2: 'rgb(200, 230, 255)', // Light Sky Blue
-	3: 'rgb(255, 250, 205)', // Lemon Chiffon
-	4: 'rgb(225, 225, 255)', // Periwinkle
-	5: 'rgb(230, 240, 210)' // Tea Green
+	1: 'rgb(220, 255, 220)',
+	2: 'rgb(200, 230, 255)',
+	3: 'rgb(255, 250, 205)',
+	4: 'rgb(225, 225, 255)',
+	5: 'rgb(230, 240, 210)'
 };
 
 const steps = [
@@ -33,9 +33,10 @@ const StepsHajjSection = () => {
 			setCurrentStep(prevStep => {
 				const nextStep = prevStep < 5 ? prevStep + 1 : 1;
 
-				// Scroll to the active element
 				const container = scrollContainerRef.current;
 				if (container) {
+					if (typeof document === 'undefined') return prevStep;
+
 					const activeElement = document.getElementById(`step-${nextStep - 1}`);
 					if (activeElement) {
 						const containerWidth = container.offsetWidth;

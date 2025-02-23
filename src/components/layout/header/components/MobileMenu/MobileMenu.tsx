@@ -1,8 +1,8 @@
 'use client';
-import React from 'react';
 import Link from 'next/link';
-import scss from './MobileMenu.module.scss';
+import React from 'react';
 import { IoClose } from 'react-icons/io5';
+import scss from './MobileMenu.module.scss';
 
 interface MobileMenuProps {
 	isOpen: boolean;

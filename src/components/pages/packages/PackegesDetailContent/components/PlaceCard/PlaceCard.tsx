@@ -10,6 +10,8 @@ interface PlaceCardProps {
 const PlaceCard: React.FC<PlaceCardProps> = ({ place, onOpen }) => {
 	// HTML тегдерди тазалоо функциясы
 	const stripHtml = (html: string) => {
+		if (typeof document === 'undefined') return '';
+
 		const temp = document.createElement('div');
 		temp.innerHTML = html;
 		return temp.textContent || temp.innerText;
