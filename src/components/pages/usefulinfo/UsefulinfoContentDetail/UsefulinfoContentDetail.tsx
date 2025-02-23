@@ -19,7 +19,7 @@ const UsefulinfoContentDetail = () => {
 	}
 
 	return (
-		<div className={`${scss.variables} ${scss.pageContainer}`}>
+		<div className={`${scss.pageContainer}`}>
 			<h4 className={scss.title}>{blog?.name}</h4>
 			<div className={scss.wrapper} ref={containerRef}>
 				<div ref={ref} className={scss.timelineContainer}>

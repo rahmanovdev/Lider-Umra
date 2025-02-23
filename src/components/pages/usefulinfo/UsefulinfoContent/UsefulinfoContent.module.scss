@@ -1,26 +1,20 @@
 .use_full_info_content {
-	/* Переменные для базовых стилей (для экранов от 1330px и выше) */
-	--content-gap: 35px; /* Увеличил для большего комфорта на больших экранах */
+	--content-gap: 35px;
 	--row-gap: 25px;
 	--item-padding: 20px;
 	--item-border: 1px solid #ddd;
 	--item-border-radius: 20px;
 	--item-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	--item-height: 340px; /* Увеличил высоту для большего пространства */
+	--item-height: 340px;
 	--content-bottom: 20px;
 	--content-left-right: 20px;
 	--content-padding: 15px;
-	--content-background: rgba(
-		255,
-		255,
-		255,
-		0.7
-	); /* Немного более плотный фон для читаемости */
+	--content-background: rgba(255, 255, 255, 0.7);
 	--content-backdrop-blur: 6px;
 	--content-border-radius: 15px;
 	--h2-font-size: 18px;
 	--p-font-size: 14px;
-	--fr-2-width: 600px; /* Увеличил ширину для большего комфорта */
+	--fr-2-width: 600px;
 
 	display: flex;
 	flex-direction: column;
@@ -61,7 +55,7 @@
 
 			h2,
 			p {
-				color: #333; /* Темный текст для контраста с светлым фоном */
+				color: #333;
 			}
 
 			h2 {
@@ -99,11 +93,10 @@
 		}
 	}
 
-	/* Кнопка "Күчтөс" (как на изображении) */
 	.item a {
 		display: inline-block;
 		padding: 10px 20px;
-		background: #007bff; /* Синий цвет, как на изображении */
+		background: #007bff;
 		color: white;
 		border-radius: 8px;
 		font-size: 14px;
@@ -111,12 +104,11 @@
 		transition: background 0.3s;
 
 		&:hover {
-			background: #0056b3; /* Темнее при наведении */
+			background: #0056b3;
 		}
 	}
 }
 
-/* Адаптивность через медиа-запросы, начиная с 1330px */
 @media (max-width: 1290px) {
 	.use_full_info_content {
 		--content-gap: 15px;

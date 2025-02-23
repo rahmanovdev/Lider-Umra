@@ -24,7 +24,6 @@ const UsefulinfoContent = () => {
 		const rows: LayoutItem[][] = [];
 		let index = 0;
 
-		// Проверяем ширину экрана
 		const layouts =
 			size.width <= 1090
 				? [

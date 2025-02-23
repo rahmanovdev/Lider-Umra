@@ -6,13 +6,13 @@ import scss from './TrafficCard.module.scss';
 import { FaStar } from 'react-icons/fa'
 
 type TProps = {
-	type: 'ekonom' | 'comfort';
+	type: 'standart' | 'comfort';
 	tour: TOURS.ITourPackages;
 };
 
 const Type = {
-	ekonom: 'Эконом',
-	comfort: 'Комфорт'
+	standart: 'Стандарт+',
+	comfort: 'Комфорт+'
 };
 
 const TrafficCard: React.FC<TProps> = ({ type, tour }) => {
