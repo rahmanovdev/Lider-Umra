@@ -1,3 +1,15 @@
+// Local variables for this component - using a local class instead of :root
+.variables {
+	--bg-primary: #ffffff;
+	--text-primary: #000000;
+	--text-secondary: #404040;
+	--circle-bg: #e5e5e5;
+	--circle-border: #d4d4d4;
+	--line-color: #e5e5e5;
+	--progress-from: var(--color-primary);
+	--progress-via: var(--color-primary);
+}
+
 .pageContainer {
 	gap: 4rem;
 	min-height: 100vh;
@@ -17,6 +29,7 @@
 	}
 }
 
+// Rest of your styles remain the same
 .content {
 	display: flex;
 	align-items: flex-start;
@@ -120,15 +133,4 @@
 			var(--progress-via) 10%,
 			transparent 100%);
 	border-radius: 9999px;
-}
-
-:root {
-	--bg-primary: #ffffff;
-	--text-primary: #000000;
-	--text-secondary: #404040;
-	--circle-bg: #e5e5e5;
-	--circle-border: #d4d4d4;
-	--line-color: #e5e5e5;
-	--progress-from: var(--color-primary);
-	--progress-via: var(--color-primary);
 }

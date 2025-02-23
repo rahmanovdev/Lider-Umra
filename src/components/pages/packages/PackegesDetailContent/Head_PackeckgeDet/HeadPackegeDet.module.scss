@@ -24,17 +24,17 @@
         color: white;
         width: 100%;
         max-width: 590px;
-        min-height: 262px; // Match image height
+        min-height: 262px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        display: flex; // Added flex display
-        flex-direction: column; // Stack children vertically
+        display: flex;
+        flex-direction: column;
 
         .text_card {
           padding-top: 10px;
           display: flex;
           flex-direction: column;
           gap: 14px;
-          flex: 1; // Take remaining space
+          flex: 1;
         }
 
         hr {
@@ -72,7 +72,7 @@
 
               .month {
                 display: flex;
-                align-items: flex-start; // Corrected from start
+                align-items: flex-start;
                 flex-direction: column;
 
                 h5 {
@@ -91,35 +91,43 @@
           }
         }
 
+        .card_info {
+          margin-top: 20px;
+          display: flex;
+          flex-direction: column;
+          padding: 0 16px;
+          gap: 12px;
+
+          .info_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            h4 {
+              font-size: 17px;
+              margin: 0;
+              font-weight: 500;
+            }
+
+            h5 {
+              font-size: 17px;
+              margin: 0;
+              font-weight: 400;
+            }
+          }
+        }
+
         h2 {
           font-size: clamp(20px, 3vw, 28px);
-          margin: 0; // Added
+          margin: 0;
         }
 
         p {
           font-size: clamp(12px, 2vw, 14px);
           line-height: 1.5;
-          margin: 0; // Added
-        }
-
-        button {
-          border: 1px solid white;
-          color: #f4f4f4;
-          padding: 8px 20px;
-          border-radius: 16px;
-          cursor: pointer;
-          font-size: clamp(12px, 2vw, 14px);
-          transition: all 0.3s ease; // Improved transition
-          width: 200px;
-          display: block;
-          background: transparent;
-          margin-top: auto; // Push to bottom of flex container
-
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            transform: translateY(-1px); // Subtle lift effect
-          }
+          margin: 0;
         }
       }
 
@@ -130,7 +138,6 @@
         border-radius: 16px;
         background: var(--color-bg);
         box-shadow: 0px 0px 12px 0px #addee1;
-
         overflow: hidden;
 
         .leader_container {
@@ -181,7 +188,6 @@
 
               .bio_container {
                 position: relative;
-                margin-bottom: 1rem;
 
                 .bio_content {
                   position: relative;
@@ -224,27 +230,8 @@
               }
             }
           }
-
-          .leader_button {
-            width: fit-content;
-            padding: 10px 24px;
-            border: none;
-            background: var(--default-primary-gradient);
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 15px;
-            margin-top: auto;
-
-            &:hover {
-              opacity: 0.9;
-            }
-          }
         }
       }
-
-
     }
 
     .call_buttons {
@@ -253,21 +240,19 @@
       margin-top: 20px;
       flex-wrap: wrap;
       justify-content: center;
-      width: 100%;
-      // max-width: 590px; // Match card width
 
       button {
-        flex: 1; // Equal width buttons
+        width: 250px;
+        flex: 1;
         background: var(--default-primary-gradient);
         border: none;
-        padding: 16px 26px;
+        padding: 14px 24px;
         color: white;
-        border-radius: 10px;
+        border-radius:30px;
         cursor: pointer;
         font-size: clamp(12px, 2vw, 16px);
         transition: all 0.3s ease;
-        // min-width: 120px; // Minimum width
-        white-space: nowrap; // Prevent text wrap
+        white-space: nowrap;
 
         &:hover {
           background-color: #0056b3;
@@ -281,25 +266,26 @@
 @media (max-width: 768px) {
   .HeadPackegeDet {
     .content {
-      padding: 0 15px; // Added padding
+      padding: 0 15px;
 
       .card_container {
         flex-direction: column;
-        gap: 15px; // Reduced gap
+        gap: 15px;
 
         .info_card,
         .image_card {
           max-width: 100%;
-          min-height: auto; // Reset height
+          min-height: auto;
         }
 
         .image_card {
-          height: 200px; // Reduced height on mobile
+          height: auto;
+          min-height: 200px;
         }
       }
 
       .call_buttons {
-        flex-direction: column; // Stack buttons
+        flex-direction: column;
         max-width: 100%;
 
         button {

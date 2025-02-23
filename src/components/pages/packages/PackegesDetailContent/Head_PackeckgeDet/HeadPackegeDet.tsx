@@ -1,20 +1,37 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import scss from './HeadPackegeDet.module.scss';
 import Image from 'next/image';
-import { Modal } from '../components/shared/Modal'
+import { Modal } from '../components/shared/Modal';
 
 interface HeadPackegeDetProps {
 	tourData: TOURS.ITourPackages;
 }
 
 const Type = {
-	ekonom: 'Эконом',
-	comfort: 'Комфорт'
+	ekonom: 'Стандарт +',
+	comfort: 'Комфорт+'
 };
 
 const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [showReadMore, setShowReadMore] = useState(false);
+	const bioContentRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const checkOverflow = () => {
+			if (bioContentRef.current) {
+				const isOverflowing =
+					bioContentRef.current.scrollHeight >
+					bioContentRef.current.clientHeight;
+				setShowReadMore(isOverflowing);
+			}
+		};
+
+		checkOverflow();
+		window.addEventListener('resize', checkOverflow);
+		return () => window.removeEventListener('resize', checkOverflow);
+	}, [tourData.ajy.bio]);
 
 	const formatDate = (dateString: string) => {
 		const date = new Date(dateString);
@@ -45,18 +62,6 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
 	const packageType =
 		tourData.category.name.toLowerCase() === 'комфорт' ? 'comfort' : 'ekonom';
 
-	const truncateBio = (bio: string, maxLength: number = 200) => {
-		const temp = document.createElement('div');
-		temp.innerHTML = bio;
-		const plainText = temp.textContent || temp.innerText;
-
-		if (plainText.length <= maxLength) return bio;
-
-		const truncated = bio.slice(0, maxLength);
-		const lastP = truncated.lastIndexOf('</p>');
-		return lastP !== -1 ? bio.slice(0, lastP + 4) : truncated + '...';
-	};
-
 	return (
 		<div className={scss.HeadPackegeDet}>
 			<div className='container'>
@@ -85,12 +90,20 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
 								</div>
 							</div>
 							<hr />
-							<div className={scss.text_card}>
-								<h2>{Type[packageType]} пакет</h2>
-								<div
-									className={scss.description}
-									dangerouslySetInnerHTML={{ __html: tourData.description }}
-								/>
+
+							<div className={scss.card_info}>
+								<div className={scss.info_item}>
+									<h4>Категория</h4>
+									<h5>{Type[packageType]}</h5>
+								</div>
+								<div className={scss.info_item}>
+									<h4>Колличество:</h4>
+									<h5>{tourData.available_seats} мест</h5>
+								</div>
+								<div className={scss.info_item}>
+									<h4>Длительность:</h4>
+									<h5>{tourData.tour_date.duration} дней</h5>
+								</div>
 							</div>
 						</div>
 
@@ -112,31 +125,20 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
 										<h4>{tourData.ajy.name}</h4>
 										<div className={scss.bio_container}>
 											<div
+												ref={bioContentRef}
 												className={scss.bio_content}
 												dangerouslySetInnerHTML={{
-													__html: truncateBio(tourData.ajy.bio)
+													__html: tourData.ajy.bio
 												}}
 											/>
-											<button
-												className={scss.readMore}
-												onClick={() => setIsModalOpen(true)}
-											>
-												толугураак
-											</button>
-										</div>
-										<div className={scss.card_info}>
-											<div className={scss.info_line}>
-												<h4>Колличество:</h4>
-												<h5>{tourData.available_seats} мест</h5>
-											</div>
-											<div className={scss.info_line}>
-												<h4>Длительность:</h4>
-												<h5>{tourData.tour_date.duration} дней</h5>
-											</div>
-											<div className={scss.info_line}>
-												<h4>Категория:</h4>
-												<h5>{tourData.category.name}</h5>
-											</div>
+											{showReadMore && (
+												<button
+													className={scss.readMore}
+													onClick={() => setIsModalOpen(true)}
+												>
+													толугураак
+												</button>
+											)}
 										</div>
 									</div>
 								</div>
