@@ -2,13 +2,14 @@
     margin-top: 100px !important;
     background: white;
     width: 100%;
-    
+
 
     .content {
         display: flex;
         align-items: start;
         justify-content: space-between;
         padding: 70px 0;
+
         .left_block {
             img {
                 width: 130px;
@@ -75,7 +76,7 @@
                 align-items: center;
                 gap: 10px;
                 cursor: pointer;
-                
+
                 svg {
                     color: rgba(0, 0, 0, 0.753);
                     background: rgba(0, 0, 0, 0.127);
@@ -139,13 +140,6 @@
     }
 }
 
-@media(max-width: 1000px) {
-    .footer {
-            margin-bottom:80px;
-    }
-}
-
-
 @media(max-width: 780px) {
     .footer {
         .content {
@@ -171,8 +165,8 @@
                 }
             }
         }
-    
-    
+
+
         .under_footer {
             display: flex;
             align-items: center;

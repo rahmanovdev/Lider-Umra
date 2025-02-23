@@ -134,18 +134,77 @@
     .about_bottom {
       z-index: 3;
       position: relative;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+
+
+// 1480px дан 1680px чейинки версия
+@media (min-width: 1480px) and (max-width: 1680px) {
+  .AboutSection {
+    .content {
+      .about_top {
+        gap: 80px;
+
+        .about_texts {
+          .title {
+            width: clamp(400px, 45vw, 600px);
+
+            h1 {
+              font-size: 34px;
+              line-height: 42px;
+            }
+
+            p {
+              font-size: 15px;
+            }
+          }
+
+          button {
+            width: 240px;
+            height: 48px;
+          }
+        }
+
+        .about_video {
+          .video_container {
+            width: clamp(400px, 42vw, 500px);
+            height: clamp(250px, 36vw, 320px);
+          }
+        }
+      }
+
+      .bg_ornament {
+        width: 500px;
+        height: 700px;
+        right: -100px;
+      }
+
+      .lamp_element {
+        right: -45px;
+        top: -15px;
+        width: 150px;
+        height: 150px;
+      }
     }
   }
 }
 
 // 1200px дан 1480px чейинки версия
-@media (min-width: 1280px) and (max-width: 1480px) {
+@media (min-width: 1220px) and (max-width: 1480px) {
   .AboutSection {
     .content {
+      .about_top {
+        gap: 50px;
+      }
+
+
       .bg_ornament {
         width: 440px;
-        height: 680px;
-        right: clamp(-40px, 1.5vw, -25px);
+        height: 720px;
+        right: clamp(-40px, 20vw, -68px);
       }
 
       .lamp_element {
@@ -154,6 +213,7 @@
         width: 120px;
         height: 120px;
       }
+
     }
   }
 }
@@ -164,10 +224,12 @@
     width: 96%;
 
     .content {
+
+
       .bg_ornament {
         width: 400px;
-        height: 700px;
-        right: clamp(-30px, 1vw, -20px);
+        height: 750px;
+        right: clamp(-30px, 1vw, -28px);
       }
 
       .lamp_element {
@@ -309,7 +371,7 @@
           .title {
             align-items: center;
             justify-content: center;
-            gap: 7px;
+            gap: 6px;
             width: 100%;
 
             h1 {
@@ -351,8 +413,8 @@
           margin: 0 auto;
 
           .video_container {
-            width: clamp(200px, 60vw, 500px);
-            height: clamp(120px, 40vw, 300px);
+            width: clamp(200px, 80vw, 530px);
+            height: clamp(120px, 50vw, 300px);
           }
         }
       }

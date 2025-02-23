@@ -1,8 +1,8 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
-import scss from './HeadPackegeDet.module.scss';
 import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal } from '../components/shared/Modal';
+import scss from './HeadPackegeDet.module.scss';
 
 interface HeadPackegeDetProps {
 	tourData: TOURS.ITourPackages;
@@ -19,6 +19,7 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
 	const bioContentRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		if (typeof window === 'undefined') return;
 		const checkOverflow = () => {
 			if (bioContentRef.current) {
 				const isOverflowing =

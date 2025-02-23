@@ -70,9 +70,10 @@ const TrafficCard: React.FC<TProps> = ({ type, tour }) => {
 				</div>
 				<hr className={scss.divider} />
 				<div className={scss.line}>
-					<span>Категория отеля</span>
+					<h4>Категория отеля</h4>
 					<StarRating count={4} />
 				</div>
+						<hr className={scss.divider} />
 			</div>
 
 			<div className={scss.link}>
