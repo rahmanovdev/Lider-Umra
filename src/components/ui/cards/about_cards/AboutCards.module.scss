@@ -195,7 +195,7 @@
       .card1,
       .card2,
       .card3 {
-        width: 220px;
+        width: 250px;
         height: 170px;
         gap: 4px;
         padding: 6px 8px;
@@ -221,3 +221,39 @@
     }
   }
 }
+
+@media(max-width: 320px) {
+  .about_bottom {
+    .about_cards {
+      padding: 0 5px 20px 5px;
+
+      .card1,
+      .card2,
+      .card3 {
+        width: 180px;
+        height: 170px;
+        gap: 4px;
+        padding: 6px 8px;
+
+        .card_top {
+          h2 {
+            font-size: 12px;
+            line-height: 20px;
+            margin-left: -5px;
+          }
+        }
+
+        p {
+          font-size: 10px;
+          line-height: 16px;
+        }
+
+        .emblem_card {
+          width: 70px;
+          height: 70px;
+        }
+      }
+    }
+  }
+}
+

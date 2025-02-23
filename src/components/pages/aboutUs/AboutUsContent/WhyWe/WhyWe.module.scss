@@ -7,7 +7,6 @@
   --line-color: #e5e5e5;
   --progress-from: var(--color-primary);
   --progress-via: var(--color-primary);
-  margin: 70px 0 120px 0;
 
   .container {
     h2 {
@@ -46,7 +45,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      
+
       &:not(.isFirst) {
         margin-top: 3rem;
       }
@@ -159,7 +158,7 @@
       .content {
         gap: 20px;
       }
-      
+
       .markTitle {
         font-size: 1.5rem;
       }
