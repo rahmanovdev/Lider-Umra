@@ -9,8 +9,8 @@
 	transition: all 0.3s ease;
 	visibility: hidden;
 	transform: translateX(0);
-	display: flex; // кошулду
-	flex-direction: column; // кошулду
+	display: flex; 
+	flex-direction: column;
 
 	&.open {
 		left: 0;
@@ -19,7 +19,7 @@
 	}
 
 	.menu_header {
-		position: relative; // absolute дан relative ге өзгөрттүк
+		position: relative; 
 		padding: 20px;
 		display: flex;
 		justify-content: flex-end;
@@ -37,9 +37,9 @@
 	}
 
 	.menu_nav {
-		flex: 1; // кошулду
-		overflow-y: auto; // сакталды
-		padding-bottom: 20px; // кошулду
+		flex: 1; 
+		overflow-y: auto;
+		padding-bottom: 20px; 
 
 		ul {
 			padding: 20px;
@@ -65,14 +65,14 @@
 	}
 
 	.contact_info {
-		position: relative; // кошулду
+		position: relative; 
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 
 		padding: 20px;
 		border-top: 1px solid #eee;
-		background: white; // кошулду
+		background: white; 
 
 		.contact_title {
 			text-align: center;
