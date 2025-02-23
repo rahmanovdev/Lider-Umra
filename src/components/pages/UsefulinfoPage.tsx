@@ -4,7 +4,7 @@ import UsefulinfoContent from './usefulinfo/UsefulinfoContent/UsefulinfoContent'
 
 const UsefulinfoPage = () => {
 	return (
-		<div className={scss.pageContainer}>
+		<div className={`container ${scss.pageContainer}`}>
 			<h4 className={scss.title}>Полезные информации</h4>
 			<UsefulinfoContent />
 		</div>

@@ -15,7 +15,7 @@ const TrafficsSection: React.FC<
 				<div className={scss.content}>
 					<div className={scss.cards}>
 						{tours.map((tour, index) => {
-							const cardType = index === 1 ? 'comfort' : 'ekonom';
+							const cardType = index === 1 ? 'comfort' : 'standart';
 							const currentTour = tours[index];
 
 							return (

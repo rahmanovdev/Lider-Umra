@@ -13,8 +13,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 	return (
 		<div className={`${scss.mobile_menu} ${isOpen ? scss.open : ''}`}>
 			<div className={scss.menu_header}>
-				<button onClick={onClose} className={scss.close_btn}>
-					<IoClose />
+				<button onClick={onClose} className={`flexCenter ${scss.close_btn}`}>
+					<IoClose className='' />
 				</button>
 			</div>
 			<nav className={scss.menu_nav}>
