@@ -1,15 +1,15 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import scss from './Header.module.scss';
-import logo from '../../../../public/assets/images/logo.svg';
 import Image from 'next/image';
-import { IoCall } from 'react-icons/io5';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { BsFillAirplaneEnginesFill } from 'react-icons/bs';
 import { FiHome } from 'react-icons/fi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
-import { BsFillAirplaneEnginesFill } from 'react-icons/bs';
+import { IoCall } from 'react-icons/io5';
+import logo from '../../../../public/assets/images/logo.svg';
 import MobileMenu from './components/MobileMenu/MobileMenu';
+import scss from './Header.module.scss';
 
 interface Language {
 	code: string;
@@ -37,6 +37,8 @@ const Header: React.FC = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	useEffect(() => {
+		if (typeof document === 'undefined') return;
+
 		if (isMobileMenuOpen) {
 			document.body.style.overflow = 'hidden';
 		} else {
@@ -165,7 +167,7 @@ const Header: React.FC = () => {
 				</div>
 			</header>
 
-			<nav className={scss.bottom_nav}>
+			<nav id='tab-bar' className={scss.bottom_nav}>
 				<div className={scss.nav_content}>
 					<Link
 						href='/'

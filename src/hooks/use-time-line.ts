@@ -28,6 +28,7 @@ export const useTimeLine = () => {
 	};
 
 	React.useEffect(() => {
+		if (typeof window === 'undefined') return;
 		updateOffsets();
 		window.addEventListener('resize', updateOffsets);
 		return () => window.removeEventListener('resize', updateOffsets);
@@ -50,7 +51,6 @@ export const useTimeLine = () => {
 				.filter(index => index !== -1);
 
 			setActiveSections(newActiveSections);
-			
 		});
 	}, [heightTransform, sectionOffsets, maxHeight]);
 

@@ -139,13 +139,18 @@
 }
 
 // 1200px дан 1480px чейинки версия
-@media (min-width: 1280px) and (max-width: 1480px) {
+@media (min-width: 1220px) and (max-width: 1480px) {
   .AboutSection {
     .content {
+      .about_top {
+        gap: 50px;
+      }
+
+
       .bg_ornament {
         width: 440px;
         height: 680px;
-        right: clamp(-40px, 1.5vw, -25px);
+        right: clamp(-40px, 20vw, -68px);
       }
 
       .lamp_element {
@@ -154,6 +159,7 @@
         width: 120px;
         height: 120px;
       }
+
     }
   }
 }
@@ -164,6 +170,8 @@
     width: 96%;
 
     .content {
+
+
       .bg_ornament {
         width: 400px;
         height: 700px;
@@ -309,7 +317,7 @@
           .title {
             align-items: center;
             justify-content: center;
-            gap: 7px;
+            gap: 6px;
             width: 100%;
 
             h1 {

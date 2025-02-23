@@ -14,8 +14,9 @@ export const GiftsSection: React.FC = () => {
 		setSelectedGift(gift);
 	};
 
-	// HTML тегдерди тазалоо функциясы
 	const stripHtml = (html: string) => {
+		if (typeof document === 'undefined') return '';
+
 		const temp = document.createElement('div');
 		temp.innerHTML = html;
 		return temp.textContent || temp.innerText;

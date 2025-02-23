@@ -10,7 +10,6 @@
   z-index: -20;
 
   @media (max-width: 990px) {
-    margin-top: 80px;
     height: 600px;
   }
 
@@ -151,8 +150,6 @@
     width: 90%;
     height: auto;
     padding: 50px 16px;
-    margin-top: 80px;
-    // padding: 0 16px 50px;
 
     .content {
       padding: 100px 0 0 30px;

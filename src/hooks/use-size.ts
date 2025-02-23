@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 
 type Size = { width: number; height: number };
 
@@ -20,7 +21,6 @@ export function useSize(
 			targetElement = element.current;
 		}
 
-		// Проверяем тип targetElement
 		if (targetElement instanceof Window) {
 			setSize({
 				width: targetElement.innerWidth,
@@ -35,6 +35,8 @@ export function useSize(
 	}, [element]);
 
 	useEffect(() => {
+		if (typeof window === 'undefined' || typeof document === 'undefined')
+			return;
 		updateSize();
 		window.addEventListener('resize', updateSize);
 
