@@ -89,7 +89,7 @@ button {
   outline: 0;
 }
 
-<<<<<<< HEAD=======html {
+html {
   scroll-behavior: smooth;
   font-size: var(--font-size-base);
   scrollbar-width: none;
@@ -108,7 +108,7 @@ body {
   background-blend-mode: overlay;
 }
 
->>>>>>>9f4f1628163c944fe4bf93d1dc2cf298534be1ba li {
+li {
   list-style: none;
 }
 
@@ -118,18 +118,13 @@ a {
 }
 
 .container {
-  <<<<<<< HEAD max-width: var(--container-max-width);
+  max-width: var(--container-max-width);
   width: 100%;
   margin: 0 auto;
   padding: var(--container-padding);
   flex: 1;
   display: flex;
   flex-direction: column;
-  =======max-width: var(--container-max-width);
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
-  >>>>>>>9f4f1628163c944fe4bf93d1dc2cf298534be1ba
 }
 
 @media (max-width: 768px) {
