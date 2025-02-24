@@ -12,9 +12,8 @@
     .card_container {
       display: flex;
       gap: 20px;
-      align-items: stretch;
+      align-items: center;
       width: 100%;
-      flex-wrap: wrap;
       justify-content: space-between;
 
       .info_card {
@@ -23,8 +22,8 @@
         border-radius: 16px;
         color: white;
         width: 100%;
-        max-width: 590px;
-        min-height: 262px;
+        max-width: 600px;
+        min-height: 280px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         display: flex;
         flex-direction: column;
@@ -42,10 +41,12 @@
           margin: 1px auto;
           border: none;
           height: 1px;
-          background: linear-gradient(to right,
-              transparent,
-              rgba(255, 255, 255, 0.75),
-              transparent);
+          background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, 0.75),
+            transparent
+          );
         }
 
         .date_range {
@@ -60,7 +61,7 @@
             text-align: center;
 
             h1 {
-              font-size: clamp(30px, 5vw, 40px);
+              font-size: 40px;
               margin: 0;
               line-height: 1;
             }
@@ -76,7 +77,7 @@
                 flex-direction: column;
 
                 h5 {
-                  font-size: clamp(12px, 2vw, 14px);
+                  font-size: 14px;
                   margin: 0;
                 }
               }
@@ -120,12 +121,12 @@
         }
 
         h2 {
-          font-size: clamp(20px, 3vw, 28px);
+          font-size: 28px;
           margin: 0;
         }
 
         p {
-          font-size: clamp(12px, 2vw, 14px);
+          font-size: 14px;
           line-height: 1.5;
           margin: 0;
         }
@@ -180,7 +181,7 @@
               gap: 12px;
 
               h4 {
-                font-size: 22px;
+                font-size: 20px;
                 color: #333;
                 margin: 0;
                 font-weight: 500;
@@ -248,11 +249,19 @@
         border: none;
         padding: 14px 24px;
         color: white;
-        border-radius:30px;
+        border-radius: 30px;
         cursor: pointer;
-        font-size: clamp(12px, 2vw, 16px);
+        font-size: 16px;
         transition: all 0.3s ease;
         white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+
+        svg {
+          flex-shrink: 0;
+        }
 
         &:hover {
           background-color: #0056b3;
@@ -263,33 +272,245 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1280px) {
   .HeadPackegeDet {
     .content {
-      padding: 0 15px;
+      max-width: 1200px;
+      padding: 0 30px;
 
       .card_container {
+        .image_card {
+          .leader_container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            gap: 20px;
+
+            .leader_content {
+              display: flex;
+              gap: 18px;
+              height: 100%;
+
+              .leader_info {
+                h4 {
+                  font-size: clamp(18px, 1.5vw, 22px);
+                  color: #333;
+                  line-height: 1.2;
+                  margin: 0;
+                  font-weight: 500;
+                }
+
+                .bio_container {
+                  position: relative;
+
+                  .bio_content {
+                    position: relative;
+                    max-height: 100px;
+                    overflow: hidden;
+
+                    p {
+                      margin: 0 0 0.5rem;
+                      line-height: 1.6;
+                      font-size: 14px;
+                      color: #666;
+                    }
+
+                    &::after {
+                      content: '';
+                      position: absolute;
+                      bottom: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 30px;
+                      background: linear-gradient(transparent, var(--color-bg));
+                    }
+                  }
+
+                  .readMore {
+                    display: inline-block;
+                    color: var(--color-secondary);
+                    background: none;
+                    border: none;
+                    padding: 4px 0;
+                    margin-top: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 500;
+
+                    &:hover {
+                      text-decoration: underline;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .HeadPackegeDet {
+    .content {
+      .card_container {
         flex-direction: column;
-        gap: 15px;
+        align-items: center;
 
         .info_card,
         .image_card {
-          max-width: 100%;
+          max-width: none;
+          width: 100%;
+        }
+
+        .info_card hr {
+          width: 80%;
+          max-width: 360px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .HeadPackegeDet {
+    padding: 30px 0;
+
+    .content {
+      padding: 0 20px;
+      gap: 15px;
+
+      .card_container {
+        gap: 15px;
+
+        .info_card {
+          padding: 20px;
           min-height: auto;
+
+          .date_range {
+            .date_item h1 {
+              font-size: 32px;
+            }
+
+            .line {
+              width: 30px;
+              margin: 0 10px;
+            }
+          }
+
+          .card_info {
+            padding: 0 12px;
+
+            .info_item {
+              h4,
+              h5 {
+                font-size: 15px;
+              }
+            }
+          }
         }
 
         .image_card {
           height: auto;
-          min-height: 200px;
+
+          .leader_container {
+            padding: 20px;
+            gap: 15px;
+
+            .leader_content {
+              gap: 15px;
+
+              .leader_image {
+                width: 140px;
+                height: 140px;
+              }
+
+              .leader_info h4 {
+                font-size: 20px;
+              }
+            }
+          }
         }
       }
 
       .call_buttons {
         flex-direction: column;
-        max-width: 100%;
 
         button {
           width: 100%;
+          max-width: none;
+          padding: 12px 20px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .HeadPackegeDet {
+    padding: 20px 0;
+
+    .content {
+      padding: 0 15px;
+
+      .card_container {
+        .info_card {
+          padding: 15px;
+
+          .date_range .date_item h1 {
+            font-size: 28px;
+          }
+
+          .card_info .info_item {
+            h4,
+            h5 {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .image_card .leader_container {
+          padding: 15px;
+
+          .leader_content {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            .leader_image {
+              width: clamp(120px, 60vw, 300px);
+              height: clamp(120px, 50vw, 200px);
+            }
+
+            .leader_info {
+              text-align: center;
+
+              h4 {
+                font-size: 18px;
+              }
+
+              .bio_content {
+                max-height: 80px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .HeadPackegeDet {
+    .content {
+      .card_container {
+        .info_card {
+          .date_range .date_item h1 {
+            font-size: 24px;
+          }
         }
       }
     }

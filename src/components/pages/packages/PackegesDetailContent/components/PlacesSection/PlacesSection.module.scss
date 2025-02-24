@@ -1,3 +1,4 @@
+// PlacesSection.module.scss
 .placesContent {
   width: 100%;
   padding: 20px;
@@ -40,11 +41,13 @@
       top: 0;
       height: 100%;
       width: 1px;
-      background: linear-gradient(to bottom,
-          transparent,
-          #ebebeb 10%,
-          #e5e7eb 90%,
-          transparent);
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        #ebebeb 10%,
+        #e5e7eb 90%,
+        transparent
+      );
     }
   }
 
@@ -65,16 +68,26 @@
 
     .ImageCard {
       width: 100%;
-      height: 400px;
+      height: 360px;
       border-radius: 12px;
       overflow: hidden;
       margin-bottom: 20px;
       position: relative;
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      :global(.slider) {
+        height: 100% !important;
+        border-radius: 12px;
+        overflow: hidden;
+
+        :global(.sliderWrapper) {
+          height: 100%;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
       }
 
       .hotelName {
@@ -88,6 +101,7 @@
         color: white;
         font-size: 20px;
         text-align: center;
+        z-index: 10;
       }
     }
 
@@ -136,75 +150,3 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .placesContent {
-    .hotelContainer {
-      flex-direction: column;
-
-      &::after {
-        display: none;
-      }
-    }
-
-    .placesList {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .placesContent {
-    padding: 15px;
-
-    h1 {
-      font-size: 24px;
-    }
-
-    .HostelContent {
-      h2 {
-        font-size: 20px;
-      }
-
-      .ImageCard {
-        height: 350px;
-
-        .hotelName {
-          font-size: 18px;
-        }
-      }
-    }
-
-    .placesList {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  .placesContent {
-    padding: 10px;
-
-    .HostelContent {
-      padding: 8px;
-
-      .ImageCard {
-        height: 300px;
-      }
-
-      .infoGrid {
-        padding: 0 8px;
-
-        .infoItem {
-          padding: 10px 12px;
-          font-size: 14px;
-
-          .starRating {
-            .star {
-              font-size: 16px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
