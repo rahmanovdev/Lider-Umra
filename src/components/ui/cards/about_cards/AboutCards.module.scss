@@ -112,29 +112,11 @@
       padding-bottom: 20px;
 
       &::-webkit-scrollbar {
-        height: 8px;
+        display: none;
       }
 
       scrollbar-width: none;
       -ms-overflow-style: none;
-
-      ::-webkit-scrollbar {
-        display: none;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 10px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
 
       .card1,
       .card2,
@@ -160,8 +142,6 @@
 @media(max-width: 768px) {
   .about_bottom {
     .about_cards {
-
-
       .card1,
       .card2,
       .card3 {
@@ -187,7 +167,6 @@
 @media(max-width: 500px) {
   .about_bottom {
     .about_cards {
-
       .card1,
       .card2,
       .card3 {
@@ -211,28 +190,70 @@
 @media(max-width: 420px) {
   .about_bottom {
     .about_cards {
+      padding: 0 5px 20px 5px;
 
       .card1,
       .card2,
       .card3 {
-        width: clamp(240px, 1.5vw, 240px);
-        height: clamp(170px, 1.5vw, 180px);
-        gap: 6px;
-        padding: 6px 12px;
-
+        width: 250px;
+        height: 170px;
+        gap: 4px;
+        padding: 6px 8px;
 
         .card_top {
           h2 {
-            font-size: clamp(10px, 1.5vw, 14px);
-            line-height: 25px;
-            margin-left: -10px;
+            font-size: 12px;
+            line-height: 20px;
+            margin-left: -5px;
           }
         }
 
         p {
-          font-size: clamp(9px, 1.5vw, 11px);
+          font-size: 10px;
+          line-height: 16px;
+        }
+
+        .emblem_card {
+          width: 70px;
+          height: 70px;
         }
       }
     }
   }
 }
+
+@media(max-width: 320px) {
+  .about_bottom {
+    .about_cards {
+      padding: 0 5px 20px 5px;
+
+      .card1,
+      .card2,
+      .card3 {
+        width: 180px;
+        height: 170px;
+        gap: 4px;
+        padding: 6px 8px;
+
+        .card_top {
+          h2 {
+            font-size: 12px;
+            line-height: 20px;
+            margin-left: -5px;
+          }
+        }
+
+        p {
+          font-size: 10px;
+          line-height: 16px;
+        }
+
+        .emblem_card {
+          width: 70px;
+          height: 70px;
+        }
+      }
+    }
+  }
+}
+

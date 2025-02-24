@@ -78,7 +78,7 @@
 	.data_block {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: space-evenly;
 		margin-top: var(--data-margin-top);
 		margin-bottom: var(--data-margin-bottom);
 
@@ -132,7 +132,7 @@
 			}
 
 			h5 {
-				color: #333;
+				color: #383636;
 			}
 		}
 	}
@@ -195,10 +195,11 @@
 	.Main {
 		--main-width: 75%;
 		--main-border-radius: 14px;
-		--main-padding: 1rem 0.7rem;
-		--h2-font-size: 1.5rem;
+		--main-padding: 2rem 0.7rem;
+		--h2-font-size: 1.8rem;
 		--img-height: 260px;
 		--data-margin-bottom: 18px;
+		--data-span-font-size: 18px;
 		--card-padding: 12px;
 	}
 }
@@ -207,10 +208,10 @@
 	.Main {
 		--main-width: 85%;
 		--main-border-radius: 12px;
-		--main-padding: 1rem 0.7rem;
-		--h2-font-size: 1.4rem;
+		--main-padding: 2rem 1rem;
+		--h2-font-size: 1.6rem;
 		--data-font-size: 14px;
-		--data-span-font-size: 16px;
+		--data-span-font-size: 20px;
 		--link-margin-top: 20px;
 		--star-font-size: 16px;
 		--link-font-size: 14px;

@@ -20,7 +20,7 @@ const RequiredOfYou: React.FC = () => {
 								<h5>{rf.title}</h5>
 								<p>{rf.description}</p>
 							</div>
-						))}
+					))}
 					</div>
 				</div>
 				<figure data-figure className={styles.image}>
@@ -50,7 +50,7 @@ const requireds_of_you = [
 		description: 'Супругам нужно иметь свидетельство о браке (подлинник).',
 		Icon: FaPassport
 	},
-	{ 
+	{
 		id: 'rf-3',
 		title: 'Фото',
 		description:
