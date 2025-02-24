@@ -168,9 +168,8 @@
 	}
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
 	.Main {
-		--main-width: 95%;
 		--main-width: 100%;
 		--main-border-radius: 18px;
 		--main-padding: 1.4rem 0.9rem;
@@ -224,8 +223,9 @@
 	}
 }
 
-@media (max-width: 400px) {
+@media (max-width: 440px) {
 	.Main {
+		--main-width: 90%;
 		--main-border-radius: 10px;
 		--main-padding: 0.8rem 0.6rem;
 		--h2-font-size: 1.2rem;
@@ -233,6 +233,12 @@
 		--card-margin-top: 15px;
 		--data-margin-top: 12px;
 		--data-margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 400px) {
+	.Main {
+		--main-width: 98%;
 	}
 }
 
@@ -249,7 +255,6 @@
 
 @media (max-width: 320px) {
 	.Main {
-		--main-width: 98%;
 		--main-border-radius: 6px;
 		--main-padding: 0.6rem 0.4rem;
 		--h2-font-size: 1rem;
