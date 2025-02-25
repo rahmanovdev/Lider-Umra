@@ -10,7 +10,7 @@ const TrafficsSection: React.FC<
 > = ({ children, tours }) => {
   return (
     <section className={scss.Main}>
-      <div className="container">
+      <div className="container"> 
         {children}
         <div className={scss.content}>
           <div className={scss.cards}>
