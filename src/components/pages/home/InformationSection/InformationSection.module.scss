@@ -8,6 +8,7 @@
 	--text-padding: 12px;
 	--grid-column: 4;
 	--text-overlay-px: 14px;
+	--card-width: 100%;
 
 	margin-top: var(--main-margin-top);
 
@@ -21,6 +22,7 @@
 		h1 {
 			font-size: var(--title-font-size);
 			font-weight: 700;
+			line-height: 1;
 		}
 
 		.main_card {
@@ -36,8 +38,8 @@
 			overflow: hidden;
 			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 			transition: transform 0.3s ease, box-shadow 0.3s ease;
-			width: 100%;
-
+			width: var(--card-width);
+			margin: auto;
 			&:hover {
 				transform: scale(1.025);
 				box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -75,20 +77,20 @@
 		.text {
 			color: black;
 			font-weight: bold;
-            line-height: 1.1;
+			line-height: 1.1;
 			font-size: var(--text-font-size);
 		}
 	}
 }
 
-
 @media (max-width: 1240px) {
 	.Main {
 		--main-margin-top: 40px;
 		--title-font-size: 36px;
-		--image-height: 250px;
-		--card-gap: 12px;
+		--image-height: 300px;
+		--card-gap: 25px;
 		--text-font-size: 15px;
+		--grid-column: 2;
 	}
 }
 
@@ -96,34 +98,60 @@
 	.Main {
 		--main-margin-top: 30px;
 		--title-font-size: 32px;
-		--image-height: 230px;
-		--card-gap: 10px;
+		--image-height: 260px;
+		--card-gap: 20px;
 		--text-font-size: 14px;
 	}
 }
 
-@media (max-width: 800px) {
+@media (max-width: 830px) {
 	.Main {
 		--title-font-size: 28px;
-		--image-height: 200px;
-		--card-gap: 8px;
+		--image-height: 220px;
+		--card-gap: 12px;
 		--text-font-size: 13px;
-		--grid-column: 2;
 		--text-overlay-px: 6px;
 	}
 }
+
+@media (max-width: 620px) {
+	.Main {
+		--image-height: 220px;
+	}
+}
+
 @media (max-width: 560px) {
 	.Main {
 		--grid-column: 1;
 		--image-height: 300px;
+		--card-width: 90%;
+	}
+}
+
+@media (max-width: 520px) {
+	.Main {
+		--card-width: 95%;
+	}
+}
+
+@media (max-width: 445px) {
+	.Main {
+		--card-width: 100%;
+		--main-margin-top: 120px;
+	}
+}
+
+@media (max-width: 415px) {
+	.Main {
+		--main-margin-top: 100px;
 	}
 }
 
 @media (max-width: 400px) {
 	.Main {
 		--title-font-size: 24px;
-		--image-height: 200px;
-		--card-gap: 6px;
+		--image-height: 250px;
+		--card-gap: 15px;
 		--text-font-size: 12px;
 		--text-padding: 10px;
 	}

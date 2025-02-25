@@ -246,7 +246,7 @@
 
 @media (max-width: 400px) {
 	.Main {
-		--main-width: 98%;
+		--main-width: 90%;
 	}
 }
 
@@ -258,6 +258,11 @@
 		--data-font-size: 13px;
 		--data-span-font-size: 15px;
 		--link-font-size: 12px;
+	}
+}
+@media (max-width: 340px) {
+	.Main {
+		--main-width: 95%;
 	}
 }
 
