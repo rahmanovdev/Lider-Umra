@@ -53,7 +53,7 @@ const Header: React.FC = () => {
 
 	return (
 		<>
-			<header className={scss.header} id="header">
+			<header suppressHydrationWarning className={scss.header} id='header'>
 				<div className={scss.content}>
 					<div className={scss.header_start}>
 						<Link href='/'>

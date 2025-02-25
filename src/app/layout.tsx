@@ -24,12 +24,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='en'>
-			<body className={`${interSans.variable}  ${montserrat.variable}`}>
-				<div className='wrapper'>
-					<LayoutClient>{children}</LayoutClient>
-				</div>
-			</body>
-		</html>
-	);
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${interSans.variable}  ${montserrat.variable}`}>
+        <div className="wrapper">
+          <LayoutClient>{children}</LayoutClient>
+        </div>
+      </body>
+    </html>
+  );
 }

@@ -22,9 +22,11 @@ const LayoutSite: FC<LayoutSiteProps> = ({ children }) => {
 	}
 
 	return (
-		<div className={scss.LayoutSite}>
+		<div suppressHydrationWarning className={scss.LayoutSite}>
 			<Header />
-			<main style={{ marginTop: size?.height }}>{children}</main>
+			<main suppressHydrationWarning style={{ marginTop: size?.height }}>
+				{children}
+			</main>
 			<Footer />
 		</div>
 	);
