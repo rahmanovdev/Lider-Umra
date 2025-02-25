@@ -7,23 +7,24 @@ import HeadPackegeDet from './Head_PackeckgeDet/HeadPackegeDet';
 
 const PackegesDetailContent = () => {
   const params = useParams();
-  const {
-    data: tourData,
-    isLoading,
-    error,
-  } = useGetTourByIdQuery(Number(params.id));
+  const id = Number(params.id);
+
+  const { data: tourData, isLoading, error } = useGetTourByIdQuery(id);
+
+  console.log(tourData , 'tour data') ;
+
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Жүктөлүп жатат...</div>;
   }
 
   if (error) {
-    console.error('Error fetching tour:', error);
-    return <div>Error loading tour data</div>;
+    console.error('Тур маалыматын алууда ката:', error);
+    return <div>Тур маалыматын жүктөөдө ката кетти</div>;
   }
 
   if (!tourData) {
-    return <div>Package not found</div>;
+    return <div>Пакет табылган жок</div>;
   }
 
   return (
