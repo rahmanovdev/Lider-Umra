@@ -3,7 +3,7 @@
 import { useScroll, useTransform } from 'framer-motion';
 import React from 'react';
 
-export const useTimeLine = () => {
+export const useTimeLine = (is_max = false, depends?: React.DependencyList) => {
 	const ref = React.useRef<HTMLDivElement>(null);
 	const containerRef = React.useRef<HTMLDivElement>(null);
 	const [height, setHeight] = React.useState(0);
@@ -14,9 +14,9 @@ export const useTimeLine = () => {
 		if (ref.current) {
 			setHeight(ref.current.scrollHeight);
 		}
-	}, [ref]);
+	}, [ref, depends]);
 
-	const updateOffsets = () => {
+	const updateOffsets = React.useCallback(() => {
 		if (ref.current) {
 			const marks = Array.from(
 				ref.current.querySelectorAll('[data-timeline-mark]')
@@ -25,24 +25,29 @@ export const useTimeLine = () => {
 			const offsets = marks.map(mark => mark.offsetTop);
 			setSectionOffsets(offsets);
 		}
-	};
+	}, []);
 
 	React.useEffect(() => {
 		if (typeof window === 'undefined') return;
 		updateOffsets();
 		window.addEventListener('resize', updateOffsets);
 		return () => window.removeEventListener('resize', updateOffsets);
-	}, []);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [updateOffsets, depends?.[0]]);
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
-		offset: ['start 20%', 'end 50%']
+		offset: !is_max ? ['start', 'end'] : ['start 20%', 'end 50%']
 	});
 
 	const maxHeight =
 		sectionOffsets.length > 0 ? sectionOffsets[sectionOffsets.length - 1] : 0;
 
-	const heightTransform = useTransform(scrollYProgress, [0, 1], [0, maxHeight]);
+	const heightTransform = useTransform(
+		scrollYProgress,
+		[0, 1],
+		[0, is_max ? maxHeight : height]
+	);
 
 	React.useEffect(() => {
 		return heightTransform.onChange(value => {

@@ -10,73 +10,24 @@ const InformationSection = () => {
 				<div className={scss.content}>
 					<h1>Полезные информации</h1>
 					<div className={scss.main_card}>
-						<div className={scss.card}>
-							<div className={scss.imageWrapper}>
-								<Image
-									src={infoImg}
-									alt='Card Image'
-									className={scss.image}
-									width={700}
-									height={300}
-								/>
+						{Array.from({ length: 4 }).map((_, idx) => (
+							<div key={idx} className={scss.card}>
+								<div className={scss.imageWrapper}>
+									<Image
+										src={infoImg}
+										alt='Card Image'
+										className={scss.image}
+										width={700}
+										height={300}
+									/>
+								</div>
+								<div className={scss.textOverlay}>
+									<p className={scss.text}>
+										Lorem ipsum dolor sit amet consectetur.
+									</p>
+								</div>
 							</div>
-							<div className={scss.textOverlay}>
-								<p className={scss.text}>
-									Lorem ipsum dolor sit amet consectetur.
-								</p>
-							</div>
-						</div>
-
-						<div className={scss.card}>
-							<div className={scss.imageWrapper}>
-								<Image
-									src={infoImg}
-									alt='Card Image'
-									className={scss.image}
-									width={700}
-									height={300}
-								/>
-							</div>
-							<div className={scss.textOverlay}>
-								<p className={scss.text}>
-									Lorem ipsum dolor sit amet consectetur.
-								</p>
-							</div>
-						</div>
-
-						<div className={scss.card}>
-							<div className={scss.imageWrapper}>
-								<Image
-									src={infoImg}
-									alt='Card Image'
-									className={scss.image}
-									width={700}
-									height={300}
-								/>
-							</div>
-							<div className={scss.textOverlay}>
-								<p className={scss.text}>
-									Lorem ipsum dolor sit amet consectetur.
-								</p>
-							</div>
-						</div>
-
-						<div className={scss.card}>
-							<div className={scss.imageWrapper}>
-								<Image
-									src={infoImg}
-									alt='Card Image'
-									className={scss.image}
-									width={700}
-									height={300}
-								/>
-							</div>
-							<div className={scss.textOverlay}>
-								<p className={scss.text}>
-									Lorem ipsum dolor sit amet consectetur.
-								</p>
-							</div>
-						</div>
+						))}
 					</div>
 				</div>
 			</div>

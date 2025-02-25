@@ -92,6 +92,7 @@ const Header: React.FC = () => {
 									<div className={scss.submenu_content}>
 										<Link href='/aboutUs'>Компания жөнүндө</Link>
 										<Link href='/gallery'>Галерея</Link>
+										<Link href='/video_lessons'>Видео сабактар</Link>
 										<Link href='/contact'>Байланыш</Link>
 									</div>
 								</div>

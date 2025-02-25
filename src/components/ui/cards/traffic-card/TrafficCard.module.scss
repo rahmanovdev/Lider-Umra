@@ -162,6 +162,7 @@
 	}
 
 	&.comfort {
+		transform: scale(1.04);
 		h2 {
 			font-size: calc(var(--h2-font-size) * var(--comfort-scale));
 		}
@@ -174,6 +175,12 @@
 		--main-border-radius: 18px;
 		--main-padding: 1.4rem 0.9rem;
 		--h2-font-size: 1.8rem;
+	}
+}
+
+@media (max-width: 1200px) {
+	.Main.comfort {
+		transform: scale(1);
 	}
 }
 

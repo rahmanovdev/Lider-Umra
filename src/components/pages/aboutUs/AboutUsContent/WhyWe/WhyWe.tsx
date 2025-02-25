@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const Whywe = () => {
 	const { containerRef, height, heightTransform, ref, activeSections } =
-		useTimeLine();
+		useTimeLine(true);
 
 	return (
 		<section className={scss.whywe}>
@@ -48,15 +48,11 @@ const Whywe = () => {
 								</div>
 							))}
 							<div
-								style={{
-									height: height + 'px'
-								}}
+								style={{ height: height + 'px' }}
 								className={scss.timelineLine}
 							>
 								<motion.div
-									style={{
-										height: heightTransform
-									}}
+									style={{ height: heightTransform }}
 									className={scss.timelineProgress}
 								/>
 							</div>

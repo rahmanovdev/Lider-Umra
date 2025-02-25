@@ -1,190 +1,190 @@
 .whywe {
-  --bg-primary: transparent;
-  --text-primary: #000000;
-  --text-secondary: #404040;
-  --circle-bg: #e5e5e5;
-  --circle-border: #d4d4d4;
-  --line-color: #e5e5e5;
-  --progress-from: var(--color-primary);
-  --progress-via: var(--color-primary);
+	--bg-primary: transparent;
+	--text-primary: #000000;
+	--text-secondary: #404040;
+	--circle-bg: #e5e5e5;
+	--circle-border: #d4d4d4;
+	--line-color: #e5e5e5;
+	--progress-from: var(--color-primary);
+	--progress-via: var(--color-primary);
 
-  .container {
-    h2 {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 1.3em;
-    }
+	.container {
+		h2 {
+			font-size: 2rem;
+			font-weight: bold;
+			margin-bottom: 1.3em;
+		}
 
-    .content {
-      display: flex;
-      align-items: flex-start;
-      gap: 50px;
-    }
+		.content {
+			display: flex;
+			align-items: flex-start;
+			gap: 50px;
+		}
 
-    .figure {
-      position: sticky;
-      top: 30px;
-    }
+		.figure {
+			position: sticky;
+			top: 30px;
+		}
 
-    .wrapper {
-      width: 100%;
-      font-family: sans-serif;
-      overflow: hidden;
-    }
+		.wrapper {
+			width: 100%;
+			font-family: sans-serif;
+			overflow: hidden;
+		}
 
-    .timelineContainer {
-      position: relative;
-      margin: 0 auto;
-      padding-bottom: 5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-    }
+		.timelineContainer {
+			position: relative;
+			margin: 0 auto;
+			padding-bottom: 5rem;
+			display: flex;
+			flex-direction: column;
+			gap: 50px;
+		}
 
-    .timelineEntry {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+		.timelineEntry {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
 
-      &:not(.isFirst) {
-        margin-top: 3rem;
-      }
-    }
+			&:not(.isFirst) {
+				margin-top: 3rem;
+			}
+		}
 
-    .timelineMark {
-      position: sticky;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      top: 0;
-      align-self: flex-start;
-      z-index: 40;
-    }
+		.timelineMark {
+			position: sticky;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			top: 0;
+			align-self: flex-start;
+			z-index: 40;
+		}
 
-    .markCircleOuter {
-      height: 3rem;
-      width: 3rem;
-      color: black;
-      background-color: #ebf9fa;
-      border-radius: 9999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2em;
+		.markCircleOuter {
+			height: 3rem;
+			width: 3rem;
+			color: black;
+			background-color: #ebf9fa;
+			border-radius: 9999px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.2em;
 
-      &.active {
-        background: var(--color-primary);
-        color: white;
-      }
-    }
+			&.active {
+				background: var(--color-primary);
+				color: white;
+			}
+		}
 
-    .markTitle {
-      display: block;
-      font-size: 1.4rem;
-      line-height: normal;
-      margin-bottom: 0.4em;
-      text-align: left;
-      font-weight: 600;
-      color: #000;
-    }
+		.markTitle {
+			display: block;
+			font-size: 1.4rem;
+			line-height: normal;
+			margin-bottom: 0.4em;
+			text-align: left;
+			font-weight: 600;
+			color: #000;
+		}
 
-    .contentWrapper {
-      position: relative;
-      padding-left: 2rem;
-      padding-top: 0.5rem;
-      width: 100%;
-      margin-bottom: -20px;
-    }
+		.contentWrapper {
+			position: relative;
+			padding-left: 2rem;
+			padding-top: 0.5rem;
+			width: 100%;
+			margin-bottom: -20px;
+		}
 
-    .timelineLine {
-      position: absolute;
-      left: 1.45rem;
-      top: 0;
-      overflow: hidden;
-      width: 4px;
-      background: linear-gradient(
-        to bottom,
-        var(--line-color) 10%,
-        var(--line-color) 90%,
-        transparent 100%
-      );
-      mask-image: linear-gradient(to bottom, black 10%, black 90%);
-    }
+		.timelineLine {
+			position: absolute;
+			left: 1.45rem;
+			top: 0;
+			overflow: hidden;
+			width: 4px;
+			background: linear-gradient(
+				to bottom,
+				var(--line-color) 10%,
+				var(--line-color) 90%,
+				transparent 100%
+			);
+			mask-image: linear-gradient(to bottom, black 10%, black 90%);
+		}
 
-    .timelineProgress {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      width: 4px;
-      background: linear-gradient(
-        to top,
-        var(--progress-from) 0%,
-        var(--progress-via) 10%,
-        transparent 100%
-      );
-      border-radius: 9999px;
-    }
-  }
+		.timelineProgress {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			width: 4px;
+			background: linear-gradient(
+				to top,
+				var(--progress-from) 0%,
+				var(--progress-via) 10%,
+				transparent 100%
+			);
+			border-radius: 9999px;
+		}
+	}
 
-  @media (max-width: 1024px) {
-    .container {
-      h2 {
-        margin-top: -70px;
-      }
+	@media (max-width: 1024px) {
+		.container {
+			h2 {
+				margin-top: -70px;
+			}
 
-      .content {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-      }
+			.content {
+				flex-direction: column;
+				align-items: center;
+				gap: 30px;
+			}
 
-      .figure {
-        display: none;
-      }
+			.figure {
+				display: none;
+			}
 
-      .markTitle {
-        font-size: 1.8rem;
-      }
+			.markTitle {
+				font-size: 1.8rem;
+			}
 
-      .contentWrapper {
-        margin-bottom: -70px;
-      }
-    }
-  }
+			.contentWrapper {
+				margin-bottom: -70px;
+			}
+		}
+	}
 
-  @media (max-width: 768px) {
-    .container {
-      .content {
-        gap: 20px;
-      }
+	@media (max-width: 768px) {
+		.container {
+			.content {
+				gap: 20px;
+			}
 
-      .markTitle {
-        font-size: 1.5rem;
-      }
-    }
-  }
+			.markTitle {
+				font-size: 1.5rem;
+			}
+		}
+	}
 
-  @media (max-width: 480px) {
-    .container {
-      h2 {
-        font-size: 1.6rem;
-        text-align: center;
-      }
+	@media (max-width: 480px) {
+		.container {
+			h2 {
+				font-size: 1.6rem;
+				text-align: center;
+			}
 
-      .content {
-        gap: 15px;
-      }
+			.content {
+				gap: 15px;
+			}
 
-      .markTitle {
-        font-size: 1.2rem;
-      }
+			.markTitle {
+				font-size: 1.2rem;
+			}
 
-      .markCircleOuter {
-        height: 2.5rem;
-        width: 2.5rem;
-        font-size: 1rem;
-      }
-    }
-  }
+			.markCircleOuter {
+				height: 2.5rem;
+				width: 2.5rem;
+				font-size: 1rem;
+			}
+		}
+	}
 }

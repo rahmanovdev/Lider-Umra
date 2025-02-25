@@ -9,7 +9,6 @@ import TrafficsSection from './home/TrafficsSection/TrafficsSection';
 
 const HomePage = () => {
 	const { data: tours = [] } = useGetToursQuery();
-	// Акыркы 3 турду алуу
 	const getLastThreeTours = () => {
 		if (!Array.isArray(tours)) return [];
 

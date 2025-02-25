@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
 			'www.google.com',
 			'147.45.159.88'
 		]
+	},
+	devIndicators: {
+		appIsrStatus: false
 	}
 };
 

@@ -24,7 +24,7 @@ const LayoutSite: FC<LayoutSiteProps> = ({ children }) => {
 	return (
 		<div className={scss.LayoutSite}>
 			<Header />
-			<main style={{ marginTop: size?.height - 20 }}>{children}</main>
+			<main style={{ marginTop: size?.height }}>{children}</main>
 			<Footer />
 		</div>
 	);

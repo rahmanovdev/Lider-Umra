@@ -1,9 +1,29 @@
 .pageContainer {
+	--title-font-size: 28px;
+	--title-margin-top: 41px;
+	--title-margin-bottom: 18px;
+
 	.title {
-		font-size: 28px;
+		font-size: var(--title-font-size);
 		font-weight: bold;
 		line-height: auto;
-		margin-top: 41px;
-		margin-bottom: 0px;
+		margin-top: var(--title-margin-top);
+		margin-bottom: var(--title-margin-bottom);
+	}
+}
+
+@media (max-width: 1240px) {
+	.pageContainer {
+		--title-font-size: 26px;
+		--title-margin-top: 38px;
+		--title-margin-bottom: 16px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.pageContainer {
+		--title-font-size: 24px;
+		--title-margin-top: 35px;
+		--title-margin-bottom: 14px;
 	}
 }
