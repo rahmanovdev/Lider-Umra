@@ -6,6 +6,7 @@ import InformationSection from './home/InformationSection/InformationSection';
 import QuestionsSection from './home/QuestionsSection/QuestionsSection';
 import StepsHajjSection from './home/StepsOfHajjSection/StepsHajjSection';
 import TrafficsSection from './home/TrafficsSection/TrafficsSection';
+import FAQ from '../ui/faq/FAQ';
 
 const HomePage = () => {
 	const { data: tours = [] } = useGetToursQuery();
@@ -29,6 +30,7 @@ const HomePage = () => {
 				<StepsHajjSection />
 				<QuestionsSection />
 				<InformationSection />
+				<FAQ />
 			</div>
 		</>
 	);
