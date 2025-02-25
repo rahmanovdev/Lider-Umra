@@ -12,11 +12,6 @@ interface HeadPackegeDetProps {
   tourData: TOURS.ITourPackages;
 }
 
-const Type = {
-  ekonom: 'Стандарт +',
-  comfort: 'Комфорт+',
-};
-
 const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showReadMore, setShowReadMore] = useState(false);
@@ -64,9 +59,6 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
   const startDate = formatDate(tourData.tour_date.start_tour);
   const endDate = formatDate(tourData.tour_date.end_tour);
 
-  const packageType =
-    tourData.category.name.toLowerCase() === 'комфорт' ? 'comfort' : 'ekonom';
-
   return (
     <div className={scss.HeadPackegeDet}>
       <div className="container">
@@ -99,7 +91,7 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
               <div className={scss.card_info}>
                 <div className={scss.info_item}>
                   <h4>Категория</h4>
-                  <h5>{Type[packageType]}</h5>
+                  <h5>{tourData.category.name}</h5>
                 </div>
                 <div className={scss.info_item}>
                   <h4>Колличество:</h4>
