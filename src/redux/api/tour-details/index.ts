@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { api as index } from '..';
 import { Package } from './types';
 
@@ -21,87 +22,44 @@ const api = index.injectEndpoints({
 			providesTags: ['packageDetails']
 		}),
 
-		getFoodInfo: build.query<Package.GetFoodInfoResponse, Package.DetailType>({
-			query: detailType => ({
+		getPackageDetail: build.query<
+			any[],
+			{ type: Package.DetailType; category?: Package.CategoryPackage }
+		>({
+			query: ({ type }) => ({
 				url: `${ENDPOINTS}/tour/package-details/`,
 				method: 'GET',
-				params: { detail_type: detailType }
+				params: { detail_type: type }
 			}),
-			transformResponse: (response: Package.GetPackageDetailsResponse) => {
+			transformResponse: (
+				response: Package.GetPackageDetailsResponse,
+				meta,
+				{ type, category }
+			) => {
 				return response
-					.filter(item => item.detail_type === 'FoodInfo')
+					.filter(
+						item =>
+							item.detail_type === type &&
+							(category
+								? item.category.id === category?.id &&
+								  item.category.name === item.category.name
+								: true)
+					)
 					.map(item => ({
 						id: item.id,
 						title: item.name,
 						description: item.rich,
-						images: [item.image]
-					}));
-			}
-		}),
-
-		getGifts: build.query<Package.GetGiftsResponse, Package.DetailType>({
-			query: detailType => ({
-				url: `${ENDPOINTS}/tour/package-details/`,
-				method: 'GET',
-				params: { detail_type: detailType }
-			}),
-			transformResponse: (response: Package.GetPackageDetailsResponse) => {
-				return response
-					.filter(item => item.detail_type === 'YouGet')
-					.map(item => ({
-						id: item.id,
-						title: item.name,
-						description: item.rich,
-						shortDescription: item.rich.substring(0, 100),
-						image: item.image
-					}));
-			}
-		}),
-
-		getPlaces: build.query<Package.GetPlacesResponse, Package.DetailType>({
-			query: detailType => ({
-				url: `${ENDPOINTS}/tour/package-details/`,
-				method: 'GET',
-				params: { detail_type: detailType }
-			}),
-			transformResponse: (response: Package.GetPackageDetailsResponse) => {
-				return response
-					.filter(item => item.detail_type === 'PlacesToVisit')
-					.map(item => ({
-						id: item.id,
-						title: item.name,
-						description: item.rich,
-						shortDescription: item.rich.substring(0, 150), 
-						image: item.image
-					}));
-			}
-		}),
-
-		getWarnings: build.query<Package.GetWarningsResponse, Package.DetailType>({
-			query: detailType => ({
-				url: `${ENDPOINTS}/tour/package-details/`,
-				method: 'GET',
-				params: { detail_type: detailType }
-			}),
-			transformResponse: (response: Package.GetPackageDetailsResponse) => {
-				return response
-					.filter(item => item.detail_type === 'Restrictions')
-					.map(item => ({
-						id: item.id,
-						title: item.name,
-						description: item.rich,
-						image: item.image
+						images: [item.image],
+						category: item.category
 					}));
 			}
 		})
-	})
+	}),
+	overrideExisting: true
 });
 
 export const {
-	useGetPlacesQuery,
 	useGetPackageDetailsQuery,
 	useGetPackageDetailByIdQuery,
-	useGetFoodInfoQuery,
-	useGetGiftsQuery,
-	useGetWarningsQuery
+	useGetPackageDetailQuery
 } = api;

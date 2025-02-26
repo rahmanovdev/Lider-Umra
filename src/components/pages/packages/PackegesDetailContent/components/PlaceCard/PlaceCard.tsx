@@ -8,7 +8,6 @@ interface PlaceCardProps {
 }
 
 const PlaceCard: React.FC<PlaceCardProps> = ({ place, onOpen }) => {
-	// HTML тегдерди тазалоо функциясы
 	const stripHtml = (html: string) => {
 		if (typeof document === 'undefined') return '';
 
@@ -26,13 +25,18 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, onOpen }) => {
 	return (
 		<div className={styles.placeCard}>
 			<div className={styles.imageWrapper}>
-				<Image
-					src={place.image}
-					alt={place.title}
-					width={400}
-					height={250}
-					priority
-				/>
+				{place.image && place.image.trim() !== '' ? (
+					<Image
+						src={place.image}
+						alt={place.title}
+						width={400}
+						height={250}
+						priority
+						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' // Add sizes prop
+					/>
+				) : (
+					<div>No image available</div>
+				)}
 			</div>
 			<div className={styles.placeInfo}>
 				<h3>{place.title}</h3>

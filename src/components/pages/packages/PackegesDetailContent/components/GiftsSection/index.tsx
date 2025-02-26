@@ -1,14 +1,16 @@
 'use client';
-import { useGetGiftsQuery } from '@/redux/api/tour-details';
 import { Package } from '@/redux/api/tour-details/types';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Modal } from '../shared/Modal';
 import styles from './styles.module.scss';
+import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
 
 export const GiftsSection: React.FC = () => {
 	const [selectedGift, setSelectedGift] = useState<Package.Gift | null>(null);
-	const { data: gifts, isLoading } = useGetGiftsQuery('YouGet');
+	const { data: gifts, isLoading } = useGetPackageDetailQuery({
+		type: 'YouGet'
+	});
 
 	const handleReadMore = (gift: Package.Gift) => {
 		setSelectedGift(gift);
