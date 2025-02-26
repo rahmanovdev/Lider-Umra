@@ -1,154 +1,103 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
+import { createPortal } from 'react-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 interface ImageSliderProps {
-	images: string[];
-	height?: number;
+  images: string[];
+  height?: string | number;
+  showDots?: boolean;
 }
 
 export const ImageSlider: React.FC<ImageSliderProps> = ({
-	images,
-	height = 400
+  images,
+  height = '100%',
+  showDots = true,
 }) => {
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [selectedImage, setSelectedImage] = useState('');
-	const [isAnimating, setIsAnimating] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
 
-	const nextSlide = useCallback(() => {
-		if (isAnimating) return;
-		setIsAnimating(true);
-		setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
-		setTimeout(() => setIsAnimating(false), 600); // Подождать окончания анимации
-	}, [images.length, isAnimating]);
+  const openModal = (image: string) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
 
-	const prevSlide = useCallback(() => {
-		if (isAnimating) return;
-		setIsAnimating(true);
-		setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
-		setTimeout(() => setIsAnimating(false), 600); // Подождать окончания анимации
-	}, [images.length, isAnimating]);
+  return (
+    <>
+      <div className={styles.slider} style={{ height }}>
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          spaceBetween={0}
+          slidesPerView={1}
+          navigation={{
+            prevEl: `.${styles.sliderButton}.${styles.prev}`,
+            nextEl: `.${styles.sliderButton}.${styles.next}`,
+          }}
+          pagination={showDots ? { clickable: true } : false}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          speed={600}
+          effect="slide"
+          loop={true}
+          className={styles.swiper}
+        >
+          {images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className={styles.slide} onClick={() => openModal(image)}>
+                {image && image.trim() !== '' ? (
+                  <Image
+                    src={image}
+                    alt={`Slide ${index + 1}`}
+                    fill
+                    className={styles.image}
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div>No image available</div>
+                )}
+                <div className={styles.imageOverlay}>
+                  <span>Нажмите для увеличения</span>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-	const setSlide = (index: number) => {
-		if (isAnimating || index === currentIndex) return;
-		setIsAnimating(true);
-		setCurrentIndex(index);
-		setTimeout(() => setIsAnimating(false), 600);
-	};
+        <button className={clsx(styles.sliderButton, styles.prev)}>←</button>
+        <button className={clsx(styles.sliderButton, styles.next)}>→</button>
+      </div>
 
-	// Автоматический слайдер
-	useEffect(() => {
-		const interval = setInterval(nextSlide, 4000);
-		return () => clearInterval(interval);
-	}, [nextSlide]);
-
-	// Открытие модального окна с картинкой
-	const openModal = (image: string) => {
-		setSelectedImage(image);
-		setIsModalOpen(true);
-	};
-
-	return (
-		<>
-			<div className={styles.slider} style={{ height }}>
-				<div className={styles.sliderWrapper}>
-					<button
-						className={styles.sliderButton}
-						onClick={e => {
-							e.stopPropagation();
-							prevSlide();
-						}}
-						disabled={isAnimating}
-					>
-						←
-					</button>
-
-					<div className={styles.slidesContainer}>
-						{images.map((image, index) => (
-							<div
-								key={index}
-								className={clsx(styles.slide, {
-									[styles.active]: index === currentIndex,
-									[styles.prev]:
-										index === currentIndex - 1 ||
-										(currentIndex === 0 && index === images.length - 1),
-									[styles.next]:
-										index === currentIndex + 1 ||
-										(currentIndex === images.length - 1 && index === 0)
-								})}
-								onClick={() => openModal(image)}
-							>
-								{image && image.trim() !== '' ? (
-									<Image
-										src={image}
-										alt={`Slide ${index + 1}`}
-										fill
-										className={styles.image}
-										quality={90}
-										sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-									/>
-								) : (
-									<div>No image available</div> // Or any placeholder
-								)}
-								<div className={styles.imageOverlay}>
-									<span>Нажмите для увеличения</span>
-								</div>
-							</div>
-						))}
-					</div>
-
-					<button
-						className={styles.sliderButton}
-						onClick={e => {
-							e.stopPropagation();
-							nextSlide();
-						}}
-						disabled={isAnimating}
-					>
-						→
-					</button>
-				</div>
-
-				<div className={styles.dots}>
-					{images.map((_, index) => (
-						<button
-							key={index}
-							className={clsx(styles.dot, {
-								[styles.activeDot]: index === currentIndex
-							})}
-							onClick={() => setSlide(index)}
-							disabled={isAnimating}
-						/>
-					))}
-				</div>
-			</div>
-
-			{isModalOpen && (
-				<div className={styles.modal} onClick={() => setIsModalOpen(false)}>
-					<div className={styles.modalContent}>
-						<button
-							className={styles.closeButton}
-							onClick={() => setIsModalOpen(false)}
-						>
-							×
-						</button>
-						<div className={styles.zoomableImage}>
-							<Image
-								src={selectedImage}
-								alt='Enlarged view'
-								fill
-								className={styles.modalImage}
-								quality={100}
-							/>
-						</div>
-					</div>
-				</div>
-			)}
-		</>
-	);
+      {isModalOpen &&
+        createPortal(
+          <div className={styles.modal} onClick={() => setIsModalOpen(false)}>
+            <div className={styles.modalContent}>
+              <button
+                className={styles.closeButton}
+                onClick={() => setIsModalOpen(false)}
+              >
+                ×
+              </button>
+              <div className={styles.zoomableImage}>
+                <Image
+                  src={selectedImage}
+                  alt="Enlarged view"
+                  fill
+                  className={styles.modalImage}
+                  quality={100}
+                />
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
+    </>
+  );
 };
 
 export default ImageSlider;

@@ -39,12 +39,12 @@
       align-items: center;
 
       &::after {
-        display: none; /* Вертикалдуу тизүүдө сызык кeregi жок */
+        display: none; /* Вертикалдуу тизүүдө сызык кереги жок */
       }
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 50%;
       top: 0;
@@ -60,7 +60,7 @@
     }
   }
 
-  .HostelContent {
+  .hostelContent { /* "HostelContent" ордуна "hostelContent" деп кичине түзөтүлдү (биринчи тамгасы кичине болот) */
     flex: 1;
     width: 80%;
     border-radius: clamp(10px, 2vw, 16px);
@@ -71,8 +71,6 @@
     @media (min-width: 768px) {
       width: clamp(350px, 40vw, 500px);
       margin: 0 auto;
-
-
     }
 
     h2 {
@@ -83,7 +81,7 @@
       color: #455367;
     }
 
-    .ImageCard {
+    .imageCard { /* "ImageCard" ордуна "imageCard" деп кичине түзөтүлдү */
       width: 100%;
       height: clamp(200px, 25vw, 380px); /* Ийкемдүү бийиктик */
       border-radius: clamp(8px, 1.5vw, 12px);
@@ -133,7 +131,7 @@
         padding: clamp(6px, 1.5vw, 12px) clamp(10px, 2vw, 16px);
         border: 1px solid #f3f4f6;
         border-radius: clamp(5px, 1vw, 8px);
-        background: var(--color-bg);
+        background: var(--color-bg, #ffffff);
 
         span:first-child {
           color: #4b5563;
@@ -184,26 +182,24 @@
     padding: clamp(8px, 2vw, 10px);
 
     h1 {
-      font-size: clamp(20px, 4vw, 22px);
+      font-size: clamp(16px, 4vw, 20px); /* Шрифт өлчөмү кичине азайтылды */
     }
 
     .hotelContainer {
       gap: clamp(12px, 3vw, 15px);
     }
 
-    .HostelContent {
-    width: 90%;
-
-
+    .hostelContent {
+      width: 90%;
       padding: clamp(6px, 1.5vw, 8px) clamp(8px, 1.5vw, 12px);
 
       h2 {
-        font-size: clamp(16px, 3vw, 18px);
+        font-size: clamp(14px, 3vw, 16px); /* Шрифт кичине азайтылды */
         margin-bottom: clamp(8px, 1.5vw, 10px);
       }
 
-      .ImageCard {
-        height: clamp(200px, 22vw, 300px);
+      .imageCard {
+        height: clamp(150px, 22vw, 250px); /* Бийиктик кичине азайтылды */
         margin-bottom: clamp(10px, 1.5vw, 12px);
 
         .hotelName {
@@ -221,23 +217,23 @@
 
           span:first-child,
           span:last-child {
-            font-size: clamp(11px, 2vw, 13px);
+            font-size: clamp(10px, 2vw, 12px); /* Шрифт кичине азайтылды */
           }
 
           .starRating {
             gap: clamp(1px, 0.4vw, 2px);
 
             .star {
-              font-size: clamp(10px, 2vw, 12px);
+              font-size: clamp(10px, 2vw, 14px); /* Йолдыздардын өлчөмү кичине азайтылды */
             }
           }
         }
       }
-    }
 
-    .placesList {
-      gap: clamp(10px, 2vw, 12px);
-      padding: 0 clamp(8px, 1.5vw, 10px);
+      .placesList {
+        gap: clamp(10px, 2vw, 12px);
+        padding: 0 clamp(8px, 1.5vw, 10px);
+      }
     }
   }
 }
@@ -255,7 +251,7 @@
       gap: clamp(8px, 2.5vw, 12px);
     }
 
-    .HostelContent {
+    .hostelContent {
       padding: clamp(4px, 1vw, 6px) clamp(6px, 1vw, 8px);
 
       h2 {
@@ -263,8 +259,8 @@
         margin-bottom: clamp(6px, 1vw, 8px);
       }
 
-      .ImageCard {
-        height: clamp(100px, 20vw, 120px);
+      .imageCard {
+        height: clamp(120px, 20vw, 180px); /* Бийиктик кичине азайтылды */
         margin-bottom: clamp(8px, 1vw, 10px);
 
         .hotelName {
@@ -275,7 +271,6 @@
 
       .infoGrid {
         gap: clamp(3px, 0.8vw, 5px);
-        padding: 0 clamp(6px, 1vw, 8px);
 
         .infoItem {
           padding: clamp(3px, 0.8vw, 4px) clamp(6px, 1vw, 8px);
@@ -283,14 +278,14 @@
 
           span:first-child,
           span:last-child {
-            font-size: clamp(7px, 2vw, 8px);
+            font-size: clamp(8px, 2vw, 10px); /* Шрифт кичине азайтылды */
           }
 
           .starRating {
             gap: clamp(1px, 0.3vw, 1px);
 
             .star {
-              font-size: clamp(8px, 1.5vw, 10px);
+              font-size: clamp(8px, 1.5vw, 10px); /* Йолдыздардын өлчөмү кичине азайтылды */
             }
           }
         }
