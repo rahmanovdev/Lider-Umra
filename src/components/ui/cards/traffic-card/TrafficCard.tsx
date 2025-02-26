@@ -29,8 +29,6 @@ const TrafficCard: React.FC<TProps> = ({ tour }) => {
     return `${date.getDate()} ${months[date.getMonth()]}`;
   };
 
-  console.log(tour, 'tour');
-
   return (
     <div className={scss.Main}>
       <h2>{tour.category.name}</h2>

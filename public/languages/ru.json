@@ -1,0 +1,18 @@
+{
+	"header": {
+		"navigations": [
+			{ "label": "Главная", "href": "/" },
+			{ "label": "Тур пакеты", "href": "/packages" },
+			{
+				"label": "О нас",
+				"childrens": [
+					{ "label": "О компании", "href": "/aboutUs" },
+					{ "label": "Галерея", "href": "/gallery" },
+					{ "label": "Видео уроки", "href": "/video_lessons" },
+					{ "label": "Контакты", "href": "/contact" }
+				]
+			},
+			{ "label": "Полезная информация" }
+		]
+	}
+}

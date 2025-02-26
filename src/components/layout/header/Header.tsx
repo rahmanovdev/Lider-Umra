@@ -10,28 +10,36 @@ import { IoCall } from 'react-icons/io5';
 import logo from '../../../../public/assets/images/logo.svg';
 import MobileMenu from './components/MobileMenu/MobileMenu';
 import scss from './Header.module.scss';
+import { useTranslations } from 'next-intl';
+import { setLanguage } from '@/utils/i18n/language.client';
 
 interface Language {
-	code: string;
+	code: 'kg' | 'ru';
 	name: string;
 	flag: string;
 }
 
 const LANGUAGES: Language[] = [
 	{
-		code: 'KG',
+		code: 'kg',
 		name: 'Кыргызча',
 		flag: '/assets/header/kyrgyzstan-flag-icon.svg'
 	},
-	{ code: 'RU', name: 'Русский', flag: '/assets/header/russia-flag-icon.svg' }
+	{ code: 'ru', name: 'Русский', flag: '/assets/header/russia-flag-icon.svg' }
 ];
+
+type NavigationType = {
+	href: string;
+	label: string;
+	childrens?: NavigationType[];
+};
 
 const Header: React.FC = () => {
 	const pathname = usePathname();
+	const translations = useTranslations();
 	const [showLanguage, setShowLanguage] = useState(false);
 	const [currentLang, setCurrentLang] = useState<Language>(LANGUAGES[0]);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
 	useEffect(() => {
 		if (typeof document === 'undefined') return;
 
@@ -51,6 +59,7 @@ const Header: React.FC = () => {
 		return pathname?.startsWith(path);
 	};
 
+	const navigations = translations.raw('header.navigations') as NavigationType[];
 	return (
 		<>
 			<header suppressHydrationWarning className={scss.header} id='header'>
@@ -71,7 +80,37 @@ const Header: React.FC = () => {
 
 					<div className={scss.header_nav}>
 						<ul>
-							<li>
+							{navigations.map(nav => (
+								<li
+									key={nav.label}
+									className={!nav?.href ? scss.dropdown : undefined}
+								>
+									{!nav?.href ? (
+										<span className={isActiveLink(nav.href) ? scss.active : ''}>
+											{nav.label}
+										</span>
+									) : (
+										<Link
+											href={nav.href}
+											className={isActiveLink(nav.href) ? scss.active : ''}
+										>
+											{nav.label}
+										</Link>
+									)}
+									{nav.childrens && nav.childrens.length > 0 && (
+										<div className={scss.dropdown_menu}>
+											<div className={scss.submenu_content}>
+												{nav.childrens.map(nc => (
+													<Link key={nc.href} href={nc.href}>
+														{nc.label}
+													</Link>
+												))}
+											</div>
+										</div>
+									)}
+								</li>
+							))}
+							{/* <li>
 								<Link href='/' className={isActiveLink('/') ? scss.active : ''}>
 									Башкы
 								</Link>
@@ -104,7 +143,7 @@ const Header: React.FC = () => {
 								>
 									Пайдалуу маалымат
 								</Link>
-							</li>
+							</li> */}
 						</ul>
 					</div>
 
@@ -144,6 +183,7 @@ const Header: React.FC = () => {
 										onClick={() => {
 											setCurrentLang(lang);
 											setShowLanguage(false);
+											setLanguage(lang.code);
 										}}
 									>
 										<Image

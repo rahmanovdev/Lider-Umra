@@ -1,0 +1,18 @@
+{
+	"header": {
+		"navigations": [
+			{ "label": "Башкы", "href": "/" },
+			{ "label": "Тур пакеттер", "href": "/packages" },
+			{
+				"label": "Биз жөнүндө",
+				"childrens": [
+					{ "label": "Компания жөнүндө", "href": "/aboutUs" },
+					{ "label": "Галерея", "href": "/gallery" },
+					{ "label": "Видео сабактар", "href": "/video_lessons" },
+					{ "label": "Байланыш", "href": "/contact" }
+				]
+			},
+			{ "label": "Пайдалуу маалымат" }
+		]
+	}
+}

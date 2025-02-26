@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.scss';
 import LayoutClient from './layout.client';
 import { Inter, Montserrat } from 'next/font/google';
+import { getLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -18,18 +20,22 @@ const montserrat = Montserrat({
 	subsets: ['latin']
 });
 
-export default function RootLayout({
+export default async function RootLayout({
 	children
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const locale = await getLocale();
+	const messages = await getMessages();
 	return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${interSans.variable}  ${montserrat.variable}`}>
-        <div className="wrapper">
-          <LayoutClient>{children}</LayoutClient>
-        </div>
-      </body>
-    </html>
-  );
+		<html lang={locale} suppressHydrationWarning>
+			<body className={`${interSans.variable}  ${montserrat.variable}`}>
+				<div className='wrapper'>
+					<NextIntlClientProvider messages={messages}>
+						<LayoutClient>{children}</LayoutClient>
+					</NextIntlClientProvider>
+				</div>
+			</body>
+		</html>
+	);
 }
