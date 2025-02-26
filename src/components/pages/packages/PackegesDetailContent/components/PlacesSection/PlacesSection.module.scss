@@ -125,7 +125,6 @@
     .infoGrid {
       display: grid;
       gap: clamp(6px, 1.5vw, 12px);
-      // padding: 0 clamp(10px, 2vw, 16px);
 
       .infoItem {
         display: flex;
@@ -185,7 +184,7 @@
     padding: clamp(8px, 2vw, 10px);
 
     h1 {
-      font-size: clamp(16px, 4vw, 18px);
+      font-size: clamp(20px, 4vw, 22px);
     }
 
     .hotelContainer {
@@ -193,12 +192,13 @@
     }
 
     .HostelContent {
-      width: 100%;
+    width: 90%;
+
 
       padding: clamp(6px, 1.5vw, 8px) clamp(8px, 1.5vw, 12px);
 
       h2 {
-        font-size: clamp(14px, 3vw, 16px);
+        font-size: clamp(16px, 3vw, 18px);
         margin-bottom: clamp(8px, 1.5vw, 10px);
       }
 
@@ -214,7 +214,6 @@
 
       .infoGrid {
         gap: clamp(5px, 1vw, 6px);
-        padding: 0 clamp(8px, 1.5vw, 10px);
 
         .infoItem {
           padding: clamp(4px, 1vw, 6px) clamp(8px, 1.5vw, 10px);
@@ -222,7 +221,7 @@
 
           span:first-child,
           span:last-child {
-            font-size: clamp(10px, 2vw, 12px);
+            font-size: clamp(11px, 2vw, 13px);
           }
 
           .starRating {
