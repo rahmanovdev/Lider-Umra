@@ -6,20 +6,20 @@ import scss from './LayoutSite.module.scss';
 import { useSize } from '@/hooks/use-size';
 
 interface LayoutSiteProps {
-	children: ReactNode;
+   children: ReactNode;
 }
 const LayoutSite: FC<LayoutSiteProps> = ({ children }) => {
-	const size = useSize('#header');
+   const size = useSize('#header');
 
-	return (
-		<div suppressHydrationWarning className={scss.LayoutSite}>
-			<Header />
-			<main suppressHydrationWarning style={{ marginTop: size?.height }}>
-				{children}
-			</main>
-			<Footer />
-		</div>
-	);
+   return (
+      <div suppressHydrationWarning className={scss.LayoutSite}>
+         <Header />
+         <main suppressHydrationWarning style={{ marginTop: size?.height }}>
+            {children}
+         </main>
+         <Footer />
+      </div>
+   );
 };
 
 export default LayoutSite;
