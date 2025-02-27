@@ -13,7 +13,7 @@
 				"childrens": [
 					{ "label": "Компания жөнүндө", "href": "/aboutUs" },
 					{ "label": "Галерея", "href": "/gallery" },
-					{ "label": "Видео сабактар", "href": "/video_lessons" },
+					{ "label": "Видео сабактар", "href": "/lessons" },
 					{ "label": "Байланыш", "href": "/contact" }
 				]
 			},
@@ -56,11 +56,11 @@
 		}
 	},
 	"hero": {
-		"title": "Совершите Умру <br /> с комфортом.",
+		"title": "Умраны <br /> ыңгайлуулук менен аткарыңыз.",
 		"description": "Lorem ipsum dolor sit amet consectetur.",
 		"buttons": {
-			"tour": "К списку туров",
-			"more": "Подробнее"
+			"tour": "Турлар тизмесине",
+			"more": "Толугураак"
 		}
 	},
 	"about": {
