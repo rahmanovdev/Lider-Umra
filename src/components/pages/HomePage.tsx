@@ -8,42 +8,45 @@ import QuestionsSection from './home/QuestionsSection/QuestionsSection';
 import StepsHajjSection from './home/StepsOfHajjSection/StepsHajjSection';
 import TrafficsSection from './home/TrafficsSection/TrafficsSection';
 import FAQ from '../ui/faq/FAQ';
-import { useTranslations } from 'next-intl'
-import { GoArrowRight } from 'react-icons/go'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl';
+import { GoArrowRight } from 'react-icons/go';
+import Link from 'next/link';
+import VideoSection from './home/VideoSection/VideoSection';
+import React from 'react'
 
 const HomePage = () => {
-	const t = useTranslations()
-	const { data: tours = [] } = useGetToursQuery();
-	const getLastThreeTours = () => {
-		if (!Array.isArray(tours)) return [];
+   const t = useTranslations();
+   const { data: tours = [] } = useGetToursQuery();
+   const getLastThreeTours = React.useMemo(() => {
+      if (!Array.isArray(tours)) return [];
 
-		const sortedTours = [...tours].sort(
-			(a, b) =>
-				new Date(b.tour_date.start_tour).getTime() -
-				new Date(a.tour_date.start_tour).getTime()
-		);
+      const sortedTours = [...tours].sort(
+         (a, b) =>
+            new Date(b.tour_date.start_tour).getTime() -
+            new Date(a.tour_date.start_tour).getTime(),
+      );
 
-		return sortedTours.slice(0, 3);
-	};
-	return (
-		<>
-			<div className={scss.HomePage}>
-				<HeroSection />
-				<AboutSection />
-				<TrafficsSection tours={getLastThreeTours()}>
-					<Link href="/packages" className={scss.more}>
-						{t('packages.allPackages')}
-						<GoArrowRight className={scss.icon} />
-					</Link>
-				</TrafficsSection>
-				<StepsHajjSection />
-				<QuestionsSection />
-				<InformationSection />
-				<FAQ />
-			</div>
-		</>
-	);
+      return sortedTours.slice(0, 3);
+   }, [tours]);
+   return (
+      <>
+         <div className={scss.HomePage}>
+            <HeroSection />
+            <AboutSection />
+            <TrafficsSection tours={getLastThreeTours}>
+               <Link href='/packages' className={scss.more}>
+                  {t('packages.allPackages')}
+                  <GoArrowRight className={scss.icon} />
+               </Link>
+            </TrafficsSection>
+            <VideoSection />
+            <StepsHajjSection />
+            <QuestionsSection />
+            <InformationSection />
+            <FAQ />
+         </div>
+      </>
+   );
 };
 
 export default HomePage;
