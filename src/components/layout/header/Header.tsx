@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { BsFillAirplaneEnginesFill } from 'react-icons/bs';
 import { FiHome } from 'react-icons/fi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { IoCall } from 'react-icons/io5';
@@ -12,6 +11,7 @@ import MobileMenu from './components/MobileMenu/MobileMenu';
 import scss from './Header.module.scss';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
+import { GoPlus } from 'react-icons/go';
 type NavigationType = {
 	href: string;
 	label: string;
@@ -20,7 +20,7 @@ type NavigationType = {
 
 const Header: React.FC = () => {
 	const pathname = usePathname();
-	const t = useTranslations('header');
+	const t = useTranslations();
 	const tb = useTranslations('bottomNav');
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -124,15 +124,10 @@ const Header: React.FC = () => {
 						<FiHome />
 						<span>{tb('home')}</span>
 					</Link>
-					<Link
-						href='/packages'
-						className={`${scss.nav_item} ${
-							isActiveLink('/packages') ? scss.active : ''
-						}`}
-					>
-						<BsFillAirplaneEnginesFill />
-						<span>{tb('tours')}</span>
-					</Link>
+					<button className={`${scss.nav_item}`}>
+						<GoPlus />
+						<span>{tb('submit_request')}</span>
+					</button>
 					<button
 						className={scss.nav_item}
 						onClick={() => setIsMobileMenuOpen(true)}

@@ -1,14 +1,14 @@
 'use client';
+import Loading from '@/components/ui/loading/Loading';
 import { useGetTourByIdQuery } from '@/redux/api/tour';
+import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import AboutProgramDet from './AboutProgramDet/AboutProgramDet';
 import About_ProgramDet from './About_ProgramDet/About_ProgramDet';
 import HeadPackegeDet from './Head_PackeckgeDet/HeadPackegeDet';
-import Loading from '@/components/ui/loading/Loading';
-import { useTranslations } from 'next-intl';
 
 const PackegesDetailContent = () => {
-	const t = useTranslations('packageDetails');
+	const t = useTranslations('packages.detail');
 	const params = useParams();
 	const id = Number(params.id);
 

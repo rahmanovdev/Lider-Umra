@@ -60,18 +60,17 @@ export const GiftsSection: React.FC = () => {
 											className={styles.shortDescription}
 											dangerouslySetInnerHTML={{
 												__html: shouldShowReadMore
-													? gift.description.slice(0, 117) + '...'
+													? gift.description.slice(0, 117) +
+													  `... <span class="${styles.readMore}" data-id="${gift.id}">толугураак</span>`
 													: gift.description
 											}}
+											onClick={e => {
+												const target = e.target as HTMLElement;
+												if (target.classList.contains(styles.readMore)) {
+													handleReadMore(gift);
+												}
+											}}
 										/>
-										{shouldShowReadMore && (
-											<button
-												className={styles.readMore}
-												onClick={() => handleReadMore(gift)}
-											>
-												толугураак
-											</button>
-										)}
 									</div>
 								</div>
 							</article>

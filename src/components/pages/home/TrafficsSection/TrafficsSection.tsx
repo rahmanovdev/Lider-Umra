@@ -2,7 +2,7 @@
 import TrafficCard from '@/components/ui/cards/traffic-card/TrafficCard';
 import React from 'react';
 import scss from './TrafficsSection.module.scss';
-
+import { motion } from 'framer-motion';
 const TrafficsSection: React.FC<
 	React.PropsWithChildren & {
 		tours: TOURS.GetTourPackagesResponse;
@@ -19,9 +19,19 @@ const TrafficsSection: React.FC<
 							const currentTour = tours[index];
 
 							return (
-								<div key={currentTour.id} className={scss[cardType]}>
+								<motion.div
+									initial={"hidden"}
+									animate={"visible"}
+									transition={{ duration: 0.3 }}
+									variants={{
+										hidden: { opacity: 0, y: 10 },
+										visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+									}}
+									key={currentTour.id}
+									className={scss[cardType]}
+								>
 									<TrafficCard tour={tour} />
-								</div>
+								</motion.div>
 							);
 						})}
 					</div>

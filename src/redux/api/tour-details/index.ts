@@ -36,7 +36,6 @@ const api = index.injectEndpoints({
 				meta,
 				{ type, category }
 			) => {
-				console.log(response)
 				return response
 					.filter(
 						item =>

@@ -5,6 +5,7 @@
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	transition: transform 0.2s ease; /* Hover эффекти үчүн */
 	position: relative; /* Карточкага позиция кошуу */
+	padding: 16px;
 	&:hover {
 		transform: translateY(-2px); /* Кичине көтөрүлүш */
 		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* Көлөкө күчөйт */
@@ -12,16 +13,17 @@
 
 	.imageWrapper {
 		width: 100%;
-		height: 180px; /* Сүрөттөрдү сиз бергендей кичинекей кылдык */
+		height: 200px;
 		position: relative;
-		padding: 8px 16px;
+		border-radius: 12px;
+		overflow: hidden;
 
 		:global(.slider) {
 			height: 100% !important;
 			border-radius: 12px 12px 0 0; /* Сүрөттөрдү карточканын үстүнө гана тегеректелген кылуу */
 
 			:global(.sliderWrapper) {
-				height: 100%;
+				height: 100% !important;
 
 				img {
 					width: 100%;
@@ -39,7 +41,7 @@
 	}
 
 	.placeInfo {
-		padding: 16px; /* Паддинг туура, текст алдыга чыгат */
+		margin-top: 16px;
 		position: relative; /* Текстти алдыга аlyп чыгуу үчүн */
 		z-index: 1; /* Сүрөттөрдүн артында болбой тургандыгын камсыз кылуу */
 
@@ -143,21 +145,13 @@
 // Медиа запросы 768px
 @media (max-width: 768px) {
 	.placeCard {
-		padding: 10px 0;
-		.imageWrapper {
-			height: 100%; /* Сүрөттөрдү кичинекей кылдык */
-		}
-
 		.placeInfo {
-			padding: 12px;
-
 			h3 {
 				font-size: 16px;
 			}
 
 			.description {
 				font-size: 13px;
-				-webkit-line-clamp: 3;
 			}
 		}
 	}
@@ -188,8 +182,6 @@
 		border-radius: 10px;
 
 		.placeInfo {
-			padding: 10px;
-
 			h3 {
 				font-size: 14px;
 				margin-bottom: 6px;
@@ -197,7 +189,6 @@
 
 			.description {
 				font-size: 12px;
-				-webkit-line-clamp: 3;
 
 				.readMore {
 					font-size: 12px;
@@ -235,6 +226,24 @@
 	}
 }
 
+@media (max-width: 500px) {
+	.placeCard {
+		padding: 13px;
+		.placeInfo {
+			margin-top: 13px;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	.placeCard {
+		padding: 10px;
+		.placeInfo {
+			margin-top: 10px;
+		}
+	}
+}
+
 // Медиа запросы 320px
 @media (max-width: 320px) {
 	.placeCard {
@@ -245,8 +254,6 @@
 		}
 
 		.placeInfo {
-			padding: 8px;
-
 			h3 {
 				font-size: 12px;
 				margin-bottom: 4px;

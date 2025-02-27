@@ -1,6 +1,7 @@
 'use client';
 import RequiredOfYou from '@/components/ui/required-of-you/RequiredOfYou';
 import clsx from 'clsx';
+import { useTranslations } from 'next-intl';
 import React, { useEffect, useRef, useState } from 'react';
 import {
 	MdCardGiftcard,
@@ -14,7 +15,6 @@ import { GiftsSection } from '../components/GiftsSection';
 import PlacesSection from '../components/PlacesSection/PlaceSection';
 import { WarningsSection } from '../components/WarningsSection';
 import styles from './AboutProgramDet.module.scss';
-import { useTranslations } from 'next-intl';
 
 interface Section {
 	id: number;
@@ -27,44 +27,44 @@ interface AboutProgramDetProps {
 	tourData: TOURS.ITourPackages;
 }
 
+const sections = (t: (s: string) => string): Section[] => [
+	{
+		id: 1,
+		title: t('sections.food'),
+		type: 'food',
+		icon: <MdRestaurant className={styles.icon} />
+	},
+	{
+		id: 2,
+		title: t('sections.places'),
+		type: 'places',
+		icon: <MdLocationOn className={styles.icon} />
+	},
+	{
+		id: 3,
+		title: t('sections.required'),
+		type: 'required',
+		icon: <MdChecklist className={styles.icon} />
+	},
+	{
+		id: 4,
+		title: t('sections.warnings'),
+		type: 'warnings',
+		icon: <MdThumbDown className={styles.icon} />
+	},
+	{
+		id: 5,
+		title: t('sections.gifts'),
+		type: 'gifts',
+		icon: <MdCardGiftcard className={styles.icon} />
+	}
+];
+
 const AboutProgramDet = ({}: AboutProgramDetProps) => {
-	const t = useTranslations('packageDetails.aboutProgramDet');
+	const t = useTranslations('packages.detail.aboutProgramDet');
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 	const [isHovered, setIsHovered] = useState(false);
 	const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-	const sections: Section[] = [
-		{
-			id: 1,
-			title: t('sections.food'),
-			type: 'food',
-			icon: <MdRestaurant className={styles.icon} />
-		},
-		{
-			id: 2,
-			title: t('sections.places'),
-			type: 'places',
-			icon: <MdLocationOn className={styles.icon} />
-		},
-		{
-			id: 3,
-			title: t('sections.required'),
-			type: 'required',
-			icon: <MdChecklist className={styles.icon} />
-		},
-		{
-			id: 4,
-			title: t('sections.warnings'),
-			type: 'warnings',
-			icon: <MdThumbDown className={styles.icon} />
-		},
-		{
-			id: 5,
-			title: t('sections.gifts'),
-			type: 'gifts',
-			icon: <MdCardGiftcard className={styles.icon} />
-		}
-	];
 
 	const startInterval = React.useCallback(() => {
 		if (intervalRef.current) clearInterval(intervalRef.current);
@@ -75,7 +75,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 				);
 			}
 		}, 50000);
-	}, [isHovered, sections.length]);
+	}, [isHovered]);
 
 	useEffect(() => {
 		startInterval();
@@ -149,7 +149,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 	return (
 		<div className='container'>
 			<div className={styles.sectionList}>
-				{sections.map((section, index) => (
+				{sections(t).map((section, index) => (
 					<button
 						key={section.id}
 						className={clsx(styles.sectionButton, {
@@ -164,7 +164,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 					</button>
 				))}
 			</div>
-			{activeIndex !== null && renderContent(sections[activeIndex])}
+			{activeIndex !== null && renderContent(sections(t)[activeIndex])}
 		</div>
 	);
 };

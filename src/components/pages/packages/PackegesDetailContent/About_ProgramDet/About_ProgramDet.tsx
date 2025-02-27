@@ -1,15 +1,14 @@
 'use client';
-import React from 'react';
-import scss from './About_ProgramDet.module.scss';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import scss from './About_ProgramDet.module.scss';
 
 interface AboutProgramDetProps {
 	tourData: TOURS.ITourPackages;
 }
 
 const About_ProgramDet = ({}: AboutProgramDetProps) => {
-	const t = useTranslations('packageDetails.about_ProgramDet');
+	const t = useTranslations('packages.detail.about_ProgramDet');
 
 	return (
 		<section className={scss.About_ProgramDet}>

@@ -10,8 +10,39 @@ interface MobileMenuProps {
 	onClose: () => void;
 }
 
+type NavigationType = {
+	href?: string;
+	label: string;
+	childrens?: NavigationType[];
+};
+
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
-	const t = useTranslations('mobileMenu');
+	const t = useTranslations();
+	const navigations = t.raw('navigations') as NavigationType[];
+
+	const renderNavigation = React.useCallback(
+		(items: NavigationType[], level = 0) => (
+			<ul className={`${scss.menu_list} ${level > 0 ? scss.submenu : ''}`}>
+				{items.map((navItem, index) => {
+					const hasChildren = navItem.childrens && navItem.childrens.length > 0;
+
+					return (
+						<li key={index} className={scss.menu_item}>
+							{navItem.href ? (
+								<Link href={navItem.href} onClick={onClose}>
+									{navItem.label}
+								</Link>
+							) : (
+								<span className={scss.menu_label}>{navItem.label}</span>
+							)}
+							{hasChildren && renderNavigation(navItem.childrens!, level + 1)}
+						</li>
+					);
+				})}
+			</ul>
+		),
+		[onClose]
+	);
 
 	return (
 		<div className={`${scss.mobile_menu} ${isOpen ? scss.open : ''}`}>
@@ -20,42 +51,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 					<IoClose />
 				</button>
 			</div>
-			<nav className={scss.menu_nav}>
-				<ul>
-					<li>
-						<Link href='/' onClick={onClose}>
-							{t('home')}
-						</Link>
-					</li>
-					<li>
-						<Link href='/packages' onClick={onClose}>
-							{t('tourPackages')}
-						</Link>
-					</li>
-					<li>
-						<Link href='/aboutUs' onClick={onClose}>
-							{t('aboutCompany')}
-						</Link>
-					</li>
-					<li>
-						<Link href='/gallery' onClick={onClose}>
-							{t('gallery')}
-						</Link>
-					</li>
-					<li>
-						<Link href='/contact' onClick={onClose}>
-							{t('contact')}
-						</Link>
-					</li>
-					<li>
-						<Link href='/usefulinfo' onClick={onClose}>
-							{t('usefulInfo')}
-						</Link>
-					</li>
-				</ul>
-			</nav>
+			<nav className={scss.menu_nav}>{renderNavigation(navigations)}</nav>
 			<div className={scss.contact_info}>
-				<div className={scss.contact_title}>{t('contactTitle')}</div>
+				<div className={scss.contact_title}>{t('mobileMenu.contactTitle')}</div>
 				<a href='tel:+996700188251' className={scss.phone_number}>
 					<span>+996 700-18-82-51</span>
 				</a>

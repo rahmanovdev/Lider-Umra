@@ -5,7 +5,11 @@ import {
 } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: `${process.env.NEXT_PUBLIC_API}`
+	baseUrl: `${process.env.NEXT_PUBLIC_API}`,
+	prepareHeaders(headers, api) {
+		headers.set('Accept-Language', 'ky');
+		return headers;
+	}
 });
 
 const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {

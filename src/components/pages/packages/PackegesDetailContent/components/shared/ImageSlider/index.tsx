@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { IoClose } from 'react-icons/io5'
 
 interface ImageSliderProps {
   images: string[];
@@ -81,7 +82,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
                 className={styles.closeButton}
                 onClick={() => setIsModalOpen(false)}
               >
-                ×
+                <IoClose/>
               </button>
               <div className={styles.zoomableImage}>
                 <Image

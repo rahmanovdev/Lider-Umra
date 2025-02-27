@@ -1,20 +1,21 @@
 'use client';
+import { formatDate } from '@/utils/format-date';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import { Modal } from '../components/shared/Modal';
-import scss from './HeadPackegeDet.module.scss';
-import { MdOutlineEditNote } from 'react-icons/md';
 import { FaWhatsapp } from 'react-icons/fa';
 import { IoCall } from 'react-icons/io5';
-import { formatDate } from '@/utils/format-date';
-import { useTranslations } from 'next-intl';
+import { MdOutlineEditNote } from 'react-icons/md';
+import { Modal } from '../components/shared/Modal';
+import scss from './HeadPackegeDet.module.scss';
 
 interface HeadPackegeDetProps {
 	tourData: TOURS.ITourPackages;
 }
 
 const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
-	const t = useTranslations('packageDetails.headPackegeDet');
+	const t = useTranslations('packages.detail.headPackegeDet');
+	const locale = useLocale();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [showReadMore, setShowReadMore] = useState(false);
 	const bioContentRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
 									<div className={scss.month_year}>
 										<h1>{startDate.day}</h1>
 										<div className={scss.month}>
-											<h5>{startDate.month}</h5>
+											<h5>{startDate.month[locale as 'kg']}</h5>
 											<h5>{startDate.year}</h5>
 										</div>
 									</div>
@@ -59,7 +60,7 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
 									<div className={scss.month_year}>
 										<h1>{endDate.day}</h1>
 										<div className={scss.month}>
-											<h5>{endDate.month}</h5>
+											<h5>{endDate.month[locale as 'kg']}</h5>
 											<h5>{endDate.year}</h5>
 										</div>
 									</div>

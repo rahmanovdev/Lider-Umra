@@ -13,17 +13,15 @@ import { useTranslations } from 'next-intl';
 const AboutUsContent = () => {
 	const t = useTranslations('aboutUs');
 
-	const cleanHtml = (html: string) => {
-		return html.replace(/<(?!\/?(p|br|strong|em)\b)[^>]+>/gi, '');
-	};
-
 	return (
 		<div className={scss.AboutUsContent}>
 			<div className={scss.head_about}>
-				<h1 dangerouslySetInnerHTML={{ __html: t('title') }} />
-				<IoIosArrowDown />
+				<h1 dangerouslySetInnerHTML={{ __html: t.raw('title') }} />
+				<a href='#about'>
+					<IoIosArrowDown />
+				</a>
 			</div>
-			<div className={scss['about']}>
+			<div id='about' className={scss['about']}>
 				<div className={`container ${scss.container}`}>
 					<div className={scss.content}>
 						<div className={scss.about_content}>
@@ -42,7 +40,7 @@ const AboutUsContent = () => {
 								<div
 									key={index}
 									className={scss.item}
-									dangerouslySetInnerHTML={{ __html: cleanHtml(item.title) }}
+									dangerouslySetInnerHTML={{ __html: item.title }}
 								/>
 							))}
 						</div>
