@@ -21,7 +21,7 @@ namespace TOURS {
 		duration: number;
 	}
 
-	interface ITourPackages {
+	 interface ITourPackages {
 		ajy: IAjy;
 		available_seats: number;
 		category: ICategory;

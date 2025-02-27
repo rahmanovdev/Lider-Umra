@@ -35,10 +35,10 @@
 		"contactTitle": "Байланыш:"
 	},
 	"footer": {
-		"quickLinks": "Тез шилтемелер",
+		"quickLinks": "Шилтемелер",
 		"company": "Компания",
 		"resources": "Ресурстар",
-		"contact": "Байланыш",
+		"contact": "Соц тармактар",
 		"links": {
 			"home": "Башкы",
 			"privacy": "Купуя саясаты",
@@ -56,13 +56,13 @@
 		}
 	},
 	"hero": {
-		"title": "Умраны <br /> ыңгайлуулук менен аткарыңыз.",
-		"description": "Lorem ipsum dolor sit amet consectetur.",
-		"buttons": {
-			"tour": "Турлар тизмесине",
-			"more": "Толугураак"
-		}
-	},
+    "title": "Умраны <br /> ыңгайлуулук менен аткарыңыз.",
+    "description": "Lorem ipsum dolor sit amet consectetur.",
+    "buttons": {
+      "tour": "Турлар тизмесине",
+      "more": "Толугураак"
+    }
+  },
 	"about": {
 		"title": "Компания жөнүндө «Lider Umra»",
 		"tags": {
