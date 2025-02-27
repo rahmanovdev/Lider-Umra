@@ -6,6 +6,7 @@ import { useTimeLine } from '@/hooks/use-time-line';
 import { useGetBlogByIdQuery } from '@/redux/api/blogs';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import Loading from '@/components/ui/loading/Loading'
 
 const UsefulinfoContentDetail = () => {
 	const params = useParams();
@@ -16,14 +17,7 @@ const UsefulinfoContentDetail = () => {
 	]);
 
 	if (isLoading) {
-		return (
-			<div className='loading'>
-				<div className='loading__inner'>
-					<div className='spinner'></div>
-					<span>Жүктөлүүдө...</span>
-				</div>
-			</div>
-		);
+		return <Loading />;
 	}
 
 	return (

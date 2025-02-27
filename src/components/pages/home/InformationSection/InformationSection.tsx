@@ -3,23 +3,25 @@ import React from 'react';
 import scss from './InformationSection.module.scss';
 import Image from 'next/image';
 import { useGetBlogsQuery } from '@/redux/api/blogs';
+import { useTranslations } from 'next-intl';
+import Loading from '@/components/ui/loading/Loading';
 
 const InformationSection = () => {
+	const t = useTranslations();
 	const { data, isLoading, error } = useGetBlogsQuery();
+
 	return (
 		<section className={scss.Main}>
 			<div className={scss.container}>
 				<div className={scss.content}>
-					<h1>Полезные информации</h1>
-					<div className={scss.main_card}>
-						{isLoading ? (
-							<div>Жүктөлүүдө...</div>
-						) : error || !data ? (
-							<div>
-								Маалыматтарды жүктөөдө ката кетти. Кайра аракет кылыңыз.
-							</div>
-						) : (
-							data.map((blog, idx) => (
+					<h1>{t('information.title')}</h1>
+					{isLoading ? (
+						<Loading />
+					) : error || !data ? (
+						<div>{t('information.error')}</div>
+					) : (
+						<div className={scss.main_card}>
+							{data.map((blog, idx) => (
 								<div key={idx} className={scss.card}>
 									<div className={scss.imageWrapper}>
 										<Image
@@ -35,9 +37,9 @@ const InformationSection = () => {
 										className={scss.textOverlay}
 									></div>
 								</div>
-							))
-						)}
-					</div>
+							))}
+						</div>
+					)}
 				</div>
 			</div>
 		</section>

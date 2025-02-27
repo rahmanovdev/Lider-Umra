@@ -1,0 +1,35 @@
+.loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 160px 0;
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		.spinner {
+			width: 20px;
+			height: 20px;
+			border: 2px solid #2c2c2c;
+			border-top-color: #ffffff;
+			border-radius: 9999px;
+			animation: spin 1s linear infinite;
+		}
+
+		span {
+			font-size: 0.875rem;
+			color: #05070b;
+			font-weight: 500;
+		}
+	}
+}
+
+// Определение анимации
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}

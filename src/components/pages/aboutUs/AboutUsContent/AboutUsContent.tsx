@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import scss from './AboutUsContent.module.scss';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -7,57 +8,58 @@ import AboutUsImages from './AboutUsImage/AboutUsImage';
 import Whywe from './WhyWe/WhyWe';
 import QuestionsSection from '../../home/QuestionsSection/QuestionsSection';
 import RequiredOfYou from '@/components/ui/required-of-you/RequiredOfYou';
+import { useTranslations } from 'next-intl';
 
 const AboutUsContent = () => {
-  const cleanHtml = (html: string) => {
-    return html.replace(/<(?!\/?(p|br|strong|em)\b)[^>]+>/gi, '');
-  };
-  return (
-    <div className={scss.AboutUsContent}>
-      <div className={scss.head_about}>
-        <h1>
-          О компании <span>«Lider Umrah»</span>
-        </h1>
-        <IoIosArrowDown />
-      </div>
-      <div className={scss['about']}>
-        <div className={`container ${scss.container}`}>
-          <div className={scss.content}>
-            <div className={scss.about_content}>
-              <div className={scss.video_container}>
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/6i2rjWV5Djc"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              {aboutLider.map((item, index) => (
-                <div
-                  key={index}
-                  className={scss.item}
-                  dangerouslySetInnerHTML={{ __html: cleanHtml(item.title) }}
-                />
-              ))}
-            </div>
-            <AboutCards />
-          </div>
-        </div>
-      </div>
-      <AboutUsImages />
-      <div className={scss.why_we}>
-        <Whywe />
-      </div>
-      <div className={scss.required}>
-        <RequiredOfYou />
-      </div>
+	const t = useTranslations('aboutUs');
 
-      <QuestionsSection />
-    </div>
-  );
+	const cleanHtml = (html: string) => {
+		return html.replace(/<(?!\/?(p|br|strong|em)\b)[^>]+>/gi, '');
+	};
+
+	return (
+		<div className={scss.AboutUsContent}>
+			<div className={scss.head_about}>
+				<h1 dangerouslySetInnerHTML={{ __html: t('title') }} />
+				<IoIosArrowDown />
+			</div>
+			<div className={scss['about']}>
+				<div className={`container ${scss.container}`}>
+					<div className={scss.content}>
+						<div className={scss.about_content}>
+							<div className={scss.video_container}>
+								<iframe
+									width='560'
+									height='315'
+									src='https://www.youtube.com/embed/6i2rjWV5Djc'
+									title='YouTube video player'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+									allowFullScreen
+								></iframe>
+							</div>
+							{aboutLider.map((item, index) => (
+								<div
+									key={index}
+									className={scss.item}
+									dangerouslySetInnerHTML={{ __html: cleanHtml(item.title) }}
+								/>
+							))}
+						</div>
+						<AboutCards />
+					</div>
+				</div>
+			</div>
+			<AboutUsImages />
+			<div className={scss.why_we}>
+				<Whywe />
+			</div>
+			<div className={scss.required}>
+				<RequiredOfYou />
+			</div>
+			<QuestionsSection />
+		</div>
+	);
 };
 
 export default AboutUsContent;

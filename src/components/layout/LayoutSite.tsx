@@ -1,5 +1,5 @@
 'use client';
-import { FC, ReactNode, useEffect, useState } from 'react';
+import { FC, ReactNode } from 'react';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import scss from './LayoutSite.module.scss';
@@ -9,17 +9,7 @@ interface LayoutSiteProps {
 	children: ReactNode;
 }
 const LayoutSite: FC<LayoutSiteProps> = ({ children }) => {
-	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const size = useSize('#header');
-	useEffect(() => {
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 1500);
-	}, []);
-
-	if (isLoading) {
-		// return <Loader />;
-	}
 
 	return (
 		<div suppressHydrationWarning className={scss.LayoutSite}>

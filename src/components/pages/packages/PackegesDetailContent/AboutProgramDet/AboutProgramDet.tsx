@@ -14,6 +14,7 @@ import { GiftsSection } from '../components/GiftsSection';
 import PlacesSection from '../components/PlacesSection/PlaceSection';
 import { WarningsSection } from '../components/WarningsSection';
 import styles from './AboutProgramDet.module.scss';
+import { useTranslations } from 'next-intl';
 
 interface Section {
 	id: number;
@@ -22,62 +23,51 @@ interface Section {
 	icon: React.ReactNode;
 }
 
-interface Place {
-	id: number;
-	title: string;
-	image: string;
-	shortDescription: string;
-	fullDescription: string;
-}
-
-const sections: Section[] = [
-	{
-		id: 1,
-		title: 'Питание',
-		type: 'food',
-		icon: <MdRestaurant className={styles.icon} />
-	},
-	{
-		id: 2,
-		title: 'Какие места посетим',
-		type: 'places',
-		icon: <MdLocationOn className={styles.icon} />
-	},
-	{
-		id: 3,
-		title: 'От вас требуется!',
-		type: 'required',
-		icon: <MdChecklist className={styles.icon} />
-	},
-	{
-		id: 4,
-		title: 'Не рекомендуем',
-		type: 'warnings',
-		icon: <MdThumbDown className={styles.icon} />
-	},
-	{
-		id: 5,
-		title: 'Вам дадим',
-		type: 'gifts',
-		icon: <MdCardGiftcard className={styles.icon} />
-	}
-];
-
 interface AboutProgramDetProps {
 	tourData: TOURS.ITourPackages;
 }
 
 const AboutProgramDet = ({}: AboutProgramDetProps) => {
+	const t = useTranslations('packageDetails.aboutProgramDet');
 	const [activeIndex, setActiveIndex] = useState<number>(0);
-	const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 	const [isHovered, setIsHovered] = useState(false);
 	const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-	const startInterval = React.useCallback(() => {
-		if (intervalRef.current) {
-			clearInterval(intervalRef.current);
+	const sections: Section[] = [
+		{
+			id: 1,
+			title: t('sections.food'),
+			type: 'food',
+			icon: <MdRestaurant className={styles.icon} />
+		},
+		{
+			id: 2,
+			title: t('sections.places'),
+			type: 'places',
+			icon: <MdLocationOn className={styles.icon} />
+		},
+		{
+			id: 3,
+			title: t('sections.required'),
+			type: 'required',
+			icon: <MdChecklist className={styles.icon} />
+		},
+		{
+			id: 4,
+			title: t('sections.warnings'),
+			type: 'warnings',
+			icon: <MdThumbDown className={styles.icon} />
+		},
+		{
+			id: 5,
+			title: t('sections.gifts'),
+			type: 'gifts',
+			icon: <MdCardGiftcard className={styles.icon} />
 		}
+	];
 
+	const startInterval = React.useCallback(() => {
+		if (intervalRef.current) clearInterval(intervalRef.current);
 		intervalRef.current = setInterval(() => {
 			if (!isHovered) {
 				setActiveIndex(prevIndex =>
@@ -85,25 +75,17 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 				);
 			}
 		}, 50000);
-	}, [isHovered]);
+	}, [isHovered, sections.length]);
 
 	useEffect(() => {
 		startInterval();
-
 		return () => {
-			if (intervalRef.current) {
-				clearInterval(intervalRef.current);
-			}
+			if (intervalRef.current) clearInterval(intervalRef.current);
 		};
 	}, [isHovered, startInterval]);
 
-	const handleMouseEnter = () => {
-		setIsHovered(true);
-	};
-
-	const handleMouseLeave = () => {
-		setIsHovered(false);
-	};
+	const handleMouseEnter = () => setIsHovered(true);
+	const handleMouseLeave = () => setIsHovered(false);
 
 	const renderContent = (section: Section) => {
 		switch (section.type) {
@@ -117,7 +99,6 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 						<FoodSection />
 					</div>
 				);
-
 			case 'places':
 				return (
 					<div
@@ -128,7 +109,6 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 						<PlacesSection />
 					</div>
 				);
-
 			case 'required':
 				return (
 					<div
@@ -141,7 +121,6 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 						</div>
 					</div>
 				);
-
 			case 'warnings':
 				return (
 					<div
@@ -152,7 +131,6 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 						<WarningsSection />
 					</div>
 				);
-
 			case 'gifts':
 				return (
 					<div
@@ -186,22 +164,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 					</button>
 				))}
 			</div>
-
 			{activeIndex !== null && renderContent(sections[activeIndex])}
-			{selectedPlace && (
-				<div className={styles.modal}>
-					<div className={styles.modalContent}>
-						<button
-							className={styles.closeButton}
-							onClick={() => setSelectedPlace(null)}
-						>
-							×
-						</button>
-						<h2>{selectedPlace.title}</h2>
-						<p>{selectedPlace.fullDescription}</p>
-					</div>
-				</div>
-			)}
 		</div>
 	);
 };

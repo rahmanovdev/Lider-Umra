@@ -4,15 +4,40 @@ import scss from './WhyWe.module.scss';
 import Image from 'next/image';
 import { useTimeLine } from '@/hooks/use-time-line';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 const Whywe = () => {
+	const t = useTranslations();
 	const { containerRef, height, heightTransform, ref, activeSections } =
 		useTimeLine(true);
+
+	const packages = [
+		{
+			title: t('aboutUs.advantages.service'),
+			content: t('aboutUs.advantages.serviceDescription')
+		},
+		{
+			title: t('aboutUs.advantages.transport'),
+			content: t('aboutUs.advantages.transportDescription')
+		},
+		{
+			title: t('aboutUs.advantages.hotels'),
+			content: t('aboutUs.advantages.hotelsDescription')
+		},
+		{
+			title: t('aboutUs.advantages.responsibility'),
+			content: t('aboutUs.advantages.responsibilityDescription')
+		},
+		{
+			title: t('aboutUs.advantages.approach'),
+			content: t('aboutUs.advantages.approachDescription')
+		}
+	];
 
 	return (
 		<section className={scss.whywe}>
 			<div className={`${scss.container} container`}>
-				<h2>Что нас отличает от других компаний?</h2>
+				<h2>{t('aboutUs.advantagesTitle')}</h2>
 				<div className={scss['content']}>
 					<figure className={scss['figure']}>
 						<Image
@@ -43,7 +68,7 @@ const Whywe = () => {
 
 									<div className={scss.contentWrapper}>
 										<h3 className={scss.markTitle}>{item.title}</h3>
-										{item.content}
+										<p>{item.content}</p>
 									</div>
 								</div>
 							))}
@@ -63,31 +88,5 @@ const Whywe = () => {
 		</section>
 	);
 };
-
-const packages = [
-	{
-		title: ' Лучший сервис',
-		content:
-			'  Мы предоставляем услуги высокого качества: от поездки в больницу до покупок на рынке — всё, что вам нужно, мы решим. Наши сотрудники обеспечат максимальное удобство.  '
-	},
-	{
-		title: 'Собственный транспорт',
-		content: '  У нас есть комфортный личный транспорт для передвижения. '
-	},
-	{
-		title: 'Проживание в 4 и 5-звёздочных отелях',
-		content: 'Мы подбираем только лучшие отели для вашего пребывания'
-	},
-	{
-		title: 'Ответственность',
-		content:
-			'   Если ваш рейс отменён по погодным условиям или другим причинам, наша компания покроет расходы на покупку билетов для следующего рейса'
-	},
-	{
-		title: 'Особенный подход',
-		content:
-			'Билим Майнаев лично встречает каждую группу, организует торжественный ужин, помогает с размещением в отелях, предоставляет консультации и всегда готов решить любые вопросы, чтобы ваше путешествие прошло безупречно'
-	}
-];
 
 export default Whywe;

@@ -2,14 +2,7 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
 import scss from './HeroSection.module.scss';
-
-type HeroTextProps = {
-	className?: string;
-};
-
-type HeroButtonsProps = {
-	className?: string;
-};
+import { useTranslations } from 'next-intl';
 
 type IndicatorsProps = {
 	current: number;
@@ -32,22 +25,26 @@ const slides = [
 	}
 ] as const;
 
-const HeroText = memo(({ className }: HeroTextProps) => (
-	<div className={`${scss.hero_text} ${className || ''}`}>
-		<h1>
-			Совершите Умру <br /> с комфортом.
-		</h1>
-		<p>Lorem ipsum dolor sit amet consectetur.</p>
-	</div>
-));
+const HeroText = memo(() => {
+	const t = useTranslations('hero');
+	return (
+		<div className={`${scss.hero_text}`}>
+			<h1 dangerouslySetInnerHTML={{ __html: t('title') }} />
+			<p dangerouslySetInnerHTML={{ __html: t('description') }} />
+		</div>
+	);
+});
 HeroText.displayName = 'HeroText';
 
-const HeroButtons = memo(({ className }: HeroButtonsProps) => (
-	<div className={`${scss.hero_btn} ${className || ''}`}>
-		<button className={scss.btn_tours}>К списку туров</button>
-		<button className={scss.btn_podrobnee}>подробнее</button>
-	</div>
-));
+const HeroButtons = memo(() => {
+	const t = useTranslations('hero.buttons');
+	return (
+		<div className={`${scss.hero_btn}`}>
+			<button className={scss.btn_tours}>{t('tour')}</button>
+			<button className={scss.btn_podrobnee}>{t('more')}</button>
+		</div>
+	);
+});
 HeroButtons.displayName = 'HeroButtons';
 
 const Indicators = memo(({ current, total, onClick }: IndicatorsProps) => (

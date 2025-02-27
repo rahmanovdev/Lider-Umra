@@ -7,6 +7,7 @@ import img3 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage3.png';
 import img4 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage4.png';
 import img5 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage5.png';
 import scss from './StepsHajjSection.module.scss';
+import { useTranslations } from 'next-intl';
 
 const colors: { [key: number]: string } = {
 	1: 'rgb(220, 255, 220)',
@@ -16,15 +17,17 @@ const colors: { [key: number]: string } = {
 	5: 'rgb(230, 240, 210)'
 };
 
-const steps = [
-	{ title: 'Хадж', img: img1 },
-	{ title: 'Ихрам', img: img2 },
-	{ title: 'Арафа', img: img3 },
-	{ title: 'Таваф', img: img4 },
-	{ title: "Са'й", img: img5 }
-];
-
 const StepsHajjSection = () => {
+	const t = useTranslations('stepsHajj');
+
+	const steps = [
+		{ title: t('steps.hajj'), img: img1 },
+		{ title: t('steps.ihram'), img: img2 },
+		{ title: t('steps.arafa'), img: img3 },
+		{ title: t('steps.tawaf'), img: img4 },
+		{ title: t('steps.saey'), img: img5 }
+	];
+
 	const [currentStep, setCurrentStep] = React.useState(1);
 	const scrollContainerRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -62,7 +65,7 @@ const StepsHajjSection = () => {
 			<div className={scss.pre_main}>
 				<div className='container'>
 					<div className={scss.content}>
-						<h1>Столпы хаджа и обязательные действия</h1>
+						<h1>{t('title')}</h1>
 						<div className={scss.block_content} ref={scrollContainerRef}>
 							{steps.map((step, index) => {
 								const isActive = currentStep === index + 1;

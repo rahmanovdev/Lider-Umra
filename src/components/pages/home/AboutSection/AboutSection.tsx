@@ -1,11 +1,15 @@
+'use client';
 import React from 'react';
 import scss from './AboutSection.module.scss';
 import Image from 'next/image';
 import BgOrnament from '../../../../../public/assets/images/bg_ornament.svg';
 import lamp from '../../../../../public/assets/images/lamp.svg';
 import AboutCards from '@/components/ui/cards/about_cards/AboutCards';
+import { useTranslations } from 'next-intl';
 
 const AboutSection = () => {
+	const t = useTranslations();
+
 	return (
 		<div className={scss.AboutSection}>
 			<div className='container'>
@@ -13,31 +17,20 @@ const AboutSection = () => {
 					<div className={scss.about_top}>
 						<div className={scss.about_texts}>
 							<div className={scss.title}>
-								<h1>
-									О компании <span>«Lider Umra»</span>
-								</h1>
-								<p>
-									Lorem ipsum dolor sit amet consectetur. Tortor nunc
-									pellentesque egestas velit vitae curabitur. Amet diam mattis
-									at sit feugiat diam in. Tempor ac cursus neque in ipsum ut at
-									donec. Bibendum scelerisque suscipit sociis cum ut egestas.
-									Vitae amet adipiscing lacus ornare. Ligula at natoque gravida
-									proin vestibulum in faucibus. Donec vulputate eget id sapien
-									metus velit egestas luctus. Non eleifend egestas neque metus
-									cursus risus ornare vel. Urna blandit
-								</p>
+								<h1 dangerouslySetInnerHTML={{ __html: t('about.title') }} />
+								<p>{t('descriptions.base')}</p>
 							</div>
 							<button>узнать больше</button>
 
 							<div className={scss.tags}>
 								<div className={scss.tag_top}>
-									<h5>намаз</h5>
-									<h5>умра</h5>
-									<h5>чистота</h5>
+									<h5>{t('about.tags.prayer')}</h5>
+									<h5>{t('about.tags.umrah')}</h5>
+									<h5>{t('about.tags.purity')}</h5>
 								</div>
 								<div className={scss.tag_bottom}>
-									<h5>иман</h5>
-									<h5>коран</h5>
+									<h5>{t('about.tags.faith')}</h5>
+									<h5>{t('about.tags.quran')}</h5>
 								</div>
 							</div>
 						</div>

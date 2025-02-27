@@ -11,22 +11,7 @@ import logo from '../../../../public/assets/images/logo.svg';
 import MobileMenu from './components/MobileMenu/MobileMenu';
 import scss from './Header.module.scss';
 import { useTranslations } from 'next-intl';
-import { setLanguage } from '@/utils/i18n/language.client';
-
-interface Language {
-	code: 'kg' | 'ru';
-	name: string;
-	flag: string;
-}
-
-const LANGUAGES: Language[] = [
-	{
-		code: 'kg',
-		name: 'Кыргызча',
-		flag: '/assets/header/kyrgyzstan-flag-icon.svg'
-	},
-	{ code: 'ru', name: 'Русский', flag: '/assets/header/russia-flag-icon.svg' }
-];
+import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
 
 type NavigationType = {
 	href: string;
@@ -36,10 +21,10 @@ type NavigationType = {
 
 const Header: React.FC = () => {
 	const pathname = usePathname();
-	const translations = useTranslations();
-	const [showLanguage, setShowLanguage] = useState(false);
-	const [currentLang, setCurrentLang] = useState<Language>(LANGUAGES[0]);
+	const t = useTranslations('header');
+	const tb = useTranslations('bottomNav');
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 	useEffect(() => {
 		if (typeof document === 'undefined') return;
 
@@ -59,7 +44,8 @@ const Header: React.FC = () => {
 		return pathname?.startsWith(path);
 	};
 
-	const navigations = translations.raw('header.navigations') as NavigationType[];
+	const navigations = t.raw('navigations') as NavigationType[];
+
 	return (
 		<>
 			<header suppressHydrationWarning className={scss.header} id='header'>
@@ -110,40 +96,6 @@ const Header: React.FC = () => {
 									)}
 								</li>
 							))}
-							{/* <li>
-								<Link href='/' className={isActiveLink('/') ? scss.active : ''}>
-									Башкы
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/packages'
-									className={isActiveLink('/packages') ? scss.active : ''}
-								>
-									Тур пакеттер
-								</Link>
-							</li>
-							<li className={scss.dropdown}>
-								<span className={isActiveLink('/about') ? scss.active : ''}>
-									Биз жөнүндө
-								</span>
-								<div className={scss.dropdown_menu}>
-									<div className={scss.submenu_content}>
-										<Link href='/aboutUs'>Компания жөнүндө</Link>
-										<Link href='/gallery'>Галерея</Link>
-										<Link href='/video_lessons'>Видео сабактар</Link>
-										<Link href='/contact'>Байланыш</Link>
-									</div>
-								</div>
-							</li>
-							<li>
-								<Link
-									href='/usefulinfo'
-									className={isActiveLink('/usefulinfo') ? scss.active : ''}
-								>
-									Пайдалуу маалымат
-								</Link>
-							</li> */}
 						</ul>
 					</div>
 
@@ -157,47 +109,7 @@ const Header: React.FC = () => {
 							<div className={scss.line}></div>
 						</div>
 
-						<div
-							className={scss.language}
-							onMouseEnter={() => setShowLanguage(true)}
-							onMouseLeave={() => setShowLanguage(false)}
-						>
-							<div className={scss.flag_container}>
-								<Image
-									src={currentLang.flag}
-									alt={currentLang.code}
-									width={20}
-									height={20}
-									quality={75}
-								/>
-								<span className={scss.lang_code}>{currentLang.code}</span>
-							</div>
-							<div
-								className={`${scss.language_dropdown} ${
-									showLanguage ? scss.show : ''
-								}`}
-							>
-								{LANGUAGES.map(lang => (
-									<button
-										key={lang.code}
-										onClick={() => {
-											setCurrentLang(lang);
-											setShowLanguage(false);
-											setLanguage(lang.code);
-										}}
-									>
-										<Image
-											src={lang.flag}
-											alt={lang.code}
-											width={20}
-											height={20}
-											quality={75}
-										/>
-										{lang.name}
-									</button>
-								))}
-							</div>
-						</div>
+						<LanguageSwitcher  />
 					</div>
 				</div>
 			</header>
@@ -211,7 +123,7 @@ const Header: React.FC = () => {
 						}`}
 					>
 						<FiHome />
-						<span>Башкы</span>
+						<span>{tb('home')}</span>
 					</Link>
 					<Link
 						href='/packages'
@@ -220,14 +132,14 @@ const Header: React.FC = () => {
 						}`}
 					>
 						<BsFillAirplaneEnginesFill />
-						<span>Турлар</span>
+						<span>{tb('tours')}</span>
 					</Link>
 					<button
 						className={scss.nav_item}
 						onClick={() => setIsMobileMenuOpen(true)}
 					>
 						<HiOutlineMenuAlt3 />
-						<span>Меню</span>
+						<span>{tb('menu')}</span>
 					</button>
 				</div>
 			</nav>

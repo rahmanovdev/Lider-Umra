@@ -1,30 +1,31 @@
-import React from "react";
-import scss from "./QuestionsSection.module.scss";
+'use client'
+import React from 'react';
+import scss from './QuestionsSection.module.scss';
+import { useTranslations } from 'next-intl';
 
 const QuestionsSection = () => {
-  return (
-    <section className={scss.Main}>
-      <div className={scss.back_photo}></div>
-      <div className="container">
-        <div className={scss.content}>
-          <div className={scss.block}>
-          <h1>Остались вопросы?</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Non et <br /> phasellus
-            ullamcorper ut. Lectus mauris sed faucibus <br /> viverra viverra
-          </p>
+	const t = useTranslations('questions');
 
-          <div className={scss.inputs}>
-            <input type="text" placeholder="Имя"/>
-            <input type="text" placeholder="Телефон"/>
-            <input type="text" placeholder="Email"/>
-            <button>Получить консультацию</button>
-          </div>
-          </div>
-        </div>
-      </div>
-    </section> 
-  );
+	return (
+		<section className={scss.Main}>
+			<div className={scss.back_photo}></div>
+			<div className='container'>
+				<div className={scss.content}>
+					<div className={scss.block}>
+						<h1>{t('title')}</h1>
+						<p>{t('description')}</p>
+
+						<div className={scss.inputs}>
+							<input type='text' placeholder={t('name')} />
+							<input type='text' placeholder={t('phone')} />
+							<input type='text' placeholder={t('email')} />
+							<button>{t('button')}</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
 };
 
 export default QuestionsSection;

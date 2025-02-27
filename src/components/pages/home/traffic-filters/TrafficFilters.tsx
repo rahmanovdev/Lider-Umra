@@ -2,19 +2,17 @@
 import React from 'react';
 import styles from './TrafficFilters.module.scss';
 import clsx from 'clsx';
+import { useTranslations } from 'next-intl';
 
 const ValuesKey = {
-	all: { value: 'Бардык программалар', desc: 'Бардык программалар' },
+	all: { desc: 'Бардык программалар' },
 	february: {
-		value: 'Февраль',
 		desc: '1-февралдан 28-февралга чейинки умра сапарлары'
 	},
 	march: {
-		value: 'Март',
 		desc: '1-Марттан 31-мартка чейинки умра сапарлары'
 	},
 	april: {
-		value: 'Апрель',
 		desc: '1-Апрелден 30-апрелге чейинки умра сапарлары'
 	}
 };
@@ -24,6 +22,7 @@ interface TrafficFiltersProps {
 }
 
 const TrafficFilters: React.FC<TrafficFiltersProps> = ({ onFilterChange }) => {
+	const t = useTranslations('traffics.filters');
 	const [value, setValue] = React.useState<keyof typeof ValuesKey>('all');
 
 	const handleClick = (key: keyof typeof ValuesKey) => {
@@ -33,7 +32,7 @@ const TrafficFilters: React.FC<TrafficFiltersProps> = ({ onFilterChange }) => {
 
 	return (
 		<div className={styles.traffic_filters}>
-			<h1>Тарифы 2025-2026</h1>
+			<h1>{t('title')} 2024-2025</h1>
 			<div className={styles.container}>
 				{Object.keys(ValuesKey).map(key => (
 					<button
@@ -43,7 +42,7 @@ const TrafficFilters: React.FC<TrafficFiltersProps> = ({ onFilterChange }) => {
 							[styles.active]: value === key
 						})}
 					>
-						{ValuesKey[key as keyof typeof ValuesKey].value}
+						{t(`values.${key}`)}
 					</button>
 				))}
 			</div>

@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import scss from './AboutUsImage.module.scss';
-import Link from 'next/link'
-import { GoArrowRight } from 'react-icons/go'
+import Link from 'next/link';
+import { GoArrowRight } from 'react-icons/go';
+import { useTranslations } from 'next-intl';
 
 const localImages = [
 	'/assets/about.webp',
@@ -22,6 +23,7 @@ interface TextDictionary {
 }
 
 const AboutUsImages = () => {
+	const t = useTranslations('aboutUs');
 	const [showImages, setShowImages] = useState<boolean[]>(Array(6).fill(false));
 
 	useEffect(() => {
@@ -128,7 +130,7 @@ const AboutUsImages = () => {
 					</div>
 					<div className={scss.link_photo}>
 						<Link href='/gallery'>
-							Все галереи
+							{t('allGallery')}
 							<GoArrowRight className={scss.icon} />
 						</Link>
 					</div>
