@@ -12,7 +12,6 @@ import MobileMenu from './components/MobileMenu/MobileMenu';
 import scss from './Header.module.scss';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
-
 type NavigationType = {
 	href: string;
 	label: string;
@@ -109,7 +108,7 @@ const Header: React.FC = () => {
 							<div className={scss.line}></div>
 						</div>
 
-						<LanguageSwitcher  />
+						<LanguageSwitcher />
 					</div>
 				</div>
 			</header>

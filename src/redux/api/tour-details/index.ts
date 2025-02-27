@@ -36,6 +36,7 @@ const api = index.injectEndpoints({
 				meta,
 				{ type, category }
 			) => {
+				console.log(response)
 				return response
 					.filter(
 						item =>
@@ -49,7 +50,7 @@ const api = index.injectEndpoints({
 						id: item.id,
 						title: item.name,
 						description: item.rich,
-						images: [item.image],
+						images: item.package_detail_images.map(v=>v.image),
 						category: item.category
 					}));
 			}
