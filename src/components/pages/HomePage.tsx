@@ -16,7 +16,8 @@ import React from 'react'
 
 const HomePage = () => {
    const t = useTranslations();
-   const { data: tours = [] } = useGetToursQuery();
+   const { data: tours = [], isLoading, error } = useGetToursQuery();
+
    const getLastThreeTours = React.useMemo(() => {
       if (!Array.isArray(tours)) return [];
 
@@ -28,12 +29,13 @@ const HomePage = () => {
 
       return sortedTours.slice(0, 3);
    }, [tours]);
+
    return (
       <>
          <div className={scss.HomePage}>
             <HeroSection />
             <AboutSection />
-            <TrafficsSection tours={getLastThreeTours}>
+            <TrafficsSection isLoading={isLoading} error={error} tours={getLastThreeTours}>
                <Link href='/packages' className={scss.more}>
                   {t('packages.allPackages')}
                   <GoArrowRight className={scss.icon} />

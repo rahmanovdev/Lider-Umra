@@ -5,52 +5,58 @@ import Link from 'next/link';
 import styles from './UsefulinfoContent.module.scss';
 import { useSize } from '@/hooks/use-size';
 import { generateRows } from '@/utils/generate-rows.util';
+import Failed from '@/components/ui/failed/Failed';
 
 const UsefulinfoContent = () => {
-	const { data: blogs, isLoading } = useGetBlogsQuery();
-	const size = useSize();
-	if (isLoading) {
-		return <div>Жүктөлүүдө...</div>;
-	}
+   const { data: blogs, isLoading, error } = useGetBlogsQuery();
+   const size = useSize();
+   if (isLoading) {
+      return <div>Жүктөлүүдө...</div>;
+   }
 
-	if (!blogs || blogs.length === 0) {
-		return <div>Маалымат табылган жок</div>;
-	}
+   if (error) {
+      return <Failed error={error} />;
+   }
+   if (!blogs || blogs.length === 0) {
+      return <div>Маалымат табылган жок</div>;
+   }
 
-	const rows = generateRows<BLOG.Blog>(blogs || [], size.width || 0);
+   const rows = generateRows<BLOG.Blog>(blogs || [], size.width || 0);
 
-	return (
-		<div className={styles.use_full_info_content}>
-			{rows.map((row, rowIndex) => (
-				<div className={styles.row} key={rowIndex}>
-					{row.map(item => (
-						<Link href={`/usefulinfo/${item.item.id}`} key={item.item.id}>
-							<div
-								className={`${styles['fr-' + item.fr]} ${
-									row.length == 1 && styles.is_one
-								} ${styles.item}`}
-							>
-								<Image
-									src={item.item.image || '/images/placeholder.jpg'}
-									alt={item.item.name}
-									width={375}
-									height={420}
-									priority
-								/>
-								<div className={styles.content}>
-									<h2>{item.item.name}</h2>
-									<div
-										className={styles.description}
-										dangerouslySetInnerHTML={{ __html: item.item.rich }}
-									/>
-								</div>
-							</div>
-						</Link>
-					))}
-				</div>
-			))}
-		</div>
-	);
+   return (
+      <div className={styles.use_full_info_content}>
+         {rows.map((row, rowIndex) => (
+            <div className={styles.row} key={rowIndex}>
+               {row.map(item => (
+                  <Link href={`/usefulinfo/${item.item.id}`} key={item.item.id}>
+                     <div
+                        className={`${styles['fr-' + item.fr]} ${
+                           row.length == 1 && styles.is_one
+                        } ${styles.item}`}
+                     >
+                        <Image
+                           src={item.item.image || '/images/placeholder.jpg'}
+                           alt={item.item.name}
+                           width={375}
+                           height={420}
+                           priority
+                        />
+                        <div className={styles.content}>
+                           <h2>{item.item.name}</h2>
+                           <div
+                              className={styles.description}
+                              dangerouslySetInnerHTML={{
+                                 __html: item.item.rich,
+                              }}
+                           />
+                        </div>
+                     </div>
+                  </Link>
+               ))}
+            </div>
+         ))}
+      </div>
+   );
 };
 
 export default UsefulinfoContent;

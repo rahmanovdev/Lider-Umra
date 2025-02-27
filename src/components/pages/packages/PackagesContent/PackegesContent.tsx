@@ -6,6 +6,7 @@ import scss from './PackegesContent.module.scss';
 import React, { useState } from 'react';
 import Loading from '@/components/ui/loading/Loading';
 import { formatDate, months } from '@/utils/format-date';
+import Failed from '@/components/ui/failed/Failed'
 
 const PackegesContent = () => {
 	const { data: tours = [], isLoading, error } = useGetToursQuery();
@@ -47,7 +48,7 @@ const PackegesContent = () => {
 	}
 
 	if (error) {
-		return <div></div>;
+		return <Failed error={error} />;
 	}
 
 	return (

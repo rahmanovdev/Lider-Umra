@@ -1,0 +1,105 @@
+.failed {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 50dvh;
+   padding: var(--container-padding);
+   font-family: var(--font-family);
+   color: var(--color-text);
+   line-height: var(--line-height);
+
+   &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+         45deg,
+         rgba(var(--color-primary), 0.05),
+         rgba(var(--color-secondary), 0.05)
+      );
+      z-index: 0;
+   }
+
+   .title {
+      font-size: calc(var(--font-size-base) * 1.5625);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(var(--color-primary), 0.2);
+      position: relative;
+      z-index: 1;
+
+      &:after {
+         content: '';
+         display: block;
+         width: 50px;
+         height: 2px;
+         background: var(--color-primary);
+         margin: 10px auto 0;
+      }
+   }
+
+   .message {
+      font-size: calc(var(--font-size-base) * 0.75);
+      color: #555;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.8;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+   }
+
+   .retryButton {
+      background: var(--default-primary-gradient);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(var(--color-primary), 0.3);
+      position: relative;
+      z-index: 1;
+
+      &:hover {
+         background: linear-gradient(
+            var(--angel-primary-gradient),
+            rgba(var(--color-primary), 0.9),
+            rgba(var(--color-secondary), 0.9)
+         );
+         transform: translateY(-2px);
+         box-shadow: 0 6px 15px rgba(var(--color-primary), 0.4);
+      }
+
+      &:active {
+         transform: translateY(1px);
+         box-shadow: 0 2px 8px rgba(var(--color-primary), 0.2);
+      }
+   }
+
+   .errorDetails {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: calc(var(--font-size-base) * 0.5625);
+      color: #666;
+      white-space: pre-wrap;
+      max-width: 800px;
+      word-wrap: break-word;
+      overflow-x: auto;
+      box-shadow: 0 2px 6px var(--color-background);
+      position: relative;
+      z-index: 1;
+   }
+}

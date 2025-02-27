@@ -6,34 +6,34 @@ import { useParams } from 'next/navigation';
 import AboutProgramDet from './AboutProgramDet/AboutProgramDet';
 import About_ProgramDet from './About_ProgramDet/About_ProgramDet';
 import HeadPackegeDet from './Head_PackeckgeDet/HeadPackegeDet';
+import Failed from '@/components/ui/failed/Failed';
 
 const PackegesDetailContent = () => {
-	const t = useTranslations('packages.detail');
-	const params = useParams();
-	const id = Number(params.id);
+   const t = useTranslations('packages.detail');
+   const params = useParams();
+   const id = Number(params.id);
 
-	const { data: tourData, isLoading, error } = useGetTourByIdQuery(id);
+   const { data: tourData, isLoading, error } = useGetTourByIdQuery(id);
 
-	if (isLoading) {
-		return <Loading />;
-	}
+   if (isLoading) {
+      return <Loading />;
+   }
 
-	if (error) {
-		console.error('Тур маалыматын алууда ката:', error);
-		return <div>{t('error')}</div>;
-	}
+   if (error) {
+      return <Failed error={error} />;
+   }
 
-	if (!tourData) {
-		return <div>{t('notFound')}</div>;
-	}
+   if (!tourData) {
+      return <div>{t('notFound')}</div>;
+   }
 
-	return (
-		<>
-			<HeadPackegeDet tourData={tourData} />
-			<AboutProgramDet tourData={tourData} />
-			<About_ProgramDet tourData={tourData} />
-		</>
-	);
+   return (
+      <>
+         <HeadPackegeDet tourData={tourData} />
+         <AboutProgramDet tourData={tourData} />
+         <About_ProgramDet tourData={tourData} />
+      </>
+   );
 };
 
 export default PackegesDetailContent;
