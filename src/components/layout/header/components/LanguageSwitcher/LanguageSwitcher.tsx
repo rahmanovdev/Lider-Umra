@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import scss from './LanguageSwitcher.module.scss';
 import clsx from 'clsx';
 import { getCurrentLanguage, setLanguage } from '@/utils/i18n/language.client';
@@ -22,14 +22,18 @@ const LANGUAGES: Language[] = [
 
 const LanguageSwitcher: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const currentLanguage = getCurrentLanguage();
+	const [lang, setLang] = useState<'kg' | 'ru'>(LANGUAGES[0].code);
+
+	useEffect(() => {
+		setLang(getCurrentLanguage());
+	}, []);
 
 	const selectedLang =
-		LANGUAGES.find(lang => lang.code === currentLanguage) || LANGUAGES[0];
+		LANGUAGES.find(_lang => _lang.code === lang) || LANGUAGES[0];
 
 	return (
 		<div
-		suppressContentEditableWarning
+			suppressContentEditableWarning
 			className={scss.language}
 			onMouseEnter={() => setIsOpen(true)}
 			onMouseLeave={() => setIsOpen(false)}
@@ -41,8 +45,11 @@ const LanguageSwitcher: React.FC = () => {
 					width={20}
 					height={20}
 					quality={75}
+					suppressHydrationWarning
 				/>
-				<span className={scss.lang_code}>{selectedLang.code}</span>
+				<span suppressHydrationWarning className={scss.lang_code}>
+					{selectedLang.code}
+				</span>
 			</div>
 			<div className={clsx(scss.language_dropdown, isOpen ? scss.show : '')}>
 				{LANGUAGES.map(lang => (

@@ -1,6 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 
-import { getCurrentLanguage } from './language';
+import { getCurrentLanguage } from './language.server';
 
 export default getRequestConfig(async () => {
 	const language = await getCurrentLanguage();
