@@ -56,13 +56,14 @@
 		}
 	},
 	"hero": {
-		"title": "Совершите Умру <br /> с комфортом.",
-		"description": "Lorem ipsum dolor sit amet consectetur.",
-		"buttons": {
-			"tour": "К списку туров",
-			"more": "Подробнее"
-		}
-	},
+    "title": "Умраны <br /> ыңгайлуулук менен аткарыңыз.",
+    "description": "Lorem ipsum dolor sit amet consectetur.",
+    "buttons": {
+      "tour": "Турлар тизмесине",
+      "more": "Толугураак"
+    }
+  },
+
 	"about": {
 		"title": "Компания жөнүндө «Lider Umra»",
 		"tags": {
