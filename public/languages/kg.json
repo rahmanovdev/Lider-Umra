@@ -13,7 +13,7 @@
 				"childrens": [
 					{ "label": "Компания жөнүндө", "href": "/aboutUs" },
 					{ "label": "Галерея", "href": "/gallery" },
-					{ "label": "Видео сабактар", "href": "/video_lessons" },
+					{ "label": "Видео сабактар", "href": "/lessons" },
 					{ "label": "Байланыш", "href": "/contact" }
 				]
 			},
@@ -35,10 +35,10 @@
 		"contactTitle": "Байланыш:"
 	},
 	"footer": {
-		"quickLinks": "Тез шилтемелер",
+		"quickLinks": "Шилтемелер",
 		"company": "Компания",
 		"resources": "Ресурстар",
-		"contact": "Байланыш",
+		"contact": "Соц тармактар",
 		"links": {
 			"home": "Башкы",
 			"privacy": "Купуя саясаты",
@@ -63,7 +63,6 @@
       "more": "Толугураак"
     }
   },
-
 	"about": {
 		"title": "Компания жөнүндө «Lider Umra»",
 		"tags": {

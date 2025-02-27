@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import { formatDate } from '@/utils/format-date';
 
 type TProps = {
-  tour: ITourPackages;
+  tour: TOURS.ITourPackages;
 };
 
 const StarRating: React.FC<{ count: number }> = ({ count }) => {
@@ -25,6 +25,10 @@ const TrafficCard: React.FC<TProps> = ({ tour }) => {
   const t = useTranslations('traffics.card');
   const startDate = formatDate(tour.tour_date.start_tour);
   const endDate = formatDate(tour.tour_date.end_tour);
+
+  console.log(tour, 'tour');
+
+  const starCount = tour.category.name === 'Комфорт +' ? 5 : 4;
 
   return (
     <div className={scss.Main}>
@@ -76,7 +80,7 @@ const TrafficCard: React.FC<TProps> = ({ tour }) => {
         <hr className={scss.divider} />
         <div className={scss.line}>
           <h4>{t('hotelCategory')}</h4>
-          <StarRating count={4} />
+          <StarRating count={starCount} />
         </div>
         <hr className={scss.divider} />
       </div>

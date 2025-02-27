@@ -13,7 +13,7 @@
 				"childrens": [
 					{ "label": "О компании", "href": "/aboutUs" },
 					{ "label": "Галерея", "href": "/gallery" },
-					{ "label": "Видеоуроки", "href": "/video_lessons" },
+					{ "label": "Видеоуроки", "href": "/lessons" },
 					{ "label": "Контакты", "href": "/contact" }
 				]
 			},
@@ -35,7 +35,7 @@
 		"contactTitle": "Контакты:"
 	},
 	"footer": {
-		"quickLinks": "Быстрые ссылки",
+		"quickLinks": "Ссылки",
 		"company": "Компания",
 		"resources": "Ресурсы",
 		"contact": "Контакты",
