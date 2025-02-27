@@ -1,158 +1,134 @@
 .foodSection {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  padding: 25px;
-  max-width: 1440px;
-  margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	padding: 25px;
+	max-width: 1440px;
+	margin: 0 auto;
 
-  @media (max-width: 768px) {
-    gap: 40px;
-    padding: 15px;
-  }
+	@media (max-width: 768px) {
+		gap: 40px;
+		padding: 15px;
+	}
 
-  @media (max-width: 320px) {
-    gap: 30px;
-    padding: 10px;
-  }
+	@media (max-width: 320px) {
+		gap: 30px;
+		padding: 10px;
+	}
 }
 
 .foodContent {
-  display: flex;
-  gap: 40px;
-  padding: 25px;
-  align-items: flex-start;
-  border-radius: 12px;
+	display: flex;
+	gap: 40px;
+	padding: 25px;
+	align-items: flex-start;
+	border-radius: 12px;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 20px;
-    gap: 30px;
-  }
+	@media (max-width: 768px) {
+		flex-direction: column;
+		padding: 20px;
+		gap: 30px;
+	}
 
-  @media (max-width: 320px) {
-    padding: 15px;
-    gap: 20px;
-  }
+	@media (max-width: 320px) {
+		padding: 15px;
+		gap: 20px;
+	}
 
-  .foodSlider {
-    flex: 0 0 600px;
-    width: 100%;
-    max-width: 600px;
-    border-radius: 8px;
-    overflow: hidden;
+	.foodSlider {
+		flex: 0 0 600px;
+		width: 100%;
+		max-width: 600px;
+		border-radius: 8px;
+		overflow: hidden;
 
-    // Сүрөттөрдү экранга жараша кичинекей кылуу
-    @media (max-width: 1024px) {
-      flex: 0 0 50%; // Туурасы экрандын 50% чейин кичине болот
-      max-width: 50%;
-      height: 350px;
-    }
+		@media (max-width: 1024px) {
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
 
-    @media (max-width: 900px) {
-      flex: 0 0 45%;
-      max-width: 45%;
-      height: 320px;
-    }
+		@media (max-width: 900px) {
+			flex: 0 0 45%;
+			max-width: 45%;
+		}
 
-    @media (max-width: 768px) {
-      flex: 0 0 auto;
-      max-width: 100%; // 768px жеткенде толук туурага жайылат (column болгондо)
-      height: 300px;
-    }
+		@media (max-width: 768px) {
+			flex: 0 0 auto;
+			max-width: 100%;
+		}
+	}
 
-    @media (max-width: 480px) {
-      height: 250px;
-    }
+	.foodInfo {
+		flex: 1;
+		padding: 20px 0;
 
-    @media (max-width: 320px) {
-      height: 200px;
-    }
-  }
+		h2 {
+			font-size: 24px;
+			font-weight: 600;
+			color: #1f2937;
+			margin-bottom: 16px;
+			line-height: 1.2;
 
-  .foodInfo {
-    flex: 1;
-    padding: 20px 0;
+			@media (max-width: 768px) {
+				font-size: 20px;
+				margin-bottom: 12px;
+			}
 
-    h2 {
-      font-size: 24px;
-      font-weight: 600;
-      color: #1f2937;
-      margin-bottom: 16px;
-      line-height: 1.2;
+			@media (max-width: 320px) {
+				font-size: 18px;
+				margin-bottom: 10px;
+			}
+		}
 
-      @media (max-width: 768px) {
-        font-size: 20px;
-        margin-bottom: 12px;
-      }
+		.descriptionContent {
+			font-size: 16px;
+			line-height: 1.6;
+			color: #4b5563;
 
-      @media (max-width: 320px) {
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-    }
+			p {
+				margin: 0.5rem 0;
+			}
 
-    .descriptionContent {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #4b5563;
+			@media (max-width: 768px) {
+				font-size: 15px;
+			}
 
-      p {
-        margin: 0.5rem 0;
-      }
-
-      @media (max-width: 768px) {
-        font-size: 15px;
-      }
-
-      @media (max-width: 320px) {
-        font-size: 14px;
-      }
-    }
-  }
-}
-
-.loading {
-  text-align: center;
-  font-size: 18px;
-  color: #6b7280;
-  padding: 50px 0;
-
-  @media (max-width: 320px) {
-    font-size: 16px;
-    padding: 30px 0;
-  }
+			@media (max-width: 320px) {
+				font-size: 14px;
+			}
+		}
+	}
 }
 
 .noData {
-  text-align: center;
-  font-size: 18px;
-  color: #ef4444;
-  padding: 50px 0;
+	text-align: center;
+	font-size: 18px;
+	color: #ef4444;
+	padding: 50px 0;
 
-  @media (max-width: 320px) {
-    font-size: 16px;
-    padding: 30px 0;
-  }
+	@media (max-width: 320px) {
+		font-size: 16px;
+		padding: 30px 0;
+	}
 }
 
 .noImage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 400px;
-  background: #f3f4f6;
-  color: #6b7280;
-  font-size: 16px;
-  border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 400px;
+	background: #f3f4f6;
+	color: #6b7280;
+	font-size: 16px;
+	border-radius: 8px;
 
-  @media (max-width: 768px) {
-    height: 300px;
-    font-size: 14px;
-  }
+	@media (max-width: 768px) {
+		height: 300px;
+		font-size: 14px;
+	}
 
-  @media (max-width: 320px) {
-    height: 200px;
-    font-size: 12px;
-  }
+	@media (max-width: 320px) {
+		height: 200px;
+		font-size: 12px;
+	}
 }

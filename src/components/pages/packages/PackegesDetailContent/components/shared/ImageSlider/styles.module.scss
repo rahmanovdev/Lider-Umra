@@ -1,307 +1,295 @@
 .slider {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  .swiper {
-    width: 100%;
-    height: 100%;
-    border-radius: clamp(8px, 1vw, var(--border-radius));
-  }
+	position: relative;
+	width: 100%;
+	height: 100%;
+	.swiper {
+		width: 100%;
+		height: 100%;
+		border-radius: clamp(8px, 1vw, var(--border-radius));
+	}
 
-  .slide {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    cursor: zoom-in;
+	.slide {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		cursor: zoom-in;
 
-    .image {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
+		.image {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
 
-    .imageOverlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
+		.imageOverlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.3);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
 
-      span {
-        color: white;
-        font-size: clamp(12px, 2vw, 16px);
-        padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: clamp(3px, 0.5vw, 4px);
-      }
-    }
+			span {
+				color: white;
+				font-size: clamp(12px, 2vw, 16px);
+				padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
+				background: rgba(0, 0, 0, 0.5);
+				border-radius: clamp(3px, 0.5vw, 4px);
+			}
+		}
 
-    &:hover .imageOverlay {
-      opacity: 1;
-    }
-  }
+		&:hover .imageOverlay {
+			opacity: 1;
+		}
+	}
 
-  .sliderButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: clamp(30px, 5vw, 40px);
-    height: clamp(30px, 5vw, 40px);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(16px, 3vw, 20px);
-    color: var(--color-text);
-    z-index: 20;
+	.sliderButton {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: clamp(30px, 5vw, 40px);
+		height: clamp(30px, 5vw, 40px);
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.8);
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: clamp(16px, 3vw, 20px);
+		color: var(--color-text);
+		z-index: 20;
 
-    &:hover:not(:disabled) {
-      background: white;
-    }
+		&:hover:not(:disabled) {
+			background: white;
+		}
 
-    &.prev {
-      left: clamp(10px, 2vw, 16px);
-    }
+		&.prev {
+			left: clamp(10px, 2vw, 16px);
+		}
 
-    &.next {
-      right: clamp(10px, 2vw, 16px);
-    }
+		&.next {
+			right: clamp(10px, 2vw, 16px);
+		}
 
-    &.swiper-button-disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
+		&.swiper-button-disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	}
 
-  .swiper-pagination {
-    position: absolute;
-    bottom: clamp(8px, 1.5vw, 16px);
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: clamp(6px, 1vw, 8px);
-    z-index: 20;
+	.swiper-pagination {
+		position: absolute;
+		bottom: clamp(8px, 1.5vw, 16px);
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		gap: clamp(6px, 1vw, 8px);
+		z-index: 20;
 
-    .swiper-pagination-bullet {
-      width: clamp(6px, 1vw, 8px);
-      height: clamp(6px, 1vw, 8px);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      border: none;
-      padding: 0;
-      cursor: pointer;
+		.swiper-pagination-bullet {
+			width: clamp(6px, 1vw, 8px);
+			height: clamp(6px, 1vw, 8px);
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.5);
+			border: none;
+			padding: 0;
+			cursor: pointer;
 
-      &:hover {
-        background: rgba(255, 255, 255, 0.8);
-      }
+			&:hover {
+				background: rgba(255, 255, 255, 0.8);
+			}
 
-      &.swiper-pagination-bullet-active {
-        background: white;
-        transform: scale(1.2);
-      }
-    }
-  }
+			&.swiper-pagination-bullet-active {
+				background: white;
+				transform: scale(1.2);
+			}
+		}
+	}
 }
 
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: clamp(10px, 2vw, 20px);
-  opacity: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.9);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	padding: clamp(10px, 2vw, 20px);
+	opacity: 1;
 
-  .modalContent {
-    position: relative;
-    width: clamp(80vw, 70vw, 90vw);
-    height: clamp(80vh, 70vh, 90vh);
-    max-width: 1200px;
-    transform: scale(1);
+	.modalContent {
+		position: relative;
+		width: clamp(80vw, 70vw, 90vw);
+		height: clamp(80vh, 70vh, 90vh);
+		max-width: 1200px;
+		transform: scale(1);
 
-    .closeButton {
-      position: absolute;
-      right: clamp(-20px, -3vw, -40px);
-      top: clamp(-20px, -3vw, -40px);
-      width: clamp(30px, 5vw, 40px);
-      height: clamp(30px, 5vw, 40px);
-      border-radius: 50%;
-      background: white;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(18px, 3vw, 24px);
-      color: black;
-      z-index: 1001;
+		.closeButton {
+			position: absolute;
+			right: clamp(-20px, -3vw, -40px);
+			top: clamp(-20px, -3vw, -40px);
+			width: clamp(30px, 5vw, 40px);
+			height: clamp(30px, 5vw, 40px);
+			border-radius: 50%;
+			background: white;
+			border: none;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: clamp(18px, 3vw, 24px);
+			color: black;
+			z-index: 1001;
 
-      &:hover {
-        background: #f0f0f0;
-      }
-    }
+			&:hover {
+				background: #f0f0f0;
+			}
+		}
 
-    .zoomableImage {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+		.zoomableImage {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
 
-      .modalImage {
-        object-fit: contain;
-      }
-    }
-  }
+			.modalImage {
+				object-fit: contain;
+			}
+		}
+	}
 }
 
 /* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
-  .slider {
-    height: clamp(150px, 30vw, 200px);
+	.slider {
+		.swiper {
+			border-radius: clamp(6px, 1vw, 8px);
+		}
 
-    .swiper {
-      border-radius: clamp(6px, 1vw, 8px);
-    }
+		.sliderButton {
+			width: clamp(25px, 4vw, 30px);
+			height: clamp(25px, 4vw, 30px);
+			font-size: clamp(14px, 2.5vw, 16px);
+			top: 44%;
 
-    .sliderButton {
-      width: clamp(25px, 4vw, 30px);
-      height: clamp(25px, 4vw, 30px);
-      font-size: clamp(14px, 2.5vw, 16px);
-      top: 44%;
+			&.prev {
+				left: clamp(5px, 1.5vw, 10px);
+			}
 
-      &.prev {
-        left: clamp(5px, 1.5vw, 10px);
-      }
+			&.next {
+				right: clamp(5px, 1.5vw, 10px);
+			}
+		}
 
-      &.next {
-        right: clamp(5px, 1.5vw, 10px);
-      }
-    }
+		.swiper-pagination {
+			bottom: clamp(6px, 1vw, 8px);
+			gap: clamp(4px, 0.8vw, 6px);
 
-    .swiper-pagination {
-      bottom: clamp(6px, 1vw, 8px);
-      gap: clamp(4px, 0.8vw, 6px);
+			.swiper-pagination-bullet {
+				width: clamp(4px, 0.8vw, 6px);
+				height: clamp(4px, 0.8vw, 6px);
+			}
+		}
+	}
 
-      .swiper-pagination-bullet {
-        width: clamp(4px, 0.8vw, 6px);
-        height: clamp(4px, 0.8vw, 6px);
-      }
-    }
-  }
+	.modal {
+		padding: clamp(8px, 1.5vw, 10px);
 
-  .modal {
-    padding: clamp(8px, 1.5vw, 10px);
+		.modalContent {
+			width: clamp(90vw, 85vw, 90vw);
+			height: clamp(70vh, 75vh, 80vh);
 
-    .modalContent {
-      width: clamp(90vw, 85vw, 90vw);
-      height: clamp(70vh, 75vh, 80vh);
-
-      .closeButton {
-        right: clamp(-10px, -2vw, -20px);
-        top: clamp(-10px, -2vw, -20px);
-        width: clamp(25px, 4vw, 30px);
-        height: clamp(25px, 4vw, 30px);
-        font-size: clamp(16px, 2.5vw, 18px);
-      }
-    }
-  }
+			.closeButton {
+				right: clamp(-10px, -2vw, -20px);
+				top: clamp(-10px, -2vw, -20px);
+				width: clamp(25px, 4vw, 30px);
+				height: clamp(25px, 4vw, 30px);
+				font-size: clamp(16px, 2.5vw, 18px);
+			}
+		}
+	}
 }
 
 @media (max-width: 768px) {
-  .slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(20px, 3vw, 40px);
+	.slider {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: clamp(20px, 3vw, 40px);
 
-    .swiper {
-      width: clamp(300px, 80vw, 100%);
-      height: clamp(200px, 40vw, 400px);
-    }
+		.swiper-pagination {
+			position: static;
+			margin-top: clamp(10px, 2vw, 20px);
+		}
 
-    .swiper-pagination {
-      position: static;
-      margin-top: clamp(10px, 2vw, 20px);
-    }
-
-    .sliderButton {
-      display: none;
-    }
-  }
+		.sliderButton {
+			display: none;
+		}
+	}
 }
 
 @media (max-width: 480px) {
-  .slider {
-    height: clamp(150px, 30vw, 200px);
-
-    .sliderButton {
-      top: 28%;
-    }
-  }
+	.slider {
+		.sliderButton {
+			top: 28%;
+		}
+	}
 }
 
 @media (max-width: 320px) {
-  .slider {
-    height: clamp(120px, 25vw, 150px);
+	.slider {
+		.swiper {
+			border-radius: clamp(4px, 0.8vw, 6px);
+		}
 
-    .swiper {
-      border-radius: clamp(4px, 0.8vw, 6px);
-    }
+		.sliderButton {
+			width: clamp(20px, 3vw, 25px);
+			height: clamp(20px, 3vw, 25px);
+			font-size: clamp(12px, 2vw, 14px);
+			top: 22%;
 
-    .sliderButton {
-      width: clamp(20px, 3vw, 25px);
-      height: clamp(20px, 3vw, 25px);
-      font-size: clamp(12px, 2vw, 14px);
-      top: 22%;
+			&.prev {
+				left: clamp(3px, 1vw, 5px);
+			}
 
-      &.prev {
-        left: clamp(3px, 1vw, 5px);
-      }
+			&.next {
+				right: clamp(3px, 1vw, 5px);
+			}
+		}
 
-      &.next {
-        right: clamp(3px, 1vw, 5px);
-      }
-    }
+		.swiper-pagination {
+			bottom: clamp(4px, 0.8vw, 6px);
+			gap: clamp(3px, 0.5vw, 4px);
 
-    .swiper-pagination {
-      bottom: clamp(4px, 0.8vw, 6px);
-      gap: clamp(3px, 0.5vw, 4px);
+			.swiper-pagination-bullet {
+				width: clamp(3px, 0.6vw, 4px);
+			}
+		}
+	}
 
-      .swiper-pagination-bullet {
-        width: clamp(3px, 0.6vw, 4px);
-        height: clamp(3px, 0.6vw, 4px);
-      }
-    }
-  }
+	.modal {
+		padding: clamp(6px, 1vw, 8px);
 
-  .modal {
-    padding: clamp(6px, 1vw, 8px);
+		.modalContent {
+			width: 95vw;
+			height: 70vh;
 
-    .modalContent {
-      width: 95vw;
-      height: 70vh;
-
-      .closeButton {
-        right: clamp(-5px, -1vw, -10px);
-        top: clamp(-5px, -1vw, -10px);
-        width: clamp(20px, 3vw, 25px);
-        height: clamp(20px, 3vw, 25px);
-        font-size: clamp(14px, 2vw, 16px);
-      }
-    }
-  }
+			.closeButton {
+				right: clamp(-5px, -1vw, -10px);
+				top: clamp(-5px, -1vw, -10px);
+				width: clamp(20px, 3vw, 25px);
+				height: clamp(20px, 3vw, 25px);
+				font-size: clamp(14px, 2vw, 16px);
+			}
+		}
+	}
 }
