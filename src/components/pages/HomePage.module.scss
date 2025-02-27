@@ -1,22 +1,36 @@
 .HomePage {
-	display: flex;
-	flex-direction: column;
+   display: flex;
+   flex-direction: column;
 
-	.more {
-		border: 0;
-		background: 0;
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		margin-bottom: 18px;
-		gap: 5px;
-		font-size: 16px;
-		font-weight: 500;
-		cursor: pointer;
-		transition: all 0.3s ease;
+   .more {
+      --button-color: #ffffff;
+      --button-radius: 12px;
+      --button-padding: 10px 20px;
+      --button-font-size: 16px;
+      --button-hover-opacity: 0.9;
+      background: var(--default-primary-gradient);
+      color: var(--button-color);
+      padding: var(--button-padding);
+      border: none;
+      border-radius: var(--button-radius);
+      font-family: 'Roboto', sans-serif;
+      font-size: var(--button-font-size);
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      width: max-content;
+		margin-left: auto;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
 
-		.icon {
-			font-size: 20px;
-		}
-	}
+      &:hover {
+         opacity: var(--button-hover-opacity);
+      }
+      .icon {
+         font-size: 20px;
+      }
+   }
 }

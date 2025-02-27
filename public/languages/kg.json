@@ -17,7 +17,13 @@
    },
    "navigations": [
       { "label": "Башкы", "href": "/" },
-      { "label": "Тур пакеттер", "href": "/packages" },
+      {
+         "label": "Тур пакеттер",
+         "childrens": [
+            { "href": "/packages?place=bishkek", "label": "Умра из Бишкека" },
+            { "href": "/packages?place=osh", "label": "Умра из Оша" }
+         ]
+      },
       {
          "label": "Биз жөнүндө",
          "childrens": [
@@ -52,8 +58,8 @@
       }
    },
    "hero": {
-      "title": "Умраны <br /> ыңгайлуулук менен аткарыңыз.",
-      "description": "Lorem ipsum dolor sit amet consectetur.",
+      "title": "Умраны ыңгайлуулук <br /> менен аткарыңыз.",
+      "description": "Умра сапарыңызда руханий тазалануу жана тынчтык табыңыз.",
       "buttons": {
          "tour": "Турлар тизмесине",
          "more": "Толугураак"

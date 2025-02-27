@@ -12,6 +12,8 @@ import scss from './Header.module.scss';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
 import { GoPlus } from 'react-icons/go';
+import { useAppDispatch } from '@/redux/hooks'
+import { boolSliceAction } from '@/redux/slices/bool.slices'
 type NavigationType = {
 	href: string;
 	label: string;
@@ -23,6 +25,7 @@ const Header: React.FC = () => {
 	const t = useTranslations();
 	const tb = useTranslations('bottomNav');
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		if (typeof document === 'undefined') return;
@@ -46,104 +49,113 @@ const Header: React.FC = () => {
 	const navigations = t.raw('navigations') as NavigationType[];
 
 	return (
-		<>
-			<header suppressHydrationWarning className={scss.header} id='header'>
-				<div className={scss.content}>
-					<div className={scss.header_start}>
-						<Link href='/'>
-							<Image
-								src={logo}
-								alt='Logo'
-								width={120}
-								height={60}
-								quality={75}
-								priority
-							/>
-						</Link>
-						<div className={scss.line}></div>
-					</div>
+      <>
+         <header suppressHydrationWarning className={scss.header} id='header'>
+            <div className={scss.content}>
+               <div className={scss.header_start}>
+                  <Link href='/'>
+                     <Image
+                        src={logo}
+                        alt='Logo'
+                        width={120}
+                        height={60}
+                        quality={75}
+                        priority
+                     />
+                  </Link>
+                  <div className={scss.line}></div>
+               </div>
 
-					<div className={scss.header_nav}>
-						<ul>
-							{navigations.map(nav => (
-								<li
-									key={nav.label}
-									className={!nav?.href ? scss.dropdown : undefined}
-								>
-									{!nav?.href ? (
-										<span className={isActiveLink(nav.href) ? scss.active : ''}>
-											{nav.label}
-										</span>
-									) : (
-										<Link
-											href={nav.href}
-											className={isActiveLink(nav.href) ? scss.active : ''}
-										>
-											{nav.label}
-										</Link>
-									)}
-									{nav.childrens && nav.childrens.length > 0 && (
-										<div className={scss.dropdown_menu}>
-											<div className={scss.submenu_content}>
-												{nav.childrens.map(nc => (
-													<Link key={nc.href} href={nc.href}>
-														{nc.label}
-													</Link>
-												))}
-											</div>
-										</div>
-									)}
-								</li>
-							))}
-						</ul>
-					</div>
+               <div className={scss.header_nav}>
+                  <ul>
+                     {navigations.map(nav => (
+                        <li
+                           key={nav.label}
+                           className={!nav?.href ? scss.dropdown : undefined}
+                        >
+                           {!nav?.href ? (
+                              <span
+                                 className={
+                                    isActiveLink(nav.href) ? scss.active : ''
+                                 }
+                              >
+                                 {nav.label}
+                              </span>
+                           ) : (
+                              <Link
+                                 href={nav.href}
+                                 className={
+                                    isActiveLink(nav.href) ? scss.active : ''
+                                 }
+                              >
+                                 {nav.label}
+                              </Link>
+                           )}
+                           {nav.childrens && nav.childrens.length > 0 && (
+                              <div className={scss.dropdown_menu}>
+                                 <div className={scss.submenu_content}>
+                                    {nav.childrens.map(nc => (
+                                       <Link key={nc.href} href={nc.href}>
+                                          {nc.label}
+                                       </Link>
+                                    ))}
+                                 </div>
+                              </div>
+                           )}
+                        </li>
+                     ))}
+                  </ul>
+               </div>
 
-					<div className={scss.header_end}>
-						<div className={scss.contact_wrapper}>
-							<div className={scss.line}></div>
-							<div className={scss.contact}>
-								<IoCall />
-								<a href='tel:+996700188251'>+996 700-18-82-51</a>
-							</div>
-							<div className={scss.line}></div>
-						</div>
+               <div className={scss.header_end}>
+                  <div className={scss.contact_wrapper}>
+                     <div className={scss.line}></div>
+                     <div className={scss.contact}>
+                        <IoCall />
+                        <a href='tel:+996700188251'>+996 700-18-82-51</a>
+                     </div>
+                     <div className={scss.line}></div>
+                  </div>
 
-						<LanguageSwitcher />
-					</div>
-				</div>
-			</header>
+                  <LanguageSwitcher />
+               </div>
+            </div>
+         </header>
 
-			<nav id='tab-bar' className={scss.bottom_nav}>
-				<div className={scss.nav_content}>
-					<Link
-						href='/'
-						className={`${scss.nav_item} ${
-							isActiveLink('/') ? scss.active : ''
-						}`}
-					>
-						<FiHome />
-						<span>{tb('home')}</span>
-					</Link>
-					<button className={`${scss.nav_item}`}>
-						<GoPlus />
-						<span>{tb('submit_request')}</span>
-					</button>
-					<button
-						className={scss.nav_item}
-						onClick={() => setIsMobileMenuOpen(true)}
-					>
-						<HiOutlineMenuAlt3 />
-						<span>{tb('menu')}</span>
-					</button>
-				</div>
-			</nav>
+         <nav id='tab-bar' className={scss.bottom_nav}>
+            <div className={scss.nav_content}>
+               <Link
+                  href='/'
+                  className={`${scss.nav_item} ${
+                     isActiveLink('/') ? scss.active : ''
+                  }`}
+               >
+                  <FiHome />
+                  <span>{tb('home')}</span>
+               </Link>
+               <button
+                  onClick={() => dispatch(boolSliceAction.toggleIsSubmitRequest())}
+                  className={`${scss.nav_item}`}
+               >
+                  <GoPlus />
+                  <span>{tb('submit_request')}</span>
+               </button>
+               <button
+                  className={scss.nav_item}
+                  onClick={() => setIsMobileMenuOpen(true)}
+               >
+                  <HiOutlineMenuAlt3 />
+                  <span>{tb('menu')}</span>
+               </button>
+            </div>
+         </nav>
 
-			<MobileMenu
-				isOpen={isMobileMenuOpen}
-				onClose={() => setIsMobileMenuOpen(false)}
-			/>
-		</>
-	);
+         <MobileMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+         />
+      </>
+   );
 };
 
 export default Header;

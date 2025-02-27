@@ -1,12 +1,12 @@
 'use client';
-import React from 'react';
-import styles from './FAQ.module.scss';
-import { Accordion } from '../accordion';
-import { IoIosArrowDown } from 'react-icons/io';
 import { useGetFaqsQuery } from '@/redux/api/faq';
-import Loading from '../loading/Loading';
 import { useTranslations } from 'next-intl';
-import Failed from '../failed/Failed';
+import React from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
+import { Accordion } from '../../ui/accordion';
+import Failed from '../../ui/failed/Failed';
+import Loading from '../../ui/loading/Loading';
+import styles from './FAQ.module.scss';
 
 const FAQ: React.FC = () => {
    const t = useTranslations('faq');

@@ -18,7 +18,16 @@
    "header": {
       "navigations": [
          { "label": "Главная", "href": "/" },
-         { "label": "Турпакеты", "href": "/packages" },
+         {
+            "label": "Тур пакетты",
+            "childrens": [
+               {
+                  "href": "/packages?place=bishkek",
+                  "label": "Бишкектен умралар"
+               },
+               { "href": "/packages?place=osh", "label": "Оштон умралар" }
+            ]
+         },
          {
             "label": "О нас",
             "childrens": [
@@ -60,11 +69,11 @@
       }
    },
    "hero": {
-      "title": "Совершите Умру <br /> с комфортом.",
-      "description": "Lorem ipsum dolor sit amet consectetur.",
+      "title": "Умраны ыңгайлуулук <br /> менен аткарыңыз.",
+      "description": "В совершении умры обретите духовное очищение и умиротворение.",
       "buttons": {
-         "tour": "К списку туров",
-         "more": "Подробнее"
+         "tour": "Турлар тизмесине",
+         "more": "Толугураак"
       }
    },
    "about": {

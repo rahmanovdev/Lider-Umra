@@ -32,11 +32,16 @@
    }
 
    .warningsList {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
       gap: 30px;
 
-      @media (max-width: 320px) {
+      @media (max-width: 1024px) {
+         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 640px) {
+         grid-template-columns: 1fr;
          gap: 20px;
       }
    }
@@ -48,7 +53,7 @@
       overflow: hidden;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
       border: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 25px;
+      padding: 16px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       &:hover {
@@ -56,19 +61,19 @@
          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
          flex-direction: column;
+         padding: 13px;
          gap: 20px;
-         padding: 20px;
       }
 
       @media (max-width: 320px) {
-         padding: 15px;
+         padding: 8px;
          gap: 15px;
       }
 
       .warningImageWrapper {
-         flex: 0 0 300px;
+         flex: 0 0 350px;
          height: 200px;
          border-radius: 12px;
          overflow: hidden;
@@ -92,21 +97,9 @@
          @media (max-width: 320px) {
             height: 140px;
          }
-
-         .warningImage {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-
-            &:hover {
-               transform: scale(1.05);
-            }
-         }
       }
 
       .warningInfo {
-         flex: 1;
          display: flex;
          flex-direction: column;
 
@@ -119,7 +112,8 @@
 
             @media (max-width: 768px) {
                font-size: 20px;
-               margin-bottom: 10px;
+               margin-bottom: 3px;
+               line-height: 1.2;
             }
 
             @media (max-width: 320px) {

@@ -1,5 +1,10 @@
 'use client';
 import { useGetToursQuery } from '@/redux/api/tour';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import React from 'react';
+import { GoArrowRight } from 'react-icons/go';
+import FAQ from '../common/faq/FAQ';
 import scss from './HomePage.module.scss';
 import AboutSection from './home/AboutSection/AboutSection';
 import HeroSection from './home/HeroSection/HeroSection';
@@ -7,12 +12,7 @@ import InformationSection from './home/InformationSection/InformationSection';
 import QuestionsSection from './home/QuestionsSection/QuestionsSection';
 import StepsHajjSection from './home/StepsOfHajjSection/StepsHajjSection';
 import TrafficsSection from './home/TrafficsSection/TrafficsSection';
-import FAQ from '../ui/faq/FAQ';
-import { useTranslations } from 'next-intl';
-import { GoArrowRight } from 'react-icons/go';
-import Link from 'next/link';
 import VideoSection from './home/VideoSection/VideoSection';
-import React from 'react'
 
 const HomePage = () => {
    const t = useTranslations();
@@ -35,7 +35,11 @@ const HomePage = () => {
          <div className={scss.HomePage}>
             <HeroSection />
             <AboutSection />
-            <TrafficsSection isLoading={isLoading} error={error} tours={getLastThreeTours}>
+            <TrafficsSection
+               isLoading={isLoading}
+               error={error}
+               tours={getLastThreeTours}
+            >
                <Link href='/packages' className={scss.more}>
                   {t('packages.allPackages')}
                   <GoArrowRight className={scss.icon} />

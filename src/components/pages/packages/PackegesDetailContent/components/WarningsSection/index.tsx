@@ -1,9 +1,10 @@
 'use client';
-import Image from 'next/image';
 import styles from './styles.module.scss';
 import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
 import Loading from '@/components/ui/loading/Loading';
 import Failed from '@/components/ui/failed/Failed';
+import { Warning } from '../../types';
+import ImageSlider from '../shared/ImageSlider';
 
 export const WarningsSection: React.FC = () => {
    const {
@@ -30,22 +31,11 @@ export const WarningsSection: React.FC = () => {
       <section className={styles.warningsContent}>
          <h1>Көңүл буруңуз!</h1>
          <div className={styles.warningsList}>
-            {warnings.map(warning => (
+            {(warnings as Warning[]).map(warning => (
                <article key={warning.id} className={styles.warningItem}>
-                  {warning.image && (
+                  {warning.images && (
                      <div className={styles.warningImageWrapper}>
-                        <Image
-                           src={warning.image}
-                           alt={warning.title || 'Warning image'}
-                           width={300}
-                           height={200}
-                           loading='lazy'
-                           className={styles.warningImage}
-                           onError={e => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none'; // Сүрөт жүктөлбөсө жашырылат
-                           }}
-                        />
+                        <ImageSlider images={warning.images} />
                      </div>
                   )}
                   <div className={styles.warningInfo}>

@@ -1,10 +1,10 @@
 'use client';
-import TrafficCard from '@/components/ui/cards/traffic-card/TrafficCard';
+import TrafficCard from '@/components/common/cards/traffic-card/TrafficCard';
+import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
+import { motion } from 'framer-motion';
 import React from 'react';
 import scss from './TrafficsSection.module.scss';
-import { motion } from 'framer-motion';
-import Loading from '@/components/ui/loading/Loading';
-import Failed from '@/components/ui/failed/Failed';
 
 interface IProps extends React.PropsWithChildren {
    tours: TOURS.GetTourPackagesResponse;
