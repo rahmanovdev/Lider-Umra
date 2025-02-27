@@ -7,33 +7,35 @@ import QuestionsSection from './home/QuestionsSection/QuestionsSection';
 import StepsHajjSection from './home/StepsOfHajjSection/StepsHajjSection';
 import TrafficsSection from './home/TrafficsSection/TrafficsSection';
 import FAQ from '../ui/faq/FAQ';
+import VideoSection from './home/VideoSection/VideoSection';
 
 const HomePage = () => {
-	const { data: tours = [] } = useGetToursQuery();
-	const getLastThreeTours = () => {
-		if (!Array.isArray(tours)) return [];
+  const { data: tours = [] } = useGetToursQuery();
+  const getLastThreeTours = () => {
+    if (!Array.isArray(tours)) return [];
 
-		const sortedTours = [...tours].sort(
-			(a, b) =>
-				new Date(b.tour_date.start_tour).getTime() -
-				new Date(a.tour_date.start_tour).getTime()
-		);
+    const sortedTours = [...tours].sort(
+      (a, b) =>
+        new Date(b.tour_date.start_tour).getTime() -
+        new Date(a.tour_date.start_tour).getTime(),
+    );
 
-		return sortedTours.slice(0, 3);
-	};
-	return (
-		<>
-			<div className={scss.HomePage}>
-				<HeroSection />
-				<AboutSection />
-				<TrafficsSection tours={getLastThreeTours()} />
-				<StepsHajjSection />
-				<QuestionsSection />
-				<InformationSection />
-				<FAQ />
-			</div>
-		</>
-	);
+    return sortedTours.slice(0, 3);
+  };
+  return (
+    <>
+      <div className={scss.HomePage}>
+        <HeroSection />
+        <AboutSection />
+        <TrafficsSection tours={getLastThreeTours()} />
+        <VideoSection />
+        <StepsHajjSection />
+        <QuestionsSection />
+        <InformationSection />
+        <FAQ />
+      </div>
+    </>
+  );
 };
 
 export default HomePage;
