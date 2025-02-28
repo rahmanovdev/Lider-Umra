@@ -3,33 +3,12 @@
    flex-direction: column;
 
    .more {
-      --button-color: #ffffff;
-      --button-radius: 12px;
-      --button-padding: 10px 20px;
-      --button-font-size: 16px;
-      --button-hover-opacity: 0.9;
-      background: var(--default-primary-gradient);
-      color: var(--button-color);
-      padding: var(--button-padding);
-      border: none;
-      border-radius: var(--button-radius);
-      font-family: 'Roboto', sans-serif;
-      font-size: var(--button-font-size);
-      font-weight: 500;
-      cursor: pointer;
-      transition: opacity 0.2s ease;
-      width: max-content;
-		margin-left: auto;
+      margin-left: auto;
       margin-bottom: 18px;
-      display: flex;
-      align-items: center;
       gap: 8px;
       justify-content: flex-end;
-
-      &:hover {
-         opacity: var(--button-hover-opacity);
-      }
-      .icon {
+      svg {
+         color: var(--color-secondary);
          font-size: 20px;
       }
    }

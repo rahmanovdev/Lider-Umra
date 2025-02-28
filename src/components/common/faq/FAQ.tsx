@@ -12,9 +12,6 @@ const FAQ: React.FC = () => {
    const t = useTranslations('faq');
    const { data, isLoading, error } = useGetFaqsQuery();
 
-   if (error) {
-      return <Failed error={error} />;
-   }
    const faq = data
       ? data.map(v => ({
            value: `${v.id}`,
@@ -29,8 +26,8 @@ const FAQ: React.FC = () => {
             <h2 className={styles.title}>{t('title')}</h2>
             {isLoading ? (
                <Loading />
-            ) : error || !data ? (
-               <div>{t('error')}</div>
+            ) : error ? (
+               <Failed error={error} />
             ) : (
                <Accordion
                   trailingContent={({ isActive }) => (

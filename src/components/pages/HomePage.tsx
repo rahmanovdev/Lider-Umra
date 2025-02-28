@@ -40,9 +40,12 @@ const HomePage = () => {
                error={error}
                tours={getLastThreeTours}
             >
-               <Link href='/packages' className={scss.more}>
+               <Link
+                  href='/packages'
+                  className={scss.more + ' base-link-button'}
+               >
                   {t('packages.allPackages')}
-                  <GoArrowRight className={scss.icon} />
+                  <GoArrowRight />
                </Link>
             </TrafficsSection>
             <VideoSection />

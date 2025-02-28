@@ -12,44 +12,84 @@ import scss from './Header.module.scss';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
 import { GoPlus } from 'react-icons/go';
-import { useAppDispatch } from '@/redux/hooks'
-import { boolSliceAction } from '@/redux/slices/bool.slices'
+import { useAppDispatch } from '@/redux/hooks';
+import { boolSliceAction } from '@/redux/slices/bool.slices';
+import { useSize } from '@/hooks/use-size';
+import { motion, AnimatePresence } from 'framer-motion';
+
 type NavigationType = {
-	href: string;
-	label: string;
-	childrens?: NavigationType[];
+   href: string;
+   label: string;
+   childrens?: NavigationType[];
 };
 
 const Header: React.FC = () => {
-	const pathname = usePathname();
-	const t = useTranslations();
-	const tb = useTranslations('bottomNav');
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const dispatch = useAppDispatch();
+   const pathname = usePathname();
+   const t = useTranslations();
+   const tb = useTranslations('bottomNav');
+   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+   const [nodes, setNodes] = useState<{ [key: string]: NavigationType[] }>({});
+   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
+   const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		if (typeof document === 'undefined') return;
+   useEffect(() => {
+      if (typeof document === 'undefined') return;
 
-		if (isMobileMenuOpen) {
-			document.body.style.overflow = 'hidden';
-		} else {
-			document.body.style.overflow = '';
-		}
+      if (isMobileMenuOpen) {
+         document.body.style.overflow = 'hidden';
+      } else {
+         document.body.style.overflow = '';
+      }
 
-		return () => {
-			document.body.style.overflow = '';
-		};
-	}, [isMobileMenuOpen]);
+      return () => {
+         document.body.style.overflow = '';
+      };
+   }, [isMobileMenuOpen]);
 
-	const isActiveLink = (path: string) => {
-		if (path === '/') return pathname === path;
-		return pathname?.startsWith(path);
-	};
+   const isActiveLink = (path: string) => {
+      if (path === '/') return pathname === path;
+      return pathname?.startsWith(path);
+   };
 
-	const navigations = t.raw('navigations') as NavigationType[];
+   const navigations = t.raw('navigations') as NavigationType[];
 
-	return (
+   useEffect(() => {
+      const newNodes: { [key: string]: NavigationType[] } = {};
+      navigations.forEach(nav => {
+         if (nav.childrens && nav.childrens.length > 0) {
+            newNodes[nav.label] = nav.childrens;
+         }
+      });
+      setNodes(newNodes);
+   }, [navigations]);
+
+   const size = useSize('header');
+
+   return (
       <>
+         <AnimatePresence>
+            {hoveredLabel && nodes[hoveredLabel] && (
+               <motion.div
+                  key={hoveredLabel}
+                  onMouseLeave={() => setHoveredLabel(null)}
+                  style={{ marginTop: size.height / 1.4 }}
+                  className={scss.dropdown_menu}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.1 }}
+               >
+                  <div className={scss.submenu_content}>
+                     {nodes[hoveredLabel].map(nc => (
+                        <Link key={nc.href} href={nc.href}>
+                           {nc.label}
+                        </Link>
+                     ))}
+                  </div>
+               </motion.div>
+            )}
+         </AnimatePresence>
+
          <header suppressHydrationWarning className={scss.header} id='header'>
             <div className={scss.content}>
                <div className={scss.header_start}>
@@ -69,40 +109,21 @@ const Header: React.FC = () => {
                <div className={scss.header_nav}>
                   <ul>
                      {navigations.map(nav => (
-                        <li
+                        <motion.li
                            key={nav.label}
-                           className={!nav?.href ? scss.dropdown : undefined}
+                           onMouseEnter={() => setHoveredLabel(nav.label)}
+                           whileHover={{ scale: 1.05 }}
+                           transition={{ type: 'spring', stiffness: 300 }}
                         >
-                           {!nav?.href ? (
-                              <span
-                                 className={
-                                    isActiveLink(nav.href) ? scss.active : ''
-                                 }
-                              >
-                                 {nav.label}
-                              </span>
-                           ) : (
-                              <Link
-                                 href={nav.href}
-                                 className={
-                                    isActiveLink(nav.href) ? scss.active : ''
-                                 }
-                              >
-                                 {nav.label}
-                              </Link>
-                           )}
-                           {nav.childrens && nav.childrens.length > 0 && (
-                              <div className={scss.dropdown_menu}>
-                                 <div className={scss.submenu_content}>
-                                    {nav.childrens.map(nc => (
-                                       <Link key={nc.href} href={nc.href}>
-                                          {nc.label}
-                                       </Link>
-                                    ))}
-                                 </div>
-                              </div>
-                           )}
-                        </li>
+                           <Link
+                              href={nav.href || '#'}
+                              className={
+                                 isActiveLink(nav.href) ? scss.active : ''
+                              }
+                           >
+                              {nav.label}
+                           </Link>
+                        </motion.li>
                      ))}
                   </ul>
                </div>
@@ -134,7 +155,9 @@ const Header: React.FC = () => {
                   <span>{tb('home')}</span>
                </Link>
                <button
-                  onClick={() => dispatch(boolSliceAction.toggleIsSubmitRequest())}
+                  onClick={() =>
+                     dispatch(boolSliceAction.toggleIsSubmitRequest())
+                  }
                   className={`${scss.nav_item}`}
                >
                   <GoPlus />
@@ -157,5 +180,4 @@ const Header: React.FC = () => {
       </>
    );
 };
-
 export default Header;

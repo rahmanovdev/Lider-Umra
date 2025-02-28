@@ -200,7 +200,11 @@ const Footer = () => {
                <p>@ 2025, Lider Umrah</p>
             </div>
             <div className={scss.right}>
-               <figure className={scss.last}>
+               <a
+                  href='https://www.iant.kg/'
+                  target='_blank'
+                  className={scss.last}
+               >
                   <Image
                      width={44}
                      height={44}
@@ -208,7 +212,7 @@ const Footer = () => {
                      alt='IAnt Logo'
                   />
                   <span>Тарабынан жасалды</span>
-               </figure>
+               </a>
             </div>
          </div>
       </footer>

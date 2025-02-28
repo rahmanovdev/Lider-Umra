@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from './Failed.module.scss';
 import { useTranslations } from 'next-intl';
+import { RxUpdate } from 'react-icons/rx';
 
 interface FailedProps {
    // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,7 +20,7 @@ const Failed: React.FC<FailedProps> = React.memo(({ error }) => {
             className={styles.retryButton}
             onClick={() => window.location.reload()}
          >
-            {t('retry')}
+            <RxUpdate /> {t('retry')}
          </button>
 
          {error && (

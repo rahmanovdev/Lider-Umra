@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
 import scss from './HeroSection.module.scss';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 type IndicatorsProps = {
    current: number;
@@ -40,7 +41,9 @@ const HeroButtons = memo(() => {
    const t = useTranslations('hero.buttons');
    return (
       <div className={`${scss.hero_btn}`}>
-         <button className={scss.btn_tours}>{t('tour')}</button>
+         <Link href='/packages' className={scss.btn_tours}>
+            {t('tour')}
+         </Link>
       </div>
    );
 });

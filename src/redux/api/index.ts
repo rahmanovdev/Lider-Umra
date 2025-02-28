@@ -6,10 +6,7 @@ import {
 
 const baseQuery = fetchBaseQuery({
    baseUrl: `${process.env.NEXT_PUBLIC_API}`,
-   prepareHeaders(headers) {
-      headers.set('Accept-Language', 'ky');
-      return headers;
-   },
+   credentials: 'include',
 });
 
 const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {

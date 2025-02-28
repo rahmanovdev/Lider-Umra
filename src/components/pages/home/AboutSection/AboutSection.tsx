@@ -5,6 +5,7 @@ import Image from 'next/image';
 import BgOrnament from '../../../../../public/assets/images/bg_ornament.svg';
 import lamp from '../../../../../public/assets/images/lamp.svg';
 import scss from './AboutSection.module.scss';
+import Link from 'next/link';
 
 const AboutSection = () => {
    const t = useTranslations();
@@ -18,22 +19,24 @@ const AboutSection = () => {
                      <div className={scss.title}>
                         <h1
                            dangerouslySetInnerHTML={{
-                              __html: t('about.title'),
+                              __html: t.raw('about.title'),
                            }}
                         />
                         <p>{t('descriptions.base')}</p>
                      </div>
-                     <button>узнать больше</button>
+                     <Link className={scss.more} href='/aboutUs'>
+                        узнать больше
+                     </Link>
 
                      <div className={scss.tags}>
                         <div className={scss.tag_top}>
-                           <h5>{t('about.tags.prayer')}</h5>
-                           <h5>{t('about.tags.umrah')}</h5>
-                           <h5>{t('about.tags.purity')}</h5>
+                           <span>{t('about.tags.prayer')}</span>
+                           <span>{t('about.tags.umrah')}</span>
+                           <span>{t('about.tags.purity')}</span>
                         </div>
                         <div className={scss.tag_bottom}>
-                           <h5>{t('about.tags.faith')}</h5>
-                           <h5>{t('about.tags.quran')}</h5>
+                           <span>{t('about.tags.faith')}</span>
+                           <span>{t('about.tags.quran')}</span>
                         </div>
                      </div>
                   </div>

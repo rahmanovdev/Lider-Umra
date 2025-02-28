@@ -117,7 +117,6 @@
 
             .videoTitle {
                font-size: var(--video-title-font-size);
-               font-family: 'Roboto', sans-serif;
                padding: var(--video-title-padding);
                text-align: center;
                color: #333333;
@@ -128,7 +127,6 @@
       .noItems {
          text-align: center;
          font-size: var(--no-items-font-size);
-         font-family: 'Roboto', sans-serif;
          color: #333333;
          padding: var(--no-items-padding);
          background: var(--no-items-background);
@@ -141,25 +139,15 @@
       .error {
          text-align: center;
          font-size: var(--no-items-font-size);
-         font-family: 'Roboto', sans-serif;
          color: #333333;
          padding: var(--no-items-padding);
       }
 
       .button {
-         background: var(--default-primary-gradient);
-         color: var(--button-color);
-         padding: var(--button-padding);
-         border: none;
-         border-radius: var(--button-radius);
-         font-family: 'Roboto', sans-serif;
-         font-size: var(--button-font-size);
-         font-weight: 500;
-         cursor: pointer;
-         transition: opacity 0.2s ease;
-
-         &:hover {
-            opacity: var(--button-hover-opacity);
+         gap: 8px;
+         svg {
+            font-size: 18px;
+            color: var(--color-secondary);
          }
       }
    }

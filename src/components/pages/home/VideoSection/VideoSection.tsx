@@ -9,6 +9,7 @@ import { useGetLessonsQuery } from '@/redux/api/lessons';
 import Loading from '@/components/ui/loading/Loading';
 import { useLocale } from 'next-intl';
 import Failed from '@/components/ui/failed/Failed';
+import { GoArrowRight } from 'react-icons/go';
 
 const VideoSection = () => {
    const { data = [], isLoading, error } = useGetLessonsQuery();
@@ -40,8 +41,12 @@ const VideoSection = () => {
                      ? 'Биздин видеолор YouTube да'
                      : 'Биздин видеолор YouTube да'}
                </h2>
-               <Link href='/lessons' className={scss.button}>
+               <Link
+                  href='/lessons'
+                  className={scss.button + ' base-link-button'}
+               >
                   {locale === 'ru' ? 'Биздин YouTube' : 'Биздин YouTube'}
+                  <GoArrowRight />
                </Link>
             </div>
             <AnimatePresence mode='wait'>

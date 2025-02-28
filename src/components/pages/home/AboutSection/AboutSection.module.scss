@@ -1,423 +1,414 @@
 .AboutSection {
-  background: #ebf9fa;
-  width: 90%;
-  margin: 50px auto;
-  border-radius: 30px;
-  position: relative;
-  overflow: hidden;
+   background: #ebf9fa;
+   width: 90%;
+   margin: 50px auto;
+   border-radius: 30px;
+   position: relative;
+   overflow: hidden;
 
-  .content {
-    position: relative;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-
-    .bg_ornament {
-      position: absolute;
-      width: 500px;
-      height: 707px;
-      top: 0;
-      right: clamp(-40px, 1.5vw, -20px);
-      border-radius: 0 30px 30px 0;
-      z-index: 1;
-      object-fit: cover;
-    }
-
-    .lamp_element {
-      position: absolute;
-      top: 0;
-      right: -50px;
-      z-index: 2;
-    }
-
-    .about_top {
+   .content {
+      position: relative;
+      padding: 10px 20px;
       display: flex;
-      gap: 70px;
-      padding: 40px 0 0 0;
-      position: relative;
-      z-index: 3;
-
-      .about_texts {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        gap: 30px;
-
-        .title {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          width: clamp(300px, 40vw, 510px);
-
-          h1 {
-            font-size: 32px;
-            font-weight: 400;
-            line-height: 40px;
-            letter-spacing: 0%;
-            text-align: left;
-
-            span {
-              color: var(--color-primary);
-            }
-          }
-
-          p {
-            color: rgb(0, 0, 0);
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 20px;
-            letter-spacing: 0%;
-            text-align: left;
-          }
-        }
-
-        button {
-          width: 220px;
-          height: 46px;
-          padding: 13px 35px;
-          border-radius: 12px;
-          color: rgb(255, 255, 255);
-          font-size: 14px;
-          font-weight: 600;
-          border: none;
-          text-transform: uppercase;
-          background: var(--default-primary-gradient);
-        }
-
-        .tags {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-          align-items: center;
-
-          .tag_top,
-          .tag_bottom {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            h5 {
-              width: 74px;
-              border-radius: 20px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              height: 24px;
-              border: 1px solid black;
-              text-align: center;
-              color: rgb(0, 0, 0);
-              font-size: 14px;
-              font-weight: 400;
-              line-height: 140%;
-              letter-spacing: 0%;
-            }
-          }
-        }
-      }
-
-      .about_video {
-        .video_container {
-          width: clamp(300px, 40vw, 520px);
-          height: clamp(200px, 34vw, 290px);
-          border-radius: 20px;
-          overflow: hidden;
-
-          iframe {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-    }
-
-    .about_bottom {
-      z-index: 3;
-      position: relative;
-      margin-bottom: 30px;
-    }
-  }
-}
-
-
-
-// 1480px дан 1680px чейинки версия
-@media (min-width: 1480px) and (max-width: 1680px) {
-  .AboutSection {
-    .content {
-      .about_top {
-        gap: 80px;
-
-        .about_texts {
-          .title {
-            width: clamp(400px, 45vw, 600px);
-
-            h1 {
-              font-size: 34px;
-              line-height: 42px;
-            }
-
-            p {
-              font-size: 15px;
-            }
-          }
-
-          button {
-            width: 240px;
-            height: 48px;
-          }
-        }
-
-        .about_video {
-          .video_container {
-            width: clamp(400px, 42vw, 500px);
-            height: clamp(250px, 36vw, 320px);
-          }
-        }
-      }
+      flex-direction: column;
+      gap: 40px;
 
       .bg_ornament {
-        width: 500px;
-        height: 700px;
-        right: -100px;
+         position: absolute;
+         width: 500px;
+         height: 707px;
+         top: 0;
+         right: clamp(-40px, 1.5vw, -20px);
+         border-radius: 0 30px 30px 0;
+         z-index: 1;
+         object-fit: cover;
       }
 
       .lamp_element {
-        right: -45px;
-        top: -15px;
-        width: 150px;
-        height: 150px;
+         position: absolute;
+         top: 0;
+         right: -50px;
+         z-index: 2;
       }
-    }
-  }
+
+      .about_top {
+         display: flex;
+         gap: 70px;
+         padding: 40px 0 0 0;
+         position: relative;
+         z-index: 3;
+
+         .about_texts {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 30px;
+
+            .title {
+               display: flex;
+               flex-direction: column;
+               gap: 20px;
+               width: clamp(300px, 40vw, 510px);
+
+               h1 {
+                  font-size: 32px;
+                  font-weight: 400;
+                  line-height: 40px;
+                  letter-spacing: 0%;
+                  text-align: left;
+
+                  span {
+                     color: var(--color-primary);
+                  }
+               }
+
+               p {
+                  color: rgb(0, 0, 0);
+                  font-size: 14px;
+                  font-weight: 400;
+                  line-height: 20px;
+                  letter-spacing: 0%;
+                  text-align: left;
+               }
+            }
+
+            .more {
+               padding: 11px 28px;
+               border-radius: 12px;
+               color: rgb(255, 255, 255);
+               font-size: 13px;
+               font-weight: 600;
+               border: none;
+               text-transform: uppercase;
+               background: var(--default-primary-gradient);
+            }
+
+            .tags {
+               display: flex;
+               flex-direction: column;
+               gap: 5px;
+               align-items: center;
+
+               .tag_top,
+               .tag_bottom {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+
+                  span {
+                     color: black;
+                     border: 1px solid #00000080;
+                     border-radius: 16px;
+                     padding: 4px 20px;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     text-align: center;
+                     font-size: 14px;
+                     font-weight: 400;
+                     line-height: 140%;
+                     letter-spacing: 0%;
+                  }
+               }
+            }
+         }
+
+         .about_video {
+            .video_container {
+               width: clamp(300px, 40vw, 520px);
+               height: clamp(200px, 34vw, 290px);
+               border-radius: 20px;
+               overflow: hidden;
+
+               iframe {
+                  width: 100%;
+                  height: 100%;
+               }
+            }
+         }
+      }
+
+      .about_bottom {
+         z-index: 3;
+         position: relative;
+         margin-bottom: 30px;
+      }
+   }
+}
+
+// 1480px дан 1680px чейинки версия
+@media (min-width: 1480px) and (max-width: 1680px) {
+   .AboutSection {
+      .content {
+         .about_top {
+            gap: 80px;
+
+            .about_texts {
+               .title {
+                  width: clamp(400px, 45vw, 600px);
+
+                  h1 {
+                     font-size: 34px;
+                     line-height: 42px;
+                  }
+
+                  p {
+                     font-size: 15px;
+                  }
+               }
+
+               button {
+                  width: 240px;
+                  height: 48px;
+               }
+            }
+
+            .about_video {
+               .video_container {
+                  width: clamp(400px, 42vw, 500px);
+                  height: clamp(250px, 36vw, 320px);
+               }
+            }
+         }
+
+         .bg_ornament {
+            width: 500px;
+            height: 700px;
+            right: -100px;
+         }
+
+         .lamp_element {
+            right: -45px;
+            top: -15px;
+            width: 150px;
+            height: 150px;
+         }
+      }
+   }
 }
 
 // 1200px дан 1480px чейинки версия
 @media (min-width: 1220px) and (max-width: 1480px) {
-  .AboutSection {
-    .content {
-      .about_top {
-        gap: 50px;
+   .AboutSection {
+      .content {
+         .about_top {
+            gap: 50px;
+         }
+
+         .bg_ornament {
+            width: 440px;
+            height: 720px;
+            right: clamp(-40px, 20vw, -68px);
+         }
+
+         .lamp_element {
+            right: -30px;
+            top: -20px;
+            width: 120px;
+            height: 120px;
+         }
       }
-
-
-      .bg_ornament {
-        width: 440px;
-        height: 720px;
-        right: clamp(-40px, 20vw, -68px);
-      }
-
-      .lamp_element {
-        right: -30px;
-        top: -20px;
-        width: 120px;
-        height: 120px;
-      }
-
-    }
-  }
+   }
 }
 
 // 1000px дан 1200px чейинки версия
 @media (min-width: 1000px) and (max-width: 1200px) {
-  .AboutSection {
-    width: 96%;
+   .AboutSection {
+      width: 96%;
 
-    .content {
+      .content {
+         .bg_ornament {
+            width: 400px;
+            height: 750px;
+            right: clamp(-30px, 1vw, -28px);
+         }
 
+         .lamp_element {
+            right: -40px;
+            top: -10px;
+            width: 110px;
+            height: 110px;
+         }
 
-      .bg_ornament {
-        width: 400px;
-        height: 750px;
-        right: clamp(-30px, 1vw, -28px);
-      }
+         .about_top {
+            gap: 50px;
 
-      .lamp_element {
-        right: -40px;
-        top: -10px;
-        width: 110px;
-        height: 110px;
-      }
+            .about_texts {
+               .title {
+                  width: clamp(280px, 38vw, 450px);
 
-      .about_top {
-        gap: 50px;
+                  h1 {
+                     font-size: 28px;
+                  }
 
-        .about_texts {
-          .title {
-            width: clamp(280px, 38vw, 450px);
+                  p {
+                     font-size: 13px;
+                  }
+               }
 
-            h1 {
-              font-size: 28px;
+               button {
+                  width: 200px;
+                  height: 42px;
+                  padding: 8px 30px;
+                  font-size: 12px;
+               }
             }
 
-            p {
-              font-size: 13px;
+            .about_video {
+               .video_container {
+                  width: clamp(280px, 38vw, 480px);
+                  height: clamp(180px, 32vw, 270px);
+               }
             }
-          }
-
-          button {
-            width: 200px;
-            height: 42px;
-            padding: 8px 30px;
-            font-size: 12px;
-          }
-        }
-
-        .about_video {
-          .video_container {
-            width: clamp(280px, 38vw, 480px);
-            height: clamp(180px, 32vw, 270px);
-          }
-        }
+         }
       }
-    }
-  }
+   }
 }
 
 // Планшет версиясы
 @media (min-width: 768px) and (max-width: 1000px) {
-  .AboutSection {
-    width: 96%;
-    margin: 50px 10px;
+   .AboutSection {
+      width: 96%;
+      margin: 50px 10px;
 
-    .content {
-      gap: 100px;
+      .content {
+         gap: 100px;
 
-      .bg_ornament,
-      .lamp_element {
-        display: none;
+         .bg_ornament,
+         .lamp_element {
+            display: none;
+         }
+
+         .about_top {
+            gap: clamp(30px, 1.5vw, 70px);
+            padding: 40px 0 0 0;
+
+            .about_texts {
+               gap: 40px;
+
+               .title {
+                  gap: 7px;
+                  width: clamp(300px, 44vw, 430px);
+
+                  h1 {
+                     font-size: 25px;
+                  }
+
+                  p {
+                     font-size: 13px;
+                  }
+               }
+
+               button {
+                  font-size: 10px;
+                  width: auto;
+                  height: auto;
+               }
+
+               .tags {
+                  gap: 5px;
+
+                  .tag_top,
+                  .tag_bottom {
+                     gap: 7px;
+
+                     h5 {
+                        width: 66px;
+                        font-size: 12px;
+                     }
+                  }
+               }
+            }
+
+            .about_video {
+               .video_container {
+                  width: clamp(340px, 44vw, 410px);
+                  height: 240px;
+               }
+            }
+         }
       }
-
-      .about_top {
-        gap: clamp(30px, 1.5vw, 70px);
-        padding: 40px 0 0 0;
-
-        .about_texts {
-          gap: 40px;
-
-          .title {
-            gap: 7px;
-            width: clamp(300px, 44vw, 430px);
-
-            h1 {
-              font-size: 25px;
-            }
-
-            p {
-              font-size: 13px;
-            }
-          }
-
-          button {
-            font-size: 10px;
-            width: auto;
-            height: auto;
-          }
-
-          .tags {
-            gap: 5px;
-
-            .tag_top,
-            .tag_bottom {
-              gap: 7px;
-
-              h5 {
-                width: 66px;
-                font-size: 12px;
-              }
-            }
-          }
-        }
-
-        .about_video {
-          .video_container {
-            width: clamp(340px, 44vw, 410px);
-            height: 240px;
-          }
-        }
-      }
-    }
-  }
+   }
 }
 
 // Мобилдик версия
 @media (max-width: 780px) {
-  .AboutSection {
-    width: 95%;
-    margin: 50px 10px;
+   .AboutSection {
+      width: 95%;
+      margin: 50px 10px;
 
-    .content {
-      padding: 10px 20px;
-      gap: 50px;
+      .content {
+         padding: 10px 20px;
+         gap: 50px;
 
-      .bg_ornament,
-      .lamp_element {
-        display: none;
-      }
+         .bg_ornament,
+         .lamp_element {
+            display: none;
+         }
 
-      .about_top {
-        flex-direction: column-reverse;
-        align-content: center;
-        gap: 20px;
-        padding: 10px 0 0 0;
-        width: 100%;
-
-        .about_texts {
-          align-items: center;
-          justify-content: center;
-          gap: 20px;
-          width: 100%;
-
-          .title {
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+         .about_top {
+            flex-direction: column-reverse;
+            align-content: center;
+            gap: 20px;
+            padding: 10px 0 0 0;
             width: 100%;
 
-            h1 {
-              font-size: 25px;
-              text-align: center;
-              line-height: 1.1;
+            .about_texts {
+               align-items: center;
+               justify-content: center;
+               gap: 20px;
+               width: 100%;
+
+               .title {
+                  align-items: center;
+                  justify-content: center;
+                  gap: 6px;
+                  width: 100%;
+
+                  h1 {
+                     font-size: 25px;
+                     text-align: center;
+                     line-height: 1.1;
+                  }
+
+                  p {
+                     width: 100%;
+                     font-size: clamp(13px, 1.5vw, 16px);
+                     text-align: center;
+                  }
+               }
+
+               button {
+                  font-size: 10px;
+                  padding: 8px 20px;
+                  height: 40px;
+                  width: auto;
+               }
+
+               .tags {
+                  gap: 5px;
+
+                  .tag_top,
+                  .tag_bottom {
+                     gap: 7px;
+
+                     h5 {
+                        width: 66px;
+                        font-size: 12px;
+                     }
+                  }
+               }
             }
 
-            p {
-              width: 100%;
-              font-size: clamp(13px, 1.5vw, 16px);
-              text-align: center;
+            .about_video {
+               margin: 0 auto;
+
+               .video_container {
+                  width: clamp(200px, 80vw, 530px);
+                  height: clamp(120px, 50vw, 300px);
+               }
             }
-          }
-
-          button {
-            font-size: 10px;
-            padding: 8px 20px;
-            height: 40px;
-            width: auto;
-          }
-
-          .tags {
-            gap: 5px;
-
-            .tag_top,
-            .tag_bottom {
-              gap: 7px;
-
-              h5 {
-                width: 66px;
-                font-size: 12px;
-              }
-            }
-          }
-        }
-
-        .about_video {
-          margin: 0 auto;
-
-          .video_container {
-            width: clamp(200px, 80vw, 530px);
-            height: clamp(120px, 50vw, 300px);
-          }
-        }
+         }
       }
-    }
-  }
+   }
 }
