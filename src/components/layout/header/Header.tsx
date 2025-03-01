@@ -70,7 +70,6 @@ const Header: React.FC = () => {
          <AnimatePresence>
             {hoveredLabel && nodes[hoveredLabel] && (
                <motion.div
-                  key={hoveredLabel}
                   onMouseLeave={() => setHoveredLabel(null)}
                   style={{ marginTop: size.height / 1.4 }}
                   className={scss.dropdown_menu}
@@ -109,11 +108,9 @@ const Header: React.FC = () => {
                <div className={scss.header_nav}>
                   <ul>
                      {navigations.map(nav => (
-                        <motion.li
+                        <li
                            key={nav.label}
                            onMouseEnter={() => setHoveredLabel(nav.label)}
-                           whileHover={{ scale: 1.05 }}
-                           transition={{ type: 'spring', stiffness: 300 }}
                         >
                            <Link
                               href={nav.href || '#'}
@@ -123,7 +120,7 @@ const Header: React.FC = () => {
                            >
                               {nav.label}
                            </Link>
-                        </motion.li>
+                        </li>
                      ))}
                   </ul>
                </div>

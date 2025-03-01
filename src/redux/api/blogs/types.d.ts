@@ -8,7 +8,7 @@
 
 	interface Blog {
 		id: number;
-		name: string;
+		title: string;
 		rich: string;
 		image: string;
 		created_at: string;
