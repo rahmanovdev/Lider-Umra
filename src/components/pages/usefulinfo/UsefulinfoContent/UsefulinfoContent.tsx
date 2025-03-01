@@ -22,7 +22,7 @@ const UsefulinfoContent = () => {
    }
 
    const rows = generateRows<BLOG.Blog>(blogs || [], size.width || 0);
-
+   console.log(rows);
    return (
       <div className={styles.use_full_info_content}>
          {rows.map((row, rowIndex) => (
@@ -43,12 +43,6 @@ const UsefulinfoContent = () => {
                         />
                         <div className={styles.content}>
                            <h2>{item.item.title}</h2>
-                           <div
-                              className={styles.description}
-                              dangerouslySetInnerHTML={{
-                                 __html: item.item.rich,
-                              }}
-                           />
                         </div>
                      </div>
                   </Link>
