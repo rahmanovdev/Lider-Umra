@@ -36,13 +36,13 @@ const UsefulinfoContent = () => {
                      >
                         <Image
                            src={item.item.image || '/images/placeholder.jpg'}
-                           alt={item.item.name}
+                           alt={item.item.title}
                            width={375}
                            height={420}
                            priority
                         />
                         <div className={styles.content}>
-                           <h2>{item.item.name}</h2>
+                           <h2>{item.item.title}</h2>
                            <div
                               className={styles.description}
                               dangerouslySetInnerHTML={{
