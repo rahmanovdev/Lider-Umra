@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,9 +12,6 @@ import MobileMenu from './components/MobileMenu/MobileMenu';
 import scss from './Header.module.scss';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
-import { GoPlus } from 'react-icons/go';
-import { useAppDispatch } from '@/redux/hooks';
-import { boolSliceAction } from '@/redux/slices/bool.slices';
 import { useSize } from '@/hooks/use-size';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -30,7 +28,6 @@ const Header: React.FC = () => {
    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
    const [nodes, setNodes] = useState<{ [key: string]: NavigationType[] }>({});
    const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
-   const dispatch = useAppDispatch();
 
    useEffect(() => {
       if (typeof document === 'undefined') return;
@@ -154,15 +151,14 @@ const Header: React.FC = () => {
                   <FiHome />
                   <span>{tb('home')}</span>
                </Link>
-               <button
-                  onClick={() =>
-                     dispatch(boolSliceAction.toggleIsSubmitRequest())
-                  }
-                  className={`${scss.nav_item}`}
-               >
-                  <GoPlus />
-                  <span>{tb('submit_request')}</span>
-               </button>
+               <Link href="/packages" className={`${scss.nav_item}`}>
+                  <img
+                     src='/assets/pilgrimage.png'
+                     alt=''
+                     suppressHydrationWarning
+                  />
+                  <span>{tb('packages')}</span>
+               </Link>
                <button
                   className={scss.nav_item}
                   onClick={() => setIsMobileMenuOpen(true)}

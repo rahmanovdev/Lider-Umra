@@ -1,97 +1,164 @@
 .traffic_filters {
-	--filters-gap: 20px;
-	--filters-margin-bottom: 50px;
-	--h1-font-size: 38px;
-	--h1-font-weight: 500;
-	--container-gap: 15px;
-	--button-font-size: 16px;
-	--button-padding: 12px;
-	--button-border-radius: 8px;
-	--flex-wrap: nowrap;
+   --filters-gap: 20px;
+   --filters-margin-bottom: 50px;
+   --h1-font-size: 38px;
+   --h1-font-weight: 500;
+   --container-gap: 15px;
+   --button-font-size: 16px;
+   --button-padding: 12px;
+   --button-border-radius: 8px;
+   --flex-wrap: nowrap;
 
-	display: flex;
-	align-items: flex-start;
-	flex-direction: column;
-	gap: var(--filters-gap);
-	margin-bottom: var(--filters-margin-bottom);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: var(--filters-gap);
+   margin-bottom: var(--filters-margin-bottom);
 
-	h1 {
-		font-size: var(--h1-font-size);
-		font-weight: var(--h1-font-weight);
-		line-height: 1;
-	}
+   h1 {
+      font-size: var(--h1-font-size);
+      font-weight: var(--h1-font-weight);
+      line-height: 1;
+   }
 
-	.container {
-		display: flex;
-		align-items: center;
-		gap: var(--container-gap);
-		flex-wrap: var(--flex-wrap);
+   .row {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--filters-gap);
+   }
 
-		button {
-			border: none;
-			cursor: pointer;
-			font-size: var(--button-font-size);
-			padding: var(--button-padding);
-			color: black;
-			background: var(--color-bg);
-			border-radius: var(--button-border-radius);
-			transition: color 0.25s, background 0.25s;
+   .custom_select {
+      position: relative;
+      width: 160px;
+      user-select: none;
 
-			&.active {
-				color: white;
-				background: var(--color-secondary);
-			}
-		}
-	}
+      .select_trigger {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 8px;
+         padding-right: 14px;
+         font-size: 16px;
+         background: var(--color-bg);
+         border: 1px solid #ccc;
+         border-radius: 8px;
+         cursor: pointer;
+         transition: 0.3s;
+
+         &:hover {
+            border-color: var(--color-secondary);
+         }
+      }
+
+      .arrow {
+         width: 10px;
+         height: 10px;
+         border-left: 2px solid black;
+         border-bottom: 2px solid black;
+         transform: rotate(-45deg);
+         transition: transform 0.3s;
+
+         &.open {
+            transform: rotate(135deg);
+         }
+      }
+
+      .select_dropdown {
+         position: absolute;
+         top: 110%;
+         left: 0;
+         width: 100%;
+         background: var(--color-bg);
+         border: 1px solid #ccc;
+         border-radius: 8px;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+         overflow: hidden;
+         z-index: 10;
+
+         .option {
+            padding: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+               background: var(--color-bg-hover);
+            }
+         }
+      }
+   }
+
+   .container {
+      display: flex;
+      align-items: center;
+      gap: var(--container-gap);
+      flex-wrap: var(--flex-wrap);
+
+      button {
+         border: none;
+         cursor: pointer;
+         font-size: var(--button-font-size);
+         padding: var(--button-padding);
+         color: black;
+         background: var(--color-bg);
+         border-radius: var(--button-border-radius);
+         transition: color 0.25s, background 0.25s;
+
+         &.active {
+            color: white;
+            background: var(--color-secondary);
+         }
+      }
+   }
 }
 
 @media (max-width: 1024px) {
-	.traffic_filters {
-		--filters-gap: 15px;
-		--filters-margin-bottom: 40px;
-		--h1-font-size: 32px;
-		--container-gap: 12px;
-		--button-font-size: 14px;
-		--button-padding: 10px;
-		--button-border-radius: 6px;
-	}
+   .traffic_filters {
+      --filters-gap: 15px;
+      --filters-margin-bottom: 40px;
+      --h1-font-size: 32px;
+      --container-gap: 12px;
+      --button-font-size: 14px;
+      --button-padding: 10px;
+      --button-border-radius: 6px;
+   }
 }
 
 @media (max-width: 768px) {
-	.traffic_filters {
-		--filters-gap: 12px;
-		--filters-margin-bottom: 30px;
-		--h1-font-size: 28px;
-		--container-gap: 10px;
-		--button-font-size: 15px;
-		--button-padding: 10px;
-		--button-border-radius: 5px;
-	}
+   .traffic_filters {
+      --filters-gap: 12px;
+      --filters-margin-bottom: 30px;
+      --h1-font-size: 28px;
+      --container-gap: 10px;
+      --button-font-size: 15px;
+      --button-padding: 10px;
+      --button-border-radius: 5px;
+   }
 }
 
 @media (max-width: 500px) {
-	.traffic_filters {
-		--flex-wrap: wrap;
-		--container-gap: 12px;
-	}
+   .traffic_filters {
+      --flex-wrap: wrap;
+      --container-gap: 12px;
+   }
 }
 
 @media (max-width: 480px) {
-	.traffic_filters {
-		--filters-gap: 10px;
-		--filters-margin-bottom: 20px;
-		--h1-font-size: 24px;
-		--button-font-size: 14px;
-		--button-padding: 8px 12px;
-		--button-border-radius: 4px;
-	}
+   .traffic_filters {
+      --filters-gap: 10px;
+      --filters-margin-bottom: 20px;
+      --h1-font-size: 24px;
+      --button-font-size: 14px;
+      --button-padding: 8px 12px;
+      --button-border-radius: 4px;
+   }
 }
 
 @media (max-width: 360px) {
-	.traffic_filters {
-		--filters-gap: 8px;
-		--filters-margin-bottom: 15px;
-		--h1-font-size: 20px;
-		--container-gap: 6px;
-	}
+   .traffic_filters {
+      --filters-gap: 8px;
+      --filters-margin-bottom: 15px;
+      --h1-font-size: 20px;
+      --container-gap: 6px;
+   }
 }

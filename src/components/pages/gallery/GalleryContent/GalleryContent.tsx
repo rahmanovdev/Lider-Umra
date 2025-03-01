@@ -56,7 +56,7 @@ const GalleryContent = () => {
                            {row.map(item => (
                               <div
                                  key={item.item.id}
-                                 onClick={() => setSelected(item.fr)}
+                                 onClick={() => setSelected(item.index)}
                                  className={clsx(
                                     scss.item,
                                     scss[`fr-${item.fr}`],
