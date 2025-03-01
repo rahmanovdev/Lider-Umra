@@ -193,6 +193,7 @@ const Footer = () => {
                   </div>
                </div>
             </div>
+
          </div>
 
          <div className={scss.under_footer}>
