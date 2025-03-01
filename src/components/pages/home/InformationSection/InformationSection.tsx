@@ -34,7 +34,7 @@ const InformationSection = () => {
                               />
                            </div>
                            <div
-                              dangerouslySetInnerHTML={{ __html: blog.rich }}
+                              dangerouslySetInnerHTML={{ __html: blog.title }}
                               className={scss.textOverlay}
                            ></div>
                         </div>
