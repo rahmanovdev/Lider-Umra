@@ -13,4 +13,10 @@
    font-weight: 700;
    margin-bottom: 40px;
    letter-spacing: 0.5px;
+
+   @media (max-width: 768px) {
+      font-size: 26px;
+      margin-bottom: 24px;
+      letter-spacing: 0.3px;
+   }
 }
