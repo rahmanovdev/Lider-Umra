@@ -57,7 +57,7 @@ const TrafficCard: React.FC<TProps> = ({ tour }) => {
             </div>
          </div>
          <div className={scss.img_block}>
-            <Image src={tour.image} alt={tour.name} width={700} height={300} />
+            <Image src={tour.image} alt={tour.title} width={700} height={300} />
          </div>
          <div className={scss.card_container}>
             <div className={scss.line}>
