@@ -1,12 +1,11 @@
 import { api as index } from '..';
 
-const ENDPOINTS = process.env.NEXT_PUBLIC_ENDPOINT;
 
 const api = index.injectEndpoints({
 	endpoints: build => ({
 		getBlogs: build.query<BLOG.GetBlogsResponse, void>({
 			query: () => ({
-				url: `${ENDPOINTS}/blog/blogs/`,
+				url: `/blog/blogs/`,
 				method: 'GET'
 			}),
 			providesTags: ['blogs']
@@ -14,7 +13,7 @@ const api = index.injectEndpoints({
 
 		getBlogById: build.query<BLOG.Blog, number>({
 			query: id => ({
-				url: `${ENDPOINTS}/blog/blogs/${id}/`,
+				url: `/blog/blogs/${id}/`,
 				method: 'GET'
 			}),
 			providesTags: ['blogs']

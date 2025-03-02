@@ -14,7 +14,7 @@ const api = index.injectEndpoints({
         method: 'POST',
         body: clientData,
       }),
-      invalidatesTags: ['clients'], // Кэшти жаңыртуу үчүн
+      invalidatesTags: ['clients'], 
     }),
   }),
 });

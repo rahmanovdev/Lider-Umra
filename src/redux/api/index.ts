@@ -1,3 +1,4 @@
+import { API_URL } from '@/constants/url.constants'
 import {
    BaseQueryFn,
    createApi,
@@ -5,7 +6,7 @@ import {
 } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-   baseUrl: `${process.env.NEXT_PUBLIC_API}`,
+   baseUrl: API_URL,
    credentials: 'include',
 });
 

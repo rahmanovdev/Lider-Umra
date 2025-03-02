@@ -31,7 +31,7 @@ const UsefulinfoContentDetail = () => {
    return (
       <div className={`${scss.useFullInfoContentDetail}`}>
          <div className={`${scss['container']} container`}>
-            <h4 className={scss.title}>{blog?.name}</h4>
+            <h4 className={scss.title}>{blog?.title}</h4>
             <div className={scss.wrapper} ref={containerRef}>
                <div ref={ref} className={scss.timelineContainer}>
                   {blog?.desc_blogs.map((item, index) => (

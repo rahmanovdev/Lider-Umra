@@ -1,6 +1,17 @@
-import UsefulinfoPage from "@/components/pages/UsefulinfoPage";
-import React from "react";
+import UsefulinfoPage from '@/components/pages/UsefulinfoPage';
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-const page = () => <UsefulinfoPage />;
+export const metadata = async (): Promise<Metadata> => {
+   const t = await getTranslations('');
+   return {
+      title: t.raw('seo.usefullinfo.title'),
+      description: t.raw('descriptions.base'),
+      openGraph: {
+         title: t.raw('seo.usefullinfo.title'),
+         description: t.raw('descriptions.base'),
+      },
+   };
+};
 
-export default page;
+export default UsefulinfoPage;
