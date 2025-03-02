@@ -1,4 +1,5 @@
 'use client';
+import React, { memo } from 'react';
 import AboutCards from '@/components/common/cards/about_cards/AboutCards';
 import RequiredOfYou from '@/components/common/required-of-you/RequiredOfYou';
 import { useTranslations } from 'next-intl';
@@ -9,7 +10,7 @@ import AboutUsImages from './AboutUsImage/AboutUsImage';
 import { aboutLider } from './constants/constants';
 import Whywe from './WhyWe/WhyWe';
 
-const AboutUsContent = () => {
+const AboutUsContent = memo(() => {
    const t = useTranslations('aboutUs');
 
    return (
@@ -33,7 +34,7 @@ const AboutUsContent = () => {
                            frameBorder='0'
                            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                            allowFullScreen
-                        ></iframe>
+                        />
                      </div>
                      {aboutLider.map((item, index) => (
                         <div
@@ -57,6 +58,7 @@ const AboutUsContent = () => {
          <QuestionsSection />
       </div>
    );
-};
+});
 
+AboutUsContent.displayName = 'AboutUsContent';
 export default AboutUsContent;

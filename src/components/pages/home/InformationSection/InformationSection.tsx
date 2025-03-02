@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { memo } from 'react';
 import scss from './InformationSection.module.scss';
 import Image from 'next/image';
 import { useGetBlogsQuery } from '@/redux/api/blogs';
@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import Loading from '@/components/ui/loading/Loading';
 import Failed from '@/components/ui/failed/Failed';
 
-const InformationSection = () => {
+const InformationSection = memo(() => {
    const t = useTranslations();
    const { data, isLoading, error } = useGetBlogsQuery();
 
@@ -22,29 +22,33 @@ const InformationSection = () => {
                   <Failed error={error} />
                ) : (
                   <div className={scss.main_card}>
-                     {data && data.map((blog, idx) => (
-                        <div key={idx} className={scss.card}>
+                     {data?.map(blog => (
+                        <div key={blog.id || blog.title} className={scss.card}>
                            <div className={scss.imageWrapper}>
                               <Image
                                  src={blog.image}
-                                 alt='Card Image'
+                                 alt={blog.title || 'Card Image'}
+                                 fill
+                                 sizes='(max-width: 560px) 90vw, (max-width: 1240px) 50vw, 25vw'
                                  className={scss.image}
-                                 width={700}
-                                 height={300}
+                                 priority={false}
+                                 loading='lazy'
                               />
                            </div>
                            <div
-                              dangerouslySetInnerHTML={{ __html: blog.title }}
                               className={scss.textOverlay}
-                           ></div>
+                              dangerouslySetInnerHTML={{ __html: blog.title }}
+                           />
                         </div>
                      ))}
+                     
                   </div>
                )}
             </div>
          </div>
       </section>
    );
-};
+});
 
+InformationSection.displayName = 'InformationSection';
 export default InformationSection;

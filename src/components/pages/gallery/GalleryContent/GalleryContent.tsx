@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import scss from './GalleryContent.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSize } from '@/hooks/use-size';
@@ -10,20 +10,28 @@ import { useLocale } from 'next-intl';
 import Loading from '@/components/ui/loading/Loading';
 import ImageLightbox from '@/components/ui/image-lighbox/ImageLightbox';
 import Failed from '@/components/ui/failed/Failed';
+import Image from 'next/image';
 
-const GalleryContent = () => {
+const GalleryContent = memo(() => {
    const { width: sizeWidth } = useSize();
    const { data = [], isLoading, error } = useGetGalleriesQuery();
    const locale = useLocale();
    const [selected, setSelected] = React.useState<number | null>(null);
 
-   const rows = generateRows(data, sizeWidth || 0);
+   const rows = useMemo(
+      () => generateRows(data, sizeWidth || 0),
+      [data, sizeWidth],
+   );
    const totalItems = data.length;
 
-   const gridClass = clsx(
-      scss.grid,
-      totalItems === 1 && scss['one-item'],
-      totalItems === 2 && scss['two-items'],
+   const gridClass = useMemo(
+      () =>
+         clsx(
+            scss.grid,
+            totalItems === 1 && scss['one-item'],
+            totalItems === 2 && scss['two-items'],
+         ),
+      [totalItems],
    );
 
    return (
@@ -35,7 +43,7 @@ const GalleryContent = () => {
       >
          <div className={clsx(scss.content, 'container')}>
             <h4 className={scss.title}>
-               {locale == 'kg' ? 'Сүрөт галереялары' : 'Фотогалереи'}
+               {locale === 'kg' ? 'Сүрөт галереялары' : 'Фотогалереи'}
             </h4>
             <AnimatePresence mode='wait'>
                {isLoading ? (
@@ -44,7 +52,7 @@ const GalleryContent = () => {
                   <Failed error={error} />
                ) : rows.length ? (
                   <div key='gallery' className={gridClass}>
-                     {selected && (
+                     {selected !== null && (
                         <ImageLightbox
                            selected={selected}
                            images={data.map(v => v.photo)}
@@ -62,11 +70,14 @@ const GalleryContent = () => {
                                     scss[`fr-${item.fr}`],
                                  )}
                               >
-                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                 <img
+                                 <Image
                                     src={item.item.photo}
                                     alt={item.item.photo || 'Gallery image'}
+                                    width={520}
+                                    height={260}
+                                    sizes='(max-width: 480px) 100vw, (max-width: 1090px) 50vw, 33vw'
                                     loading='lazy'
+                                    className={scss.image}
                                  />
                               </div>
                            ))}
@@ -89,6 +100,7 @@ const GalleryContent = () => {
          </div>
       </motion.div>
    );
-};
+});
 
+GalleryContent.displayName = 'GalleryContent';
 export default GalleryContent;

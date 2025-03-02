@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import * as React from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import img1 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage1.png';
 import img2 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage2.png';
 import img3 from '../../../../../public/assets/stepsOfHadj_img/hadj-stage3.png';
@@ -10,93 +10,91 @@ import scss from './StepsHajjSection.module.scss';
 import { useTranslations } from 'next-intl';
 
 const colors: { [key: number]: string } = {
-	1: 'rgb(220, 255, 220)',
-	2: 'rgb(200, 230, 255)',
-	3: 'rgb(255, 250, 205)',
-	4: 'rgb(225, 225, 255)',
-	5: 'rgb(230, 240, 210)'
+   1: 'rgb(220, 255, 220)',
+   2: 'rgb(200, 230, 255)',
+   3: 'rgb(255, 250, 205)',
+   4: 'rgb(225, 225, 255)',
+   5: 'rgb(230, 240, 210)',
 };
 
-const StepsHajjSection = () => {
-	const t = useTranslations('stepsHajj');
+const stepsData = [
+   { img: img1, key: 'steps.hajj' },
+   { img: img2, key: 'steps.ihram' },
+   { img: img3, key: 'steps.arafa' },
+   { img: img4, key: 'steps.tawaf' },
+   { img: img5, key: 'steps.saey' },
+];
 
-	const steps = [
-		{ title: t('steps.hajj'), img: img1 },
-		{ title: t('steps.ihram'), img: img2 },
-		{ title: t('steps.arafa'), img: img3 },
-		{ title: t('steps.tawaf'), img: img4 },
-		{ title: t('steps.saey'), img: img5 }
-	];
+const StepsHajjSection = memo(() => {
+   const t = useTranslations('stepsHajj');
+   const [currentStep, setCurrentStep] = useState(1);
+   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-	const [currentStep, setCurrentStep] = React.useState(1);
-	const scrollContainerRef = React.useRef<HTMLDivElement | null>(null);
+   const scrollToStep = useCallback((nextStep: number) => {
+      const container = scrollContainerRef.current;
+      if (container) {
+         const activeElement = document.getElementById(`step-${nextStep - 1}`);
+         if (activeElement) {
+            const containerWidth = container.offsetWidth;
+            const elementOffset = activeElement.offsetLeft;
+            const elementWidth = activeElement.offsetWidth;
+            container.scrollTo({
+               left: elementOffset - (containerWidth - elementWidth) / 2,
+               behavior: 'smooth',
+            });
+         }
+      }
+   }, []);
 
-	React.useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentStep(prevStep => {
-				const nextStep = prevStep < 5 ? prevStep + 1 : 1;
+   useEffect(() => {
+      const interval = setInterval(() => {
+         setCurrentStep(prevStep => {
+            const nextStep = prevStep < 5 ? prevStep + 1 : 1;
+            scrollToStep(nextStep);
+            return nextStep;
+         });
+      }, 2000);
 
-				const container = scrollContainerRef.current;
-				if (container) {
-					if (typeof document === 'undefined') return prevStep;
+      return () => clearInterval(interval);
+   }, [scrollToStep]);
 
-					const activeElement = document.getElementById(`step-${nextStep - 1}`);
-					if (activeElement) {
-						const containerWidth = container.offsetWidth;
-						const elementOffset = activeElement.offsetLeft;
-						const elementWidth = activeElement.offsetWidth;
+   return (
+      <section className={scss.Main}>
+         <div className={scss.pre_main}>
+            <div className='container'>
+               <div className={scss.content}>
+                  <h1>{t('title')}</h1>
+                  <div className={scss.block_content} ref={scrollContainerRef}>
+                     {stepsData.map((step, index) => {
+                        const isActive = currentStep === index + 1;
+                        return (
+                           <div
+                              id={`step-${index}`}
+                              key={index}
+                              className={`${scss.block} ${
+                                 isActive ? scss.active : scss.inactive
+                              }`}
+                              style={{ background: colors[index + 1] }}
+                           >
+                              <h2>{t(step.key)}</h2>
+                              <Image
+                                 src={step.img}
+                                 alt={t(step.key)}
+                                 width={130}
+                                 height={130}
+                                 priority={isActive}
+                                 className={scss.image}
+                              />
+                           </div>
+                        );
+                     })}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   );
+});
 
-						container.scrollTo({
-							left: elementOffset - (containerWidth - elementWidth) / 2,
-							behavior: 'smooth'
-						});
-					}
-				}
-
-				return nextStep;
-			});
-		}, 2000);
-
-		return () => clearInterval(interval);
-	}, []);
-
-	return (
-		<section className={scss.Main}>
-			<div className={scss.pre_main}>
-				<div className='container'>
-					<div className={scss.content}>
-						<h1>{t('title')}</h1>
-						<div className={scss.block_content} ref={scrollContainerRef}>
-							{steps.map((step, index) => {
-								const isActive = currentStep === index + 1;
-								return (
-									<div
-										id={`step-${index}`}
-										key={index}
-										className={`${scss.block} ${
-											isActive ? scss.active : scss.inactive
-										}`}
-										style={{
-											background: colors[index + 1]
-										}}
-									>
-										<h2>{step.title}</h2>
-										<Image
-											src={step.img}
-											alt={step.title}
-											width={700}
-											height={300}
-											priority={isActive}
-										/>
-									</div>
-								);
-							})}
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
-};
-
+StepsHajjSection.displayName = 'StepsHajjSection';
 export default StepsHajjSection;
