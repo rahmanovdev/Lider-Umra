@@ -4,27 +4,13 @@ import Image from 'next/image';
 import scss from './HeroSection.module.scss';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { Assets } from '@/assets';
 
 type IndicatorsProps = {
    current: number;
    total: number;
    onClick: (index: number) => void;
 };
-
-const slides = [
-   {
-      src: '/assets/images/Bg_hero.png',
-      alt: 'Hero background 1',
-   },
-   {
-      src: '/assets/images/bg_2hero.png',
-      alt: 'Hero background 2',
-   },
-   {
-      src: '/assets/images/bg_hero3.jpg',
-      alt: 'Hero background 3',
-   },
-] as const;
 
 const HeroText = memo(() => {
    const t = useTranslations('hero');
@@ -42,7 +28,7 @@ const HeroButtons = memo(() => {
    return (
       <div className={`${scss.hero_btn}`}>
          <Link href='/packages' className={scss.btn_tours}>
-            {t('tour')}
+            {t('tour')} 
          </Link>
       </div>
    );
@@ -53,7 +39,7 @@ const Indicators = memo(({ current, total, onClick }: IndicatorsProps) => (
    <div className={scss.indicators}>
       {Array.from({ length: total }, (_, index) => (
          <button
-            key={index}
+            key={index + Date.now()}
             className={`${scss.indicator} ${
                current === index ? scss.active : ''
             }`}
@@ -65,6 +51,8 @@ const Indicators = memo(({ current, total, onClick }: IndicatorsProps) => (
 ));
 Indicators.displayName = 'Indicators';
 
+const images = Assets.Images.HeroBackgrounds;
+
 const HeroSection: React.FC = () => {
    const [currentSlide, setCurrentSlide] = useState(0);
    const [, setIsLoading] = useState(true);
@@ -75,7 +63,7 @@ const HeroSection: React.FC = () => {
 
    useEffect(() => {
       const timer = setInterval(() => {
-         setCurrentSlide(prev => (prev === slides.length - 1 ? 0 : prev + 1));
+         setCurrentSlide(prev => (prev === images.length - 1 ? 0 : prev + 1));
       }, 4000);
 
       return () => clearInterval(timer);
@@ -83,7 +71,7 @@ const HeroSection: React.FC = () => {
 
    return (
       <div className={scss.HeroSection}>
-         {slides.map((slide, index) => (
+         {images.map((slide, index) => (
             <div
                key={slide.src}
                className={`${scss.imageWrapper} ${
@@ -91,8 +79,8 @@ const HeroSection: React.FC = () => {
                }`}
             >
                <Image
-                  src={slide.src}
-                  alt={slide.alt}
+                  src={slide}
+                  alt={`Slide image - ${index}`}
                   priority={index === 0}
                   quality={75}
                   className={scss.backgroundImage}
@@ -114,7 +102,7 @@ const HeroSection: React.FC = () => {
 
          <Indicators
             current={currentSlide}
-            total={slides.length}
+            total={images.length}
             onClick={handleSlideChange}
          />
       </div>

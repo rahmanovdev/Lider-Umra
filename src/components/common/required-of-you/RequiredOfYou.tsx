@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { FaPassport, FaUserCircle } from 'react-icons/fa';
 import { FaUserGroup } from 'react-icons/fa6';
+import { Assets } from '@/assets'
 
 const RequiredOfYou: React.FC = () => {
 	const t = useTranslations('aboutUs');
@@ -59,7 +60,7 @@ const RequiredOfYou: React.FC = () => {
 						width={408}
 						height={500}
 						alt='adli wahid'
-						src='/assets/images/adli-wahid.jpg'
+						src={Assets.Images.AdliWahid}
 					/>
 				</figure>
 			</div>

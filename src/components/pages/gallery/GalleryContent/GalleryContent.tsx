@@ -65,7 +65,7 @@ const GalleryContent = () => {
                                  {/* eslint-disable-next-line @next/next/no-img-element */}
                                  <img
                                     src={item.item.photo}
-                                    alt={item.item.photo || 'Gallery image'}
+                                    alt={'Gallery image'}
                                     loading='lazy'
                                  />
                               </div>

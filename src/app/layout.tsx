@@ -1,9 +1,12 @@
-import './globals.scss';
-import LayoutClient from './layout.client';
+import './styles/reset.scss';
+import './styles/globals.scss';
+import './styles/variables.scss';
+
 import { Inter, Montserrat } from 'next/font/google';
 import { getLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
-import { BASE_SEO_METADATA } from '@/constants/seo.constants'
+import { BASE_SEO_METADATA } from '@/constants/seo.constants';
+import { RootProvider } from '@/providers';
 
 export const metadata = BASE_SEO_METADATA;
 
@@ -19,9 +22,7 @@ const montserrat = Montserrat({
 
 export default async function RootLayout({
    children,
-}: Readonly<{
-   children: React.ReactNode;
-}>) {
+}: Readonly<React.PropsWithChildren>) {
    const locale = await getLocale();
    const messages = await getMessages();
    return (
@@ -29,7 +30,7 @@ export default async function RootLayout({
          <body className={`${interSans.variable}  ${montserrat.variable}`}>
             <div className='wrapper'>
                <NextIntlClientProvider messages={messages}>
-                  <LayoutClient>{children}</LayoutClient>
+                  <RootProvider>{children}</RootProvider>
                </NextIntlClientProvider>
             </div>
          </body>

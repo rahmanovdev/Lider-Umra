@@ -5,7 +5,7 @@
 
    .content {
       display: flex;
-      align-items: start;
+      align-items: flex-start;
       justify-content: space-between;
       padding: 70px 0;
 
@@ -236,7 +236,7 @@
    .footer {
       .content {
          display: flex;
-         align-items: start;
+         align-items: flex-start;
          justify-content: space-between;
          flex-wrap: nowrap;
          gap: 30px;
@@ -249,7 +249,7 @@
    .footer {
       .content {
          display: flex;
-         align-items: start;
+         align-items: flex-start;
          justify-content: space-between;
          flex-direction: column;
          flex-wrap: nowrap;

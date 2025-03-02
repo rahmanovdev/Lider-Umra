@@ -1,18 +1,11 @@
-'use strict';
+'use client';
 import { useSize } from '@/hooks/use-size';
 import Image from 'next/image';
-import Link from 'next/link'; // next/link импортун кошуу керек
-import { useState } from 'react'; // useState импортун кошуу керек
-import liderUmrahLogo from '../../../../public/assets/images/logo.svg';
+import Link from 'next/link';
+import { useState } from 'react';
 import scss from './Footer.module.scss';
 import { useTranslations } from 'next-intl';
-import instagramLogo from '../../../../public/assets/footer/icons8-instagram-logo.svg';
-import facebookLogo from '../../../../public/assets/footer/icons8-facebook-logo.svg';
-import telegramLogo from '../../../../public/assets/footer/icons8-telegram-logo.svg';
-import tiktokLogo from '../../../../public/assets/footer/icons8-tiktok.svg';
-import whatsappLogo from '../../../../public/assets/footer/icons8-whatsapp-logo.svg';
-import youtubeLogo from '../../../../public/assets/footer/icons8-youtube.svg';
-import logoIant from '../../../../public/assets/footer/logo_iant.jpg';
+import { Assets } from '@/assets';
 
 type City = 'osh' | 'bishkek';
 
@@ -39,7 +32,7 @@ const Footer = () => {
             <div className={scss.content}>
                <div className={scss.left_block}>
                   <Image
-                     src={liderUmrahLogo}
+                     src={Assets.Svg.Logo}
                      alt='liderUmrah_logo'
                      height={300}
                      width={700}
@@ -84,7 +77,7 @@ const Footer = () => {
                            className={scss.socialLink}
                         >
                            <Image
-                              src={facebookLogo}
+                              src={Assets.Icons.Social.Facebook}
                               width={40}
                               height={40}
                               alt='Facebook logo'
@@ -97,7 +90,7 @@ const Footer = () => {
                            className={scss.socialLink}
                         >
                            <Image
-                              src={instagramLogo}
+                              src={Assets.Icons.Social.Instagram}
                               width={40}
                               height={40}
                               alt='Instagram logo'
@@ -110,7 +103,7 @@ const Footer = () => {
                            className={scss.socialLink}
                         >
                            <Image
-                              src={youtubeLogo}
+                              src={Assets.Icons.Social.YouTube}
                               width={40}
                               height={40}
                               alt='YouTube logo'
@@ -123,7 +116,7 @@ const Footer = () => {
                            className={scss.socialLink}
                         >
                            <Image
-                              src={tiktokLogo}
+                              src={Assets.Icons.Social.Tiktok}
                               width={40}
                               height={40}
                               alt='TikTok logo'
@@ -136,7 +129,7 @@ const Footer = () => {
                            className={scss.socialLink}
                         >
                            <Image
-                              src={whatsappLogo}
+                              src={Assets.Icons.Social.Whatsapp}
                               width={40}
                               height={40}
                               alt='WhatsApp logo'
@@ -149,7 +142,7 @@ const Footer = () => {
                            className={scss.socialLink}
                         >
                            <Image
-                              src={telegramLogo}
+                              src={Assets.Icons.Social.Telegram}
                               width={40}
                               height={40}
                               alt='Telegram logo'
@@ -193,7 +186,6 @@ const Footer = () => {
                   </div>
                </div>
             </div>
-
          </div>
 
          <div className={scss.under_footer}>
@@ -209,7 +201,7 @@ const Footer = () => {
                   <Image
                      width={44}
                      height={44}
-                     src={logoIant}
+                     src={Assets.Global.IAntLogo}
                      alt='IAnt Logo'
                   />
                   <span>Тарабынан жасалды</span>

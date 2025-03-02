@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,13 +6,13 @@ import React, { useEffect, useState } from 'react';
 import { FiHome } from 'react-icons/fi';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { IoCall } from 'react-icons/io5';
-import logo from '../../../../public/assets/images/logo.svg';
 import MobileMenu from './components/MobileMenu/MobileMenu';
 import scss from './Header.module.scss';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
 import { useSize } from '@/hooks/use-size';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Assets } from '@/assets'
 
 type NavigationType = {
    href: string;
@@ -29,6 +28,9 @@ const Header: React.FC = () => {
    const [nodes, setNodes] = useState<{ [key: string]: NavigationType[] }>({});
    const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
 
+   const navigations = t.raw('navigations') as NavigationType[];
+   const size = useSize('header');
+
    useEffect(() => {
       if (typeof document === 'undefined') return;
 
@@ -43,12 +45,13 @@ const Header: React.FC = () => {
       };
    }, [isMobileMenuOpen]);
 
-   const isActiveLink = (path: string) => {
-      if (path === '/') return pathname === path;
-      return pathname?.startsWith(path);
-   };
-
-   const navigations = t.raw('navigations') as NavigationType[];
+   const isActiveLink = React.useCallback(
+      (path: string) => {
+         if (path === '/') return pathname === path;
+         return pathname?.startsWith(path);
+      },
+      [pathname],
+   );
 
    useEffect(() => {
       const newNodes: { [key: string]: NavigationType[] } = {};
@@ -59,8 +62,6 @@ const Header: React.FC = () => {
       });
       setNodes(newNodes);
    }, [navigations]);
-
-   const size = useSize('header');
 
    return (
       <>
@@ -91,7 +92,7 @@ const Header: React.FC = () => {
                <div className={scss.header_start}>
                   <Link href='/'>
                      <Image
-                        src={logo}
+                        src={Assets.Svg.Logo}
                         alt='Logo'
                         width={120}
                         height={60}
@@ -148,10 +149,13 @@ const Header: React.FC = () => {
                   <FiHome />
                   <span>{tb('home')}</span>
                </Link>
-               <Link href="/packages" className={`${scss.nav_item}`}>
-                  <img
-                     src='/assets/pilgrimage.png'
-                     alt=''
+               <Link href='/packages' className={`${scss.nav_item}`}>
+                  <Image
+                     src={Assets.Icons.TabPackages}
+                     alt='pillgirmage'
+                     width={30}
+                     height={30}
+                     loading='lazy'
                      suppressHydrationWarning
                   />
                   <span>{tb('packages')}</span>

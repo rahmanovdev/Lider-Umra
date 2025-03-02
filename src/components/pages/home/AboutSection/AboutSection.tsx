@@ -2,10 +2,9 @@
 import AboutCards from '@/components/common/cards/about_cards/AboutCards';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import BgOrnament from '../../../../../public/assets/images/bg_ornament.svg';
-import lamp from '../../../../../public/assets/images/lamp.svg';
 import scss from './AboutSection.module.scss';
 import Link from 'next/link';
+import { Assets } from '@/assets'
 
 const AboutSection = () => {
    const t = useTranslations();
@@ -61,7 +60,7 @@ const AboutSection = () => {
 
                <Image
                   className={scss.bg_ornament}
-                  src={BgOrnament}
+                  src={Assets.Images.About.Ornament}
                   alt='Ornament_bg'
                   width={700}
                   height={500}
@@ -71,7 +70,7 @@ const AboutSection = () => {
 
                <Image
                   className={scss.lamp_element}
-                  src={lamp}
+                  src={Assets.Images.Lamp}
                   alt='lamp'
                   width={140}
                   height={140}

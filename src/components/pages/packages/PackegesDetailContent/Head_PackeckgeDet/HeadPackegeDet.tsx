@@ -146,7 +146,7 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
                            <div className={scss.leader_image}>
                               <Image
                                  src={tourData.ajy.image}
-                                 alt={tourData.ajy.name}
+                                 alt={"Tour Ajy name"}
                                  width={300}
                                  height={300}
                               />

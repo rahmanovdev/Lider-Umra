@@ -58,7 +58,7 @@ const VideoSection = () => {
                   <div key='videos' className={scss.grid}>
                      {latestVideos.map(video => (
                         <div
-                           key={video.id}
+                           key={video.id + video.title}
                            className={clsx(scss.item, scss['fr-1'])}
                         >
                            <Link
@@ -71,7 +71,7 @@ const VideoSection = () => {
                                     getYouTubeThumbnail(video.video_url) ||
                                     '/default-thumbnail.jpg'
                                  }
-                                 alt={video.title}
+                                 alt={`Video - ${video.title}`}
                                  width={360}
                                  height={260}
                                  className={scss.video}

@@ -2,36 +2,37 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import scss from './About_ProgramDet.module.scss';
+import { Assets } from '@/assets';
 
 interface AboutProgramDetProps {
-	tourData: TOURS.ITourPackages;
+   tourData: TOURS.ITourPackages;
 }
 
 const About_ProgramDet = ({}: AboutProgramDetProps) => {
-	const t = useTranslations('packages.detail.about_ProgramDet');
+   const t = useTranslations('packages.detail.about_ProgramDet');
 
-	return (
-		<section className={scss.About_ProgramDet}>
-			<div className='container'>
-				<div className={scss.content}>
-					<div className={scss.program_left}>
-						<Image
-							width={700}
-							height={500}
-							priority
-							quality={70}
-							src='/assets/images/about-page-advantages.jpg'
-							alt='about_program'
-						/>
-					</div>
-					<div className={scss.about_text}>
-						<h1>{t('title')}</h1>
-						<p>{t('description')}</p>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+   return (
+      <section className={scss.About_ProgramDet}>
+         <div className='container'>
+            <div className={scss.content}>
+               <div className={scss.program_left}>
+                  <Image
+                     width={700}
+                     height={500}
+                     priority
+                     quality={70}
+                     src={Assets.Images.About.Advantages}
+                     alt='about_program'
+                  />
+               </div>
+               <div className={scss.about_text}>
+                  <h1>{t('title')}</h1>
+                  <p>{t('description')}</p>
+               </div>
+            </div>
+         </div>
+      </section>
+   );
 };
 
 export default About_ProgramDet;

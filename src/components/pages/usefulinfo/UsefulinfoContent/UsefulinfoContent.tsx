@@ -26,7 +26,7 @@ const UsefulinfoContent = () => {
       <div className={styles.use_full_info_content}>
          {rows.map((row, rowIndex) => (
             <div className={styles.row} key={rowIndex}>
-               {row.map(item => (
+               {row.map((item, index) => (
                   <Link href={`/usefulinfo/${item.item.id}`} key={item.item.id}>
                      <div
                         className={`${styles['fr-' + item.fr]} ${
@@ -35,7 +35,7 @@ const UsefulinfoContent = () => {
                      >
                         <Image
                            src={item.item.image || '/images/placeholder.jpg'}
-                           alt={item.item.title}
+                           alt={`${item.item.image} ${index}`}
                            width={375}
                            height={420}
                            priority

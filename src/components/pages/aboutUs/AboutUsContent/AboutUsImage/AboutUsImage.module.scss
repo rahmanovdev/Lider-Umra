@@ -1,6 +1,5 @@
 .photos_anim_block {
-   background: url('../../../../../../public/assets/images/line/plane_background_line.svg')
-      center no-repeat;
+   background: url('/line/desktop_line.svg') center no-repeat;
    background-size: cover;
 }
 
@@ -82,8 +81,7 @@
 
 @media (max-width: 768px) {
    .photos_anim_block {
-      background: url('../../../../../../public/assets/images/line/plane_background_line_mobile.svg')
-         center no-repeat;
+      background: url('/line/line_mobile.svg') center no-repeat;
       background-size: cover;
    }
 
@@ -178,9 +176,9 @@
    transform: translateX(-50%);
 
    a {
-			// border: 1px solid rgb(128, 128, 128);
-			// border-radius: 10px;
-			padding: 6px 12px;
+      // border: 1px solid rgb(128, 128, 128);
+      // border-radius: 10px;
+      padding: 6px 12px;
       color: var(--color-primary);
       display: flex;
       align-items: center;
