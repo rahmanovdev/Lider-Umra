@@ -30,7 +30,7 @@ namespace TOURS {
       id: number;
       image: string;
       is_active: boolean;
-      name: string;
+      title: string;
       tour_date: ITourDate;
    }
 
