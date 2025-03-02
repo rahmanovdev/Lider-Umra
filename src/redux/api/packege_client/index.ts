@@ -1,7 +1,6 @@
 import { api as index } from '..';
 import { CLIENT } from './types';
 
-const ENDPOINTS = process.env.NEXT_PUBLIC_ENDPOINT;
 
 const api = index.injectEndpoints({
   endpoints: build => ({
@@ -10,11 +9,11 @@ const api = index.injectEndpoints({
       CLIENT.CreateClientRequest
     >({
       query: clientData => ({
-        url: `${ENDPOINTS}/crm/clients/`,
+        url: `/crm/clients/`,
         method: 'POST',
         body: clientData,
       }),
-      invalidatesTags: ['clients'], 
+      invalidatesTags: ['clients'],
     }),
   }),
 });

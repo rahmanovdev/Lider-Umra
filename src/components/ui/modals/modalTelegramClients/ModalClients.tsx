@@ -1,3 +1,5 @@
+// src/components/shared/ModalClient.tsx
+'use client';
 import React, { useState } from 'react';
 import scss from './ModalClient.module.scss';
 
@@ -5,16 +7,23 @@ interface ModalProps {
    isOpen: boolean;
    onClose: () => void;
    title: string;
-   tourData?: { id: number; title: string };
+   tourData?: {
+      id: number;
+      title: string;
+      startDate?: string;
+      endDate?: string;
+      category: string;
+   };
    onSubmit?: (formData: {
-      name: string;
+      full_name: string;
       phone: string;
       country: string;
       city: string;
+      package: number;
    }) => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({
+export const ModalClient: React.FC<ModalProps> = ({
    isOpen,
    onClose,
    title,
@@ -22,10 +31,11 @@ export const Modal: React.FC<ModalProps> = ({
    onSubmit,
 }) => {
    const [formData, setFormData] = useState({
-      name: '',
+      full_name: '',
       phone: '',
       country: '',
       city: '',
+      package: tourData?.id || 0,
    });
 
    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,11 +44,17 @@ export const Modal: React.FC<ModalProps> = ({
 
    const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
-      if (onSubmit) {
-         onSubmit(formData);
+      if (onSubmit && tourData) {
+         onSubmit({ ...formData, package: tourData.id });
       }
       onClose();
-      setFormData({ name: '', phone: '', country: '', city: '' });
+      setFormData({
+         full_name: '',
+         phone: '',
+         country: '',
+         city: '',
+         package: 0,
+      });
    };
 
    if (!isOpen) return null;
@@ -47,65 +63,81 @@ export const Modal: React.FC<ModalProps> = ({
       <div className={scss.modalOverlay}>
          <div className={scss.modal}>
             <div className={scss.modalHeader}>
-               <h2>{title}</h2>
+               <div className={scss.title}>{title}</div>
                <button onClick={onClose} className={scss.closeButton}>
                   ×
                </button>
             </div>
-            {tourData && (
-               <form onSubmit={handleSubmit} className={scss.form}>
-                  <p>
-                     Выбранный пакет: <strong>{tourData.title}</strong> (ID:{' '}
-                     {tourData.id})
-                  </p>
-                  <div className={scss.formGroup}>
-                     <label htmlFor='name'>Имя:</label>
-                     <input
-                        type='text'
-                        id='name'
-                        name='name'
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                     />
+            {tourData && tourData.startDate && tourData.endDate && (
+               <div className={scss.content}>
+                  <div className={scss.date_range}>
+                     <div className={scss.date_item}>
+                        <div className={scss.month_year}>
+                           <h1>{tourData.startDate.split(' ')[0]}</h1>
+                           <div className={scss.month}>
+                              <h5>{tourData.startDate.split(' ')[1]}</h5>
+                              <h5>{tourData.startDate.split(' ')[2]}</h5>
+                           </div>
+                        </div>
+                     </div>
+                     <div className={scss.line} />
+                     <div className={scss.date_item}>
+                        <div className={scss.month_year}>
+                           <h1>{tourData.endDate.split(' ')[0]}</h1>
+                           <div className={scss.month}>
+                              <h5>{tourData.endDate.split(' ')[1]}</h5>
+                              <h5>{tourData.endDate.split(' ')[2]}</h5>
+                           </div>
+                        </div>
+                     </div>
                   </div>
-                  <div className={scss.formGroup}>
-                     <label htmlFor='phone'>Телефон:</label>
-                     <input
-                        type='tel'
-                        id='phone'
-                        name='phone'
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                     />
-                  </div>
-                  <div className={scss.formGroup}>
-                     <label htmlFor='country'>Страна:</label>
-                     <input
-                        type='text'
-                        id='country'
-                        name='country'
-                        value={formData.country}
-                        onChange={handleChange}
-                        required
-                     />
-                  </div>
-                  <div className={scss.formGroup}>
-                     <label htmlFor='city'>Город:</label>
-                     <input
-                        type='text'
-                        id='city'
-                        name='city'
-                        value={formData.city}
-                        onChange={handleChange}
-                        required
-                     />
-                  </div>
-                  <button type='submit' className={scss.submitButton}>
-                     Отправить заявку
-                  </button>
-               </form>
+                  <form onSubmit={handleSubmit} className={scss.form}>
+                     <div className={scss.formGroup}>
+                        <input
+                           type='text'
+                           name='full_name'
+                           placeholder='Сиздин атыңыз *'
+                           value={formData.full_name}
+                           onChange={handleChange}
+                           required
+                        />
+                     </div>
+                     <div className={scss.formGroup}>
+                        <input
+                           type='tel'
+                           name='phone'
+                           placeholder='Сиздин телефонуңуз *'
+                           value={formData.phone}
+                           onChange={handleChange}
+                           required
+                        />
+                     </div>
+                     <div className={scss.formGroup}>
+                        <input
+                           type='text'
+                           name='country'
+                           placeholder='Сиздин өлкөңүз *'
+                           value={formData.country}
+                           onChange={handleChange}
+                           required
+                        />
+                     </div>
+                     <div className={scss.formGroup}>
+                        <input
+                           type='text'
+                           name='city'
+                           placeholder='Сиздин шаарыңыз *'
+                           value={formData.city}
+                           onChange={handleChange}
+                           required
+                        />
+                     </div>
+
+                     <button type='submit' className={scss.submitButton}>
+                        Арыз берүү
+                     </button>
+                  </form>
+               </div>
             )}
          </div>
       </div>

@@ -9,10 +9,22 @@ import { IoCall } from 'react-icons/io5';
 import { MdOutlineEditNote } from 'react-icons/md';
 import scss from './HeadPackegeDet.module.scss';
 import { useCreateClientMutation } from '@/redux/api/packege_client';
-import { Modal } from '@/components/ui/modals/modalTelegramClients/ModalClients';
+import { ModalClient } from '@/components/ui/modals/modalTelegramClients/ModalClients';
+import { Modal } from '../components/shared/Modal';
+
+interface TOURS {
+   ITourPackages: {
+      id: number;
+      title: string;
+      category: { name: string };
+      available_seats: number;
+      tour_date: { start_tour: string; end_tour: string; duration: number };
+      ajy: { name: string; image: string; bio: string };
+   };
+}
 
 interface HeadPackegeDetProps {
-   tourData: TOURS.ITourPackages;
+   tourData: TOURS['ITourPackages'];
 }
 
 const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
@@ -23,7 +35,7 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
    const [showReadMore, setShowReadMore] = useState(false);
    const bioContentRef = useRef<HTMLDivElement>(null);
 
-   const [createClient, {}] = useCreateClientMutation();
+   const [createClient] = useCreateClientMutation();
 
    useEffect(() => {
       if (typeof window === 'undefined') return;
@@ -44,19 +56,32 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
    const startDate = formatDate(tourData.tour_date.start_tour);
    const endDate = formatDate(tourData.tour_date.end_tour);
 
+   const startDateObj = new Date(tourData.tour_date.start_tour);
+   const startDay = startDateObj.getDate().toString().padStart(2, '0');
+   const startMonthNumber = (startDateObj.getMonth() + 1)
+      .toString()
+      .padStart(2, '0');
+   const formattedStartDate = `${startDate.day} ${
+      startDate.month[locale as 'kg']
+   } ${startDate.year}`;
+   const formattedEndDate = `${endDate.day} ${endDate.month[locale as 'kg']} ${
+      endDate.year
+   }`;
+
    const handleApplySubmit = async (formData: {
-      name: string;
+      full_name: string;
       phone: string;
       country: string;
       city: string;
+      package: number;
    }) => {
       try {
          await createClient({
-            full_name: formData.name,
+            full_name: formData.full_name,
             phone: formData.phone,
             country: formData.country,
             city: formData.city,
-            package: tourData.id,
+            package: formData.package,
          }).unwrap();
          alert('Заявка успешно отправлена!');
       } catch (error) {
@@ -170,12 +195,19 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = ({ tourData }) => {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             title={tourData.ajy.name}
+            content={tourData.ajy.bio}
          />
-         <Modal
+         <ModalClient
             isOpen={isApplyModalOpen}
             onClose={() => setIsApplyModalOpen(false)}
-            title={t('buttons.apply')}
-            tourData={{ id: tourData.id, title: tourData.title }}
+            title={`${startDay}.${startMonthNumber}.${startDate.year} Умра сапары ${tourData.category.name} Пакети`}
+            tourData={{
+               id: tourData.id,
+               title: tourData.title,
+               startDate: formattedStartDate,
+               endDate: formattedEndDate,
+               category: tourData.category.name,
+            }}
             onSubmit={handleApplySubmit}
          />
       </div>
