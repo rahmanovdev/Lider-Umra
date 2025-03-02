@@ -2,13 +2,12 @@
 import { api as index } from '..';
 import { Package } from './types';
 
-const ENDPOINTS = process.env.NEXT_PUBLIC_ENDPOINT;
 
 const api = index.injectEndpoints({
 	endpoints: build => ({
 		getPackageDetails: build.query<Package.GetPackageDetailsResponse, void>({
 			query: () => ({
-				url: `${ENDPOINTS}/tour/package-details/`,
+				url: `/tour/package-details/`,
 				method: 'GET'
 			}),
 			providesTags: ['packageDetails']
@@ -16,7 +15,7 @@ const api = index.injectEndpoints({
 
 		getPackageDetailById: build.query<Package.PackageDetail, number>({
 			query: id => ({
-				url: `${ENDPOINTS}/tour/package-details/${id}/`,
+				url: `/tour/package-details/${id}/`,
 				method: 'GET'
 			}),
 			providesTags: ['packageDetails']
@@ -27,7 +26,7 @@ const api = index.injectEndpoints({
 			{ type: Package.DetailType; category?: Package.CategoryPackage }
 		>({
 			query: ({ type }) => ({
-				url: `${ENDPOINTS}/tour/package-details/`,
+				url: `/tour/package-details/`,
 				method: 'GET',
 				params: { detail_type: type }
 			}),
