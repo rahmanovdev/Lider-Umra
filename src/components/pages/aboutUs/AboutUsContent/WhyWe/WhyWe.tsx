@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { memo } from 'react';
 import scss from './WhyWe.module.scss';
 import Image from 'next/image';
 import { useTimeLine } from '@/hooks/use-time-line';
@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Assets } from '@/assets';
 
-const Whywe = () => {
+const Whywe = memo(() => {
    const t = useTranslations();
    const { containerRef, height, heightTransform, ref, activeSections } =
       useTimeLine(true);
@@ -53,7 +53,7 @@ const Whywe = () => {
                      {packages.map((item, index) => (
                         <div
                            key={index}
-                           className={`${index === 0 && scss.isFirst} ${
+                           className={`${index === 0 ? scss.isFirst : ''} ${
                               scss.timelineEntry
                            }`}
                         >
@@ -63,14 +63,14 @@ const Whywe = () => {
                            >
                               <div
                                  className={`${scss.markCircleOuter} ${
-                                    activeSections.includes(index) &&
-                                    scss.active
+                                    activeSections.includes(index)
+                                       ? scss.active
+                                       : ''
                                  }`}
                               >
                                  {index + 1}
                               </div>
                            </div>
-
                            <div className={scss.contentWrapper}>
                               <h3 className={scss.markTitle}>{item.title}</h3>
                               <p>{item.content}</p>
@@ -78,7 +78,7 @@ const Whywe = () => {
                         </div>
                      ))}
                      <div
-                        style={{ height: height + 'px' }}
+                        style={{ height: `${height}px` }}
                         className={scss.timelineLine}
                      >
                         <motion.div
@@ -92,6 +92,7 @@ const Whywe = () => {
          </div>
       </section>
    );
-};
+});
 
+Whywe.displayName = 'Whywe';
 export default Whywe;

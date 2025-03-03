@@ -15,7 +15,7 @@ type IndicatorsProps = {
 const HeroText = memo(() => {
    const t = useTranslations('hero');
    return (
-      <div className={`${scss.hero_text}`}>
+      <div className={scss.hero_text}>
          <h1 dangerouslySetInnerHTML={{ __html: t('title') }} />
          <p dangerouslySetInnerHTML={{ __html: t('description') }} />
       </div>
@@ -26,36 +26,37 @@ HeroText.displayName = 'HeroText';
 const HeroButtons = memo(() => {
    const t = useTranslations('hero.buttons');
    return (
-      <div className={`${scss.hero_btn}`}>
+      <div className={scss.hero_btn}>
          <Link href='/packages' className={scss.btn_tours}>
-            {t('tour')} 
+            {t('tour')}
          </Link>
       </div>
    );
 });
 HeroButtons.displayName = 'HeroButtons';
 
-const Indicators = memo(({ current, total, onClick }: IndicatorsProps) => (
-   <div className={scss.indicators}>
-      {Array.from({ length: total }, (_, index) => (
-         <button
-            key={index + Date.now()}
-            className={`${scss.indicator} ${
-               current === index ? scss.active : ''
-            }`}
-            onClick={() => onClick(index)}
-            aria-label={`Slide ${index + 1}`}
-         />
-      ))}
-   </div>
-));
-Indicators.displayName = 'Indicators';
-
 const images = Assets.Images.HeroBackgrounds;
+
+const Indicators = memo(({ current, total, onClick }: IndicatorsProps) => {
+   return (
+      <div className={scss.indicators}>
+         {Array.from({ length: total }, (_, index) => (
+            <button
+               key={index}
+               className={`${scss.indicator} ${
+                  current === index ? scss.active : ''
+               }`}
+               onClick={() => onClick(index)}
+               aria-label={`Slide ${index + 1}`}
+            />
+         ))}
+      </div>
+   );
+});
+Indicators.displayName = 'Indicators';
 
 const HeroSection: React.FC = () => {
    const [currentSlide, setCurrentSlide] = useState(0);
-   const [, setIsLoading] = useState(true);
 
    const handleSlideChange = useCallback((index: number) => {
       setCurrentSlide(index);
@@ -65,7 +66,6 @@ const HeroSection: React.FC = () => {
       const timer = setInterval(() => {
          setCurrentSlide(prev => (prev === images.length - 1 ? 0 : prev + 1));
       }, 4000);
-
       return () => clearInterval(timer);
    }, []);
 
@@ -83,23 +83,19 @@ const HeroSection: React.FC = () => {
                   alt={`Slide image - ${index}`}
                   priority={index === 0}
                   quality={75}
-                  className={scss.backgroundImage}
-                  onLoadingComplete={() => setIsLoading(false)}
-                  sizes='94vw'
                   fill
+                  sizes='100vw'
+                  className={scss.backgroundImage}
                />
             </div>
          ))}
-
          <div className={scss.overlay} />
-
          <div className='container'>
             <div className={scss.content}>
                <HeroText />
                <HeroButtons />
             </div>
          </div>
-
          <Indicators
             current={currentSlide}
             total={images.length}

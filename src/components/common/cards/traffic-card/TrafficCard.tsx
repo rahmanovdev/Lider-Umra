@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import scss from './TrafficCard.module.scss';
 import { FaStar } from 'react-icons/fa';
 import { useLocale, useTranslations } from 'next-intl';
@@ -11,46 +11,56 @@ type TProps = {
    tour: TOURS.ITourPackages;
 };
 
-const StarRating: React.FC<{ count: number }> = ({ count }) => {
-   return (
-      <div className={scss.starRating}>
-         {[...Array(count)].map((_, index) => (
-            <FaStar key={index} className={scss.star} />
-         ))}
-      </div>
-   );
-};
+const StarRating = memo<{ count: number }>(({ count }) => (
+   <div className={scss.starRating}>
+      {Array.from({ length: count }, (_, index) => (
+         <FaStar key={index} className={scss.star} />
+      ))}
+   </div>
+));
+StarRating.displayName = 'StarRating';
 
-const TrafficCard: React.FC<TProps> = ({ tour }) => {
+const TrafficCard = memo<TProps>(({ tour }) => {
    const t = useTranslations('traffics.card');
    const locale = useLocale();
-   const startDate = formatDate(tour.tour_date.start_tour);
-   const endDate = formatDate(tour.tour_date.end_tour);
+   const startDate = useMemo(
+      () => formatDate(tour.tour_date.start_tour),
+      [tour.tour_date.start_tour],
+   );
+   const endDate = useMemo(
+      () => formatDate(tour.tour_date.end_tour),
+      [tour.tour_date.end_tour],
+   );
+   const starCount = useMemo(
+      () => (tour.category.name === 'Комфорт +' ? 5 : 4),
+      [tour.category.name],
+   );
 
-   const starCount = tour.category.name === 'Комфорт +' ? 5 : 4;
+   const placeLabel = tour.place === 'Osh' ? 'Ош' : 'Бишкек';
+   const monthLocale = locale === 'kg' ? 'kg' : 'ru';
 
    return (
       <div className={scss.Main}>
          <div className={scss.place}>
-            <span>{tour.place == 'Osh' ? 'Ош' : 'Бишкек'}</span>
-         </div>{' '}
+            <span>{placeLabel}</span>
+         </div>
          <h2>{tour.category.name}</h2>
          <div className={scss.data_block}>
             <div className={scss.date_item}>
                <div className={scss.month_year}>
                   <h1>{startDate.day}</h1>
                   <div className={scss.month}>
-                     <h5>{startDate.month[locale as 'kg']}</h5>
+                     <h5>{startDate.month[monthLocale]}</h5>
                      <h5>{startDate.year}</h5>
                   </div>
                </div>
             </div>
-            <div className={scss.line}></div>
+            <div className={scss.line} />
             <div className={scss.date_item}>
                <div className={scss.month_year}>
                   <h1>{endDate.day}</h1>
                   <div className={scss.month}>
-                     <h5>{endDate.month[locale as 'kg']}</h5>
+                     <h5>{endDate.month[monthLocale]}</h5>
                      <h5>{endDate.year}</h5>
                   </div>
                </div>
@@ -60,8 +70,9 @@ const TrafficCard: React.FC<TProps> = ({ tour }) => {
             <Image
                src={tour.image}
                alt={`Tilte - ${tour.title}`}
-               width={700}
-               height={300}
+               fill
+               sizes='(max-width: 768px) 75vw, (max-width: 440px) 95vw, 400px'
+               className={scss.image}
             />
          </div>
          <div className={scss.card_container}>
@@ -96,6 +107,7 @@ const TrafficCard: React.FC<TProps> = ({ tour }) => {
          </div>
       </div>
    );
-};
+});
 
+TrafficCard.displayName = 'TrafficCard';
 export default TrafficCard;

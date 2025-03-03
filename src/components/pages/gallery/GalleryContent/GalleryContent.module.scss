@@ -23,11 +23,7 @@
    --grid-template-columns: repeat(3, 1fr);
 
    padding: var(--gallery-padding) 0;
-   background: linear-gradient(
-      135deg,
-      var(--gradient-start) 0%,
-      var(--gradient-end) 100%
-   );
+   background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
    display: flex;
    flex-direction: column;
 
@@ -72,8 +68,7 @@
                box-shadow: var(--item-hover-shadow);
             }
 
-            img,
-            video {
+            .image {
                width: 100%;
                height: var(--media-height);
                object-fit: cover;
@@ -83,8 +78,7 @@
             }
 
             &:hover {
-               img,
-               video {
+               .image {
                   transform: scale(1.05);
                   filter: brightness(var(--media-hover-brightness));
                }
@@ -102,37 +96,30 @@
          box-shadow: var(--no-items-shadow);
       }
    }
-}
 
-@media (max-width: 1090px) {
-   .GalleryContent {
+   @media (max-width: 1090px) {
       --grid-template-columns: repeat(2, 1fr);
       --fr-2-width: 98%;
       --grid-gap: 30px;
    }
-}
 
-@media (max-width: 920px) {
-   .GalleryContent {
+   @media (max-width: 920px) {
       --fr-2-width: 100%;
       --grid-gap: 15px;
    }
-}
 
-@media (max-width: 768px) {
-   .GalleryContent {
+   @media (max-width: 768px) {
       --grid-gap: 0.8rem;
       --media-height: 180px;
    }
-}
 
-@media (max-width: 480px) {
-   .GalleryContent {
+   @media (max-width: 480px) {
       --media-height: 260px;
 
       .content {
          .grid {
             grid-template-columns: 1fr;
+
             .item {
                width: 100%;
             }

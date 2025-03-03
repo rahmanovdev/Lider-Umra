@@ -1,17 +1,11 @@
 .HeroSection {
    position: relative;
-   margin: 0 auto;
-   margin-top: 10px;
+   margin: 0 auto 10px;
    width: 94%;
    height: 663px;
    border-radius: 20px;
    overflow: hidden;
-   will-change: transform;
    z-index: -20;
-
-   @media (max-width: 990px) {
-      height: 600px;
-   }
 
    .imageWrapper {
       position: absolute;
@@ -43,8 +37,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding: 250px 0 0 0;
-      transform: translateZ(0);
+      padding: 250px 0 0;
 
       .hero_text {
          display: flex;
@@ -80,7 +73,6 @@
             font-weight: 600;
             text-transform: uppercase;
             border-radius: 8px;
-            transform: translateZ(0);
             transition: transform 0.2s ease, opacity 0.2s ease;
 
             &:active {
@@ -112,13 +104,11 @@
       .indicator {
          width: 8px;
          height: 8px;
-         padding: 0;
          border: none;
          border-radius: 50%;
          background-color: rgba(4, 137, 180, 0.5);
          cursor: pointer;
-         transition: all 0.3s ease;
-         transform: translateZ(0);
+         transition: width 0.3s ease, background-color 0.3s ease;
 
          &.active {
             width: 32px;
@@ -131,10 +121,13 @@
          }
       }
    }
-}
 
-@media (max-width: 769px) {
-   .HeroSection {
+   /* Медиа суроолор бириктирилди */
+   @media (max-width: 990px) {
+      height: 600px;
+   }
+
+   @media (max-width: 769px) {
       width: 90%;
       height: auto;
       padding: 50px 0;
@@ -143,8 +136,6 @@
          padding: 60px 0 0 20px;
 
          .hero_text {
-            display: flex;
-            flex-direction: column;
             gap: 10px;
 
             h1 {
@@ -158,18 +149,11 @@
          }
 
          .hero_btn {
-            display: flex;
-            align-items: center;
             gap: 10px;
-            padding-top: 30px;
 
-            
-
-            button {
+            a {
                padding: 8px 12px;
                font-size: 9px;
-               font-weight: 600;
-               border-radius: 8px;
             }
          }
       }
@@ -180,13 +164,15 @@
          .indicator {
             width: 5px;
             height: 5px;
+
+            &.active {
+               width: 32px; /* Активдүү абал сакталат */
+            }
          }
       }
    }
-}
 
-@media (min-width: 768px) and (max-width: 920px) {
-   .HeroSection {
+   @media (min-width: 768px) and (max-width: 920px) {
       width: 92%;
       height: auto;
       padding: 40px 0;
@@ -209,7 +195,7 @@
          .hero_btn {
             gap: 10px;
 
-            button {
+            a {
                padding: 10px 18px;
                font-size: 13px;
             }
@@ -218,7 +204,6 @@
 
       .indicators {
          bottom: 17px;
-         left: 50%;
          gap: 6px;
 
          .indicator {
@@ -227,29 +212,8 @@
          }
       }
    }
-}
 
-@media (min-width: 1280px) and (max-width: 1440px) {
-   .HeroSection {
-      width: 92%;
-
-      .content {
-         padding: 300px 0 0 90px;
-
-         .hero_text {
-            gap: 18px;
-
-            h1 {
-               font-size: 50px;
-               line-height: 1.1;
-            }
-         }
-      }
-   }
-}
-
-@media (min-width: 921px) and (max-width: 1280px) {
-   .HeroSection {
+   @media (min-width: 921px) and (max-width: 1280px) {
       width: 92%;
 
       .content {
@@ -269,38 +233,34 @@
          }
       }
    }
-}
 
-@media (max-width: 500px) {
-   .HeroSection {
-      width: 90%;
-      height: auto;
-      padding: 50px 0;
+   @media (min-width: 1280px) and (max-width: 1440px) {
+      width: 92%;
 
       .content {
-         padding: 60px 0 0 20px;
+         padding: 300px 0 0 90px;
 
          .hero_text {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            gap: 18px;
 
+            h1 {
+               font-size: 50px;
+               line-height: 1.1;
+            }
+         }
+      }
+   }
+
+   @media (max-width: 500px) {
+      .content {
+         .hero_text {
             h1 {
                font-size: 27px;
                font-weight: 500;
             }
-
-            p {
-               font-size: 12px;
-            }
          }
 
          .hero_btn {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            padding-top: 30px;
-
             a {
                padding: 6px 10px;
                font-size: 10px;
@@ -308,20 +268,9 @@
             }
          }
       }
-
-      .indicators {
-         bottom: 10px;
-
-         .indicator {
-            width: 5px;
-            height: 5px;
-         }
-      }
    }
-}
 
-@media (max-width: 380px) {
-   .HeroSection {
+   @media (max-width: 380px) {
       width: 95%;
 
       .content {
@@ -341,7 +290,7 @@
             gap: 8px;
             padding-top: 15px;
 
-            button {
+            a {
                padding: 6px 8px;
                font-size: 8px;
             }

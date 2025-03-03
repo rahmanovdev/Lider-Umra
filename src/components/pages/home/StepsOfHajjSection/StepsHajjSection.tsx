@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import scss from './StepsHajjSection.module.scss';
 import { useTranslations } from 'next-intl';
-import { Assets } from '@/assets'
+import { Assets } from '@/assets';
 
 const colors: { [key: number]: string } = {
    1: 'rgb(220, 255, 220)',
@@ -14,51 +14,49 @@ const colors: { [key: number]: string } = {
    5: 'rgb(230, 240, 210)',
 };
 
-const StepsHajjSection = () => {
+const StepsHajjSection = React.memo(() => {
    const t = useTranslations('stepsHajj');
-
-   const steps = [
-      { title: t('steps.hajj') },
-      { title: t('steps.ihram') },
-      { title: t('steps.arafa') },
-      { title: t('steps.tawaf') },
-      { title: t('steps.saey') },
-   ];
-
    const [currentStep, setCurrentStep] = React.useState(1);
-   const scrollContainerRef = React.useRef<HTMLDivElement | null>(null);
+   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
+   const steps = React.useMemo(
+      () => [
+         { title: t('steps.hajj') },
+         { title: t('steps.ihram') },
+         { title: t('steps.arafa') },
+         { title: t('steps.tawaf') },
+         { title: t('steps.saey') },
+      ],
+      [t],
+   );
+
+   const scrollToStep = React.useCallback((nextStep: number) => {
+      const container = scrollContainerRef.current;
+      if (container) {
+         const activeElement = document.getElementById(`step-${nextStep - 1}`);
+         if (activeElement) {
+            const containerWidth = container.offsetWidth;
+            const elementOffset = activeElement.offsetLeft;
+            const elementWidth = activeElement.offsetWidth;
+            container.scrollTo({
+               left: elementOffset - (containerWidth - elementWidth) / 2,
+               behavior: 'smooth',
+            });
+         }
+      }
+   }, []);
 
    React.useEffect(() => {
       const interval = setInterval(() => {
          setCurrentStep(prevStep => {
             const nextStep = prevStep < 5 ? prevStep + 1 : 1;
-
-            const container = scrollContainerRef.current;
-            if (container) {
-               if (typeof document === 'undefined') return prevStep;
-
-               const activeElement = document.getElementById(
-                  `step-${nextStep - 1}`,
-               );
-               if (activeElement) {
-                  const containerWidth = container.offsetWidth;
-                  const elementOffset = activeElement.offsetLeft;
-                  const elementWidth = activeElement.offsetWidth;
-
-                  container.scrollTo({
-                     left: elementOffset - (containerWidth - elementWidth) / 2,
-                     behavior: 'smooth',
-                  });
-               }
-            }
-
+            scrollToStep(nextStep);
             return nextStep;
          });
       }, 2000);
 
       return () => clearInterval(interval);
-   }, []);
-
+   }, [scrollToStep]);
    return (
       <section className={scss.Main}>
          <div className={scss.pre_main}>
@@ -75,17 +73,16 @@ const StepsHajjSection = () => {
                               className={`${scss.block} ${
                                  isActive ? scss.active : scss.inactive
                               }`}
-                              style={{
-                                 background: colors[index + 1],
-                              }}
+                              style={{ background: colors[index + 1] }}
                            >
                               <h2>{step.title}</h2>
                               <Image
                                  src={Assets.Images.HadjStages[index]}
                                  alt={`Stage - ${index}`}
-                                 width={700}
-                                 height={300}
+                                 width={130}
+                                 height={130}
                                  priority={isActive}
+                                 className={scss.image}
                               />
                            </div>
                         );
@@ -96,6 +93,7 @@ const StepsHajjSection = () => {
          </div>
       </section>
    );
-};
+});
 
+StepsHajjSection.displayName = 'StepsHajjSection';
 export default StepsHajjSection;
