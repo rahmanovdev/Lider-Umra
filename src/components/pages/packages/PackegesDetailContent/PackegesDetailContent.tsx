@@ -14,6 +14,7 @@ const PackegesDetailContent = () => {
    const id = Number(params.id);
 
    const { data: tourData, isLoading, error } = useGetTourByIdQuery(id);
+   
 
    if (isLoading) {
       return <Loading />;
