@@ -6,6 +6,7 @@ import { useGetBlogsQuery } from '@/redux/api/blogs';
 import { useTranslations } from 'next-intl';
 import Loading from '@/components/ui/loading/Loading';
 import Failed from '@/components/ui/failed/Failed';
+import Link from 'next/link'
 
 const InformationSection = memo(() => {
    const t = useTranslations();
@@ -23,7 +24,7 @@ const InformationSection = memo(() => {
                ) : (
                   <div className={scss.main_card}>
                      {data?.map(blog => (
-                        <div key={blog.id || blog.title} className={scss.card}>
+                        <Link href={`/usefulinfo/${blog.id}`} key={blog.id || blog.title} className={scss.card}>
                            <div className={scss.imageWrapper}>
                               <Image
                                  src={blog.image}
@@ -39,7 +40,7 @@ const InformationSection = memo(() => {
                               className={scss.textOverlay}
                               dangerouslySetInnerHTML={{ __html: blog.title }}
                            />
-                        </div>
+                        </Link>
                      ))}
                      
                   </div>
