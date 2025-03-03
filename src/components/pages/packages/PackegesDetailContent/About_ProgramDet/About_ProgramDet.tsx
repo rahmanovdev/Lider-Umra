@@ -3,12 +3,13 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import scss from './About_ProgramDet.module.scss';
 import { Assets } from '@/assets';
+import React, { memo } from 'react';
 
 interface AboutProgramDetProps {
    tourData: TOURS.ITourPackages;
 }
 
-const About_ProgramDet = ({}: AboutProgramDetProps) => {
+const About_ProgramDet = memo<AboutProgramDetProps>(({ tourData }) => {
    const t = useTranslations('packages.detail.about_ProgramDet');
 
    return (
@@ -26,13 +27,14 @@ const About_ProgramDet = ({}: AboutProgramDetProps) => {
                   />
                </div>
                <div className={scss.about_text}>
-                  <h1>{t('title')}</h1>
-                  <p>{t('description')}</p>
+                  <h1>{tourData.title || t('title')}</h1>{' '}
+                  <p>{tourData.description || t('description')}</p>{' '}
                </div>
             </div>
          </div>
       </section>
    );
-};
+});
 
+About_ProgramDet.displayName = 'About_ProgramDet';
 export default About_ProgramDet;
