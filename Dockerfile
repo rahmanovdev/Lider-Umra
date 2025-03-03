@@ -20,7 +20,7 @@ COPY --from=builder /app/bun.lock* ./bun.lock*
 COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
+ENV NEXT_PUBLIC_API_URL=http://147.45.159.88/api
+ENV NEXT_PUBLIC_APP_URL=https://constant-pauly-ijanybekov-0c885777.koyeb.app
 
 CMD ["bun", "run", "start"]
