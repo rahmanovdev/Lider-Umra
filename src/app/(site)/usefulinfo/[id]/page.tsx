@@ -13,7 +13,7 @@ export async function generateMetadata(props: {
    const defaultDescription = t.raw('descriptions.base');
 
    try {
-      const data = (await getBlogs()) as BLOG.Blog[];
+      const data = (await getBlogs()) as { id: number; title: string }[];
       const current = data?.find(v => v.id === parseInt(params.id));
 
       if (!current?.title) {

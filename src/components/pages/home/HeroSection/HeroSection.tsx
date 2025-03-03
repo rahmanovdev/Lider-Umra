@@ -27,9 +27,7 @@ const HeroButtons = memo(() => {
    const t = useTranslations('hero.buttons');
    return (
       <div className={scss.hero_btn}>
-         <Link href='/packages' className={scss.btn_tours}>
-            {t('tour')}
-         </Link>
+         <Link href='/packages'>{t('tour')}</Link>
       </div>
    );
 });

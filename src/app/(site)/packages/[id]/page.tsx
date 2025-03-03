@@ -15,15 +15,18 @@ export async function generateMetadata(props: {
    const defaultDescription = t.raw('descriptions.base');
 
    try {
-      const data = (await getPackages()) as TOURS.ITourPackages[];
+      const data = (await getPackages()) as {
+         id: number
+         name: string;
+      }[];
       const current = data?.find(v => v.id === parseInt(params.id));
 
-      if (!current?.title) {
+      if (!current?.name) {
          throw new Error('Некорректные данные от API');
       }
 
-      const title = defaultTitle.replace('{title}', current.title);
-      const description = defaultDescription.replace('{title}', current.title);
+      const title = defaultTitle.replace('{title}', current.name);
+      const description = defaultDescription.replace('{title}', current.name);
 
       return {
          title,
