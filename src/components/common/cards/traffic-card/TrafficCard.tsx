@@ -13,9 +13,11 @@ type TProps = {
 
 const StarRating = memo<{ count: number }>(({ count }) => (
    <div className={scss.starRating}>
-      {Array.from({ length: count }, (_, index) => (
-         <FaStar key={index} className={scss.star} />
-      ))}
+      {Array(count)
+         .fill(0)
+         .map((_, index) => (
+            <FaStar key={index} className={scss.star} />
+         ))}
    </div>
 ));
 StarRating.displayName = 'StarRating';
@@ -31,11 +33,7 @@ const TrafficCard = memo<TProps>(({ tour }) => {
       () => formatDate(tour.tour_date.end_tour),
       [tour.tour_date.end_tour],
    );
-   const starCount = useMemo(
-      () => (tour.category.name === 'Комфорт +' ? 5 : 4),
-      [tour.category.name],
-   );
-
+   const starCount = tour.category.name === 'Комфорт +' ? 5 : 4;
    const placeLabel = tour.place === 'Osh' ? 'Ош' : 'Бишкек';
    const monthLocale = locale === 'kg' ? 'kg' : 'ru';
 
@@ -69,38 +67,38 @@ const TrafficCard = memo<TProps>(({ tour }) => {
          <div className={scss.img_block}>
             <CImage
                src={tour.image}
-               alt={`Tilte - ${tour.title}`}
+               alt={`Title - ${tour.title}`}
                fill
                sizes='(max-width: 768px) 75vw, (max-width: 440px) 95vw, 400px'
                className={scss.image}
             />
          </div>
          <div className={scss.card_container}>
-            <div className={scss.line}>
-               <h4>{t('ajy')}</h4>
-               <h5>{tour.ajy.name}</h5>
-            </div>
-            <hr className={scss.divider} />
-            <div className={scss.line}>
-               <h4>{t('category')}</h4>
-               <h5>{tour.category.name}</h5>
-            </div>
-            <hr className={scss.divider} />
-            <div className={scss.line}>
-               <h4>{t('seats')}</h4>
-               <h5>{tour.available_seats} мест</h5>
-            </div>
-            <hr className={scss.divider} />
-            <div className={scss.line}>
-               <h4>{t('duration')}</h4>
-               <h5>{tour.tour_date.duration} дней</h5>
-            </div>
-            <hr className={scss.divider} />
-            <div className={scss.line}>
-               <h4>{t('hotelCategory')}</h4>
-               <StarRating count={starCount} />
-            </div>
-            <hr className={scss.divider} />
+            {[
+               { label: t('ajy'), value: tour.ajy.name },
+               { label: t('category'), value: tour.category.name },
+               { label: t('seats'), value: `${tour.available_seats} мест` },
+               {
+                  label: t('duration'),
+                  value: `${tour.tour_date.duration} дней`,
+               },
+               {
+                  label: t('hotelCategory'),
+                  value: <StarRating count={starCount} />,
+               },
+            ].map((item, index) => (
+               <React.Fragment key={index}>
+                  <div className={scss.line}>
+                     <h4>{item.label}</h4>
+                     {typeof item.value === 'string' ? (
+                        <h5>{item.value}</h5>
+                     ) : (
+                        item.value
+                     )}
+                  </div>
+                  {index < 4 && <hr className={scss.divider} />}
+               </React.Fragment>
+            ))}
          </div>
          <div className={scss.link}>
             <Link href={`/packages/${tour.id}`}>{t('details')}</Link>

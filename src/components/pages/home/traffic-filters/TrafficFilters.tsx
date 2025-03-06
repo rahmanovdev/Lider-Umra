@@ -3,7 +3,6 @@ import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import styles from './TrafficFilters.module.scss';
 import clsx from 'clsx';
 import { useLocale, useTranslations } from 'next-intl';
-import { months } from '@/utils/format-date';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useClickAway } from '@/hooks/use-click-away';
 
@@ -24,12 +23,6 @@ interface TrafficFiltersProps {
    value: string;
 }
 
-const options = [
-   { value: 'all', label: 'All' },
-   { value: 'bishkek', label: 'Bishkek' },
-   { value: 'osh', label: 'Osh' },
-];
-
 const TrafficFilters = memo<TrafficFiltersProps>(
    ({ onFilterChange, dates, value }) => {
       const searchParams = useSearchParams();
@@ -39,7 +32,19 @@ const TrafficFilters = memo<TrafficFiltersProps>(
       const [isOpen, setIsOpen] = useState(false);
       const selectRef = useRef<HTMLDivElement>(null);
 
+      const defaultMonth = locale === 'ru' ? 'Все' : 'Баары';
+      const place = searchParams.get('place') || 'all';
+
       useClickAway(() => setIsOpen(false), selectRef);
+
+      const options = useMemo(
+         () => [
+            { value: 'all', label: defaultMonth },
+            { value: 'bishkek', label: 'Бишкек' },
+            { value: 'osh', label: 'Ош' },
+         ],
+         [defaultMonth],
+      );
 
       const handleSelect = useCallback(
          (optionValue: string) => {
@@ -51,54 +56,32 @@ const TrafficFilters = memo<TrafficFiltersProps>(
          [router, searchParams],
       );
 
-      const handleClick = useCallback(
-         (key: string) => {
-            onFilterChange(key);
-         },
-         [onFilterChange],
-      );
-
-      const ValuesKey = useMemo(() => {
-         const uniqueDateKeys = Array.from(
-            new Set(
-               dates.map(date => {
-                  const month =
-                     date.start.month[locale as 'kg' | 'ru'].toLowerCase();
-                  const year = date.start.year || 'default';
-                  return `${month}-${year}-${date.start.month.value}`;
-               }),
-            ),
-         );
-
-         const dynamicValues: Record<string, { desc: string; year?: string }> =
+      const uniqueMonths = useMemo(() => {
+         const monthSet = new Set<string>();
+         const result = [
             {
-               all: {
-                  desc: locale === 'kg' ? 'Бардык пакеттер' : 'Все пакеты',
-               },
-            };
-         uniqueDateKeys.forEach(dateKey => {
-            const [month, year, value] = dateKey.split('-');
-            const monthData = months.find(
-               m => m[locale as 'kg' | 'ru'].toLowerCase() === month,
-            ) || {
-               kg: month,
-               ru: month,
-            };
-            dynamicValues[value] = {
-               desc: monthData[locale as 'kg' | 'ru'],
-               year,
-            };
+               value: 'all',
+               label: locale === 'kg' ? 'Бардык пакеттер' : 'Все пакеты',
+            },
+         ];
+
+         dates.forEach(date => {
+            const monthValue = date.start.month.value;
+            if (!monthSet.has(monthValue)) {
+               monthSet.add(monthValue);
+               result.push({
+                  value: monthValue,
+                  label: date.start.month[locale as 'kg' | 'ru'],
+               });
+            }
          });
 
-         return dynamicValues;
+         return result;
       }, [dates, locale]);
 
       const yearRange = useMemo(() => {
          if (!dates.length) return '';
-         const years = [
-            ...dates.map(date => date.start.year),
-            ...dates.map(date => date.end.year),
-         ];
+         const years = dates.flatMap(date => [date.start.year, date.end.year]);
          const minYear = Math.min(...years);
          const maxYear = Math.max(...years);
          return minYear === maxYear
@@ -106,12 +89,10 @@ const TrafficFilters = memo<TrafficFiltersProps>(
             : `${minYear}-${maxYear}`;
       }, [dates]);
 
-      const selectedOptionLabel = useMemo(() => {
-         return (
-            options.find(opt => opt.value === searchParams.get('place'))
-               ?.label || 'All'
-         );
-      }, [searchParams]);
+      const selectedOptionLabel = useMemo(
+         () => options.find(opt => opt.value === place)?.label || defaultMonth,
+         [options, place, defaultMonth],
+      );
 
       return (
          <div className={styles.traffic_filters}>
@@ -120,13 +101,15 @@ const TrafficFilters = memo<TrafficFiltersProps>(
                   {t('title')} {yearRange}
                </h1>
                <div className={styles.container}>
-                  {Object.keys(ValuesKey).map(key => (
+                  {uniqueMonths.map(({ value: monthValue, label }) => (
                      <button
-                        key={key}
-                        onClick={() => handleClick(key)}
-                        className={clsx({ [styles.active]: value === key })}
+                        key={monthValue}
+                        onClick={() => onFilterChange(monthValue)}
+                        className={clsx({
+                           [styles.active]: value === monthValue,
+                        })}
                      >
-                        {ValuesKey[key].desc}
+                        {label}
                      </button>
                   ))}
                </div>
