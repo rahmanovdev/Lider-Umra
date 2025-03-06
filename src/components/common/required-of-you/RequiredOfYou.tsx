@@ -2,11 +2,11 @@
 import React from 'react';
 import styles from './RequiredOfYou.module.scss';
 import clsx from 'clsx';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { FaPassport, FaUserCircle } from 'react-icons/fa';
 import { FaUserGroup } from 'react-icons/fa6';
 import { Assets } from '@/assets'
+import CImage from '@/components/ui/cimage/CImage'
 
 const RequiredOfYou: React.FC = () => {
 	const t = useTranslations('aboutUs');
@@ -56,7 +56,7 @@ const RequiredOfYou: React.FC = () => {
 					</div>
 				</div>
 				<figure data-figure className={styles.image}>
-					<Image
+					<CImage
 						width={408}
 						height={500}
 						alt='adli wahid'

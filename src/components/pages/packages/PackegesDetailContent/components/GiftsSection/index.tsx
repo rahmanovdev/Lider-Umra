@@ -1,14 +1,15 @@
 'use client';
+import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
+import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
 import { Package } from '@/redux/api/tour-details/types';
 import { useState } from 'react';
 import { Modal } from '../shared/Modal';
-import { ImageSlider } from '../shared/ImageSlider';
+import Slider from '../shared/Slider';
 import styles from './styles.module.scss';
-import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
-import Loading from '@/components/ui/loading/Loading';
-import Failed from '@/components/ui/failed/Failed';
+import dynamic from 'next/dynamic'
 
-export const GiftsSection: React.FC = () => {
+const GiftsSection_: React.FC = () => {
    const [selectedGift, setSelectedGift] = useState<Package.Gift | null>(null);
    const {
       data: gifts,
@@ -51,12 +52,11 @@ export const GiftsSection: React.FC = () => {
                   return (
                      <article key={gift.id} className={styles.giftCard}>
                         <div className={styles.giftSliderWrapper}>
-                           <ImageSlider
-                              images={
-                                 gift.images.length > 0
-                                    ? gift.images
-                                    : ['/images/gift-placeholder.jpg']
-                              }
+                           <Slider
+                              slides={gift.images.map((v: string) => ({
+                                 src: v,
+                                 type: 'image',
+                              }))}
                               showDots={false}
                            />
                         </div>
@@ -108,4 +108,9 @@ export const GiftsSection: React.FC = () => {
    );
 };
 
-export default GiftsSection;
+export default GiftsSection_;
+
+export const GiftsSection = dynamic(() => import('.'), {
+   ssr: false,
+   loading: () => <Loading />,
+});

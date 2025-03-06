@@ -10,7 +10,7 @@ import { useLocale } from 'next-intl';
 import Loading from '@/components/ui/loading/Loading';
 import ImageLightbox from '@/components/ui/image-lighbox/ImageLightbox';
 import Failed from '@/components/ui/failed/Failed';
-import Image from 'next/image';
+import CImage from '@/components/ui/cimage/CImage'
 
 const GalleryContent = memo(() => {
    const { width: sizeWidth } = useSize();
@@ -70,7 +70,7 @@ const GalleryContent = memo(() => {
                                     scss[`fr-${item.fr}`],
                                  )}
                               >
-                                 <Image
+                                 <CImage
                                     src={item.item.photo}
                                     alt={'Gallery image'}
                                     width={520}

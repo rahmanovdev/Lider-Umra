@@ -1,14 +1,15 @@
 'use client';
-import styles from './styles.module.scss';
-import { ImageSlider } from '../shared/ImageSlider';
-import { useParams } from 'next/navigation';
+import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
 import { useGetTourByIdQuery } from '@/redux/api/tour';
 import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
+import { useParams } from 'next/navigation';
 import React from 'react';
-import Loading from '@/components/ui/loading/Loading';
-import Failed from '@/components/ui/failed/Failed';
+import styles from './styles.module.scss';
+import Slider from '../shared/Slider';
+import dynamic from 'next/dynamic';
 
-export const FoodSection: React.FC = () => {
+const FoodSection_: React.FC = () => {
    const params = useParams();
    const tourId = Number(params.id);
 
@@ -44,7 +45,12 @@ export const FoodSection: React.FC = () => {
             <article key={food.id} className={styles.foodContent}>
                <div className={styles.foodSlider}>
                   {food.images && food.images.length > 0 ? (
-                     <ImageSlider images={food.images} />
+                     <Slider
+                        slides={food.images.map((image: string) => ({
+                           src: image,
+                           type: 'image',
+                        }))}
+                     />
                   ) : (
                      <div className={styles.noImage}>Сүрөт жок</div>
                   )}
@@ -61,3 +67,9 @@ export const FoodSection: React.FC = () => {
       </section>
    );
 };
+export default FoodSection_;
+
+export const FoodSection = dynamic(() => import('.'), {
+   ssr: false,
+   loading: () => <Loading />,
+});

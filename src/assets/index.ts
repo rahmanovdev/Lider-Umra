@@ -33,8 +33,8 @@ import Stage4 from './images/hadj-stages/stage4.png';
 import Stage5 from './images/hadj-stages/stage5.png';
 
 import IAntLogo from './global/iant-logo.jpg';
-import Kyrgyzstan from './global/kyrgyzstan.png';
-import Russia from './global/russian.png';
+import Kyrgyzstan from './global/kyrgyzstan.svg';
+import Russia from './global/russian.svg';
 
 
 const Icons = {

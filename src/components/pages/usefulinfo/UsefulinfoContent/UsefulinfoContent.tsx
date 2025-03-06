@@ -1,11 +1,11 @@
 'use client';
 import { useGetBlogsQuery } from '@/redux/api/blogs';
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from './UsefulinfoContent.module.scss';
 import { useSize } from '@/hooks/use-size';
 import { generateRows } from '@/utils/generate-rows.util';
 import Failed from '@/components/ui/failed/Failed';
+import CImage from '@/components/ui/cimage/CImage';
 
 const UsefulinfoContent = () => {
    const { data: blogs, isLoading, error } = useGetBlogsQuery();
@@ -33,7 +33,7 @@ const UsefulinfoContent = () => {
                            row.length == 1 && styles.is_one
                         } ${styles.item}`}
                      >
-                        <Image
+                        <CImage
                            src={item.item.image || '/images/placeholder.jpg'}
                            alt={`${item.item.image} ${index}`}
                            width={375}

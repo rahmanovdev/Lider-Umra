@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import scss from './VideoSection.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,6 +9,7 @@ import Loading from '@/components/ui/loading/Loading';
 import { useLocale } from 'next-intl';
 import Failed from '@/components/ui/failed/Failed';
 import { GoArrowRight } from 'react-icons/go';
+import CImage from '@/components/ui/cimage/CImage'
 
 const VideoSection = () => {
    const { data = [], isLoading, error } = useGetLessonsQuery();
@@ -66,7 +66,7 @@ const VideoSection = () => {
                               target='_blank'
                               className={scss.videoLink}
                            >
-                              <Image
+                              <CImage
                                  src={
                                     getYouTubeThumbnail(video.video_url) ||
                                     '/default-thumbnail.jpg'

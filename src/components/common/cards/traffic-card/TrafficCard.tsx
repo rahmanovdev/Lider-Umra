@@ -1,11 +1,11 @@
 'use client';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { memo, useMemo } from 'react';
 import scss from './TrafficCard.module.scss';
 import { FaStar } from 'react-icons/fa';
 import { useLocale, useTranslations } from 'next-intl';
 import { formatDate } from '@/utils/format-date';
+import CImage from '@/components/ui/cimage/CImage'
 
 type TProps = {
    tour: TOURS.ITourPackages;
@@ -67,7 +67,7 @@ const TrafficCard = memo<TProps>(({ tour }) => {
             </div>
          </div>
          <div className={scss.img_block}>
-            <Image
+            <CImage
                src={tour.image}
                alt={`Tilte - ${tour.title}`}
                fill

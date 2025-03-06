@@ -1,9 +1,9 @@
 'use client';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import scss from './About_ProgramDet.module.scss';
 import { Assets } from '@/assets';
 import React, { memo } from 'react';
+import CImage from '@/components/ui/cimage/CImage'
 
 interface AboutProgramDetProps {
    tourData: TOURS.ITourPackages;
@@ -17,7 +17,7 @@ const About_ProgramDet = memo<AboutProgramDetProps>(({ tourData }) => {
          <div className='container'>
             <div className={scss.content}>
                <div className={scss.program_left}>
-                  <Image
+                  <CImage
                      width={700}
                      height={500}
                      priority

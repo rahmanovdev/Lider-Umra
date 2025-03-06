@@ -11,13 +11,13 @@ export const months: { kg: string; ru: string; value: string }[] = [
    { kg: 'Октябрь', ru: 'Октябрь', value: 'october' },
    { kg: 'Ноябрь', ru: 'Ноябрь', value: 'november' },
    { kg: 'Декабрь', ru: 'Декабрь', value: 'december' },
-]
+];
 
 export const formatDate = (dateString: string) => {
-   const date = new Date(dateString)
+   const date = new Date(dateString);
    return {
       day: date.getDate(),
       month: months[date.getMonth()],
       year: date.getFullYear(),
-   }
-}
+   };
+};

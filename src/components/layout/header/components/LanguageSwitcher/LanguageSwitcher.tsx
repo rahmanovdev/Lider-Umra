@@ -28,7 +28,7 @@ const LanguageSwitcher: React.FC = () => {
 
    return (
       <div
-         suppressContentEditableWarning
+         suppressHydrationWarning
          className={scss.language}
          onMouseEnter={() => setIsOpen(true)}
          onMouseLeave={() => setIsOpen(false)}
@@ -58,8 +58,9 @@ const LanguageSwitcher: React.FC = () => {
                   <Image
                      src={lang.flag}
                      alt={lang.code}
-                     width={20}
+                     width={35}
                      height={20}
+                     quality={90}
                   />
                   {lang.name}
                </button>

@@ -1,7 +1,8 @@
 'use client';
 import React, { memo, useState, useCallback } from 'react';
 import scss from './ModalClient.module.scss';
-
+import { IoClose } from 'react-icons/io5';
+import { AnimatePresence, motion } from 'framer-motion';
 interface ModalProps {
    isOpen: boolean;
    onClose: () => void;
@@ -112,95 +113,110 @@ export const ModalClient = memo<ModalProps>(
          [formData, onSubmit, tourData, onClose],
       );
 
-      if (!isOpen) return null;
-
       return (
-         <div className={scss.modalOverlay}>
-            <div className={scss.modal}>
-               <div className={scss.modalHeader}>
-                  <div className={scss.title}>{title}</div>
-                  <button onClick={onClose} className={scss.closeButton}>
-                     ×
-                  </button>
-               </div>
-               {tourData && tourData.startDate && tourData.endDate && (
-                  <div className={scss.content}>
-                     <div className={scss.date_range}>
-                        <div className={scss.date_item}>
-                           <div className={scss.month_year}>
-                              <h1>{tourData.startDate.split(' ')[0]}</h1>
-                              <div className={scss.month}>
-                                 <h5>{tourData.startDate.split(' ')[1]}</h5>
-                                 <h5>{tourData.startDate.split(' ')[2]}</h5>
-                              </div>
-                           </div>
-                        </div>
-                        <div className={scss.line} />
-                        <div className={scss.date_item}>
-                           <div className={scss.month_year}>
-                              <h1>{tourData.endDate.split(' ')[0]}</h1>
-                              <div className={scss.month}>
-                                 <h5>{tourData.endDate.split(' ')[1]}</h5>
-                                 <h5>{tourData.endDate.split(' ')[2]}</h5>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <form onSubmit={handleSubmit} className={scss.form}>
-                        <div className={scss.formGroup}>
-                           <input
-                              type='text'
-                              name='full_name'
-                              placeholder='Сиздин атыңыз *'
-                              value={formData.full_name}
-                              onChange={handleChange}
-                              required
-                           />
-                        </div>
-                        <div className={scss.formGroup}>
-                           <input
-                              type='tel'
-                              name='phone'
-                              placeholder='+996 555 123 456'
-                              value={formData.phone}
-                              onChange={handleChange}
-                              onBlur={handlePhoneBlur}
-                              required
-                           />
-                           {phoneError && (
-                              <span className={scss.errorText}>
-                                 {phoneError}
-                              </span>
-                           )}
-                        </div>
-                        <div className={scss.formGroup}>
-                           <input
-                              type='text'
-                              name='country'
-                              placeholder='Сиздин өлкөңүз *'
-                              value={formData.country}
-                              onChange={handleChange}
-                              required
-                           />
-                        </div>
-                        <div className={scss.formGroup}>
-                           <input
-                              type='text'
-                              name='city'
-                              placeholder='Сиздин шаарыңыз *'
-                              value={formData.city}
-                              onChange={handleChange}
-                              required
-                           />
-                        </div>
-                        <button type='submit' className={scss.submitButton}>
-                           Арыз берүү
+         <AnimatePresence initial={false}>
+            {isOpen && (
+               <motion.div
+                  initial={{ opacity: 0, scale: 0.99 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.99 }}
+                  transition={{ duration: 0.3 }}
+                  className={scss.modalOverlay}
+               >
+                  <div className={scss.modal}>
+                     <div className={scss.modalHeader}>
+                        <div className={scss.title}>{title}</div>
+                        <button onClick={onClose} className={scss.closeButton}>
+                           <IoClose />
                         </button>
-                     </form>
+                     </div>
+                     {tourData && tourData.startDate && tourData.endDate && (
+                        <div className={scss.content}>
+                           <div className={scss.date_range}>
+                              <div className={scss.date_item}>
+                                 <div className={scss.month_year}>
+                                    <h1>{tourData.startDate.split(' ')[0]}</h1>
+                                    <div className={scss.month}>
+                                       <h5>
+                                          {tourData.startDate.split(' ')[1]}
+                                       </h5>
+                                       <h5>
+                                          {tourData.startDate.split(' ')[2]}
+                                       </h5>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div className={scss.line} />
+                              <div className={scss.date_item}>
+                                 <div className={scss.month_year}>
+                                    <h1>{tourData.endDate.split(' ')[0]}</h1>
+                                    <div className={scss.month}>
+                                       <h5>{tourData.endDate.split(' ')[1]}</h5>
+                                       <h5>{tourData.endDate.split(' ')[2]}</h5>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <form onSubmit={handleSubmit} className={scss.form}>
+                              <div className={scss.formGroup}>
+                                 <input
+                                    type='text'
+                                    name='full_name'
+                                    placeholder='Сиздин атыңыз *'
+                                    value={formData.full_name}
+                                    onChange={handleChange}
+                                    required
+                                 />
+                              </div>
+                              <div className={scss.formGroup}>
+                                 <input
+                                    type='tel'
+                                    name='phone'
+                                    placeholder='+996 555 123 456'
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    onBlur={handlePhoneBlur}
+                                    required
+                                 />
+                                 {phoneError && (
+                                    <span className={scss.errorText}>
+                                       {phoneError}
+                                    </span>
+                                 )}
+                              </div>
+                              <div className={scss.formGroup}>
+                                 <input
+                                    type='text'
+                                    name='country'
+                                    placeholder='Сиздин өлкөңүз *'
+                                    value={formData.country}
+                                    onChange={handleChange}
+                                    required
+                                 />
+                              </div>
+                              <div className={scss.formGroup}>
+                                 <input
+                                    type='text'
+                                    name='city'
+                                    placeholder='Сиздин шаарыңыз *'
+                                    value={formData.city}
+                                    onChange={handleChange}
+                                    required
+                                 />
+                              </div>
+                              <button
+                                 type='submit'
+                                 className={scss.submitButton}
+                              >
+                                 Арыз берүү
+                              </button>
+                           </form>
+                        </div>
+                     )}
                   </div>
-               )}
-            </div>
-         </div>
+               </motion.div>
+            )}
+         </AnimatePresence>
       );
    },
 );

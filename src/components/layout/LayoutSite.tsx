@@ -4,7 +4,6 @@ import Footer from './footer/Footer';
 import scss from './LayoutSite.module.scss';
 import { useSize } from '@/hooks/use-size';
 
-
 const LayoutSite: React.FC<React.PropsWithChildren> = ({ children }) => {
    const size = useSize('#header');
    return (

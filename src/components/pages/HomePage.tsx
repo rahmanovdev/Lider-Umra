@@ -1,18 +1,19 @@
 'use client';
+
 import { useGetToursQuery } from '@/redux/api/tour';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 import { GoArrowRight } from 'react-icons/go';
-import FAQ from '../common/faq/FAQ';
-import scss from './HomePage.module.scss';
-import AboutSection from './home/AboutSection/AboutSection';
 import HeroSection from './home/HeroSection/HeroSection';
-import InformationSection from './home/InformationSection/InformationSection';
-import QuestionsSection from './home/QuestionsSection/QuestionsSection';
-import StepsHajjSection from './home/StepsOfHajjSection/StepsHajjSection';
+import AboutSection from './home/AboutSection/AboutSection';
 import TrafficsSection from './home/TrafficsSection/TrafficsSection';
 import VideoSection from './home/VideoSection/VideoSection';
+import StepsHajjSection from './home/StepsOfHajjSection/StepsHajjSection';
+import QuestionsSection from './home/QuestionsSection/QuestionsSection';
+import InformationSection from './home/InformationSection/InformationSection';
+import FAQ from '../common/faq/FAQ';
+import scss from './HomePage.module.scss';
 
 const HomePage = () => {
    const t = useTranslations();
@@ -31,30 +32,25 @@ const HomePage = () => {
    }, [tours]);
 
    return (
-      <>
-         <div className={scss.HomePage}>
-            <HeroSection />
-            <AboutSection />
-            <TrafficsSection
-               isLoading={isLoading}
-               error={error}
-               tours={getLastThreeTours}
-            >
-               <Link
-                  href='/packages'
-                  className={scss.more + ' base-link-button'}
-               >
-                  {t('packages.allPackages')}
-                  <GoArrowRight />
-               </Link>
-            </TrafficsSection>
-            <VideoSection />
-            <StepsHajjSection />
-            <QuestionsSection />
-            <InformationSection />
-            <FAQ />
-         </div>
-      </>
+      <div className={scss.HomePage}>
+         <HeroSection />
+         <AboutSection />
+         <TrafficsSection
+            isLoading={isLoading}
+            error={error}
+            tours={getLastThreeTours}
+         >
+            <Link href='/packages' className={scss.more + ' base-link-button'}>
+               {t('packages.allPackages')}
+               <GoArrowRight />
+            </Link>
+         </TrafficsSection>
+         <VideoSection />
+         <StepsHajjSection />
+         <QuestionsSection />
+         <InformationSection />
+         <FAQ />
+      </div>
    );
 };
 

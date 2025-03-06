@@ -1,17 +1,19 @@
 'use client';
-import React, { useCallback, useMemo } from 'react';
-import styles from './PlacesSection.module.scss';
-import { Modal } from '../shared/Modal';
+import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
 import { useGetHotelsQuery } from '@/redux/api/hotels';
+import { useGetTourByIdQuery } from '@/redux/api/tour';
+import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
+import { Package } from '@/redux/api/tour-details/types';
+import { useParams } from 'next/navigation';
+import React, { useCallback, useMemo } from 'react';
 import { FaStar } from 'react-icons/fa';
 import PlaceCard from '../PlaceCard/PlaceCard';
-import { Package } from '@/redux/api/tour-details/types';
-import { ImageSlider } from '../shared/ImageSlider';
-import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
-import { useGetTourByIdQuery } from '@/redux/api/tour';
-import { useParams } from 'next/navigation';
-import Loading from '@/components/ui/loading/Loading';
-import Failed from '@/components/ui/failed/Failed';
+import { Modal } from '../shared/Modal';
+import Slider from '../shared/Slider';
+import styles from './PlacesSection.module.scss';
+import MapModal from '../MapModal';
+import dynamic from 'next/dynamic';
 
 const StarRating = ({ count }: { count: number }) => {
    return (
@@ -23,9 +25,12 @@ const StarRating = ({ count }: { count: number }) => {
    );
 };
 
-const PlacesSection = () => {
+const PlacesSection_ = () => {
    const [selectedPlace, setSelectedPlace] =
       React.useState<Package.Place | null>(null);
+   const [selectedHotel, setSelectedHotel] = React.useState<
+      'medina' | 'mecca' | null
+   >(null);
    const params = useParams();
    const id = Number(params.id);
 
@@ -60,18 +65,29 @@ const PlacesSection = () => {
       };
    }, [hotels]);
 
-   const getHotelImages = useCallback(
+   const getHotelMedia = useCallback(
       (hotelId: number) => {
          if (!hotels) return [];
 
-         return (
-            hotels
-               .find(h => h.id === hotelId)
-               ?.hotel_images?.map(img => img.image)
-               .filter(
-                  image =>
-                     image && typeof image === 'string' && image.trim() !== '',
-               ) || []
+         const hotel = hotels.find(h => h.id === hotelId);
+         if (!hotel) return [];
+
+         const images =
+            hotel.hotel_images?.map(img => ({
+               src: img.image,
+               type: 'image' as 'video',
+            })) || [];
+         const videos =
+            hotel.hotel_videos?.map(video => ({
+               src: video.image,
+               type: 'video' as 'image',
+            })) || [];
+
+         return [...images, ...videos].filter(
+            media =>
+               media.src &&
+               typeof media.src === 'string' &&
+               media.src.trim() !== '',
          );
       },
       [hotels],
@@ -86,110 +102,146 @@ const PlacesSection = () => {
    }
 
    return (
-      <div className={styles.placesContent}>
-         <h1>Проживание в отелях</h1>
-         <div className={styles.hotelContainer}>
-            {medinaHotel && (
-               <div className={styles.hostelContent}>
-                  <h2>Проживание в {medinaHotel.city_display}</h2>
-                  <div className={styles.imageCard}>
-                     <ImageSlider
-                        images={getHotelImages(medinaHotel.id)}
-                        height={400}
-                     />
-                     <h3 className={styles.hotelName}>
-                        {medinaHotel.name} (или аналог)
-                     </h3>
-                  </div>
-                  <div className={styles.infoGrid}>
-                     <div className={styles.infoItem}>
-                        <span>Расстояние до мечети Пророка</span>
-                        <span>{medinaHotel.distance_to_mosque}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Размещение</span>
-                        <span>{medinaHotel.accommodation}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Питание</span>
-                        <span>{medinaHotel.meals}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Количество ночей</span>
-                        <span>{medinaHotel.nights}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Категория отеля</span>
-                        <StarRating count={medinaHotel.stars} />
-                     </div>
-                  </div>
-               </div>
-            )}
-
-            {meccaHotel && (
-               <div className={styles.hostelContent}>
-                  <h2>Проживание в {meccaHotel.city_display}</h2>
-                  <div className={styles.imageCard}>
-                     <ImageSlider images={getHotelImages(meccaHotel.id)} />
-                     <h3 className={styles.hotelName}>
-                        {meccaHotel.name} (или аналог)
-                     </h3>
-                  </div>
-                  <div className={styles.infoGrid}>
-                     <div className={styles.infoItem}>
-                        <span>Расстояние до Аль-Харама</span>
-                        <span>{meccaHotel.distance_to_mosque}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Размещение</span>
-                        <span>{meccaHotel.accommodation}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Питание</span>
-                        <span>{meccaHotel.meals}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Количество ночей</span>
-                        <span>{meccaHotel.nights}</span>
-                     </div>
-                     <div className={styles.infoItem}>
-                        <span>Категория отеля</span>
-                        <StarRating count={meccaHotel.stars} />
-                     </div>
-                  </div>
-               </div>
-            )}
-         </div>
-
-         <div className={styles.othersPlaces}>
-            <h1>Места для посещения</h1>
-            <div className={styles.placesList}>
-               {places?.map(place => (
-                  <PlaceCard
-                     key={place.id}
-                     place={place}
-                     onOpen={() => setSelectedPlace(place)}
-                  />
-               ))}
-            </div>
-         </div>
-
-         {selectedPlace && (
-            <Modal
-               isOpen={!!selectedPlace}
-               onClose={() => setSelectedPlace(null)}
-               title={selectedPlace.title}
-               content={
-                  <div
-                     dangerouslySetInnerHTML={{
-                        __html: selectedPlace.description || '',
-                     }}
-                  />
-               }
+      <>
+         {selectedHotel !== null && (
+            <MapModal
+               state={selectedHotel}
+               onClose={() => setSelectedHotel(null)}
             />
          )}
-      </div>
+         <div className={styles.placesContent}>
+            <h1>Проживание в отелях</h1>
+            <div className={styles.hotelContainer}>
+               {meccaHotel && (
+                  <div className={styles.hostelContent}>
+                     <h2>Проживание в {meccaHotel.city_display}</h2>
+                     <div className={styles.imageCard}>
+                        <Slider
+                           sliderId={`mecca-${meccaHotel.id}`}
+                           slides={[
+                              ...getHotelMedia(meccaHotel.id),
+                              {
+                                 src: 'https://www.youtube.com/watch?v=upncYHG5EmM',
+                                 type: 'video',
+                              },
+                           ]}
+                           height={400}
+                        />
+                        <h3 className={styles.hotelName}>{meccaHotel.name}</h3>
+                     </div>
+                     <div className={styles.infoGrid}>
+                        <div className={styles.infoItem}>
+                           <span>Расстояние до Аль-Харама</span>
+                           <span>{meccaHotel.distance_to_mosque}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Размещение</span>
+                           <span>{meccaHotel.accommodation}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Питание</span>
+                           <span>{meccaHotel.meals}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Количество ночей</span>
+                           <span>{meccaHotel.nights}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Категория отеля</span>
+                           <StarRating count={meccaHotel.stars} />
+                        </div>
+                     </div>
+                     <div className={styles.showMap}>
+                        <button onClick={() => setSelectedHotel('mecca')}>
+                           Показать карту
+                        </button>
+                     </div>
+                  </div>
+               )}
+
+               {medinaHotel && (
+                  <div className={styles.hostelContent}>
+                     <h2>Проживание в {medinaHotel.city_display}</h2>
+                     <div className={styles.imageCard}>
+                        <Slider
+                           sliderId={`medina-${medinaHotel.id}`}
+                           slides={[
+                              ...getHotelMedia(medinaHotel.id),
+                              {
+                                 src: 'https://www.youtube.com/watch?v=upncYHG5EmM',
+                                 type: 'video',
+                              },
+                           ]}
+                           height={400}
+                        />
+                        <h3 className={styles.hotelName}>{medinaHotel.name}</h3>
+                     </div>
+                     <div className={styles.infoGrid}>
+                        <div className={styles.infoItem}>
+                           <span>Расстояние до Аль-Харама</span>
+                           <span>{medinaHotel.distance_to_mosque}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Размещение</span>
+                           <span>{medinaHotel.accommodation}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Питание</span>
+                           <span>{medinaHotel.meals}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Количество ночей</span>
+                           <span>{medinaHotel.nights}</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                           <span>Категория отеля</span>
+                           <StarRating count={medinaHotel.stars} />
+                        </div>
+                     </div>
+                     <div className={styles.showMap}>
+                        <button onClick={() => setSelectedHotel('medina')}>
+                           Показать карту
+                        </button>
+                     </div>
+                  </div>
+               )}
+            </div>
+
+            <div className={styles.othersPlaces}>
+               <h1>Места для посещения</h1>
+               <div className={styles.placesList}>
+                  {places?.map(place => (
+                     <PlaceCard
+                        key={place.id}
+                        place={place}
+                        onOpen={() => setSelectedPlace(place)}
+                     />
+                  ))}
+               </div>
+            </div>
+
+            {selectedPlace && (
+               <Modal
+                  isOpen={!!selectedPlace}
+                  onClose={() => setSelectedPlace(null)}
+                  title={selectedPlace.title}
+                  content={
+                     <div
+                        dangerouslySetInnerHTML={{
+                           __html: selectedPlace.description || '',
+                        }}
+                     />
+                  }
+               />
+            )}
+         </div>
+      </>
    );
 };
 
-export default PlacesSection;
+export default PlacesSection_;
+
+export const PlacesSection = dynamic(() => import('./PlaceSection'), {
+   ssr: false,
+   loading: () => <Loading />,
+});

@@ -1,12 +1,13 @@
 'use client';
-import styles from './styles.module.scss';
-import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
-import Loading from '@/components/ui/loading/Loading';
 import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
+import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
 import { Warning } from '../../types';
-import ImageSlider from '../shared/ImageSlider';
+import styles from './styles.module.scss';
+import Slider from '../shared/Slider';
+import dynamic from 'next/dynamic'
 
-export const WarningsSection: React.FC = () => {
+const WarningsSection_: React.FC = () => {
    const {
       data: warnings,
       isLoading,
@@ -35,7 +36,12 @@ export const WarningsSection: React.FC = () => {
                <article key={warning.id} className={styles.warningItem}>
                   {warning.images && (
                      <div className={styles.warningImageWrapper}>
-                        <ImageSlider images={warning.images} />
+                        <Slider
+                           slides={warning.images.map(v => ({
+                              src: v,
+                              type: 'image',
+                           }))}
+                        />
                      </div>
                   )}
                   <div className={styles.warningInfo}>
@@ -54,4 +60,9 @@ export const WarningsSection: React.FC = () => {
    );
 };
 
-export default WarningsSection;
+export default WarningsSection_;
+
+export const WarningsSection = dynamic(() => import('.'), {
+   ssr: false,
+   loading: () => <Loading />,
+});

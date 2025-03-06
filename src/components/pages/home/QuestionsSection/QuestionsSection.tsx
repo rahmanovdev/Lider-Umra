@@ -20,7 +20,6 @@ const QuestionsSection = () => {
                   <div className={scss.inputs}>
                      <input type='text' placeholder={t('name')} />
                      <input type='text' placeholder={t('phone')} />
-                     <input type='text' placeholder={t('email')} />
                      <button>{t('button')}</button>
                   </div>
                </div>

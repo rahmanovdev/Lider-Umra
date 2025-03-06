@@ -4,10 +4,10 @@ import scss from './UsefulinfoContentDetail.module.scss';
 import { motion } from 'framer-motion';
 import { useTimeLine } from '@/hooks/use-time-line';
 import { useGetBlogByIdQuery } from '@/redux/api/blogs';
-import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import Loading from '@/components/ui/loading/Loading';
 import Failed from '@/components/ui/failed/Failed';
+import CImage from '@/components/ui/cimage/CImage'
 
 const UsefulinfoContentDetail = () => {
    const params = useParams();
@@ -48,7 +48,7 @@ const UsefulinfoContentDetail = () => {
 
                         <div className={scss.contentWrapper}>
                            <figure className={scss['img-card']}>
-                              <Image
+                              <CImage
                                  src={item.image}
                                  alt='Image'
                                  width={350}
