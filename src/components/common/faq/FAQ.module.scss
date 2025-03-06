@@ -9,7 +9,7 @@
 }
 
 .title {
-   font-size: 34px;
+   font-size: 30px;
    font-weight: 700;
    margin-bottom: 40px;
    letter-spacing: 0.5px;
@@ -17,6 +17,12 @@
    @media (max-width: 768px) {
       font-size: 26px;
       margin-bottom: 24px;
+      letter-spacing: 0.3px;
+   }
+
+     @media (max-width: 420px) {
+      font-size: 24px;
+      margin-bottom: 20px;
       letter-spacing: 0.3px;
    }
 }

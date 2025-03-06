@@ -25,11 +25,7 @@
    --video-title-padding: 0.5rem;
 
    padding: var(--video-padding) 0;
-   background: linear-gradient(
-      135deg,
-      var(--gradient-start) 0%,
-      var(--gradient-end) 100%
-   );
+   background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
    display: flex;
    flex-direction: column;
 
@@ -49,6 +45,7 @@
          grid-template-columns: var(--grid-template-columns);
          gap: var(--grid-gap);
          padding: 0 var(--grid-padding);
+
          .item {
             border-radius: var(--item-border-radius);
             overflow: hidden;
@@ -71,6 +68,10 @@
             &:hover {
                transform: translateY(-5px);
                box-shadow: var(--item-hover-shadow);
+
+               .video {
+                  filter: brightness(var(--media-hover-brightness));
+               }
             }
 
             .video {
@@ -82,12 +83,6 @@
                border: none;
                filter: brightness(var(--media-brightness));
                transition: all 0.25s;
-            }
-
-            &:hover {
-               .video {
-                  filter: brightness(var(--media-hover-brightness));
-               }
             }
 
             .videoTitle {
@@ -116,40 +111,31 @@
          padding: var(--no-items-padding);
       }
    }
-}
 
-@media (max-width: 1090px) {
-   .LessonsContent {
+   @media (max-width: 1090px) {
       --grid-template-columns: repeat(2, 1fr);
       --fr-2-width: 98%;
       --grid-gap: 30px;
    }
-}
 
-@media (max-width: 920px) {
-   .LessonsContent {
+   @media (max-width: 920px) {
       --fr-2-width: 100%;
       --grid-gap: 15px;
    }
-}
 
-@media (max-width: 768px) {
-   .LessonsContent {
+   @media (max-width: 768px) {
       --grid-gap: 0.8rem;
       --media-height: 180px;
    }
-}
 
-@media (max-width: 480px) {
-   .LessonsContent {
+   @media (max-width: 480px) {
       --media-height: 260px;
 
-      .content {
-         .grid {
-            grid-template-columns: 1fr;
-            .item {
-               width: 100%;
-            }
+      .content .grid {
+         grid-template-columns: 1fr;
+
+         .item {
+            width: 100%;
          }
       }
    }

@@ -3,94 +3,79 @@ import { useGetToursQuery } from '@/redux/api/tour';
 import TrafficsSection from '../../home/TrafficsSection/TrafficsSection';
 import TrafficFilters from '../../home/traffic-filters/TrafficFilters';
 import scss from './PackegesContent.module.scss';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Loading from '@/components/ui/loading/Loading';
-import { formatDate, months } from '@/utils/format-date';
 import Failed from '@/components/ui/failed/Failed';
 import { useSearchParams } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import { formatDate, months } from '@/utils/format-date';
 
 const PackegesContent = () => {
    const { data: tours = [], isLoading, error } = useGetToursQuery();
-   const sp = useSearchParams();
-   const [currentFilter, setCurrentFilter] = useState({
-      month: 'all',
-      place: sp.get('place')?.toLowerCase() || 'all',
+   const searchParams = useSearchParams();
+   const locale = useLocale();
+   const defaultMonth = locale === 'ru' ? 'Все' : 'Баары';
+   const [filter, setFilter] = useState({
+      month: defaultMonth,
+      place: searchParams.get('place')?.toLowerCase() || 'all',
    });
 
    React.useEffect(() => {
-      const place = sp.get('place')?.toLowerCase() || 'all';
-      setCurrentFilter(prev => ({
-         ...prev,
-         place,
-      }));
-   }, [sp]);
+      const place = searchParams.get('place')?.toLowerCase() || 'all';
+      if (place !== filter.place) {
+         setFilter(prev => ({ ...prev, place }));
+      }
+   }, [searchParams, filter.place]);
 
-   const getFilteredTours = React.useCallback(() => {
+   const filteredTours = useMemo(() => {
       if (!Array.isArray(tours)) return [];
 
-      const sortedTours = [...tours].sort(
-         (a, b) =>
-            new Date(b.tour_date.start_tour).getTime() -
-            new Date(a.tour_date.start_tour).getTime(),
-      );
+      let result = [...tours].sort((a, b) => {
+         const dateA = new Date(a.tour_date.start_tour).getTime();
+         const dateB = new Date(b.tour_date.start_tour).getTime();
+         return dateB - dateA;
+      });
 
-      let filteredTours = sortedTours;
-
-      if (currentFilter.month !== 'all') {
-         const monthIndex = months.findIndex(
-            month => month.value === currentFilter.month,
-         );
-
+      if (filter.month !== defaultMonth) {
+         const monthIndex = months.findIndex(m => m.value === filter.month);
          if (monthIndex !== -1) {
-            filteredTours = filteredTours.filter(tour => {
-               const tourDate = new Date(tour.tour_date.start_tour);
-               const tourMonth = tourDate.getMonth();
-               return tourMonth === monthIndex;
-            });
+            result = result.filter(
+               tour =>
+                  new Date(tour.tour_date.start_tour).getMonth() === monthIndex,
+            );
          }
       }
 
-      if (currentFilter.place !== 'all') {
-         filteredTours = filteredTours.filter(tour =>
-            tour.place.toLowerCase().includes(currentFilter.place),
+      if (filter.place !== 'all') {
+         result = result.filter(tour =>
+            tour.place.toLowerCase().includes(filter.place),
          );
       }
 
-      return filteredTours;
-   }, [currentFilter, tours]);
+      return result;
+   }, [tours, filter, defaultMonth]);
 
-   const dates = React.useMemo(
+   const tourDates = useMemo(
       () =>
-         tours.map(v => ({
-            start: formatDate(v.tour_date.start_tour),
-            end: formatDate(v.tour_date.end_tour),
+         filteredTours.map(tour => ({
+            start: formatDate(tour.tour_date.start_tour),
+            end: formatDate(tour.tour_date.end_tour),
          })),
-      [tours],
+      [filteredTours],
    );
 
-   if (isLoading) {
-      return <Loading />;
-   }
-
-   if (error) {
-      return <Failed error={error} />;
-   }
+   if (isLoading) return <Loading />;
+   if (error) return <Failed error={error} />;
 
    return (
       <div className={scss.PackegesContent}>
          <div className='container'>
-            <TrafficsSection
-               key={JSON.stringify(currentFilter)}
-               tours={getFilteredTours()}
-            >
+            <TrafficsSection tours={filteredTours}>
                <TrafficFilters
-                  value={currentFilter.month}
-                  dates={dates}
+                  value={filter.month}
+                  dates={tourDates}
                   onFilterChange={month =>
-                     setCurrentFilter(prev => ({
-                        ...prev,
-                        month,
-                     }))
+                     setFilter(prev => ({ ...prev, month }))
                   }
                />
             </TrafficsSection>
