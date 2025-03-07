@@ -1,12 +1,17 @@
-import { API_URL } from '@/constants/url.constants'
+import { API_URL } from '@/constants/url.constants';
+import { COOKIE_NAME } from '@/utils/i18n/config';
 import {
    BaseQueryFn,
    createApi,
    fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
+import Cookies from 'js-cookie';
+
+const Language = Cookies.get(COOKIE_NAME);
+const Endpoint = Language == 'kg' ? '' : '/ru';
 
 const baseQuery = fetchBaseQuery({
-   baseUrl: API_URL,
+   baseUrl: API_URL + `${Endpoint}/api`,
    credentials: 'include',
 });
 
@@ -20,6 +25,6 @@ export const api = createApi({
    baseQuery: baseQueryExtended,
    refetchOnFocus: true,
    refetchOnReconnect: true,
-   tagTypes: ['tours', 'ajy', 'packageDetails', 'hotels', 'blogs' , 'clients'],
+   tagTypes: ['tours', 'ajy', 'packageDetails', 'hotels', 'blogs', 'clients'],
    endpoints: () => ({}),
 });

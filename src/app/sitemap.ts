@@ -1,8 +1,11 @@
 import { MetadataRoute } from 'next';
 import { API_URL, APP_URL } from '@/constants/url.constants';
+import { getCurrentLanguage } from '@/utils/i18n/language.server';
 
 export async function getBlogs() {
-   const response = await fetch(`${API_URL}/blog/blogs/`, {
+   const language = await getCurrentLanguage();
+   const endpoint = language == 'kg' ? '' : '/ru';
+   const response = await fetch(`${API_URL}${endpoint}/api/blog/blogs/`, {
       cache: 'no-store',
    });
    if (!response.ok) {
@@ -15,7 +18,10 @@ export async function getBlogs() {
 }
 
 export async function getPackages() {
-   const response = await fetch(`${API_URL}/tour/packages/`, {
+   const language = await getCurrentLanguage();
+   const endpoint = language == 'kg' ? '' : '/ru';
+
+   const response = await fetch(`${API_URL}${endpoint}/api/tour/packages/`, {
       cache: 'no-store',
    });
    if (!response.ok) {
