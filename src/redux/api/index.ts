@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
-const Language = Cookies.get(COOKIE_NAME);
+const Language = Cookies.get(COOKIE_NAME) || "kg";
 const Endpoint = Language == 'kg' ? '' : '/ru';
 
 const baseQuery = fetchBaseQuery({
