@@ -5,11 +5,10 @@ import { useTranslations } from 'next-intl';
 import { RxUpdate } from 'react-icons/rx';
 
 interface FailedProps {
-   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-   error?: any;
+   error?: unknown;
 }
 
-const Failed: React.FC<FailedProps> = React.memo(({ error }) => {
+const Failed: React.FC<FailedProps> = React.memo(() => {
    const t = useTranslations('failed');
 
    return (
@@ -22,12 +21,6 @@ const Failed: React.FC<FailedProps> = React.memo(({ error }) => {
          >
             <RxUpdate /> {t('retry')}
          </button>
-
-         {error && (
-            <pre className={styles.errorDetails}>
-               {JSON.stringify(error, null, 2)}
-            </pre>
-         )}
       </div>
    );
 });
