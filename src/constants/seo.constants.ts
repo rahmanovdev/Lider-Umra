@@ -16,7 +16,7 @@ export const BASE_SEO_METADATA: Metadata = {
       template: `%s - ${SITE_NAME}`,
    },
    description: SITE_DESCRIPTION,
-   metadataBase: new URL(APP_URL),
+   metadataBase: APP_URL ? new URL(APP_URL) : null,
    applicationName: SITE_NAME,
    keywords: SITE_KEYWORDS,
    generator: 'Next.js',
@@ -41,7 +41,7 @@ export const BASE_SEO_METADATA: Metadata = {
             alt: SITE_NAME,
          },
       ],
-      url: new URL(APP_URL),
+      ...(APP_URL ? { url: new URL(APP_URL) } : {}),
    },
    twitter: {
       title: SITE_NAME,
