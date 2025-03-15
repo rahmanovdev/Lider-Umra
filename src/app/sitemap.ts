@@ -4,9 +4,9 @@ import { MetadataRoute } from 'next';
 
 export async function getBlogs() {
    const language = await getCurrentLanguage();
-   const langEndpoint = language == 'kg' ? '' : '/ru';
-   const response = await fetch(`${API_URL}${langEndpoint}/api/blog/blogs/`, {
+   const response = await fetch(`${API_URL}/api/blog/blogs/`, {
       cache: 'no-store',
+      headers: { 'Accept-Language': language },
    });
    if (!response.ok) {
       throw new Error(
@@ -19,14 +19,11 @@ export async function getBlogs() {
 
 export async function getPackages() {
    const language = await getCurrentLanguage();
-   const langEndpoint = language == 'kg' ? '' : '/ru';
 
-   const response = await fetch(
-      `${API_URL}${langEndpoint}/api/tour/packages/`,
-      {
-         cache: 'no-store',
-      },
-   );
+   const response = await fetch(`${API_URL}/api/tour/packages/`, {
+      cache: 'no-store',
+      headers: { 'Accept-Language': language },
+   });
    if (!response.ok) {
       throw new Error(
          `Ошибка запроса: ${response.status} ${response.statusText}`,

@@ -3,12 +3,12 @@
    --close-font-size: 24px;
    --image-border-radius: 12px;
    --preview-gap: 0.5rem;
-   --preview-img-width: 100px; /* Единый размер для превьюшек */
-   --preview-img-height: 60px; /* Единый размер для превьюшек */
+   --preview-img-width: 100px;
+   --preview-img-height: 60px;
    --nav-font-size: 32px;
    --nav-margin: 20px;
-   --image-width: 600px; /* Единый фиксированный размер для основного изображения */
-   --image-height: 400px; /* Единый фиксированный размер для основного изображения */
+   --image-width: 600px;
+   --image-height: 400px;
 
    position: fixed;
    inset: 0;

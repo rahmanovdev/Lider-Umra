@@ -8,11 +8,15 @@ import {
 import Cookies from 'js-cookie';
 
 const Language = Cookies.get(COOKIE_NAME) || 'kg';
-const Endpoint = Language == 'kg' ? '' : '/ru';
 
 const baseQuery = fetchBaseQuery({
-   baseUrl: API_URL + `${Endpoint}/api`,
+   baseUrl: API_URL + `/api`,
    credentials: 'include',
+   prepareHeaders(headers) {
+      const newHeaders = new Headers(headers);
+      newHeaders.set('Accept-Language', Language);
+      return newHeaders;
+   },
 });
 
 const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {

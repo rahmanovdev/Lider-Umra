@@ -118,13 +118,7 @@ const PlacesSection_ = () => {
                      <div className={styles.imageCard}>
                         <Slider
                            sliderId={`mecca-${meccaHotel.id}`}
-                           slides={[
-                              ...getHotelMedia(meccaHotel.id),
-                              {
-                                 src: 'https://www.youtube.com/watch?v=upncYHG5EmM',
-                                 type: 'video',
-                              },
-                           ]}
+                           slides={getHotelMedia(meccaHotel.id)}
                            height={400}
                         />
                         <h3 className={styles.hotelName}>{meccaHotel.name}</h3>
@@ -165,13 +159,7 @@ const PlacesSection_ = () => {
                      <div className={styles.imageCard}>
                         <Slider
                            sliderId={`medina-${medinaHotel.id}`}
-                           slides={[
-                              ...getHotelMedia(medinaHotel.id),
-                              {
-                                 src: 'https://www.youtube.com/watch?v=upncYHG5EmM',
-                                 type: 'video',
-                              },
-                           ]}
+                           slides={getHotelMedia(medinaHotel.id)}
                            height={400}
                         />
                         <h3 className={styles.hotelName}>{medinaHotel.name}</h3>

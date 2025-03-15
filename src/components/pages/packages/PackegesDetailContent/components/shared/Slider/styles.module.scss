@@ -15,9 +15,11 @@
       cursor: zoom-in;
 
       .slide {
-         object-fit: cover;
          width: 100%;
          height: 100%;
+         img {
+            object-fit: fill;
+         }
       }
 
       .imageOverlay {
@@ -129,8 +131,8 @@
       transform: scale(1);
 
       .closeButton {
-         position: absolute;
-         right: clamp(-20px, -3vw, -40px);
+         position: fixed;
+         right: 10px;
          top: clamp(-20px, -3vw, -40px);
          width: clamp(30px, 5vw, 40px);
          height: clamp(30px, 5vw, 40px);
@@ -155,15 +157,13 @@
          width: clamp(80vw, 70vw, 90vw);
          height: clamp(80vh, 70vh, 90vh);
          overflow: hidden;
-
-         .modalImage {
+         img {
             object-fit: contain;
          }
       }
    }
 }
 
-/* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
    .slider {
       .swiper {

@@ -9,7 +9,7 @@ import Loading from '@/components/ui/loading/Loading';
 import { useLocale } from 'next-intl';
 import Failed from '@/components/ui/failed/Failed';
 import { GoArrowRight } from 'react-icons/go';
-import CImage from '@/components/ui/cimage/CImage'
+import CImage from '@/components/ui/cimage/CImage';
 
 const VideoSection = () => {
    const { data = [], isLoading, error } = useGetLessonsQuery();
@@ -17,7 +17,7 @@ const VideoSection = () => {
 
    const latestVideos = data.slice(-3).reverse();
 
-   const getYouTubeThumbnail = (url: string) => {
+   const getYouTubeThumbnail = React.useCallback((url: string) => {
       const videoIdMatch = url.match(
          /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/,
       );
@@ -25,7 +25,7 @@ const VideoSection = () => {
       return videoId
          ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
          : null;
-   };
+   }, []);
 
    return (
       <motion.section
