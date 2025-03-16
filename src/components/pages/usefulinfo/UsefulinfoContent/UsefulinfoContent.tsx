@@ -7,6 +7,7 @@ import { generateRows } from '@/utils/generate-rows.util';
 import Failed from '@/components/ui/failed/Failed';
 import CImage from '@/components/ui/cimage/CImage';
 import { memo, useCallback, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 
 const BlogItem = memo<{ item: BLOG.Blog; fr: number; isSingle: boolean }>(
    ({ item, fr, isSingle }) => {
@@ -24,7 +25,7 @@ const BlogItem = memo<{ item: BLOG.Blog; fr: number; isSingle: boolean }>(
       );
 
       return (
-         <Link href={`/usefulinfo/${item.id}`}>
+         <Link href={`/usefullinfo/${item.id}`}>
             <div className={getClassName}>
                <CImage
                   src={imageSrc}
@@ -46,14 +47,14 @@ BlogItem.displayName = 'BlogItem';
 const UsefulinfoContent = memo(() => {
    const { data: blogs = [], isLoading, error } = useGetBlogsQuery();
    const { width = 0 } = useSize();
+   const t = useTranslations();
 
    const rows = useMemo(
       () => (blogs.length ? generateRows<BLOG.Blog>(blogs, width) : []),
       [blogs, width],
    );
 
-   const renderLoading = useCallback(() => <div>Жүктөлүүдө...</div>, []);
-   const renderEmpty = useCallback(() => <div>Маалымат табылган жок</div>, []);
+   const renderLoading = useCallback(() => <div>{t('loading')}</div>, [t]);
    const renderError = useCallback(() => <Failed error={error} />, [error]);
 
    const renderRow = useCallback(
@@ -77,7 +78,6 @@ const UsefulinfoContent = memo(() => {
 
    if (isLoading) return renderLoading();
    if (error) return renderError();
-   if (!blogs.length) return renderEmpty();
 
    return (
       <div className={styles.use_full_info_content}>{rows.map(renderRow)}</div>

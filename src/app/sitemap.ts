@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
    const packages = await getPackages();
 
    const blogUrls = blogs.map((blog: { id: string }) => ({
-      url: `${APP_URL}/usefulinfo/${blog.id}`,
+      url: `${APP_URL}/usefullinfo/${blog.id}`,
       lastModified: new Date().toISOString(),
    }));
 
@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { url: `${APP_URL}/aboutUs`, lastModified: new Date().toISOString() },
       { url: `${APP_URL}/gallery`, lastModified: new Date().toISOString() },
       { url: `${APP_URL}/packages`, lastModified: new Date().toISOString() },
-      { url: `${APP_URL}/usefulinfo`, lastModified: new Date().toISOString() },
+      { url: `${APP_URL}/usefullinfo`, lastModified: new Date().toISOString() },
       { url: `${API_URL}/contact`, lastModified: new Date().toISOString() },
       ...blogUrls,
       ...packagesUrls,

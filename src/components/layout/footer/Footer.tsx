@@ -153,7 +153,7 @@ const Footer = () => {
                   </div>
                </div>
                <div className={scss.center}>
-                  <h2>Байланыштар</h2>{' '}
+                  <h2>{t('footer.contact')}</h2>{' '}
                   <div className={scss.nav}>
                      <p
                         className={`${scss.navLink} ${

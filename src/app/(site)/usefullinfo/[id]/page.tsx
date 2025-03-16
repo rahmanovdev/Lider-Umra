@@ -28,7 +28,7 @@ export async function generateMetadata(props: {
          description,
          openGraph: { title, description },
          alternates: {
-            canonical: `${APP_URL}/usefulinfo/${params.id}`,
+            canonical: `${APP_URL}/usefullinfo/${params.id}`,
          },
       };
    } catch (error) {
@@ -39,7 +39,7 @@ export async function generateMetadata(props: {
          description: defaultDescription,
          openGraph: { title: defaultTitle, description: defaultDescription },
          alternates: {
-            canonical: `${APP_URL}/usefulinfo/${params.id}`,
+            canonical: `${APP_URL}/usefullinfo/${params.id}`,
          },
       };
    }

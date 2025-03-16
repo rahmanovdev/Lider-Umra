@@ -24,7 +24,11 @@ const InformationSection = memo(() => {
                ) : (
                   <div className={scss.main_card}>
                      {data?.map(blog => (
-                        <Link href={`/usefulinfo/${blog.id}`} key={blog.id || blog.title} className={scss.card}>
+                        <Link
+                           href={`/usefullinfo/${blog.id}`}
+                           key={blog.id || blog.title}
+                           className={scss.card}
+                        >
                            <div className={scss.imageWrapper}>
                               <CImage
                                  src={blog.image}
@@ -42,7 +46,6 @@ const InformationSection = memo(() => {
                            />
                         </Link>
                      ))}
-                     
                   </div>
                )}
             </div>

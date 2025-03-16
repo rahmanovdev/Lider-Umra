@@ -7,10 +7,7 @@ import { useEffect, useState } from 'react';
 import { GoArrowRight } from 'react-icons/go';
 import scss from './AboutUsImage.module.scss';
 
-const localImages = Array.from(
-   { length: 7 },
-   () => Assets.Images.About.Gallery,
-);
+const localImages = Assets.Images.About.Galleries;
 
 const AboutUsImages = () => {
    const t = useTranslations('aboutUs');

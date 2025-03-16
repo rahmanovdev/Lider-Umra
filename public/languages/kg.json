@@ -1,11 +1,11 @@
 {
    "seo": {
       "aboutUs": {
-         "title": "Компания жонундо",
+         "title": "Компания жөнүндө",
          "description": "Биздин компания тууралуу маалымат"
       },
       "contact": {
-         "title": "Байланышуу",
+         "title": "Байланыш",
          "description": "Биз менен байланышуу жолдору"
       },
       "gallery": {
@@ -54,8 +54,8 @@
       {
          "label": "Тур пакеттер",
          "childrens": [
-            { "href": "/packages?place=bishkek", "label": "Умра из Бишкека" },
-            { "href": "/packages?place=osh", "label": "Умра из Оша" }
+            { "href": "/packages?place=bishkek", "label": "Умра Бишкектен" },
+            { "href": "/packages?place=osh", "label": "Умра Оштон" }
          ]
       },
       {
@@ -67,7 +67,7 @@
             { "label": "Байланыш", "href": "/contact" }
          ]
       },
-      { "label": "Пайдалуу маалымат", "href": "/usefulinfo" }
+      { "label": "Пайдалуу маалымат", "href": "/usefullinfo" }
    ],
    "bottomNav": {
       "home": "Башкы",
@@ -78,21 +78,21 @@
       "contactTitle": "Байланыш:"
    },
    "footer": {
-      "quickLinks": "Ссылки",
+      "quickLinks": "Шилтемелер",
       "company": "Компания",
-      "resources": "Ресурсы",
-      "contact": "Контакты",
+      "resources": "Ресурстар",
+      "contact": "Байланыштар",
       "links": {
-         "home": "Главная",
-         "packages": "Турпакеты",
-         "about": "О нас",
+         "home": "Башкы",
+         "packages": "Турпакеттер",
+         "about": "Биз жөнүндө",
          "gallery": "Галерея",
-         "lessons": "Видеоуроки",
-         "usefulInfo": "Полезная информация"
+         "lessons": "Видео сабактар",
+         "usefulInfo": "Пайдалуу маалымат"
       }
    },
    "hero": {
-      "title": "Умраны ыңгайлуулук <br /> менен аткарыңыз.",
+      "title": "Умраны ыңгайлуулук менен аткарыңыз.",
       "description": "Умра сапарыңызда руханий тазалануу жана тынчтык табыңыз.",
       "buttons": {
          "tour": "Турлар тизмесине",
@@ -135,7 +135,7 @@
          "details": "Толугураак"
       },
       "filters": {
-         "title": "Тарифтер ",
+         "title": "Тарифтер",
          "values": {
             "all": "Бардык программалар",
             "february": "Февраль",
@@ -169,7 +169,7 @@
       "error": "Маалыматтарды жүктөөдө ката кетти. Кайра аракет кылыңыз."
    },
    "aboutUs": {
-      "title": "<span>«Lider Umrah»</span> компаниясы жөнүндө",
+      "title": "<span>«Lider Umra»</span> компаниясы жөнүндө",
       "documents": "Документтердин тизмеси",
       "allGallery": "Бардык галереялар",
       "requirements": {

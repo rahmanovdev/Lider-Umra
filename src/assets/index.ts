@@ -15,7 +15,6 @@ import Logo from './svg/logo.svg';
 
 import Advantages from './images/about/advantages.jpg';
 import Ornament from './images/about/ornament.svg';
-import Gallery from './images/about/gallery.webp';
 
 import AdliWahid from './images/adli-wahid.jpg';
 
@@ -36,6 +35,12 @@ import IAntLogo from './global/iant-logo.jpg';
 import Kyrgyzstan from './global/kyrgyzstan.svg';
 import Russia from './global/russian.svg';
 
+import Gallery1 from './images/about/galleries/gallery1.jpg';
+import Gallery2 from './images/about/galleries/gallery2.jpg';
+import Gallery3 from './images/about/galleries/gallery3.jpg';
+import Gallery4 from './images/about/galleries/gallery4.jpg';
+import Gallery5 from './images/about/galleries/gallery5.jpg';
+import Gallery6 from './images/about/galleries/gallery6.jpg';
 
 const Icons = {
    TabPackages,
@@ -49,7 +54,11 @@ const Svg = {
 };
 
 const Images = {
-   About: { Advantages, Ornament, Gallery },
+   About: {
+      Advantages,
+      Ornament,
+      Galleries: [Gallery1, Gallery2, Gallery3, Gallery4, Gallery5, Gallery6],
+   },
    AdliWahid,
    HeroBackgrounds: [Bg1, Bg2, Bg3],
    CardEmblem,

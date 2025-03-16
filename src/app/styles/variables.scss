@@ -2,7 +2,7 @@
    --angel-primary-gradient: 145deg;
    --color-primary: #12abcd;
    --color-secondary: #2c67f2;
-   --color-primary-gradient: var(--color-primary), var(--color-secondary);
+   --color-primary-gradient: var(--color-primary) 30%, var(--color-secondary);
    --default-primary-gradient: linear-gradient(
       var(--angel-primary-gradient),
       var(--color-primary-gradient)

@@ -1,9 +1,9 @@
 .VideoSection {
    --video-padding: 2rem;
-   --gradient-start: #ffffff; // Арткы фон ак бойдон калат
+   --gradient-start: #ffffff;
    --gradient-end: #ffffff;
    --title-font-size: 30px;
-   --title-margin-bottom: 1.5rem; // Кнопка үчүн кичине азайтылды
+   --title-margin-bottom: 1.5rem;
    --title-opacity: 0.9;
    --grid-gap: 1rem;
    --grid-padding: 0.5rem;
@@ -22,7 +22,6 @@
    --grid-template-columns: repeat(3, 1fr);
    --video-title-font-size: 16px;
    --video-title-padding: 0.5rem;
-   // --button-bg: var(--default-primary-gradient);
    --button-color: #ffffff;
    --button-radius: 12px;
    --button-padding: 10px 20px;
