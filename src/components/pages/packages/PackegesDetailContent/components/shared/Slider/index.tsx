@@ -1,13 +1,13 @@
 'use client';
+import CImage from '@/components/ui/cimage/CImage';
 import React, { useState } from 'react';
-import styles from './styles.module.scss';
 import { createPortal } from 'react-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
+import { IoClose } from 'react-icons/io5';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { IoClose } from 'react-icons/io5';
-import CImage from '@/components/ui/cimage/CImage'
+import { Autoplay, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from './styles.module.scss';
 
 interface IMedia {
    src: string;

@@ -18,7 +18,7 @@ const Footer = () => {
 
    const phoneNumbers: Record<City, string[]> = {
       osh: ['+996 555 123 456', '+996 555 789 012'],
-      bishkek: ['+996 312 123 456', '+996 312 789 012'],
+      bishkek: ['+996 707 150 815', '+996 555 789 012'],
    };
 
    return (
@@ -85,7 +85,7 @@ const Footer = () => {
                            <span>Facebook</span>
                         </Link>
                         <Link
-                           href='https://instagram.com'
+                           href='https://www.instagram.com/liderumra/'
                            target='_blank'
                            className={scss.socialLink}
                         >
@@ -98,7 +98,7 @@ const Footer = () => {
                            <span>Instagram</span>
                         </Link>
                         <Link
-                           href='https://youtube.com'
+                           href='https://www.youtube.com/@Bilim.Mainaev'
                            target='_blank'
                            className={scss.socialLink}
                         >

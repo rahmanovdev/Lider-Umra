@@ -23,7 +23,11 @@
    --grid-template-columns: repeat(3, 1fr);
 
    padding: var(--gallery-padding) 0;
-   background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+   background: linear-gradient(
+      135deg,
+      var(--gradient-start) 0%,
+      var(--gradient-end) 100%
+   );
    display: flex;
    flex-direction: column;
 
@@ -52,6 +56,7 @@
             transition: var(--item-transition);
             position: relative;
             margin: auto;
+            height: var(--media-height);
 
             &.fr-2 {
                max-width: var(--fr-2-width);
@@ -67,18 +72,17 @@
                transform: translateY(-5px);
                box-shadow: var(--item-hover-shadow);
             }
-
-            .image {
+            
+            .image img {
                width: 100%;
                height: var(--media-height);
                object-fit: cover;
-               display: block;
                filter: brightness(var(--media-brightness));
                transition: all 0.25s;
             }
 
             &:hover {
-               .image {
+               .image img {
                   transform: scale(1.05);
                   filter: brightness(var(--media-hover-brightness));
                }

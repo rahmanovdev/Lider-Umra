@@ -62,6 +62,7 @@ const sections = (t: (s: string) => string): Section[] => [
 
 const AboutProgramDet = ({}: AboutProgramDetProps) => {
    const t = useTranslations('packages.detail.aboutProgramDet');
+   const sectionList = sections(t); // Бир жолу гана түзүлөт
    const [activeIndex, setActiveIndex] = useState<number>(0);
    const [isHovered, setIsHovered] = useState(false);
    const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -71,11 +72,11 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
       intervalRef.current = setInterval(() => {
          if (!isHovered) {
             setActiveIndex(prevIndex =>
-               prevIndex === sections.length - 1 ? 0 : prevIndex + 1,
+               prevIndex === sectionList.length - 1 ? 0 : prevIndex + 1,
             );
          }
-      }, 50000);
-   }, [isHovered]);
+      }, 500000);
+   }, [isHovered, sectionList.length]);
 
    useEffect(() => {
       startInterval();
@@ -87,7 +88,11 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
    const handleMouseEnter = () => setIsHovered(true);
    const handleMouseLeave = () => setIsHovered(false);
 
-   const renderContent = (section: Section) => {
+   const renderContent = (section: Section | undefined) => {
+      if (!section || !section.type) {
+         return <div className={styles.contentCard}>Section not found</div>; // Fallback UI
+      }
+
       switch (section.type) {
          case 'food':
             return (
@@ -149,7 +154,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
    return (
       <div className='container'>
          <div className={styles.sectionList}>
-            {sections(t).map((section, index) => (
+            {sectionList.map((section, index) => (
                <button
                   key={section.id}
                   className={clsx(styles.sectionButton, {
@@ -164,7 +169,9 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
                </button>
             ))}
          </div>
-         {activeIndex !== null && renderContent(sections(t)[activeIndex])}
+         {activeIndex >= 0 &&
+            activeIndex < sectionList.length &&
+            renderContent(sectionList[activeIndex])}
       </div>
    );
 };

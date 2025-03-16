@@ -1,11 +1,11 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import scss from './AboutUsImage.module.scss';
-import Link from 'next/link';
-import { GoArrowRight } from 'react-icons/go';
-import { useTranslations } from 'next-intl';
 import { Assets } from '@/assets';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { GoArrowRight } from 'react-icons/go';
+import scss from './AboutUsImage.module.scss';
 
 const localImages = Array.from(
    { length: 7 },

@@ -1,9 +1,10 @@
 'use client';
-import React, { useCallback, useEffect } from 'react';
-import scss from './ImageLightbox.module.scss';
 import { motion } from 'framer-motion';
-import { IoIosClose, IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import React, { useCallback, useEffect } from 'react';
+import { IoIosArrowBack, IoIosArrowForward, IoIosClose } from 'react-icons/io';
 import CImage from '../cimage/CImage';
+import scss from './ImageLightbox.module.scss';
+import { useClickAway } from '@/hooks/use-click-away'
 
 interface IImageLightboxProps {
    images: string[];
@@ -14,6 +15,9 @@ interface IImageLightboxProps {
 const ImageLightbox: React.FC<IImageLightboxProps> = React.memo(
    ({ images, onClose, selected }) => {
       const [current, setCurrent] = React.useState(selected);
+      const contentRef = React.useRef<HTMLDivElement>(null);
+
+      useClickAway(onClose, contentRef);
 
       const showNext = useCallback(() => {
          setCurrent(prev => (prev + 1) % images.length);
@@ -60,6 +64,7 @@ const ImageLightbox: React.FC<IImageLightboxProps> = React.memo(
                   exit={{ opacity: 0, scale: 0.99 }}
                   transition={{ duration: 0.3 }}
                   className={scss.content}
+                  ref={contentRef}
                >
                   <div className={scss.images}>
                      <motion.figure

@@ -1,8 +1,8 @@
 .useFullInfoContentDetail {
    --gap: 4rem;
    --title-font-size: 40px;
-   --img-card-width: 320px;
-   --img-card-height: 280px;
+   --img-card-width: 280px;
+   --img-card-height: 240px;
    --content-padding: 20px 0;
    --timeline-line-left: 1.45rem;
    --timeline-line-width: 4px;
@@ -53,12 +53,13 @@
    }
 
    .content {
-      font-size: 1.3em;
-      line-height: 1.2;
-      margin-bottom: 1.1rem;
+      font-size: 1.3em; // 1.3em ≈ 20.8px (16px базалык болсо)
+      line-height: 1.5; // Оптималдуу аралык (20.8px * 1.5 ≈ 31px)
+      margin-bottom: 1.5rem; // Саптар арасында аралык
       text-align: left;
-      color: #000;
+      color: #333; // Түстү жумшак кылдык
       padding: var(--content-padding);
+      max-width: 800px; // Текст өтө узун болбошу үчүн
    }
 
    .contentWrapper {
@@ -89,90 +90,119 @@
    @media (max-width: 1240px) {
       --gap: 3rem;
       --title-font-size: 36px;
-      --img-card-width: 280px;
-      --img-card-height: 240px;
+      --img-card-width: 240px;
+      --img-card-height: 200px;
       --content-padding: 18px 0;
       --timeline-line-left: 1.3rem;
       --timeline-line-width: 3.5px;
       .title { margin: 35px auto 38px; }
       .img-card { border-radius: 22px; }
       .timelineEntry:not(.isFirst) { margin-top: 3.5rem; }
-      .content { font-size: 1.2em; line-height: 1.15; margin-bottom: 1rem; }
+      .content { 
+         font-size: 1.2em; // 1.2em ≈ 19.2px
+         line-height: 1.55; // 19.2px * 1.55 ≈ 29.8px
+         margin-bottom: 1.4rem; 
+      }
       .contentWrapper { padding-left: 3.5rem; gap: 25px; }
    }
 
    @media (max-width: 1024px) {
       --gap: 2.5rem;
       --title-font-size: 32px;
-      --img-card-width: 250px;
-      --img-card-height: 220px;
+      --img-card-width: 220px;
+      --img-card-height: 180px;
       --content-padding: 16px 0;
       --timeline-line-left: 1.2rem;
       --timeline-line-width: 3px;
       .title { margin: 30px auto 33px; }
       .img-card { border-radius: 20px; }
       .timelineEntry:not(.isFirst) { margin-top: 3rem; }
-      .content { font-size: 1.1em; line-height: 1.1; margin-bottom: 0.9rem; }
+      .content { 
+         font-size: 1.1em; // 1.1em ≈ 17.6px
+         line-height: 1.6; // 17.6px * 1.6 ≈ 28.2px
+         margin-bottom: 1.3rem; 
+      }
       .contentWrapper { padding-left: 3rem; gap: 20px; }
    }
 
    @media (max-width: 768px) {
       --gap: 2rem;
       --title-font-size: 28px;
-      --img-card-width: 220px;
-      --img-card-height: 200px;
+      --img-card-width: 80%;
+      --img-card-height: auto;
       --content-padding: 14px 0;
       --timeline-line-left: 1rem;
       --timeline-line-width: 2.5px;
       .title { margin: 25px auto 28px; }
       .img-card { border-radius: 18px; }
       .timelineEntry:not(.isFirst) { margin-top: 2.5rem; }
-      .content { font-size: 1em; line-height: 1.05; margin-bottom: 0.8rem; }
-      .contentWrapper { padding-left: 2.5rem; gap: 15px; }
+      .content { 
+         font-size: 1em; // 1em ≈ 16px
+         line-height: 1.65; // 16px * 1.65 ≈ 26.4px
+         margin-bottom: 1.2rem; 
+      }
+      .contentWrapper {
+         padding-left: 2.5rem;
+         gap: 15px;
+         flex-direction: column;
+         align-items: flex-start;
+      }
    }
 
    @media (max-width: 480px) {
       --gap: 1.5rem;
       --title-font-size: 24px;
-      --img-card-width: 180px;
-      --img-card-height: 160px;
+      --img-card-width: 100%;
+      --img-card-height: auto;
       --content-padding: 12px 0;
       --timeline-line-left: 0.8rem;
       --timeline-line-width: 2px;
       .title { margin: 20px auto 23px; }
       .img-card { border-radius: 15px; }
       .timelineEntry:not(.isFirst) { margin-top: 2rem; }
-      .content { font-size: 0.9em; line-height: 1; margin-bottom: 0.7rem; }
+      .content { 
+         font-size: 0.9em; // 0.9em ≈ 14.4px
+         line-height: 1.7; // 14.4px * 1.7 ≈ 24.5px
+         margin-bottom: 1rem; 
+      }
       .contentWrapper { padding-left: 2rem; gap: 10px; }
    }
 
    @media (max-width: 400px) {
       --gap: 1rem;
       --title-font-size: 20px;
-      --img-card-width: 160px;
-      --img-card-height: 140px;
+      --img-card-width: 100%;
+      --img-card-height: auto;
       --content-padding: 10px 0;
       --timeline-line-left: 0.7rem;
       --timeline-line-width: 1.5px;
       .title { margin: 15px auto 18px; }
       .img-card { border-radius: 12px; }
       .timelineEntry:not(.isFirst) { margin-top: 1.5rem; }
-      .content { font-size: 0.8em; line-height: 0.95; margin-bottom: 0.6rem; }
+      .content { 
+         font-size: 0.8em; // 0.8em ≈ 12.8px
+         line-height: 1.75; // 12.8px * 1.75 ≈ 22.4px
+         margin-bottom: 0.9rem; 
+      }
       .contentWrapper { padding-left: 1.5rem; gap: 8px; }
    }
 
    @media (max-width: 320px) {
       --gap: 0.8rem;
       --title-font-size: 18px;
-      --img-card-width: 140px;
-      --img-card-height: 120px;
+      --img-card-width: 100%;
+      --img-card-height: auto;
       --content-padding: 8px 0;
       --timeline-line-left: 0.6rem;
       --timeline-line-width: 1px;
       .title { margin: 12px auto 15px; }
       .img-card { border-radius: 10px; }
       .timelineEntry:not(.isFirst) { margin-top: 1rem; }
-      .content { font-size: 0.7em; line-height: 0.9; margin-bottom: 0.5rem; }
+      .content { 
+         font-size: 0.7em; // 0.7em ≈ 11.2px
+         line-height: 1.8; // 11.2px * 1.8 ≈ 20.2px
+         margin-bottom: 0.8rem; 
+      }
       .contentWrapper { padding-left: 1rem; gap: 6px; }
    }
-}
+}     

@@ -62,9 +62,13 @@
       }
 
       .giftSliderWrapper {
-         height: 200px;
+         height: 300px;
          border-radius: 16px;
          overflow: hidden;
+
+         @media (max-width: 400px) {
+            height: 220px     
+         }
       }
 
       .giftInfo {
@@ -77,22 +81,23 @@
          }
 
          h3 {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 600;
             color: var(--color-text, #2a2525);
             margin-bottom: 12px;
             line-height: 1.3;
 
             @media (max-width: 768px) {
-               font-size: 18px;
+               font-size: 26px;
                margin-bottom: 10px;
             }
             @media (max-width: 400px) {
                line-height: 1.15;
+               font-size: 22px;
             }
 
             @media (max-width: 340px) {
-               font-size: 15px;
+               font-size: 20px;
                margin-bottom: 8px;
             }
          }
@@ -104,7 +109,7 @@
 
             .shortDescription {
                color: var(--color-text-secondary, #4b5563);
-               font-size: 16px;
+               font-size: 20px;
                line-height: 1.6;
 
                p {
@@ -115,7 +120,7 @@
                }
 
                @media (max-width: 768px) {
-                  font-size: 15px;
+                  font-size: 20px;
                }
 
                @media (max-width: 380px) {
@@ -123,7 +128,7 @@
                }
 
                @media (max-width: 320px) {
-                  font-size: 14px;
+                  font-size: 16px;
                }
             }
 

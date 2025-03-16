@@ -1,12 +1,11 @@
-import React from "react";
-import GalleryContent from "./gallery/GalleryContent/GalleryContent";
+import GalleryContent from './gallery/GalleryContent/GalleryContent';
 
 const GalleryPage = () => {
-  return (
-    <div>
-      <GalleryContent />
-    </div>
-  );
+   return (
+      <>
+         <GalleryContent />
+      </>
+   );
 };
 
 export default GalleryPage;

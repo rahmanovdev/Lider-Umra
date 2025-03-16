@@ -12,7 +12,7 @@ import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
 import { useSize } from '@/hooks/use-size';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Assets } from '@/assets'
+import { Assets } from '@/assets';
 
 type NavigationType = {
    href: string;
@@ -128,7 +128,7 @@ const Header: React.FC = () => {
                      <div className={scss.line}></div>
                      <div className={scss.contact}>
                         <IoCall />
-                        <a href='tel:+996700188251'>+996 700-18-82-51</a>
+                        <a href='tel:+996707150815'>+996 707 150 815</a>
                      </div>
                      <div className={scss.line}></div>
                   </div>
