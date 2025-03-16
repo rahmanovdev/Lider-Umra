@@ -2,9 +2,6 @@
 
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import scss from "./QuestionsSection.module.scss";
 
 interface IFormTelegram {
@@ -16,8 +13,8 @@ interface IFormTelegram {
 const TG_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_TOKEN;
 const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
 
-console.log({TG_TOKEN})
-console.log({CHAT_ID})
+console.log("TG_TOKEN:", TG_TOKEN);
+console.log("CHAT_ID:", CHAT_ID);
 
 const QuestionsSection = () => {
   const {
@@ -28,23 +25,38 @@ const QuestionsSection = () => {
   } = useForm<IFormTelegram>({ mode: "onChange" });
 
   const botsMessageModel = (data: IFormTelegram) => {
-    let messageTG = `User's name: <b>${data.name}</b>\n`;
-    messageTG += `User's phone: <b>${data.phone}</b>\n`;
-    messageTG += `User's email: <b>${data.email}</b>\n`;
-    return messageTG;
+    return `
+      User's name: <b>${data.name}</b>\n
+      User's phone: <b>${data.phone}</b>\n
+      User's email: <b>${data.email}</b>\n
+    `;
   };
 
   const onSubmit: SubmitHandler<IFormTelegram> = async (data) => {
     try {
-      await axios.post(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        chat_id: CHAT_ID,
-        parse_mode: "html",
-        text: botsMessageModel(data),
-      });
+      const response = await fetch(
+        `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            parse_mode: "HTML",
+            text: botsMessageModel(data),
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Ошибка отправки сообщения");
+      }
+
       reset();
-      toast.success("Сообщение успешно отправлено!", { autoClose: 2000 });
+      alert("Ваше сообщение отравлено")
     } catch (error) {
-      toast.error("Ошибка! Попробуйте позже.", { autoClose: 2000 });
+      alert("Ошибка при отправке сообщения");
       console.error(error);
     }
   };
@@ -63,7 +75,9 @@ const QuestionsSection = () => {
               <input type="text" placeholder="Имя" {...register("name", { required: true })} />
               <input type="text" placeholder="Телефон" {...register("phone", { required: true })} />
               <input type="text" placeholder="Email" {...register("email", { required: true })} />
-              <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Отправка..." : "Получить консультацию"}</button>
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Отправка..." : "Получить консультацию"}
+              </button>
             </form>
           </div>
         </div>
