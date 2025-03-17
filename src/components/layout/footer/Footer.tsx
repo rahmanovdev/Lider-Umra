@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import scss from './Footer.module.scss';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Assets } from '@/assets';
 
 type City = 'osh' | 'bishkek';
@@ -13,6 +13,7 @@ const Footer = () => {
    const windowSize = useSize();
    const tabBarSize = useSize('#tab-bar');
    const t = useTranslations();
+   const locale = useLocale()
 
    const [selectedCity, setSelectedCity] = useState<City | null>(null);
 
@@ -170,7 +171,7 @@ const Footer = () => {
                <a
                   href='https://www.iant.kg/'
                   target='_blank'
-                  className={scss.last}
+                  className={`${scss.last} ${locale == 'ru' && scss.reverse}`}
                   suppressHydrationWarning
                >
                   <Image
@@ -180,7 +181,7 @@ const Footer = () => {
                      alt='IAnt Logo'
                      suppressHydrationWarning
                   />
-                  <span>Тарабынан жасалды</span>
+                  <span>{t("footer.to")}</span>
                </a>
             </div>
          </div>

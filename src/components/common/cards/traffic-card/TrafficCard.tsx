@@ -5,7 +5,7 @@ import scss from './TrafficCard.module.scss';
 import { FaStar } from 'react-icons/fa';
 import { useLocale, useTranslations } from 'next-intl';
 import { formatDate } from '@/utils/format-date';
-import CImage from '@/components/ui/cimage/CImage'
+import CImage from '@/components/ui/cimage/CImage';
 
 type TProps = {
    tour: TOURS.ITourPackages;
@@ -33,7 +33,7 @@ const TrafficCard = memo<TProps>(({ tour }) => {
       () => formatDate(tour.tour_date.end_tour),
       [tour.tour_date.end_tour],
    );
-   const starCount = tour.category.name === 'Комфорт +' ? 5 : 4;
+   const starCount = 4;
    const placeLabel = tour.place === 'Osh' ? 'Ош' : 'Бишкек';
    const monthLocale = locale === 'kg' ? 'kg' : 'ru';
 
