@@ -1,82 +1,76 @@
 .contactPage {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: #f9fafb;
-	padding: 10dvh 20px;
+   padding: 80px 20px;
 }
 
-.container {
-	background: #fff;
-	border-radius: 12px;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	padding: 30px;
-	width: 100%;
-	max-width: 500px;
-	text-align: center;
+.contentWrapper {
+   display: flex;
+   gap: 20px;
 }
 
-.title {
-	font-size: 2rem;
-	font-weight: 600;
-	color: #333;
-	margin-bottom: 10px;
+.mapCard {
+   flex: 1;
+   border-radius: 10px;
+   overflow: hidden;
+   width: 50%;
+   height: 100%;
 }
 
-.subtitle {
-	font-size: 1rem;
-	color: #555;
-	margin-bottom: 20px;
-}
-
-.contactForm {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	margin-bottom: 20px;
-}
-
-.inputField,
-.textareaField {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #e0e0e0;
-	border-radius: 8px;
-	font-size: 1rem;
-	color: #333;
-	background: #fafafa;
-	transition: border 0.3s;
-
-	&:focus {
-		border: 1px solid #4a90e2;
-		outline: none;
-		background: #fff;
-	}
-}
-
-.textareaField {
-	min-height: 100px;
-	resize: vertical;
-}
-
-.submitButton {
-	background: #4a90e2;
-	color: #fff;
-	border: none;
-	border-radius: 8px;
-	padding: 10px;
-	font-size: 1rem;
-	font-weight: 600;
-	cursor: pointer;
-	transition: background 0.3s;
-
-	&:hover {
-		background: #357ab8;
-	}
+.iframe {
+   width: 100%;
+   border: none;
 }
 
 .contactInfo {
-	margin-top: 20px;
-	font-size: 0.9rem;
-	color: #777;
+   flex: 1;
+   width: 50%;
+   padding: 35px;
+   border-radius: 10px;
+   background: var(--color-bg);
+}
+
+.title {
+   font-size: 36px;
+   font-weight: bold;
+   margin-bottom: 10px;
+}
+
+.contactInfo p {
+   font-size: 17px;
+   color: #333;
+   line-height: 1.6;
+   margin-bottom: 30px;
+   max-width: 80%;
+}
+
+.cards {
+   display: grid;
+   grid-template-columns: repeat(2, 400px);
+   gap: 15px;
+}
+
+.card {
+   display: flex;
+   align-items: flex-start;
+   gap: 15px;
+}
+
+.card svg {
+   font-size: 28px;
+   color: var(--color-primary);
+}
+
+.column {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+.column h5 {
+   font-size: 23px;
+   font-weight: bold;
+}
+
+.column p {
+   font-size: 16px;
+   color: #555;
 }

@@ -84,7 +84,7 @@
                display: block;
                position: relative;
 
-               .video {
+               .image img {
                   width: 100%;
                   height: var(--media-height);
                   object-fit: contain;
@@ -108,7 +108,7 @@
                }
 
                &:hover {
-                  .video {
+                  .image img {
                      filter: brightness(var(--media-hover-brightness));
                   }
                }

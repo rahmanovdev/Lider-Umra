@@ -72,19 +72,6 @@ const Footer = () => {
                      <h2>{t('footer.contact')}</h2>
                      <div className={scss.logo}>
                         <Link
-                           href='https://facebook.com'
-                           target='_blank'
-                           className={scss.socialLink}
-                        >
-                           <Image
-                              src={Assets.Icons.Social.Facebook}
-                              width={40}
-                              height={40}
-                              alt='Facebook logo'
-                           />
-                           <span>Facebook</span>
-                        </Link>
-                        <Link
                            href='https://www.instagram.com/liderumra/'
                            target='_blank'
                            className={scss.socialLink}
@@ -111,20 +98,7 @@ const Footer = () => {
                            <span>YouTube</span>
                         </Link>
                         <Link
-                           href='https://tiktok.com'
-                           target='_blank'
-                           className={scss.socialLink}
-                        >
-                           <Image
-                              src={Assets.Icons.Social.Tiktok}
-                              width={40}
-                              height={40}
-                              alt='TikTok logo'
-                           />
-                           <span>TikTok</span>
-                        </Link>
-                        <Link
-                           href='https://whatsapp.com'
+                           href='https://wa.me/996707150815'
                            target='_blank'
                            className={scss.socialLink}
                         >
@@ -137,7 +111,7 @@ const Footer = () => {
                            <span>WhatsApp</span>
                         </Link>
                         <Link
-                           href='https://telegram.org'
+                           href='https://t.me/liderumra1'
                            target='_blank'
                            className={scss.socialLink}
                         >
@@ -197,12 +171,14 @@ const Footer = () => {
                   href='https://www.iant.kg/'
                   target='_blank'
                   className={scss.last}
+                  suppressHydrationWarning
                >
                   <Image
                      width={44}
                      height={44}
                      src={Assets.Global.IAntLogo}
                      alt='IAnt Logo'
+                     suppressHydrationWarning
                   />
                   <span>Тарабынан жасалды</span>
                </a>

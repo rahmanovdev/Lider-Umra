@@ -99,7 +99,7 @@ const QuestionsSection = () => {
                         )}
                      </div>
                      <button disabled={isLoading}>
-                        {!isLoading ? t('sending') : t('button')}
+                        {isLoading ? t('sending') : t('button')}
                      </button>
                      {error && <p className={scss.error}>{error}</p>}
                   </form>

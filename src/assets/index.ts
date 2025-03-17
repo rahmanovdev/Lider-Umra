@@ -1,8 +1,6 @@
 import TabPackages from './icon/tab_packages.png';
-import Facebook from './icon/social/facebook.svg';
 import Instagram from './icon/social/instagram.svg';
 import Telegram from './icon/social/telegram.svg';
-import Tiktok from './icon/social/tiktok.svg';
 import Whatsapp from './icon/social/whatsapp.svg';
 import YouTube from './icon/social/youtube.svg';
 
@@ -31,7 +29,7 @@ import Stage3 from './images/hadj-stages/stage3.png';
 import Stage4 from './images/hadj-stages/stage4.png';
 import Stage5 from './images/hadj-stages/stage5.png';
 
-import IAntLogo from './global/iant-logo.jpg';
+import IAntLogo from './global/iant-logo.svg';
 import Kyrgyzstan from './global/kyrgyzstan.svg';
 import Russia from './global/russian.svg';
 
@@ -44,7 +42,7 @@ import Gallery6 from './images/about/galleries/gallery6.jpg';
 
 const Icons = {
    TabPackages,
-   Social: { Facebook, Instagram, Telegram, Tiktok, Whatsapp, YouTube },
+   Social: { Instagram, Telegram, Whatsapp, YouTube },
    AboutCard: [Card1, Card2, Card3],
    Global: GlobalIcon,
 };

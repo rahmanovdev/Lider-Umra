@@ -4,7 +4,7 @@ import React, { useCallback, useEffect } from 'react';
 import { IoIosArrowBack, IoIosArrowForward, IoIosClose } from 'react-icons/io';
 import CImage from '../cimage/CImage';
 import scss from './ImageLightbox.module.scss';
-import { useClickAway } from '@/hooks/use-click-away'
+import { useClickAway } from '@/hooks/use-click-away';
 
 interface IImageLightboxProps {
    images: string[];

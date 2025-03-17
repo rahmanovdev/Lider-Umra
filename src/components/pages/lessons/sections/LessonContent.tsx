@@ -9,6 +9,8 @@ import { useGetLessonsQuery } from '@/redux/api/lessons';
 import Loading from '@/components/ui/loading/Loading';
 import { useLocale } from 'next-intl';
 import Failed from '@/components/ui/failed/Failed';
+import CImage from '@/components/ui/cimage/CImage'
+import Link from 'next/link'
 
 interface Lesson {
    id: number;
@@ -16,26 +18,47 @@ interface Lesson {
    video_url: string;
 }
 
-const getYouTubeEmbedUrl = (url: string): string => {
-   const videoIdMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
-   return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : url;
+const getYouTubeThumbnail = (url: string) => {
+   const videoIdMatch = url.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/,
+   );
+   const videoId = videoIdMatch ? videoIdMatch[1] : null;
+   return videoId
+      ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+      : '';
 };
 
 const LessonItem = memo<{ item: Lesson; fr: number }>(({ item, fr }) => {
-   const embedUrl = useMemo(() => getYouTubeEmbedUrl(item.video_url), [item.video_url]);
+   const embedUrl = useMemo(
+      () => getYouTubeThumbnail(item.video_url),
+      [item.video_url],
+   );
    const itemClass = useMemo(() => clsx(scss.item, scss[`fr-${fr}`]), [fr]);
 
    return (
-      <div className={itemClass}>
-         <iframe
+      <Link href={item.video_url} target='_blank' className={itemClass}>
+         <CImage
             src={embedUrl}
+            alt='Alt'
+            width={260}
+            height={260}
             title={item.title}
-            className={scss.video}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+            className={scss.image}
          />
-         <p className={scss.videoTitle}>{item.title}</p>
-      </div>
+         <div className={scss.playOverlay}>
+            <svg
+               width='48'
+               height='48'
+               viewBox='0 0 24 24'
+               fill='none'
+               xmlns='http://www.w3.org/2000/svg'
+            >
+               <circle cx='12' cy='12' r='10' fill='#FF0000' opacity='0.8' />
+               <polygon points='10 8 16 12 10 16' fill='#FFFFFF' />
+            </svg>
+         </div>
+         <p className={scss.imageTitle}>{item.title}</p>
+      </Link>
    );
 });
 LessonItem.displayName = 'LessonItem';
@@ -45,7 +68,10 @@ const LessonsContent = memo(() => {
    const { data = [], isLoading, error } = useGetLessonsQuery();
    const locale = useLocale();
 
-   const rows = useMemo(() => generateRows<Lesson>(data, sizeWidth), [data, sizeWidth]);
+   const rows = useMemo(
+      () => generateRows<Lesson>(data, sizeWidth),
+      [data, sizeWidth],
+   );
    const totalItems = data.length;
    const gridClass = useMemo(
       () =>
@@ -56,7 +82,10 @@ const LessonsContent = memo(() => {
          ),
       [totalItems],
    );
-   const title = useMemo(() => (locale === 'ru' ? 'Видео уроки' : 'Видео сабактар'), [locale]);
+   const title = useMemo(
+      () => (locale === 'ru' ? 'Видео уроки' : 'Видео сабактар'),
+      [locale],
+   );
    const containerClass = useMemo(() => clsx(scss.content, 'container'), []);
 
    const renderLoading = useCallback(() => <Loading />, []);
@@ -64,7 +93,7 @@ const LessonsContent = memo(() => {
    const renderEmpty = useCallback(
       () => (
          <motion.p
-            key="no-items"
+            key='no-items'
             className={scss.noItems}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -78,7 +107,7 @@ const LessonsContent = memo(() => {
    );
    const renderContent = useCallback(
       () => (
-         <div key="videos" className={gridClass}>
+         <div key='videos' className={gridClass}>
             {rows.map((row, rowIndex) => (
                <React.Fragment key={rowIndex}>
                   {row.map(({ item, fr }) => (
@@ -100,7 +129,7 @@ const LessonsContent = memo(() => {
       >
          <div className={containerClass}>
             <h4 className={scss.title}>{title}</h4>
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode='wait'>
                {isLoading
                   ? renderLoading()
                   : error

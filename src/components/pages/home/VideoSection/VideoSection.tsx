@@ -74,7 +74,7 @@ const VideoSection = () => {
                                  alt={`Video - ${video.title}`}
                                  width={360}
                                  height={260}
-                                 className={scss.video}
+                                 className={scss.image}
                                  loading='lazy'
                               />
                               <div className={scss.playOverlay}>

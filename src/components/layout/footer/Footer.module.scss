@@ -216,7 +216,7 @@
 
       .right {
          .last {
-            --foter-end-img-size: 44px;
+            --foter-end-img-size: 54px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -227,8 +227,8 @@
             img {
                border-radius: 12px;
                width: var(--foter-end-img-size);
-               height: var(--foter-end-img-size);
-               border: 1px solid #333;
+               height: auto;
+               object-fit: cover;
             }
          }
       }

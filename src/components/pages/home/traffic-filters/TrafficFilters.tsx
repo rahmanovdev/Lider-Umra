@@ -101,42 +101,46 @@ const TrafficFilters = memo<TrafficFiltersProps>(
                   {t('title')} {yearRange}
                </h1>
                <div className={styles.container}>
-                  {uniqueMonths.map(({ value: monthValue, label }) => (
-                     <button
-                        key={monthValue}
-                        onClick={() => onFilterChange(monthValue)}
-                        className={clsx({
-                           [styles.active]: value === monthValue,
-                        })}
-                     >
-                        {label}
-                     </button>
-                  ))}
-               </div>
-            </div>
-            <div className={styles.custom_select} ref={selectRef}>
-               <div
-                  className={styles.select_trigger}
-                  onClick={() => setIsOpen(prev => !prev)}
-               >
-                  {selectedOptionLabel}
-                  <span
-                     className={clsx(styles.arrow, { [styles.open]: isOpen })}
-                  />
-               </div>
-               {isOpen && (
-                  <div className={styles.select_dropdown}>
-                     {options.map(opt => (
-                        <div
-                           key={opt.value}
-                           className={styles.option}
-                           onClick={() => handleSelect(opt.value)}
+                  <div className={styles.month}>
+                     {uniqueMonths.map(({ value: monthValue, label }) => (
+                        <button
+                           key={monthValue}
+                           onClick={() => onFilterChange(monthValue)}
+                           className={clsx({
+                              [styles.active]: value === monthValue,
+                           })}
                         >
-                           {opt.label}
-                        </div>
+                           {label}
+                        </button>
                      ))}
                   </div>
-               )}
+                  <div className={styles.custom_select} ref={selectRef}>
+                     <div
+                        className={styles.select_trigger}
+                        onClick={() => setIsOpen(prev => !prev)}
+                     >
+                        {selectedOptionLabel}
+                        <span
+                           className={clsx(styles.arrow, {
+                              [styles.open]: isOpen,
+                           })}
+                        />
+                     </div>
+                     {isOpen && (
+                        <div className={styles.select_dropdown}>
+                           {options.map(opt => (
+                              <div
+                                 key={opt.value}
+                                 className={styles.option}
+                                 onClick={() => handleSelect(opt.value)}
+                              >
+                                 {opt.label}
+                              </div>
+                           ))}
+                        </div>
+                     )}
+                  </div>
+               </div>
             </div>
          </div>
       );

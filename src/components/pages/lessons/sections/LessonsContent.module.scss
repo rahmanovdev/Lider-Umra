@@ -12,8 +12,8 @@
    --item-hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
    --item-transition: all 0.3s ease;
    --media-height: 260px;
-   --media-brightness: 1.1;
-   --media-hover-brightness: 1.5;
+   --media-brightness: 1;
+   --media-hover-brightness: 1.05;
    --no-items-font-size: 16px;
    --no-items-padding: 1.5rem;
    --no-items-background: rgba(255, 255, 255, 0.95);
@@ -25,7 +25,11 @@
    --video-title-padding: 0.5rem;
 
    padding: var(--video-padding) 0;
-   background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+   background: linear-gradient(
+      135deg,
+      var(--gradient-start) 0%,
+      var(--gradient-end) 100%
+   );
    display: flex;
    flex-direction: column;
 
@@ -69,23 +73,34 @@
                transform: translateY(-5px);
                box-shadow: var(--item-hover-shadow);
 
-               .video {
+               .image img {
                   filter: brightness(var(--media-hover-brightness));
                }
             }
 
-            .video {
-               width: 100%;
-               height: var(--media-height);
-               object-fit: cover;
-               display: block;
-               border-radius: 12px;
-               border: none;
-               filter: brightness(var(--media-brightness));
-               transition: all 0.25s;
+            .playOverlay {
+               position: absolute;
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+               pointer-events: none;
+
+               svg {
+                  width: 48px;
+                  height: 48px;
+               }
             }
 
-            .videoTitle {
+            .image img {
+               width: 100%;
+               height: var(--media-height);
+               border-radius: 12px;
+               filter: brightness(var(--media-brightness));
+               transition: all 0.25s;
+               filter: brightness(var(--media-brightness));
+            }
+
+            .imageTitle {
                font-size: var(--video-title-font-size);
                padding: var(--video-title-padding);
                text-align: center;

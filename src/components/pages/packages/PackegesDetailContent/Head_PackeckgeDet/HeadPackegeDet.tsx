@@ -127,14 +127,14 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = memo(({ tourData }) => {
                      <MdOutlineEditNote size={20} />
                      {t('buttons.apply')}
                   </button>
-                  <button>
+                  <a target='_blank' href='https://wa.me/996707150815'>
                      <FaWhatsapp size={20} />
                      {t('buttons.whatsapp')}
-                  </button>
-                  <button>
+                  </a>
+                  <a href='tel:+996707150815'>
                      <IoCall size={20} />
                      {t('buttons.call')}
-                  </button>
+                  </a>
                </div>
             </div>
          </div>
