@@ -75,7 +75,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
                prevIndex === sectionList.length - 1 ? 0 : prevIndex + 1,
             );
          }
-      }, 5000);
+      }, 60000);
    }, [isHovered, sectionList.length]);
 
    useEffect(() => {
@@ -88,68 +88,71 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
    const handleMouseEnter = React.useCallback(() => setIsHovered(true), []);
    const handleMouseLeave = React.useCallback(() => setIsHovered(false), []);
 
-   const renderContent = React.useCallback((section: Section | undefined) => {
-      if (!section || !section.type) {
-         return <div className={styles.contentCard}>Section not found</div>;
-      }
+   const renderContent = React.useCallback(
+      (section: Section | undefined) => {
+         if (!section || !section.type) {
+            return <div className={styles.contentCard}>Section not found</div>;
+         }
 
-      switch (section.type) {
-         case 'food':
-            return (
-               <div
-                  className={styles.contentCard}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-               >
-                  <FoodSection />
-               </div>
-            );
-         case 'places':
-            return (
-               <div
-                  className={styles.contentCard}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-               >
-                  <PlacesSection />
-               </div>
-            );
-         case 'required':
-            return (
-               <div
-                  className={styles.contentCard}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-               >
-                  <div className={styles.recommendContent}>
-                     <RequiredOfYou />
+         switch (section.type) {
+            case 'food':
+               return (
+                  <div
+                     className={styles.contentCard}
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}
+                  >
+                     <FoodSection />
                   </div>
-               </div>
-            );
-         case 'warnings':
-            return (
-               <div
-                  className={styles.contentCard}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-               >
-                  <WarningsSection />
-               </div>
-            );
-         case 'gifts':
-            return (
-               <div
-                  className={styles.contentCard}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-               >
-                  <GiftsSection />
-               </div>
-            );
-         default:
-            return null;
-      }
-   }, [handleMouseEnter, handleMouseLeave]);
+               );
+            case 'places':
+               return (
+                  <div
+                     className={styles.contentCard}
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}
+                  >
+                     <PlacesSection />
+                  </div>
+               );
+            case 'required':
+               return (
+                  <div
+                     className={styles.contentCard}
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}
+                  >
+                     <div className={styles.recommendContent}>
+                        <RequiredOfYou />
+                     </div>
+                  </div>
+               );
+            case 'warnings':
+               return (
+                  <div
+                     className={styles.contentCard}
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}
+                  >
+                     <WarningsSection />
+                  </div>
+               );
+            case 'gifts':
+               return (
+                  <div
+                     className={styles.contentCard}
+                     onMouseEnter={handleMouseEnter}
+                     onMouseLeave={handleMouseLeave}
+                  >
+                     <GiftsSection />
+                  </div>
+               );
+            default:
+               return null;
+         }
+      },
+      [handleMouseEnter, handleMouseLeave],
+   );
 
    return (
       <div className='container'>

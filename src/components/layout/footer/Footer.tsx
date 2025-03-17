@@ -62,7 +62,7 @@ const Footer = () => {
                         <Link href='/lessons' className={scss.navLink}>
                            {t('footer.links.lessons')}
                         </Link>
-                        <Link href='/usefulInfo' className={scss.navLink}>
+                        <Link href='/usefullinfo' className={scss.navLink}>
                            {t('footer.links.usefulInfo')}
                         </Link>
                      </div>

@@ -1,7 +1,7 @@
 .footer {
    margin-top: 100px;
-   background: white;
    width: 100%;
+   background-color: white;
 
    .content {
       display: flex;
@@ -201,9 +201,10 @@
 
    .under_footer {
       border-top: 1px solid rgba(0, 0, 0, 0.267);
-      padding: 30px 0;
+      padding: 15px 0;
       display: flex;
       align-items: center;
+      background-color: #f4f8f8;
       justify-content: space-around;
 
       .left {
@@ -216,7 +217,7 @@
 
       .right {
          .last {
-            --foter-end-img-size: 54px;
+            --foter-end-img-size: 48px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -225,9 +226,10 @@
             }
 
             img {
-               border-radius: 12px;
+               border-radius: 100%;
+               background-color: white;
                width: var(--foter-end-img-size);
-               height: auto;
+               height: var(--foter-end-img-size);
                object-fit: cover;
             }
          }

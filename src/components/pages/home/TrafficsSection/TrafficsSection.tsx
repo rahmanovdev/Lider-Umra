@@ -5,6 +5,7 @@ import Loading from '@/components/ui/loading/Loading';
 import { motion } from 'framer-motion';
 import React, { memo, useCallback, useMemo } from 'react';
 import scss from './TrafficsSection.module.scss';
+import { FaClock, FaExclamationTriangle } from 'react-icons/fa';
 
 interface IProps extends React.PropsWithChildren {
    tours: TOURS.GetTourPackagesResponse;
@@ -17,10 +18,13 @@ const cardVariants = {
    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
-const TourCard = memo<{ tour: TOURS.ITourPackages; cardType: 'standart' | 'comfort' }>(({ tour, cardType }) => (
+const TourCard = memo<{
+   tour: TOURS.ITourPackages;
+   cardType: 'standart' | 'comfort';
+}>(({ tour, cardType }) => (
    <motion.div
-      initial="hidden"
-      animate="visible"
+      initial='hidden'
+      animate='visible'
       transition={{ duration: 0.3 }}
       variants={cardVariants}
       className={scss[cardType]}
@@ -30,35 +34,60 @@ const TourCard = memo<{ tour: TOURS.ITourPackages; cardType: 'standart' | 'comfo
 ));
 TourCard.displayName = 'TourCard';
 
-const TrafficsSection = memo<IProps>(({ children, tours, isLoading, error }) => {
-   const renderLoading = useCallback(() => <Loading />, []);
-   const renderError = useCallback(() => <Failed error={error} />, [error]);
-   const renderCards = useMemo(
-      () => (
-         <div className={scss.cards}>
-            {tours.map((tour, index) => (
-               <TourCard
-                  key={tour.id}
-                  tour={tour}
-                  cardType={index === 1 ? 'comfort' : 'standart'}
-               />
-            ))}
-         </div>
-      ),
-      [tours],
-   );
+const ComingSoon = memo(() => (
+   <div className={scss.comingSoon}>
+      <FaClock className={scss.clockIcon} />
+      <p className={scss.comingSoonText}>Скоро</p>
+   </div>
+));
+ComingSoon.displayName = 'ComingSoon';
 
-   return (
-      <section className={scss.Main}>
-         <div className="container">
-            {children}
-            <div className={scss.content}>
-               {isLoading ? renderLoading() : error ? renderError() : renderCards}
+const TrafficsSection = memo<IProps>(
+   ({ children, tours, isLoading, error }) => {
+      const renderLoading = useCallback(() => <Loading />, []);
+      const renderError = useCallback(
+         () => (
+            <div className={scss.error}>
+               <FaExclamationTriangle className={scss.errorIcon} />
+               <Failed error={error} />
             </div>
-         </div>
-      </section>
-   );
-});
+         ),
+         [error],
+      );
+      console.log(tours);
+
+      const renderCards = useMemo(() => {
+         if (!tours.length) return <ComingSoon />;
+
+         return (
+            <div className={scss.cards}>
+               {tours.map((tour, index) => (
+                  <TourCard
+                     key={tour.id}
+                     tour={tour}
+                     cardType={index === 1 ? 'comfort' : 'standart'}
+                  />
+               ))}
+            </div>
+         );
+      }, [tours]);
+
+      return (
+         <section className={scss.Main}>
+            <div className='container'>
+               {children}
+               <div className={scss.content}>
+                  {isLoading
+                     ? renderLoading()
+                     : error
+                     ? renderError()
+                     : renderCards}
+               </div>
+            </div>
+         </section>
+      );
+   },
+);
 
 TrafficsSection.displayName = 'TrafficsSection';
 export default TrafficsSection;

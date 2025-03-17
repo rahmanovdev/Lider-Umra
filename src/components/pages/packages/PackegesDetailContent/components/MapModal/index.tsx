@@ -8,7 +8,6 @@ interface IProps {
 }
 
 const MapModal: React.FC<IProps> = ({ state, onClose }) => {
-   // Функция для обработки закрытия по клику вне карты
    const handleOverlayClick = useCallback(
       (e: React.MouseEvent<HTMLDivElement>) => {
          if (e.target === e.currentTarget) {

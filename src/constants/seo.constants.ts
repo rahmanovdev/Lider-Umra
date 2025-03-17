@@ -33,9 +33,9 @@ export const BASE_SEO_METADATA: Metadata = {
    creator: 'Ваше Имя',
    publisher: 'Лидер Умра',
    icons: {
-      icon: '/logo.svg',
-      shortcut: '/logo.svg',
-      apple: '/logo.svg',
+      icon: '/logo.png',
+      shortcut: '/logo.png',
+      apple: '/logo.png',
    },
    openGraph: {
       title: SITE_NAME,
@@ -45,7 +45,7 @@ export const BASE_SEO_METADATA: Metadata = {
       locale: 'kg_KG',
       images: [
          {
-            url: '/logo.svg',
+            url: '/logo.png',
             width: '192',
             height: '192',
             alt: 'Лидер Умра - Паломничество в Мекку',
@@ -58,7 +58,7 @@ export const BASE_SEO_METADATA: Metadata = {
       description: SITE_DESCRIPTION,
       images: [
          {
-            url: '/logo.svg',
+            url: '/logo.png',
             width: '192',
             height: '192',
             alt: 'Лидер Умра - Паломничество в Мекку',

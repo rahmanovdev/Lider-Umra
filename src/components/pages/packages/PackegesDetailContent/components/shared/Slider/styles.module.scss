@@ -18,7 +18,7 @@
          width: 100%;
          height: 100%;
          img {
-            object-fit: fill;
+            object-fit: cover;
          }
       }
 
@@ -220,10 +220,6 @@
       .swiper-pagination {
          position: static;
          margin-top: clamp(10px, 2vw, 20px);
-      }
-
-      .sliderButton {
-         display: none;
       }
    }
 }
