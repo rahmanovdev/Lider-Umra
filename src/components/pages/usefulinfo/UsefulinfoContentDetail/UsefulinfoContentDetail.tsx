@@ -54,8 +54,6 @@ const UsefulinfoContentDetail = memo(() => {
       isLoading,
    ]);
 
-   console.log(blog);
-
    const wrapperClass = useMemo(() => scss.useFullInfoContentDetail, []);
    const containerClass = useMemo(() => `${scss.container} container`, []);
    const renderLoading = useCallback(() => <Loading />, []);

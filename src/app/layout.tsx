@@ -5,10 +5,61 @@ import './styles/variables.scss';
 import { Inter, Montserrat } from 'next/font/google';
 import { getLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
-import { BASE_SEO_METADATA } from '@/constants/seo.constants';
 import { RootProvider } from '@/providers';
+import { APP_URL } from '@/constants/url.constants'
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME } from '@/constants/seo.constants'
+const AppUrl = APP_URL ? new URL(APP_URL) : null;
 
-export const metadata = BASE_SEO_METADATA;
+export const generateMetadata = async () => {
+   const locale = await getLocale();
+
+   return {
+      title: {
+         absolute: SITE_NAME,
+         template: `%s - ${SITE_NAME}`,
+      },
+      description: SITE_DESCRIPTION,
+      metadataBase: AppUrl,
+      applicationName: SITE_NAME,
+      keywords: SITE_KEYWORDS,
+      generator: 'Next.js',
+      creator: 'Сиздин Атыңыз',
+      publisher: 'Лидер Умра',
+      icons: {
+         icon: `${AppUrl}/logo.png`,
+         shortcut: `${AppUrl}/logo.png`,
+         apple: `${AppUrl}/logo.png`,
+      },
+      openGraph: {
+         title: SITE_NAME,
+         description: SITE_DESCRIPTION,
+         type: 'website',
+         emails: [],
+         locale: locale === 'ru' ? 'ru_RU' : 'kg_KG',
+         images: [
+            {
+               url: `${AppUrl}/logo.png`,
+               width: '192',
+               height: '192',
+               alt: 'Лидер Умра - Меккеге Зыярат',
+            },
+         ],
+         ...(APP_URL ? { url: new URL(APP_URL) } : {}),
+      },
+      twitter: {
+         title: SITE_NAME,
+         description: SITE_DESCRIPTION,
+         images: [
+            {
+               url: `${AppUrl}/logo.png`,
+               width: '192',
+               height: '192',
+               alt: 'Лидер Умра - Меккеге Зыярат',
+            },
+         ],
+      },
+   };
+};
 
 const interSans = Inter({
    variable: '--font-inter',

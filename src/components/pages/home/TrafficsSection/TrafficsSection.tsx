@@ -54,7 +54,6 @@ const TrafficsSection = memo<IProps>(
          ),
          [error],
       );
-      console.log(tours);
 
       const renderCards = useMemo(() => {
          if (!tours.length) return <ComingSoon />;
