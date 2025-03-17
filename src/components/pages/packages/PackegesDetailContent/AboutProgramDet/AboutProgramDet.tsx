@@ -149,7 +149,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
          default:
             return null;
       }
-   }, []);
+   }, [handleMouseEnter, handleMouseLeave]);
 
    return (
       <div className='container'>
