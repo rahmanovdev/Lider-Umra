@@ -10,7 +10,7 @@ export const SITE_DESCRIPTION = 'Lider-Umra';
 
 export const SITE_KEYWORDS = ['Lider-Umra'];
 
-export const BASE_SEO_METADATA: Metadata = {
+export const BASE_SEO_METADATA = (locale: string): Metadata => ({
    title: {
       absolute: SITE_NAME,
       template: `%s - ${SITE_NAME}`,
@@ -23,19 +23,19 @@ export const BASE_SEO_METADATA: Metadata = {
    creator: '',
    publisher: '',
    icons: {
-      icon: '/logo.png',
-      shortcut: '/logo.png',
-      apple: '/logo.png',
+      icon: '/logo.svg',
+      shortcut: '/logo.svg',
+      apple: '/logo.svg',
    },
    openGraph: {
       title: SITE_NAME,
       description: SITE_DESCRIPTION,
       type: 'website',
       emails: [],
-      locale: 'ru_RU',
+      locale: locale === 'kg' ? 'kg_KG' : 'ru_RU',
       images: [
          {
-            url: '/logo.png',
+            url: '/logo.svg',
             width: '192',
             height: '192',
             alt: SITE_NAME,
@@ -48,11 +48,11 @@ export const BASE_SEO_METADATA: Metadata = {
       description: SITE_DESCRIPTION,
       images: [
          {
-            url: '/logo.png',
+            url: '/logo.svg',
             width: '192',
             height: '192',
             alt: SITE_NAME,
          },
       ],
    },
-};
+});
