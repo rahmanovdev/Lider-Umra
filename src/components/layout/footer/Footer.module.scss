@@ -175,7 +175,6 @@
                transition: color 0.3s ease;
 
                img {
-                  // SVG сүрөттөрдү (Image компоненти) стилдештирүү
                   width: 40px;
                   height: 40px;
                   padding: 7px;
@@ -222,16 +221,14 @@
             align-items: center;
             gap: 10px;
             span {
-               border-bottom: 1px solid transparent;
-               &:hover {
-                  border-color: #333;
-               }
+               border-bottom: 1px solid #333;
             }
 
             img {
-               border-radius: 50%;
+               border-radius: 12px;
                width: var(--foter-end-img-size);
                height: var(--foter-end-img-size);
+               border: 1px solid #333;
             }
          }
       }

@@ -18,8 +18,8 @@ const ContactPage: React.FC = () => {
                   className={styles.inputField}
                />
                <input
-                  type='email'
-                  placeholder={t('email')}
+                  type='phone'
+                  placeholder={t('phone')}
                   className={styles.inputField}
                />
                <textarea

@@ -62,7 +62,7 @@ const sections = (t: (s: string) => string): Section[] => [
 
 const AboutProgramDet = ({}: AboutProgramDetProps) => {
    const t = useTranslations('packages.detail.aboutProgramDet');
-   const sectionList = sections(t); // Бир жолу гана түзүлөт
+   const sectionList = sections(t);
    const [activeIndex, setActiveIndex] = useState<number>(0);
    const [isHovered, setIsHovered] = useState(false);
    const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -90,7 +90,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
 
    const renderContent = (section: Section | undefined) => {
       if (!section || !section.type) {
-         return <div className={styles.contentCard}>Section not found</div>; // Fallback UI
+         return <div className={styles.contentCard}>Section not found</div>;
       }
 
       switch (section.type) {
