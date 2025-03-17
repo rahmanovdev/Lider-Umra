@@ -20,22 +20,24 @@ export const SITE_KEYWORDS = [
    'лучшие предложения Умра',
 ];
 
+const AppUrl = APP_URL ? new URL(APP_URL) : null;
+
 export const BASE_SEO_METADATA: Metadata = {
    title: {
       absolute: SITE_NAME,
       template: `%s - ${SITE_NAME}`,
    },
    description: SITE_DESCRIPTION,
-   metadataBase: APP_URL ? new URL(APP_URL) : null,
+   metadataBase: AppUrl,
    applicationName: SITE_NAME,
    keywords: SITE_KEYWORDS,
    generator: 'Next.js',
    creator: 'Ваше Имя',
    publisher: 'Лидер Умра',
    icons: {
-      icon: '/logo.png',
-      shortcut: '/logo.png',
-      apple: '/logo.png',
+      icon: `${AppUrl}/logo.png`,
+      shortcut: `${AppUrl}/logo.png`,
+      apple: `${AppUrl}/logo.png`,
    },
    openGraph: {
       title: SITE_NAME,
@@ -45,7 +47,7 @@ export const BASE_SEO_METADATA: Metadata = {
       locale: 'kg_KG',
       images: [
          {
-            url: '/logo.png',
+            url: `${AppUrl}/logo.png`,
             width: '192',
             height: '192',
             alt: 'Лидер Умра - Паломничество в Мекку',
@@ -58,7 +60,7 @@ export const BASE_SEO_METADATA: Metadata = {
       description: SITE_DESCRIPTION,
       images: [
          {
-            url: '/logo.png',
+            url: `${AppUrl}/logo.png`,
             width: '192',
             height: '192',
             alt: 'Лидер Умра - Паломничество в Мекку',
