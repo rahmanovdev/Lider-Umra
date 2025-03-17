@@ -75,7 +75,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
                prevIndex === sectionList.length - 1 ? 0 : prevIndex + 1,
             );
          }
-      }, 500000);
+      }, 5000);
    }, [isHovered, sectionList.length]);
 
    useEffect(() => {
@@ -85,10 +85,10 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
       };
    }, [isHovered, startInterval]);
 
-   const handleMouseEnter = () => setIsHovered(true);
-   const handleMouseLeave = () => setIsHovered(false);
+   const handleMouseEnter = React.useCallback(() => setIsHovered(true), []);
+   const handleMouseLeave = React.useCallback(() => setIsHovered(false), []);
 
-   const renderContent = (section: Section | undefined) => {
+   const renderContent = React.useCallback((section: Section | undefined) => {
       if (!section || !section.type) {
          return <div className={styles.contentCard}>Section not found</div>;
       }
@@ -149,7 +149,7 @@ const AboutProgramDet = ({}: AboutProgramDetProps) => {
          default:
             return null;
       }
-   };
+   }, []);
 
    return (
       <div className='container'>

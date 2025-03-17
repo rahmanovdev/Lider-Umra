@@ -41,13 +41,13 @@ const VideoSection = () => {
                      ? 'Биздин видеолор YouTube да'
                      : 'Биздин видеолор YouTube да'}
                </h2>
-               <Link
-                  href='/lessons'
+               <a
+                  href={'https://www.youtube.com/@Bilim.Mainaev'}
                   className={scss.button + ' base-link-button'}
                >
                   {locale === 'ru' ? 'Биздин YouTube' : 'Биздин YouTube'}
                   <GoArrowRight />
-               </Link>
+               </a>
             </div>
             <AnimatePresence mode='wait'>
                {isLoading ? (

@@ -61,8 +61,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             <div className={scss.contact_title}>
                {t('mobileMenu.contactTitle')}
             </div>
-            <a href='tel:+996700188251' className={scss.phone_number}>
-               <span>+996 700-18-82-51</span>
+            <a href='tel:+996707150815' className={scss.phone_number}>
+               <span>+996 707 150 815</span>
             </a>
          </div>
       </div>

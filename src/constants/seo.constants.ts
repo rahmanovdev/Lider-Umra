@@ -3,14 +3,24 @@ import { APP_URL } from './url.constants';
 
 export const NO_INDEX_PAGE = { robots: { index: false, follow: false } };
 
-export const SITE_NAME = 'Lider-Umra';
-export const SHORT_NAME = 'Lider-Umra';
+export const SITE_NAME = 'Лидер Умра';
+export const SHORT_NAME = 'Лидер Умра';
 
-export const SITE_DESCRIPTION = 'Lider-Umra';
+export const SITE_DESCRIPTION =
+   'Лидер Умра - ваш надежный партнер в совершении Умры. Мы предлагаем лучшие условия и поддержку для паломников.';
 
-export const SITE_KEYWORDS = ['Lider-Umra'];
+export const SITE_KEYWORDS = [
+   'Лидер Умра',
+   'Умра',
+   'паломничество',
+   'путешествия в Мекку',
+   'религиозные туры',
+   'паломники',
+   'Умра 2023',
+   'лучшие предложения Умра',
+];
 
-export const BASE_SEO_METADATA = (locale: string): Metadata => ({
+export const BASE_SEO_METADATA: Metadata = {
    title: {
       absolute: SITE_NAME,
       template: `%s - ${SITE_NAME}`,
@@ -20,8 +30,8 @@ export const BASE_SEO_METADATA = (locale: string): Metadata => ({
    applicationName: SITE_NAME,
    keywords: SITE_KEYWORDS,
    generator: 'Next.js',
-   creator: '',
-   publisher: '',
+   creator: 'Ваше Имя',
+   publisher: 'Лидер Умра',
    icons: {
       icon: '/logo.svg',
       shortcut: '/logo.svg',
@@ -32,13 +42,13 @@ export const BASE_SEO_METADATA = (locale: string): Metadata => ({
       description: SITE_DESCRIPTION,
       type: 'website',
       emails: [],
-      locale: locale === 'kg' ? 'kg_KG' : 'ru_RU',
+      locale: 'kg_KG',
       images: [
          {
             url: '/logo.svg',
             width: '192',
             height: '192',
-            alt: SITE_NAME,
+            alt: 'Лидер Умра - Паломничество в Мекку',
          },
       ],
       ...(APP_URL ? { url: new URL(APP_URL) } : {}),
@@ -51,8 +61,8 @@ export const BASE_SEO_METADATA = (locale: string): Metadata => ({
             url: '/logo.svg',
             width: '192',
             height: '192',
-            alt: SITE_NAME,
+            alt: 'Лидер Умра - Паломничество в Мекку',
          },
       ],
    },
-});
+};

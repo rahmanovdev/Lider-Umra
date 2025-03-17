@@ -8,10 +8,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { BASE_SEO_METADATA } from '@/constants/seo.constants';
 import { RootProvider } from '@/providers';
 
-export const generateMetadata = async () => {
-   const locale = await getLocale()
-   return BASE_SEO_METADATA(locale);
-};
+export const metadata = BASE_SEO_METADATA;
 
 const interSans = Inter({
    variable: '--font-inter',
