@@ -8,13 +8,14 @@
         "clsx": "^2.1.1",
         "framer-motion": "^12.5.0",
         "js-cookie": "^3.0.5",
-        "next": "^15.1.4",
+        "next": "15.1.4",
         "next-intl": "^3.26.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-icons": "^5.5.0",
         "react-redux": "^9.2.0",
         "swiper": "^11.2.5",
+        "yet-another-react-lightbox": "^3.21.8",
       },
       "devDependencies": {
         "@eslint/eslintrc": "^3.3.0",
@@ -745,6 +746,8 @@
     "which-typed-array": ["which-typed-array@1.1.18", "", { "dependencies": { "available-typed-arrays": "^1.0.7", "call-bind": "^1.0.8", "call-bound": "^1.0.3", "for-each": "^0.3.3", "gopd": "^1.2.0", "has-tostringtag": "^1.0.2" } }, "sha512-qEcY+KJYlWyLH9vNbsr6/5j59AXk5ni5aakf8ldzBvGde6Iz4sxZGkJyWSAueTG7QhOvNRYb1lDdFmL5Td0QKA=="],
 
     "word-wrap": ["word-wrap@1.2.5", "", {}, "sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA=="],
+
+    "yet-another-react-lightbox": ["yet-another-react-lightbox@3.21.8", "", { "peerDependencies": { "@types/react": "^16 || ^17 || ^18 || ^19", "@types/react-dom": "^16 || ^17 || ^18 || ^19", "react": "^16.8.0 || ^17 || ^18 || ^19", "react-dom": "^16.8.0 || ^17 || ^18 || ^19" }, "optionalPeers": ["@types/react", "@types/react-dom"] }, "sha512-8DnjpSmWF+WjGXX+NIJx0V/naUhUYxLt6RIBJZoQ4y1GJVKwiUO2RuRvUBvYQTwAwFqwhJSvxfIhCU3VyCj9WQ=="],
 
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
 
