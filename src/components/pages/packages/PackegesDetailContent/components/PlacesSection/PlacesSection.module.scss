@@ -148,7 +148,7 @@
                font-size: 14px;
             }
 
-            @media (max-width: 480px) {
+            @media (max-width: 500px) {
                width: 100%;
                padding: 10px;
             }
@@ -217,8 +217,8 @@
    }
 }
 
-// Адаптация 480px чейин
-@media (max-width: 480px) {
+// Адаптация 500px чейин
+@media (max-width: 500px) {
    .placesContent {
       padding: clamp(8px, 2vw, 10px);
 
@@ -231,7 +231,7 @@
       }
 
       .hostelContent {
-         width: 90%;
+         width: 97%;
          padding: clamp(6px, 1.5vw, 8px) clamp(8px, 1.5vw, 12px);
 
          h2 {

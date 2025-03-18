@@ -63,7 +63,7 @@ const CImage: React.FC<CImageProps> = ({
    }
 
    return (
-      <div data-wrapper='true' className={`${scss.imageWrapper} ${className}`}>
+      <div data-wrapper='true' className={`${scss.imageWrapper} ${className} flexCenter`}>
          {isLoading && (
             <div className={scss.loadingOverlay}>{loadingComponent}</div>
          )}

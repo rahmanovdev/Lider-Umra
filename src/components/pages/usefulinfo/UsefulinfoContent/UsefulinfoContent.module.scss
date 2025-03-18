@@ -9,10 +9,9 @@
    --content-pad: 15px;
    --content-bg: rgba(255, 255, 255, 0.7);
    --content-blur: 6px;
-   --fr-2-width: 600px;
 
-   display: flex;
-   flex-direction: column;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
    gap: var(--gap);
 
    .row {
@@ -38,6 +37,7 @@
       height: var(--item-height);
       position: relative;
       overflow: hidden;
+      width: 100%;
 
       .content {
          position: absolute;
@@ -70,21 +70,6 @@
          object-fit: cover;
          z-index: -1;
       }
-
-      &.fr-2 {
-         max-width: var(--fr-2-width);
-         min-width: var(--fr-2-width);
-      }
-
-      &.fr-1 {
-         max-width: 100%;
-         min-width: 100%;
-      }
-
-      &:is(.is_one):not(.fr-2_1) {
-         max-width: 50% !important;
-         min-width: 50% !important;
-      }
    }
 
    @media (max-width: 1290px) {
@@ -94,7 +79,6 @@
       --item-height: 350px;
       --content-inset: 18px;
       --content-pad: 12px;
-      --fr-2-width: 580px;
       .item .content {
          h2 {
             font-size: 16px;
@@ -105,12 +89,8 @@
       }
    }
 
-   @media (max-width: 1190px) {
-      --fr-2-width: 500px;
-   }
-
    @media (max-width: 1090px) {
-      --fr-2-width: 100%;
+      grid-template-columns: repeat(3, 1fr);
    }
 
    @media (max-width: 1024px) {
@@ -151,13 +131,15 @@
       }
    }
 
-   @media (max-width: 480px) {
+   @media (max-width: 500px) {
       --row-gap: 5px;
       --item-radius: 12px;
       --item-height: 200px;
       --content-inset: 12px;
       --content-pad: 6px;
       --item-height: 250px;
+      grid-template-columns: 1fr;
+
       .row {
          flex-direction: column;
          align-items: stretch;
@@ -165,10 +147,6 @@
 
       .item {
          margin: 0 auto;
-         &:is(.is_one):not(.fr-2_1) {
-            max-width: 94% !important;
-            min-width: 94% !important;
-         }
          .content {
             h2 {
                font-size: 13px;
@@ -176,14 +154,6 @@
             p {
                font-size: 10px;
             }
-         }
-      }
-   }
-   @media (max-width: 400px) {
-      .item {
-         &:is(.is_one):not(.fr-2_1) {
-            max-width: 98% !important;
-            min-width: 98% !important;
          }
       }
    }

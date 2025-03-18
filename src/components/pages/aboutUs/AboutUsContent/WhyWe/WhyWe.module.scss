@@ -101,7 +101,12 @@
          top: 0;
          overflow: hidden;
          width: 4px;
-         background: linear-gradient(to bottom, var(--line-color) 10%, var(--line-color) 90%, transparent 100%);
+         background: linear-gradient(
+            to bottom,
+            var(--line-color) 10%,
+            var(--line-color) 90%,
+            transparent 100%
+         );
          mask-image: linear-gradient(to bottom, black 10%, black 90%);
       }
 
@@ -111,7 +116,12 @@
          right: 0;
          top: 0;
          width: 4px;
-         background: linear-gradient(to top, var(--progress-from) 0%, var(--progress-via) 10%, transparent 100%);
+         background: linear-gradient(
+            to top,
+            var(--progress-from) 0%,
+            var(--progress-via) 10%,
+            transparent 100%
+         );
          border-radius: 9999px;
       }
    }
@@ -154,7 +164,7 @@
       }
    }
 
-   @media (max-width: 480px) {
+   @media (max-width: 500px) {
       .container {
          h2 {
             font-size: 1.6rem;

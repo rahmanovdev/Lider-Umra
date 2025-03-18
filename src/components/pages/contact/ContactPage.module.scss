@@ -91,7 +91,7 @@
       margin-bottom: 1.875rem; /* 30px */
       max-width: 100%; /* Чоң экрандардагы 80% чектөө алынып, адаптивдүү болду */
 
-      @media (max-width: 480px) {
+      @media (max-width: 500px) {
          font-size: 0.9375rem; /* 15px - мобилдик экрандарда окууга ыңгайлуу */
       }
    }
@@ -115,7 +115,7 @@
    ); /* Адаптивдүү grid */
    gap: 0.9375rem; /* 15px */
 
-   @media (max-width: 480px) {
+   @media (max-width: 500px) {
       grid-template-columns: 1fr; /* Кичине экрандарда бир колонка */
    }
 }
@@ -129,7 +129,7 @@
       font-size: 1.75rem; /* 28px */
       color: var(--color-primary);
 
-      @media (max-width: 480px) {
+      @media (max-width: 500px) {
          font-size: 1.5rem; /* 24px - мобилдик экрандарда */
       }
    }
@@ -148,7 +148,7 @@
          font-size: 1.25rem; /* 20px */
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 500px) {
          font-size: 1.125rem; /* 18px */
       }
    }
@@ -158,7 +158,7 @@
       color: #555;
       margin: 0; /* Башка p элементтери менен бирдей болушу үчүн */
 
-      @media (max-width: 480px) {
+      @media (max-width: 500px) {
          font-size: 0.875rem; /* 14px */
       }
    }

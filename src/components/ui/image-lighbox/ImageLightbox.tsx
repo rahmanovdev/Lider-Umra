@@ -83,36 +83,40 @@ const ImageLightbox: React.FC<IImageLightboxProps> = React.memo(
                      </motion.figure>
                   </div>
 
-                  <div className={scss.preview}>
-                     <button
-                        className={scss.nav}
-                        onClick={showPrev}
-                        aria-label='Previous Image'
-                     >
-                        <IoIosArrowBack size={30} />
-                     </button>
+                  {images.length >= 2 && (
+                     <div className={scss.preview}>
+                        <button
+                           className={scss.nav}
+                           onClick={showPrev}
+                           aria-label='Previous Image'
+                        >
+                           <IoIosArrowBack size={30} />
+                        </button>
 
-                     <div className={scss.previews}>
-                        {images.map((thumb, index) => (
-                           // eslint-disable-next-line @next/next/no-img-element
-                           <img
-                              key={index}
-                              src={thumb}
-                              alt={`Preview ${index + 1}`}
-                              className={current === index ? scss.active : ''}
-                              onClick={() => selectImage(index)}
-                           />
-                        ))}
+                        <div className={scss.previews}>
+                           {images.map((thumb, index) => (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img
+                                 key={index}
+                                 src={thumb}
+                                 alt={`Preview ${index + 1}`}
+                                 className={
+                                    current === index ? scss.active : ''
+                                 }
+                                 onClick={() => selectImage(index)}
+                              />
+                           ))}
+                        </div>
+
+                        <button
+                           className={scss.nav}
+                           onClick={showNext}
+                           aria-label='Next Image'
+                        >
+                           <IoIosArrowForward size={30} />
+                        </button>
                      </div>
-
-                     <button
-                        className={scss.nav}
-                        onClick={showNext}
-                        aria-label='Next Image'
-                     >
-                        <IoIosArrowForward size={30} />
-                     </button>
-                  </div>
+                  )}
                </motion.div>
             </div>
          </div>

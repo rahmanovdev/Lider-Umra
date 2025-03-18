@@ -1,27 +1,20 @@
 'use client';
+import CImage from '@/components/ui/cimage/CImage';
+import Failed from '@/components/ui/failed/Failed';
+import ImageLightbox from '@/components/ui/image-lighbox/ImageLightbox';
+import Loading from '@/components/ui/loading/Loading';
+import { useGetGalleriesQuery } from '@/redux/api/gallery';
+import clsx from 'clsx';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useLocale } from 'next-intl';
 import React, { memo, useMemo } from 'react';
 import scss from './GalleryContent.module.scss';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useSize } from '@/hooks/use-size';
-import clsx from 'clsx';
-import { useGetGalleriesQuery } from '@/redux/api/gallery';
-import { generateRows } from '@/utils/generate-rows.util';
-import { useLocale } from 'next-intl';
-import Loading from '@/components/ui/loading/Loading';
-import ImageLightbox from '@/components/ui/image-lighbox/ImageLightbox';
-import Failed from '@/components/ui/failed/Failed';
-import CImage from '@/components/ui/cimage/CImage'
 
 const GalleryContent = memo(() => {
-   const { width: sizeWidth } = useSize();
    const { data = [], isLoading, error } = useGetGalleriesQuery();
    const locale = useLocale();
    const [selected, setSelected] = React.useState<number | null>(null);
 
-   const rows = useMemo(
-      () => generateRows(data, sizeWidth || 0),
-      [data, sizeWidth],
-   );
    const totalItems = data.length;
 
    const gridClass = useMemo(
@@ -50,7 +43,7 @@ const GalleryContent = memo(() => {
                   <Loading />
                ) : error ? (
                   <Failed error={error} />
-               ) : rows.length ? (
+               ) : data.length >= 1 ? (
                   <div key='gallery' className={gridClass}>
                      {selected !== null && (
                         <ImageLightbox
@@ -59,29 +52,22 @@ const GalleryContent = memo(() => {
                            onClose={() => setSelected(null)}
                         />
                      )}
-                     {rows.map((row, rowIndex) => (
-                        <React.Fragment key={rowIndex}>
-                           {row.map(item => (
-                              <div
-                                 key={item.item.id}
-                                 onClick={() => setSelected(item.index)}
-                                 className={clsx(
-                                    scss.item,
-                                    scss[`fr-${item.fr}`],
-                                 )}
-                              >
-                                 <CImage
-                                    src={item.item.photo}
-                                    alt={'Gallery image'}
-                                    width={520}
-                                    height={260}
-                                    sizes='(max-width: 480px) 100vw, (max-width: 1090px) 50vw, 33vw'
-                                    loading='lazy'
-                                    className={scss.image}
-                                 />
-                              </div>
-                           ))}
-                        </React.Fragment>
+                     {data.map((item, index) => (
+                        <div
+                           key={item.id}
+                           onClick={() => setSelected(index)}
+                           className={clsx(scss.item)}
+                        >
+                           <CImage
+                              src={item.photo}
+                              alt={'Gallery image'}
+                              width={520}
+                              height={260}
+                              sizes='(max-width: 500px) 100vw, (max-width: 1090px) 50vw, 33vw'
+                              loading='lazy'
+                              className={scss.image}
+                           />
+                        </div>
                      ))}
                   </div>
                ) : (

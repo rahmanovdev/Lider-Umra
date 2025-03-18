@@ -2,15 +2,13 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import scss from './LessonsContent.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSize } from '@/hooks/use-size';
 import clsx from 'clsx';
-import { generateRows } from '@/utils/generate-rows.util';
 import { useGetLessonsQuery } from '@/redux/api/lessons';
 import Loading from '@/components/ui/loading/Loading';
 import { useLocale } from 'next-intl';
 import Failed from '@/components/ui/failed/Failed';
-import CImage from '@/components/ui/cimage/CImage'
-import Link from 'next/link'
+import CImage from '@/components/ui/cimage/CImage';
+import Link from 'next/link';
 
 interface Lesson {
    id: number;
@@ -28,15 +26,14 @@ const getYouTubeThumbnail = (url: string) => {
       : '';
 };
 
-const LessonItem = memo<{ item: Lesson; fr: number }>(({ item, fr }) => {
+const LessonItem = memo<{ item: Lesson }>(({ item }) => {
    const embedUrl = useMemo(
       () => getYouTubeThumbnail(item.video_url),
       [item.video_url],
    );
-   const itemClass = useMemo(() => clsx(scss.item, scss[`fr-${fr}`]), [fr]);
 
    return (
-      <Link href={item.video_url} target='_blank' className={itemClass}>
+      <Link href={item.video_url} target='_blank' className={scss.item}>
          <CImage
             src={embedUrl}
             alt='Alt'
@@ -64,24 +61,9 @@ const LessonItem = memo<{ item: Lesson; fr: number }>(({ item, fr }) => {
 LessonItem.displayName = 'LessonItem';
 
 const LessonsContent = memo(() => {
-   const { width: sizeWidth = 0 } = useSize();
-   const { data = [], isLoading, error } = useGetLessonsQuery();
+   const { data: lessons = [], isLoading, error } = useGetLessonsQuery();
    const locale = useLocale();
 
-   const rows = useMemo(
-      () => generateRows<Lesson>(data, sizeWidth),
-      [data, sizeWidth],
-   );
-   const totalItems = data.length;
-   const gridClass = useMemo(
-      () =>
-         clsx(
-            scss.grid,
-            totalItems === 1 && scss['one-item'],
-            totalItems === 2 && scss['two-items'],
-         ),
-      [totalItems],
-   );
    const title = useMemo(
       () => (locale === 'ru' ? 'Видео уроки' : 'Видео сабактар'),
       [locale],
@@ -107,17 +89,13 @@ const LessonsContent = memo(() => {
    );
    const renderContent = useCallback(
       () => (
-         <div key='videos' className={gridClass}>
-            {rows.map((row, rowIndex) => (
-               <React.Fragment key={rowIndex}>
-                  {row.map(({ item, fr }) => (
-                     <LessonItem key={item.id} item={item} fr={fr} />
-                  ))}
-               </React.Fragment>
+         <div key='videos' className={scss.grid}>
+            {lessons.map((lesson, index) => (
+               <LessonItem key={`lesson-id-${index}`} item={lesson} />
             ))}
          </div>
       ),
-      [rows, gridClass],
+      [lessons],
    );
 
    return (
@@ -134,7 +112,7 @@ const LessonsContent = memo(() => {
                   ? renderLoading()
                   : error
                   ? renderError()
-                  : rows.length
+                  : lessons.length
                   ? renderContent()
                   : renderEmpty()}
             </AnimatePresence>

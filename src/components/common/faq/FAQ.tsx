@@ -12,14 +12,6 @@ const FAQ: React.FC = () => {
    const t = useTranslations('faq');
    const { data, isLoading, error } = useGetFaqsQuery();
 
-   const faq = data
-      ? data.map(v => ({
-           value: `${v.id}`,
-           label: v.question,
-           content: v.answer,
-        }))
-      : [];
-
    return (
       <section className={styles.section}>
          <div className={styles.container}>
@@ -38,7 +30,15 @@ const FAQ: React.FC = () => {
                         }}
                      />
                   )}
-                  items={faq}
+                  items={
+                     data
+                        ? data?.map(v => ({
+                             value: String(v.id),
+                             content: v.answer,
+                             label: v.question,
+                          }))
+                        : []
+                  }
                />
             )}
          </div>

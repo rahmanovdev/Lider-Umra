@@ -136,8 +136,8 @@
    }
 }
 
-// 1480px дан 1680px чейинки версия
-@media (min-width: 1480px) and (max-width: 1680px) {
+// 1500px дан 1680px чейинки версия
+@media (min-width: 1500px) and (max-width: 1680px) {
    .AboutSection {
       .content {
          .about_top {
@@ -187,8 +187,8 @@
    }
 }
 
-// 1200px дан 1480px чейинки версия
-@media (min-width: 1220px) and (max-width: 1480px) {
+// 1200px дан 1500px чейинки версия
+@media (min-width: 1220px) and (max-width: 1500px) {
    .AboutSection {
       .content {
          .about_top {
@@ -256,7 +256,7 @@
 
             .about_video {
                .video_container {
-                  width: clamp(280px, 38vw, 480px);
+                  width: clamp(280px, 38vw, 500px);
                   height: clamp(180px, 32vw, 270px);
                }
             }

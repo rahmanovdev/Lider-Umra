@@ -2,12 +2,12 @@
 import CImage from '@/components/ui/cimage/CImage';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { IoClose } from 'react-icons/io5';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from './styles.module.scss';
+import ImageLightbox from '@/components/ui/image-lighbox/ImageLightbox';
 
 interface IMedia {
    src: string;
@@ -27,15 +27,10 @@ const Slider: React.FC<SliderProps> = ({
    showDots = true,
    sliderId = 'default',
 }) => {
-   const [isModalOpen, setIsModalOpen] = useState(false);
-   const [selectedMedia, setSelectedMedia] = useState<{
-      src: string;
-      type: 'video' | 'image';
-   } | null>(null);
+   const [selectedMedia, setSelectedMedia] = useState<number | null>(null);
 
-   const openModal = React.useCallback((media: IMedia) => {
-      setSelectedMedia(media);
-      setIsModalOpen(true);
+   const openModal = React.useCallback((index: number) => {
+      setSelectedMedia(index);
    }, []);
    const prevClass = `${styles.sliderButton} ${styles.prev} ${sliderId}`;
    const nextClass = `${styles.sliderButton} ${styles.next} ${sliderId}`;
@@ -62,7 +57,7 @@ const Slider: React.FC<SliderProps> = ({
                   <SwiperSlide key={index}>
                      <div
                         className={styles.slide}
-                        onClick={() => openModal(slide)}
+                        onClick={() => openModal(index)}
                      >
                         {slide.type === 'image' ? (
                            <CImage
@@ -97,44 +92,13 @@ const Slider: React.FC<SliderProps> = ({
             <button className={nextClass}>→</button>
          </div>
 
-         {isModalOpen &&
-            selectedMedia &&
+         {selectedMedia !== null &&
             createPortal(
-               <div
-                  className={styles.modal}
-                  onClick={() => setIsModalOpen(false)}
-               >
-                  <div className={styles.modalContent}>
-                     <button
-                        className={styles.closeButton}
-                        onClick={() => setIsModalOpen(false)}
-                     >
-                        <IoClose />
-                     </button>
-                     <div className={styles.zoomableMedia}>
-                        {selectedMedia.type === 'image' ? (
-                           <CImage
-                              src={selectedMedia.src}
-                              alt='Enlarged view'
-                              fill
-                              className={styles.modalSlide}
-                              quality={100}
-                           />
-                        ) : (
-                           <iframe
-                              className={styles.modalSlide}
-                              src={`https://www.youtube.com/embed/${new URL(
-                                 selectedMedia.src,
-                              ).searchParams.get('v')}`}
-                              title='Enlarged Video View'
-                              frameBorder='0'
-                              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                              allowFullScreen
-                           ></iframe>
-                        )}
-                     </div>
-                  </div>
-               </div>,
+               <ImageLightbox
+                  onClose={() => setSelectedMedia(null)}
+                  images={slides.map(v => v.src)}
+                  selected={selectedMedia}
+               />,
                document.body,
             )}
       </>

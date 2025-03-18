@@ -109,61 +109,6 @@
    }
 }
 
-.modal {
-   position: fixed;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   background: rgba(0, 0, 0, 0.9);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 1000;
-   padding: clamp(10px, 2vw, 20px);
-   opacity: 1;
-
-   .modalContent {
-      position: relative;
-      width: clamp(80vw, 70vw, 90vw);
-      height: clamp(80vh, 70vh, 90vh);
-      max-width: 1200px;
-      transform: scale(1);
-
-      .closeButton {
-         position: fixed;
-         right: 10px;
-         top: clamp(-20px, -3vw, -40px);
-         width: clamp(30px, 5vw, 40px);
-         height: clamp(30px, 5vw, 40px);
-         border-radius: 50%;
-         background: white;
-         border: none;
-         cursor: pointer;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         font-size: clamp(22px, 3vw, 28px);
-         color: black;
-         z-index: 1001;
-
-         &:hover {
-            background: #f0f0f0;
-         }
-      }
-
-      .modalSlide {
-         position: relative;
-         width: clamp(80vw, 70vw, 90vw);
-         height: clamp(80vh, 70vh, 90vh);
-         overflow: hidden;
-         img {
-            object-fit: contain;
-         }
-      }
-   }
-}
-
 @media (max-width: 768px) {
    .slider {
       .swiper {
@@ -195,19 +140,6 @@
          }
       }
    }
-
-   .modal {
-      padding: clamp(8px, 1.5vw, 10px);
-
-      .modalContent {
-         height: clamp(70vh, 75vh, 80vh);
-
-         .closeButton {
-            right: clamp(-10px, -2vw, -20px);
-            top: 0;
-         }
-      }
-   }
 }
 
 @media (max-width: 768px) {
@@ -224,7 +156,7 @@
    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
    .slider {
       .sliderButton {
          top: 28%;
@@ -259,19 +191,6 @@
 
          .swiper-pagination-bullet {
             width: clamp(3px, 0.6vw, 4px);
-         }
-      }
-   }
-
-   .modal {
-      padding: clamp(6px, 1vw, 8px);
-
-      .modalContent {
-         height: 70vh;
-
-         .closeButton {
-            right: clamp(-5px, -1vw, -10px);
-            top: clamp(-5px, -1vw, -10px);
          }
       }
    }

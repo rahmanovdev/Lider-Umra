@@ -1,161 +1,161 @@
 .modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6); // Фонду бир аз күчөттүм
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 20px; // Кичине экрандарда контент четтен чыкпасын
-  opacity: 0;
-  animation: fadeIn 0.3s ease forwards;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.6); // Фонду бир аз күчөттүм
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+   padding: 20px; // Кичине экрандарда контент четтен чыкпасын
+   opacity: 0;
+   animation: fadeIn 0.3s ease forwards;
 
-  @media (max-width: 768px) {
-    padding: 15px;
-  }
+   @media (max-width: 768px) {
+      padding: 15px;
+   }
 
-  @media (max-width: 320px) {
-    padding: 10px;
-  }
+   @media (max-width: 320px) {
+      padding: 10px;
+   }
 }
 
 .modalContent {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  width: 80%;
-  max-width: 700px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); // Көлөкө кошулду
-  transform: scale(0.95);
-  animation: zoomIn 0.3s ease forwards;
+   background: #ffffff;
+   padding: 30px;
+   border-radius: 12px;
+   width: 80%;
+   max-width: 700px;
+   max-height: 90vh;
+   overflow-y: auto;
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); // Көлөкө кошулду
+   transform: scale(0.95);
+   animation: zoomIn 0.3s ease forwards;
 
-  @media (max-width: 1024px) {
-    width: 85%;
-    max-width: 600px;
-  }
+   @media (max-width: 1024px) {
+      width: 85%;
+      max-width: 600px;
+   }
 
-  @media (max-width: 768px) {
-    width: 90%;
-    padding: 20px;
-  }
+   @media (max-width: 768px) {
+      width: 90%;
+      padding: 20px;
+   }
 
-  @media (max-width: 480px) {
-    width: 95%;
-    max-height: 85vh;
-  }
+   @media (max-width: 500px) {
+      width: 95%;
+      max-height: 85vh;
+   }
 
-  @media (max-width: 320px) {
-    padding: 15px;
-  }
+   @media (max-width: 320px) {
+      padding: 15px;
+   }
 }
 
 .modalHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
 
-  h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--color-text, #120b0b);
-    margin: 0;
-    line-height: 1.2;
-
-    @media (max-width: 768px) {
-      font-size: 20px;
-    }
-
-    @media (max-width: 320px) {
-      font-size: 18px;
-    }
-  }
-
-  .closeButton {
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: var(--color-text, #2a2525);
-    padding: 4px 8px;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    line-height: 1;
-
-    &:hover {
-      opacity: 0.7;
-      transform: scale(1.1);
-    }
-
-    @media (max-width: 768px) {
+   h2 {
       font-size: 24px;
-      padding: 2px 6px;
-    }
+      font-weight: 600;
+      color: var(--color-text, #120b0b);
+      margin: 0;
+      line-height: 1.2;
 
-    @media (max-width: 320px) {
-      font-size: 20px;
-      padding: 2px 4px;
-    }
-  }
+      @media (max-width: 768px) {
+         font-size: 20px;
+      }
+
+      @media (max-width: 320px) {
+         font-size: 18px;
+      }
+   }
+
+   .closeButton {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--color-text, #2a2525);
+      padding: 4px 8px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      line-height: 1;
+
+      &:hover {
+         opacity: 0.7;
+         transform: scale(1.1);
+      }
+
+      @media (max-width: 768px) {
+         font-size: 24px;
+         padding: 2px 6px;
+      }
+
+      @media (max-width: 320px) {
+         font-size: 20px;
+         padding: 2px 4px;
+      }
+   }
 }
 
 .modalBody {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--color-text, #4b5563);
+   font-size: 16px;
+   line-height: 1.6;
+   color: var(--color-text, #4b5563);
 
-  p {
-    margin: 0.8em 0;
-  }
+   p {
+      margin: 0.8em 0;
+   }
 
-  ul,
-  ol {
-    margin: 1em 0;
-    padding-left: 1.5em;
-  }
+   ul,
+   ol {
+      margin: 1em 0;
+      padding-left: 1.5em;
+   }
 
-  li {
-    margin: 0.5em 0;
-  }
+   li {
+      margin: 0.5em 0;
+   }
 
-  strong,
-  b {
-    font-weight: 600;
-  }
+   strong,
+   b {
+      font-weight: 600;
+   }
 
-  em,
-  i {
-    font-style: italic;
-  }
+   em,
+   i {
+      font-style: italic;
+   }
 
-  @media (max-width: 768px) {
-    font-size: 15px;
-  }
+   @media (max-width: 768px) {
+      font-size: 15px;
+   }
 
-  @media (max-width: 320px) {
-    font-size: 14px;
-  }
+   @media (max-width: 320px) {
+      font-size: 14px;
+   }
 }
 
 // Анимациялар
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
 }
 
 @keyframes zoomIn {
-  from {
-    transform: scale(0.95);
-  }
-  to {
-    transform: scale(1);
-  }
+   from {
+      transform: scale(0.95);
+   }
+   to {
+      transform: scale(1);
+   }
 }
