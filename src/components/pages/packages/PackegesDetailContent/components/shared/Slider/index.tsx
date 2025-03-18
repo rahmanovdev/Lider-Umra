@@ -1,5 +1,6 @@
 'use client';
 import CImage from '@/components/ui/cimage/CImage';
+import Lightbox from '@/components/ui/lightbox/Lightbox';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'swiper/css';
@@ -7,7 +8,6 @@ import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from './styles.module.scss';
-import ImageLightbox from '@/components/ui/image-lighbox/ImageLightbox';
 
 interface IMedia {
    src: string;
@@ -94,9 +94,9 @@ const Slider: React.FC<SliderProps> = ({
 
          {selectedMedia !== null &&
             createPortal(
-               <ImageLightbox
+               <Lightbox
                   onClose={() => setSelectedMedia(null)}
-                  images={slides.map(v => v.src)}
+                  slides={slides.map(v => ({ src: v.src }))}
                   selected={selectedMedia}
                />,
                document.body,

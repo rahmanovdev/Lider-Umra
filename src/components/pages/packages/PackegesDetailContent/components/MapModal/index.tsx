@@ -34,14 +34,13 @@ const MapModal: React.FC<IProps> = ({ state, onClose }) => {
          case 'medina':
             return (
                <iframe
-                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d229228.94895444555!2d39.5272312239192!3d24.49432015691222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d1e6a5e5e4f7%3A0x9a6b3b8d8f7c9e2d!2sMedina%20Saudi%20Arabia!5e0!3m2!1sen!2skg!4v1741256000000!5m2!1sen!2skg'
-                  width='100%'
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.608797262149!2d39.60807618652689!3d24.46435440477214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15bdbf00045894e7%3A0x49b42e7dcf3c747!2sView%20Al%20Madinah%20Hotel!5e0!3m2!1sen!2skg!4v1742293909180!5m2!1sen!2skg'
+                  width='600'
                   height='450'
                   style={{ border: 0 }}
                   allowFullScreen
                   loading='lazy'
                   referrerPolicy='no-referrer-when-downgrade'
-                  title='Map of Medina'
                ></iframe>
             );
          default:

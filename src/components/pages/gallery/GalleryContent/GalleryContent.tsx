@@ -1,7 +1,7 @@
 'use client';
 import CImage from '@/components/ui/cimage/CImage';
 import Failed from '@/components/ui/failed/Failed';
-import ImageLightbox from '@/components/ui/image-lighbox/ImageLightbox';
+import Lightbox from '@/components/ui/lightbox/Lightbox';
 import Loading from '@/components/ui/loading/Loading';
 import { useGetGalleriesQuery } from '@/redux/api/gallery';
 import clsx from 'clsx';
@@ -46,9 +46,9 @@ const GalleryContent = memo(() => {
                ) : data.length >= 1 ? (
                   <div key='gallery' className={gridClass}>
                      {selected !== null && (
-                        <ImageLightbox
+                        <Lightbox
                            selected={selected}
-                           images={data.map(v => v.photo)}
+                           slides={data.map(v => ({ src: v.photo }))}
                            onClose={() => setSelected(null)}
                         />
                      )}

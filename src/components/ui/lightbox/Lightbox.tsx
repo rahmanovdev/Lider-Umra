@@ -1,5 +1,5 @@
 'use client';
-import Lightbox from 'yet-another-react-lightbox';
+import ReactLightbox, { Render } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import React from 'react';
 
@@ -8,26 +8,29 @@ import Slideshow from 'yet-another-react-lightbox/plugins/slideshow';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import { SlideImage } from 'yet-another-react-lightbox';
 
-interface IImageLightboxProps {
-   images: string[];
+interface ILightboxProps {
+   slides?: SlideImage[];
    onClose: VoidFunction;
-   selected: number;
+   selected?: number;
+   render?: Render;
 }
 
-const ImageLightbox: React.FC<IImageLightboxProps> = React.memo(
-   ({ images, onClose, selected }) => {
+const Lightbox: React.FC<ILightboxProps> = React.memo(
+   ({ slides, onClose, selected, render }) => {
       return (
-         <Lightbox
+         <ReactLightbox
+            render={render}
             close={onClose}
             index={selected}
             open={true}
-            slides={images.map(v => ({ src: v }))}
+            slides={slides}
             plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
          />
       );
    },
 );
 
-ImageLightbox.displayName = 'ImageLightbox';
-export default ImageLightbox;
+Lightbox.displayName = 'Lightbox';
+export default Lightbox;
