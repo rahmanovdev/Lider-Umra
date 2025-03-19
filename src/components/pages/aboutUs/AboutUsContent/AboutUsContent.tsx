@@ -7,7 +7,6 @@ import { IoIosArrowDown } from 'react-icons/io';
 import QuestionsSection from '../../home/QuestionsSection/QuestionsSection';
 import scss from './AboutUsContent.module.scss';
 import AboutUsImages from './AboutUsImage/AboutUsImage';
-import { aboutLider } from './constants/constants';
 import Whywe from './WhyWe/WhyWe';
 
 const AboutUsContent = memo(() => {
@@ -36,13 +35,10 @@ const AboutUsContent = memo(() => {
                            allowFullScreen
                         />
                      </div>
-                     {aboutLider.map((item, index) => (
-                        <div
-                           key={index}
-                           className={scss.item}
-                           dangerouslySetInnerHTML={{ __html: item.title }}
-                        />
-                     ))}
+                     <div
+                        className={scss.item}
+                        dangerouslySetInnerHTML={{ __html: t.raw('description') }}
+                     />
                   </div>
                   <AboutCards />
                </div>

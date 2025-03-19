@@ -1,15 +1,15 @@
 'use client';
-import React from 'react';
-import Link from 'next/link';
-import scss from './VideoSection.module.scss';
-import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
-import { useGetLessonsQuery } from '@/redux/api/lessons';
-import Loading from '@/components/ui/loading/Loading';
-import { useLocale } from 'next-intl';
-import Failed from '@/components/ui/failed/Failed';
-import { GoArrowRight } from 'react-icons/go';
 import CImage from '@/components/ui/cimage/CImage';
+import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
+import { useGetLessonsQuery } from '@/redux/api/lessons';
+import clsx from 'clsx';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useLocale } from 'next-intl';
+import Link from 'next/link';
+import React from 'react';
+import { GoArrowRight } from 'react-icons/go';
+import scss from './VideoSection.module.scss';
 
 const VideoSection = () => {
    const { data = [], isLoading, error } = useGetLessonsQuery();
@@ -38,14 +38,15 @@ const VideoSection = () => {
             <div className={scss.headerContainer}>
                <h2 className={scss.title}>
                   {locale === 'ru'
-                     ? 'Биздин видеолор YouTube да'
+                     ? 'Наши видео в YouTube'
                      : 'Биздин видеолор YouTube да'}
                </h2>
                <a
+                  target='_blank'
                   href={'https://www.youtube.com/@Bilim.Mainaev'}
                   className={scss.button + ' base-link-button'}
                >
-                  {locale === 'ru' ? 'Биздин YouTube' : 'Биздин YouTube'}
+                  {locale === 'ru' ? 'Наш YouTube' : 'Биздин YouTube'}
                   <GoArrowRight />
                </a>
             </div>
@@ -112,9 +113,7 @@ const VideoSection = () => {
                      exit={{ opacity: 0 }}
                      transition={{ duration: 0.2 }}
                   >
-                     {locale === 'ru'
-                        ? 'Видео отсутствуют'
-                        : 'Видео сабактар жок'}
+                     {locale === 'ru' ? 'Видео отсутствуют' : 'Видеолор жок'}
                   </motion.p>
                )}
             </AnimatePresence>

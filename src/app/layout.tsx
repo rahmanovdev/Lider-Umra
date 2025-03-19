@@ -3,22 +3,23 @@ import './styles/globals.scss';
 import './styles/variables.scss';
 
 import { Inter, Montserrat } from 'next/font/google';
-import { getLocale, getMessages } from 'next-intl/server';
+import { getLocale, getMessages, getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { RootProvider } from '@/providers';
-import { APP_URL } from '@/constants/url.constants'
-import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME } from '@/constants/seo.constants'
+import { APP_URL } from '@/constants/url.constants';
+import { SITE_KEYWORDS, SITE_NAME } from '@/constants/seo.constants';
 const AppUrl = APP_URL ? new URL(APP_URL) : null;
 
 export const generateMetadata = async () => {
    const locale = await getLocale();
+   const t = await getTranslations();
 
    return {
       title: {
          absolute: SITE_NAME,
          template: `%s - ${SITE_NAME}`,
       },
-      description: SITE_DESCRIPTION,
+      description: t('descriptions.base'),
       metadataBase: AppUrl,
       applicationName: SITE_NAME,
       keywords: SITE_KEYWORDS,
@@ -32,7 +33,7 @@ export const generateMetadata = async () => {
       },
       openGraph: {
          title: SITE_NAME,
-         description: SITE_DESCRIPTION,
+         description: t('descriptions.base'),
          type: 'website',
          emails: [],
          locale: locale === 'ru' ? 'ru_RU' : 'kg_KG',
@@ -48,7 +49,7 @@ export const generateMetadata = async () => {
       },
       twitter: {
          title: SITE_NAME,
-         description: SITE_DESCRIPTION,
+         description: t('descriptions.base'),
          images: [
             {
                url: `${AppUrl}/logo.png`,

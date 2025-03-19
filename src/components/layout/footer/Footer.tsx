@@ -165,7 +165,7 @@ const Footer = () => {
 
          <div className={scss.under_footer}>
             <div className={scss.left}>
-               <p>@ 2025, Lider Umrah</p>
+               <p>@ 2025, Lider Umra</p>
             </div>
             <div className={scss.right}>
                <a

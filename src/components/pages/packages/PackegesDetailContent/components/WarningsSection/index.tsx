@@ -5,9 +5,12 @@ import { useGetPackageDetailQuery } from '@/redux/api/tour-details';
 import { Warning } from '../../types';
 import styles from './styles.module.scss';
 import Slider from '../shared/Slider';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
+import EmptyState from '@/components/ui/empty-state/EmptyState';
+import { useTranslations } from 'next-intl';
 
 const WarningsSection_: React.FC = () => {
+   const t = useTranslations('warningsSection'); // Use 'warningsSection' namespace
    const {
       data: warnings,
       isLoading,
@@ -25,12 +28,12 @@ const WarningsSection_: React.FC = () => {
    }
 
    if (!warnings || warnings.length === 0) {
-      return <div className={styles.noData}>Эскертүүлөр табылган жок</div>;
+      return <EmptyState />;
    }
 
    return (
       <section className={styles.warningsContent}>
-         <h1>Көңүл буруңуз!</h1>
+         <h1>{t('title')}</h1>   
          <div className={styles.warningsList}>
             {(warnings as Warning[]).map(warning => (
                <article key={warning.id} className={styles.warningItem}>

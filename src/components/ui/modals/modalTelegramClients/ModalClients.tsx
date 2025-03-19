@@ -3,6 +3,8 @@ import React, { memo, useState, useCallback } from 'react';
 import scss from './ModalClient.module.scss';
 import { IoClose } from 'react-icons/io5';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
+
 interface ModalProps {
    isOpen: boolean;
    onClose: () => void;
@@ -33,25 +35,21 @@ const formatPhoneNumber = (value: string): string => {
 
 const validatePhoneNumber = (
    phone: string,
+   t: (d: string) => string,
 ): { isValid: boolean; error: string } => {
    const phoneDigits = phone.replace('+', '');
    if (!phoneDigits.startsWith('996')) {
-      return {
-         isValid: false,
-         error: 'Телефон номери +996 менен башталышы керек!',
-      };
+      return { isValid: false, error: t('phoneErrorPrefix') };
    }
    if (phoneDigits.length !== 12) {
-      return {
-         isValid: false,
-         error: 'Телефон номери 9 цифрадан турушу керек!',
-      };
+      return { isValid: false, error: t('phoneErrorLength') };
    }
    return { isValid: true, error: '' };
 };
 
 export const ModalClient = memo<ModalProps>(
    ({ isOpen, onClose, title, tourData, onSubmit }) => {
+      const t = useTranslations('modalClient');
       const [formData, setFormData] = useState({
          full_name: '',
          phone: '',
@@ -67,21 +65,21 @@ export const ModalClient = memo<ModalProps>(
             if (name === 'phone') {
                const numericValue = value.replace(/[^0-9+]/g, '');
                setFormData(prev => ({ ...prev, [name]: numericValue }));
-               const { error } = validatePhoneNumber(numericValue);
+               const { error } = validatePhoneNumber(numericValue, t);
                setPhoneError(error);
             } else {
                setFormData(prev => ({ ...prev, [name]: value }));
             }
          },
-         [],
+         [t],
       );
 
       const handlePhoneBlur = useCallback(() => {
          const formattedPhone = formatPhoneNumber(formData.phone);
          setFormData(prev => ({ ...prev, phone: formattedPhone }));
-         const { error } = validatePhoneNumber(formattedPhone);
+         const { error } = validatePhoneNumber(formattedPhone, t);
          setPhoneError(error);
-      }, [formData.phone]);
+      }, [formData.phone, t]);
 
       const handleSubmit = useCallback(
          (e: React.FormEvent) => {
@@ -89,7 +87,7 @@ export const ModalClient = memo<ModalProps>(
             if (!onSubmit || !tourData) return;
 
             const formattedPhone = formatPhoneNumber(formData.phone);
-            const { isValid, error } = validatePhoneNumber(formattedPhone);
+            const { isValid, error } = validatePhoneNumber(formattedPhone, t);
             if (!isValid) {
                alert(error);
                return;
@@ -110,7 +108,7 @@ export const ModalClient = memo<ModalProps>(
             });
             setPhoneError('');
          },
-         [formData, onSubmit, tourData, onClose],
+         [formData, onSubmit, tourData, onClose, t],
       );
 
       return (
@@ -162,7 +160,7 @@ export const ModalClient = memo<ModalProps>(
                                  <input
                                     type='text'
                                     name='full_name'
-                                    placeholder='Сиздин атыңыз *'
+                                    placeholder={t('fullNamePlaceholder')}
                                     value={formData.full_name}
                                     onChange={handleChange}
                                     required
@@ -172,7 +170,7 @@ export const ModalClient = memo<ModalProps>(
                                  <input
                                     type='tel'
                                     name='phone'
-                                    placeholder='+996 555 123 456'
+                                    placeholder={t('phonePlaceholder')}
                                     value={formData.phone}
                                     onChange={handleChange}
                                     onBlur={handlePhoneBlur}
@@ -188,7 +186,7 @@ export const ModalClient = memo<ModalProps>(
                                  <input
                                     type='text'
                                     name='country'
-                                    placeholder='Сиздин өлкөңүз *'
+                                    placeholder={t('countryPlaceholder')}
                                     value={formData.country}
                                     onChange={handleChange}
                                     required
@@ -198,7 +196,7 @@ export const ModalClient = memo<ModalProps>(
                                  <input
                                     type='text'
                                     name='city'
-                                    placeholder='Сиздин шаарыңыз *'
+                                    placeholder={t('cityPlaceholder')}
                                     value={formData.city}
                                     onChange={handleChange}
                                     required
@@ -208,7 +206,7 @@ export const ModalClient = memo<ModalProps>(
                                  type='submit'
                                  className={scss.submitButton}
                               >
-                                 Арыз берүү
+                                 {t('submitButton')}
                               </button>
                            </form>
                         </div>

@@ -1,20 +1,16 @@
 'use client';
-import React, { memo, useCallback, useMemo } from 'react';
-import scss from './LessonsContent.module.scss';
-import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
-import { useGetLessonsQuery } from '@/redux/api/lessons';
-import Loading from '@/components/ui/loading/Loading';
-import { useLocale } from 'next-intl';
-import Failed from '@/components/ui/failed/Failed';
 import CImage from '@/components/ui/cimage/CImage';
+import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
+import { useGetLessonsQuery } from '@/redux/api/lessons';
+import clsx from 'clsx';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
-
-interface Lesson {
-   id: number;
-   title: string;
-   video_url: string;
-}
+import { memo, useCallback, useMemo, useState } from 'react';
+import scss from './LessonsContent.module.scss';
+import { LESSONS } from '@/redux/api/lessons/types';
+import EmptyState from '@/components/ui/empty-state/EmptyState';
 
 const getYouTubeThumbnail = (url: string) => {
    const videoIdMatch = url.match(
@@ -26,7 +22,7 @@ const getYouTubeThumbnail = (url: string) => {
       : '';
 };
 
-const LessonItem = memo<{ item: Lesson }>(({ item }) => {
+const LessonItem = memo<{ item: LESSONS.ITEM }>(({ item }) => {
    const embedUrl = useMemo(
       () => getYouTubeThumbnail(item.video_url),
       [item.video_url],
@@ -63,39 +59,35 @@ LessonItem.displayName = 'LessonItem';
 const LessonsContent = memo(() => {
    const { data: lessons = [], isLoading, error } = useGetLessonsQuery();
    const locale = useLocale();
+   const [visibleCount, setVisibleCount] = useState(9);
 
    const title = useMemo(
-      () => (locale === 'ru' ? 'Видео уроки' : 'Видео сабактар'),
+      () => (locale === 'ru' ? 'Видео' : 'Видеолор'),
       [locale],
    );
    const containerClass = useMemo(() => clsx(scss.content, 'container'), []);
 
+   const visibleLessons = useMemo(
+      () => lessons.slice(0, visibleCount),
+      [lessons, visibleCount],
+   );
+   const hasMore = visibleCount < lessons.length;
+
+   const handleShowMore = useCallback(() => {
+      setVisibleCount(prev => prev + 9);
+   }, []);
+
    const renderLoading = useCallback(() => <Loading />, []);
    const renderError = useCallback(() => <Failed error={error} />, [error]);
-   const renderEmpty = useCallback(
-      () => (
-         <motion.p
-            key='no-items'
-            className={scss.noItems}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-         >
-            Видео сабактар жок
-         </motion.p>
-      ),
-      [],
-   );
    const renderContent = useCallback(
       () => (
          <div key='videos' className={scss.grid}>
-            {lessons.map((lesson, index) => (
+            {visibleLessons.map((lesson, index) => (
                <LessonItem key={`lesson-id-${index}`} item={lesson} />
             ))}
          </div>
       ),
-      [lessons],
+      [visibleLessons],
    );
 
    return (
@@ -108,13 +100,25 @@ const LessonsContent = memo(() => {
          <div className={containerClass}>
             <h4 className={scss.title}>{title}</h4>
             <AnimatePresence mode='wait'>
-               {isLoading
-                  ? renderLoading()
-                  : error
-                  ? renderError()
-                  : lessons.length
-                  ? renderContent()
-                  : renderEmpty()}
+               {isLoading ? (
+                  renderLoading()
+               ) : error ? (
+                  renderError()
+               ) : lessons.length ? (
+                  <>
+                     {renderContent()}
+                     {hasMore && (
+                        <button
+                           onClick={handleShowMore}
+                           className={scss.showMoreButton}
+                        >
+                           {locale === 'ru' ? 'Показать еще' : 'Дагы көрсөтүү'}
+                        </button>
+                     )}
+                  </>
+               ) : (
+                  <EmptyState />
+               )}
             </AnimatePresence>
          </div>
       </motion.div>

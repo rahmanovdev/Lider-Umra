@@ -23,12 +23,11 @@
       max-width: var(--img-card-width);
       min-width: var(--img-card-width);
       height: var(--img-card-height);
-      border-radius: 25px;
-      overflow: hidden;
-
+      
       img {
          width: 100%;
          height: 100%;
+         border-radius: 25px;
          object-fit: cover;
          transition: transform 0.3s ease;
 
@@ -53,13 +52,13 @@
    }
 
    .content {
-      font-size: 1.3em; // 1.3em ≈ 20.8px (16px базалык болсо)
-      line-height: 1.5; // Оптималдуу аралык (20.8px * 1.5 ≈ 31px)
-      margin-bottom: 1.5rem; // Саптар арасында аралык
+      font-size: 1.3em;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
       text-align: left;
-      color: #333; // Түстү жумшак кылдык
+      color: #333;
       padding: var(--content-padding);
-      max-width: 800px; // Текст өтө узун болбошу үчүн
+      max-width: 800px;
    }
 
    .contentWrapper {

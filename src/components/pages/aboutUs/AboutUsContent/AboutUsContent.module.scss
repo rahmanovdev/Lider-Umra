@@ -76,6 +76,9 @@
          .item {
             font-size: 18px;
             line-height: 1.8;
+            span {
+               color: var(--color-primary);
+            }
          }
       }
    }

@@ -24,7 +24,7 @@ const AboutSection = () => {
                         <p>{t('descriptions.base')}</p>
                      </div>
                      <Link className={scss.more} href='/aboutUs'>
-                        узнать больше
+                        {t('learnMore')}
                      </Link>
 
                      <div className={scss.tags}>

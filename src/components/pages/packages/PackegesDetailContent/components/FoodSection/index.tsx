@@ -8,11 +8,11 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Slider from '../shared/Slider';
 import dynamic from 'next/dynamic';
+import EmptyState from '@/components/ui/empty-state/EmptyState';
 
 const FoodSection_: React.FC = () => {
    const params = useParams();
    const tourId = Number(params.id);
-
    const {
       data: tourData,
       isLoading: tourLoading,
@@ -36,7 +36,7 @@ const FoodSection_: React.FC = () => {
    }
 
    if (!foodInfo || foodInfo.length === 0 || !tourData) {
-      return <div className={styles.noData}>Маалымат табылган жок</div>;
+      return <EmptyState />;
    }
 
    return (
@@ -44,16 +44,12 @@ const FoodSection_: React.FC = () => {
          {foodInfo.map(food => (
             <article key={food.id} className={styles.foodContent}>
                <div className={styles.foodSlider}>
-                  {food.images && food.images.length > 0 ? (
-                     <Slider
-                        slides={food.images.map((image: string) => ({
-                           src: image,
-                           type: 'image',
-                        }))}
-                     />
-                  ) : (
-                     <div className={styles.noImage}>Сүрөт жок</div>
-                  )}
+                  <Slider
+                     slides={food.images.map((image: string) => ({
+                        src: image,
+                        type: 'image',
+                     }))}
+                  />
                </div>
                <div className={styles.foodInfo}>
                   <h2>{food.title}</h2>

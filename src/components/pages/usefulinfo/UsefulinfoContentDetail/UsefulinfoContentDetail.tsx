@@ -18,7 +18,7 @@ const TimelineEntry = memo<{ item: BLOG.DetailDescription; isFirst: boolean }>(
                .join(' '),
          [isFirst],
       );
-      
+
       return (
          <div className={entryClass}>
             <div className={scss.timelineMark} data-timeline-mark />

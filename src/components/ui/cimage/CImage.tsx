@@ -51,7 +51,7 @@ const CImage: React.FC<CImageProps> = ({
       ) : fallbackSrc ? (
          <Image
             src={fallbackSrc}
-            alt={alt}
+            alt={alt || fallbackSrc}
             width={width}
             height={height}
             className={className}

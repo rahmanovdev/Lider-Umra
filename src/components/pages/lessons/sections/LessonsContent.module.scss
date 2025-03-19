@@ -43,6 +43,24 @@
          opacity: var(--title-opacity);
       }
 
+      .showMoreButton {
+         display: block;
+         margin: 20px auto;
+         padding: 10px 20px;
+         background: var(--default-primary-gradient);
+         color: white;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         font-size: 16px;
+         transition: all 0.25s;
+         will-change: transform;
+
+         &:hover {
+            transform: translateY(-1px);
+         }
+      }
+
       .grid {
          display: grid;
          grid-template-columns: var(--grid-template-columns);
@@ -58,7 +76,9 @@
             position: relative;
             margin: auto;
             width: 100%;
-
+            img {
+               width: 100%;
+            }
             &:hover {
                transform: translateY(-5px);
                box-shadow: var(--item-hover-shadow);

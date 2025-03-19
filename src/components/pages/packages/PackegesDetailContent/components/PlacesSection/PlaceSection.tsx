@@ -14,6 +14,7 @@ import Slider from '../shared/Slider';
 import styles from './PlacesSection.module.scss';
 import MapModal from '../MapModal';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl'
 
 const StarRating = ({ count }: { count: number }) => {
    return (
@@ -33,6 +34,7 @@ const PlacesSection_ = () => {
    >(null);
    const params = useParams();
    const id = Number(params.id);
+   const t = useTranslations('placesSection'); // Use the 'placesSection' namespace
 
    const {
       data: tourData,
@@ -58,7 +60,6 @@ const PlacesSection_ = () => {
 
    const { medinaHotel, meccaHotel } = useMemo(() => {
       if (!hotels) return { medinaHotel: null, meccaHotel: null };
-
       return {
          medinaHotel: hotels.find(hotel => hotel.city === 'medina'),
          meccaHotel: hotels.find(hotel => hotel.city === 'mecca'),
@@ -68,10 +69,8 @@ const PlacesSection_ = () => {
    const getHotelMedia = useCallback(
       (hotelId: number) => {
          if (!hotels) return [];
-
          const hotel = hotels.find(h => h.id === hotelId);
          if (!hotel) return [];
-
          const images =
             hotel.hotel_images?.map(img => ({
                src: img.image,
@@ -82,7 +81,6 @@ const PlacesSection_ = () => {
                src: video.image,
                type: 'video' as 'image',
             })) || [];
-
          return [...images, ...videos].filter(
             media =>
                media.src &&
@@ -93,13 +91,9 @@ const PlacesSection_ = () => {
       [hotels],
    );
 
-   if (hotelsLoading || placesLoading || tourLoading) {
-      return <Loading />;
-   }
-
-   if (hotelsError || tourError || placesError) {
+   if (hotelsLoading || placesLoading || tourLoading) return <Loading />;
+   if (hotelsError || tourError || placesError)
       return <Failed error={hotelsError || tourError || placesError} />;
-   }
 
    return (
       <>
@@ -110,11 +104,14 @@ const PlacesSection_ = () => {
             />
          )}
          <div className={styles.placesContent}>
-            <h1>Проживание в отелях</h1>
+            <h1>{t('hotelsTitle')}</h1>{' '}
+            {/* Translated "Мейманканаларда жашоо" */}
             <div className={styles.hotelContainer}>
                {meccaHotel && (
                   <div className={styles.hostelContent}>
-                     <h2>Проживание в {meccaHotel.city_display}</h2>
+                     <h2>
+                        {t('hotelsTitle')} {meccaHotel.city_display}
+                     </h2>
                      <div className={styles.imageCard}>
                         <Slider
                            sliderId={`mecca-${meccaHotel.id}`}
@@ -125,29 +122,35 @@ const PlacesSection_ = () => {
                      </div>
                      <div className={styles.infoGrid}>
                         <div className={styles.infoItem}>
-                           <span>Расстояние до Аль-Харама</span>
+                           <span>{t('distanceToMosque')}</span>{' '}
+                           {/* Translated "Аль-Харамга чейинки аралык" */}
                            <span>{meccaHotel.distance_to_mosque}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Размещение</span>
+                           <span>{t('accommodation')}</span>{' '}
+                           {/* Translated "Турак жай" */}
                            <span>{meccaHotel.accommodation}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Питание</span>
+                           <span>{t('meals')}</span>{' '}
+                           {/* Translated "Тамактануу" */}
                            <span>{meccaHotel.meals}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Количество ночей</span>
+                           <span>{t('nights')}</span>{' '}
+                           {/* Translated "Түндөрдүн саны" */}
                            <span>{meccaHotel.nights}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Категория отеля</span>
+                           <span>{t('hotelCategory')}</span>{' '}
+                           {/* Translated "Мейманкананын категориясы" */}
                            <StarRating count={meccaHotel.stars} />
                         </div>
                      </div>
                      <div className={styles.showMap}>
                         <button onClick={() => setSelectedHotel('mecca')}>
-                           Показать карту
+                           {t('showMapButton')}{' '}
+                           {/* Translated "Картаны көрсөтүү" */}
                         </button>
                      </div>
                   </div>
@@ -155,7 +158,9 @@ const PlacesSection_ = () => {
 
                {medinaHotel && (
                   <div className={styles.hostelContent}>
-                     <h2>Проживание в {medinaHotel.city_display}</h2>
+                     <h2>
+                        {t('hotelsTitle')} {medinaHotel.city_display}
+                     </h2>
                      <div className={styles.imageCard}>
                         <Slider
                            sliderId={`medina-${medinaHotel.id}`}
@@ -166,37 +171,37 @@ const PlacesSection_ = () => {
                      </div>
                      <div className={styles.infoGrid}>
                         <div className={styles.infoItem}>
-                           <span>Расстояние до Аль-Харама</span>
+                           <span>{t('distanceToMosque')}</span>
                            <span>{medinaHotel.distance_to_mosque}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Размещение</span>
+                           <span>{t('accommodation')}</span>
                            <span>{medinaHotel.accommodation}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Питание</span>
+                           <span>{t('meals')}</span>
                            <span>{medinaHotel.meals}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Количество ночей</span>
+                           <span>{t('nights')}</span>
                            <span>{medinaHotel.nights}</span>
                         </div>
                         <div className={styles.infoItem}>
-                           <span>Категория отеля</span>
+                           <span>{t('hotelCategory')}</span>
                            <StarRating count={medinaHotel.stars} />
                         </div>
                      </div>
                      <div className={styles.showMap}>
                         <button onClick={() => setSelectedHotel('medina')}>
-                           Показать карту
+                           {t('showMapButton')}
                         </button>
                      </div>
                   </div>
                )}
             </div>
-
             <div className={styles.othersPlaces}>
-               <h1>Места для посещения</h1>
+               <h1>{t('placesToVisitTitle')}</h1>{' '}
+               {/* Translated "Барууга ылайыктуу жерлер" */}
                <div className={styles.placesList}>
                   {places?.map(place => (
                      <PlaceCard
@@ -207,7 +212,6 @@ const PlacesSection_ = () => {
                   ))}
                </div>
             </div>
-
             {selectedPlace && (
                <Modal
                   isOpen={!!selectedPlace}
