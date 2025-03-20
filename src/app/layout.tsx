@@ -24,8 +24,13 @@ export const generateMetadata = async () => {
       applicationName: SITE_NAME,
       keywords: SITE_KEYWORDS,
       generator: 'Next.js',
-      creator: 'Сиздин Атыңыз',
+      creator: 'Лидер Умра',
       publisher: 'Лидер Умра',
+      robots: {
+         index: true,
+         follow: true,
+         googleBot: { index: true, follow: true },
+      },
       icons: {
          icon: `${AppUrl}/logo.png`,
          shortcut: `${AppUrl}/logo.png`,
@@ -44,6 +49,12 @@ export const generateMetadata = async () => {
                height: '192',
                alt: 'Лидер Умра - Меккеге Зыярат',
             },
+            {
+               url: `${AppUrl}/logo.png`,
+               width: 1200,
+               height: 630,
+               alt: 'Лидер Умра - Меккеге Зыярат',
+            },
          ],
          ...(APP_URL ? { url: new URL(APP_URL) } : {}),
       },
@@ -57,7 +68,14 @@ export const generateMetadata = async () => {
                height: '192',
                alt: 'Лидер Умра - Меккеге Зыярат',
             },
+            {
+               url: `${AppUrl}/logo.png`,
+               width: 1200,
+               height: 630,
+               alt: 'Лидер Умра - Меккеге Зыярат',
+            },
          ],
+         ...(APP_URL ? { url: new URL(APP_URL) } : {}),
       },
    };
 };
