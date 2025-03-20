@@ -17,7 +17,7 @@ import Ornament from './images/about/ornament.svg';
 import AdliWahid from './images/adli-wahid.jpg';
 
 import Bg1 from './images/hero-backgrounds/bg-1.png';
-import Bg2 from './images/hero-backgrounds/bg-2.png';
+import Bg2 from './images/hero-backgrounds/bg-2.jpg';
 import Bg3 from './images/hero-backgrounds/bg-3.jpg';
 
 import CardEmblem from './images/card-emblem.svg';
