@@ -159,15 +159,14 @@
 	}
 }
 
-/* Медиа-запростор */
-@media (max-width: 1000px) {
+@media (max-width: 1140px) {
 	.sectionList {
-		display: grid; /* 1000px жеткенде 2 колонка */
+		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 
 		& > *:nth-child(5) {
-			grid-column: span 2; /* Акыркы элемент эки колонканы ээлейт */
+			grid-column: span 2;
 		}
 	}
 

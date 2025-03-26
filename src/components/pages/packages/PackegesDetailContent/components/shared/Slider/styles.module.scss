@@ -6,6 +6,11 @@
       width: 100%;
       height: 100%;
       border-radius: clamp(8px, 1vw, var(--border-radius));
+      --swiper-navigation-size: 30px;
+      --swiper-navigation-color: #fff;
+      [class*='swiper-button'] {
+         z-index: 30;
+      }
    }
 
    .slide {
@@ -48,36 +53,6 @@
       }
    }
 
-   .sliderButton {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: clamp(30px, 5vw, 40px);
-      height: clamp(30px, 5vw, 40px);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(16px, 3vw, 20px);
-      color: var(--color-text);
-      z-index: 20;
-
-      &:hover:not(:disabled) {
-         background: white;
-      }
-
-      &.prev {
-         left: clamp(10px, 2vw, 16px);
-      }
-
-      &.next {
-         right: clamp(10px, 2vw, 16px);
-      }
-   }
-
    .swiper-pagination {
       position: absolute;
       bottom: clamp(8px, 1.5vw, 16px);
@@ -113,21 +88,7 @@
    .slider {
       .swiper {
          border-radius: clamp(6px, 1vw, 8px);
-      }
-
-      .sliderButton {
-         width: clamp(25px, 4vw, 30px);
-         height: clamp(25px, 4vw, 30px);
-         font-size: clamp(14px, 2.5vw, 16px);
-         top: 44%;
-
-         &.prev {
-            left: clamp(5px, 1.5vw, 10px);
-         }
-
-         &.next {
-            right: clamp(5px, 1.5vw, 10px);
-         }
+         --swiper-navigation-size: 26px;
       }
 
       .swiper-pagination {
@@ -168,21 +129,6 @@
    .slider {
       .swiper {
          border-radius: clamp(4px, 0.8vw, 6px);
-      }
-
-      .sliderButton {
-         width: clamp(20px, 3vw, 25px);
-         height: clamp(20px, 3vw, 25px);
-         font-size: clamp(12px, 2vw, 14px);
-         top: 22%;
-
-         &.prev {
-            left: clamp(3px, 1vw, 5px);
-         }
-
-         &.next {
-            right: clamp(3px, 1vw, 5px);
-         }
       }
 
       .swiper-pagination {

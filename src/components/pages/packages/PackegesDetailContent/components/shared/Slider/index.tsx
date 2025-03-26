@@ -18,22 +18,18 @@ interface SliderProps {
    slides: IMedia[];
    height?: string | number;
    showDots?: boolean;
-   sliderId?: string;
 }
 
 const Slider: React.FC<SliderProps> = ({
    slides,
    height = '100%',
    showDots = true,
-   sliderId = 'default',
 }) => {
    const [selectedMedia, setSelectedMedia] = useState<number | null>(null);
 
    const openModal = React.useCallback((index: number) => {
       setSelectedMedia(index);
    }, []);
-   const prevClass = `${styles.sliderButton} ${styles.prev} ${sliderId}`;
-   const nextClass = `${styles.sliderButton} ${styles.next} ${sliderId}`;
 
    return (
       <>
@@ -42,15 +38,12 @@ const Slider: React.FC<SliderProps> = ({
                modules={[Navigation, Autoplay]}
                spaceBetween={0}
                slidesPerView={1}
-               navigation={{
-                  prevEl: `.${styles.sliderButton}.${styles.prev}.${sliderId}`,
-                  nextEl: `.${styles.sliderButton}.${styles.next}.${sliderId}`,
-               }}
                pagination={showDots ? { clickable: true } : false}
                autoplay={{ delay: 4000, disableOnInteraction: false }}
                speed={600}
                effect='slide'
                loop={true}
+               navigation
                className={styles.swiper}
             >
                {slides.map((slide, index) => (
@@ -87,9 +80,6 @@ const Slider: React.FC<SliderProps> = ({
                   </SwiperSlide>
                ))}
             </Swiper>
-
-            <button className={prevClass}>←</button>
-            <button className={nextClass}>→</button>
          </div>
 
          {selectedMedia !== null &&

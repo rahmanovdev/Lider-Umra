@@ -114,9 +114,7 @@ const PlacesSection_ = () => {
                      </h2>
                      <div className={styles.imageCard}>
                         <Slider
-                           sliderId={`mecca-${meccaHotel.id}`}
                            slides={getHotelMedia(meccaHotel.id)}
-                           height={400}
                         />
                         <h3 className={styles.hotelName}>{meccaHotel.name}</h3>
                      </div>
@@ -163,9 +161,7 @@ const PlacesSection_ = () => {
                      </h2>
                      <div className={styles.imageCard}>
                         <Slider
-                           sliderId={`medina-${medinaHotel.id}`}
                            slides={getHotelMedia(medinaHotel.id)}
-                           height={400}
                         />
                         <h3 className={styles.hotelName}>{medinaHotel.name}</h3>
                      </div>

@@ -55,6 +55,7 @@ const HeadPackegeDet: React.FC<HeadPackegeDetProps> = memo(({ tourData }) => {
    const formattedStartDate = `${startDate.day} ${
       startDate.month[locale as 'kg']
    } ${startDate.year}`;
+
    const formattedEndDate = `${endDate.day} ${endDate.month[locale as 'kg']} ${
       endDate.year
    }`;

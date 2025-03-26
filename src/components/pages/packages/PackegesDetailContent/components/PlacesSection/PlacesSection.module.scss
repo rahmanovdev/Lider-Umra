@@ -85,7 +85,7 @@
       .imageCard {
          /* "ImageCard" ордуна "imageCard" деп кичине түзөтүлдү */
          width: 100%;
-         height: clamp(220px, 25vw, 420px); /* Ийкемдүү бийиктик */
+         height: clamp(260px, 25vw, 420px); /* Ийкемдүү бийиктик */
          border-radius: clamp(8px, 1.5vw, 12px);
          overflow: hidden;
          margin-bottom: clamp(12px, 2vw, 20px);
@@ -240,7 +240,7 @@
          }
 
          .imageCard {
-            // height: clamp(150px, 22vw, 250px); /* Бийиктик кичине азайтылды */
+            height: clamp(180px, 26vw, 280px); /* Бийиктик кичине азайтылды */
             margin-bottom: clamp(10px, 1.5vw, 12px);
 
             .hotelName {
@@ -309,7 +309,6 @@
          }
 
          .imageCard {
-            height: clamp(120px, 20vw, 180px); /* Бийиктик кичине азайтылды */
             margin-bottom: clamp(8px, 1vw, 10px);
 
             .hotelName {

@@ -260,7 +260,8 @@
       "hotelCategory": "Мейманкананын категориясы"
    },
    "warningsSection": {
-      "title": "Көңүл буруңуз!"
+      "title": "Көңүл буруңуз!",
+      "readMore": "Толугураак"
    },
    "giftsSection": {
       "title": "Сизге берилүүчү белектер",
