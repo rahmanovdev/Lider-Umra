@@ -23,7 +23,7 @@ const QuestionsSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section> 
   );
 };
 

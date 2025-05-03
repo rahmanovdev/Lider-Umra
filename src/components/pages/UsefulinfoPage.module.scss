@@ -1,5 +1,5 @@
 .pageContainer {
-	gap: 4rem;
+	gap: 1em;
 	min-height: 100vh;
 	max-width: var(--container-max-width);
 	padding: var(--container-padding);
@@ -8,11 +8,10 @@
 	flex-direction: column;
 
 	.title {
-		font-size: 40px;
+		font-size: 28px;
 		font-weight: bold;
 		line-height: auto;
-		margin: 0 auto;
-		margin-top: 81px;
-		margin-bottom: 43px;
+		margin-top: 41px;
+		margin-bottom: 0px;
 	}
 }

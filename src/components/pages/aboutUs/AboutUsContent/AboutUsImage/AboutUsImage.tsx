@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import scss from './AboutUsImage.module.scss';
+import Link from 'next/link'
+import { GoArrowRight } from 'react-icons/go'
 
 const localImages = [
 	'/assets/about.webp',
@@ -49,7 +51,7 @@ const AboutUsImages = () => {
 	return (
 		<section className={scss.photos_anim_block}>
 			<div className='container'>
-				<div>
+				<div className={scss.content}>
 					<div className={scss.photos_anim_inner}>
 						{showImages[0] && (
 							<div className={scss.firstIm}>
@@ -124,12 +126,12 @@ const AboutUsImages = () => {
 							</div>
 						)}
 					</div>
-					{/* <div className={scss.btn_photo}>
-            <button>
-              <BsImages className={scss.icon} />
-              Все галерея
-            </button>
-          </div> */}
+					<div className={scss.link_photo}>
+						<Link href='/gallery'>
+							Все галереи
+							<GoArrowRight className={scss.icon} />
+						</Link>
+					</div>
 				</div>
 			</div>
 		</section>

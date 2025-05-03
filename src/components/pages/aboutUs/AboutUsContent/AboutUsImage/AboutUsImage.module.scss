@@ -1,6 +1,5 @@
 .photos_anim_block {
-  background: url("../../../../../../public/assets/images/line/plane_background_line.svg")
-    center no-repeat;
+  background: url("../../../../../../public/assets/images/line/plane_background_line.svg") center no-repeat;
   background-size: cover;
 }
 
@@ -82,10 +81,10 @@
 
 @media (max-width: 768px) {
   .photos_anim_block {
-    background: url("../../../../../../public/assets/images/line/plane_background_line_mobile.svg")
-      center no-repeat;
+    background: url("../../../../../../public/assets/images/line/plane_background_line_mobile.svg") center no-repeat;
     background-size: cover;
   }
+
   .photos_anim_inner {
     aspect-ratio: 320 / 829;
     padding: 50px 0 0;
@@ -165,32 +164,30 @@
   }
 }
 
-// .btn_photo {
-//   button {
-//     display: flex;
-//     align-items: center;
-//     gap: 8px;
-//     padding: 12px 24px;
-//     border: none;
-//     border-radius: 8px;
-//     background: linear-gradient(90deg, #00d2ff 0%, #3ab54a 100%);
-//     color: white;
-//     font-size: 16px;
-//     font-weight: 500;
-//     cursor: pointer;
-//     transition: all 0.3s ease;
+.content {
+  position: relative;
+}
 
-//     .icon {
-//       font-size: 20px;
-//     }
+.link_photo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -15%;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-//     &:hover {
-//       transform: translateY(-2px);
-//       box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
-//     }
+    .icon {
+      font-size: 20px;
+    }
 
-//     &:active {
-//       transform: translateY(0);
-//     }
-//   }
-// }
+    &:hover {
+     overflow: hidden;
+    }
+  }
+}

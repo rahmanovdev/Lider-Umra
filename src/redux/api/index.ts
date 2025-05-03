@@ -14,10 +14,10 @@ const baseQueryExtended: BaseQueryFn = async (args, api, extraOptions) => {
 };
 
 export const api = createApi({
-  reducerPath: "api",
-  baseQuery: baseQueryExtended,
-  refetchOnFocus: true,
-  refetchOnReconnect: true,
-  tagTypes: [],
-  endpoints: () => ({}),
+	reducerPath: 'api',
+	baseQuery: baseQueryExtended,
+	refetchOnFocus: true,
+	refetchOnReconnect: true,
+	tagTypes: ['tours', 'ajy', 'packageDetails'],
+	endpoints: () => ({})
 });

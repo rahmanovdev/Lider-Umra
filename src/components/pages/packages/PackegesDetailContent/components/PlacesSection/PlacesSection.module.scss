@@ -1,0 +1,125 @@
+.placesContent {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .others_places {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+  }
+
+  .hotelContainer {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background: linear-gradient(to bottom,
+          transparent,
+          #ebebeb 10%,
+          #e5e7eb 90%,
+          transparent);
+    }
+  }
+
+  .HostelContent {
+    flex: 1;
+    border-radius: 16px;
+    position: relative;
+    padding: 8 16px;
+    box-shadow: 0px 3px 9px 0px #eaeaea;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-align: center;
+      color: #455367;
+    }
+
+    .ImageCard {
+      width: 100%;
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hotelName {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        color: white;
+        font-size: 20px;
+        text-align: center;
+      }
+    }
+
+    .infoGrid {
+      display: grid;
+      gap: 12px;
+      padding: 0 16px;
+
+      .infoItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        border: 1px solid #f3f4f6;
+        border-radius: 8px;
+        background: var(--color-bg);
+
+        span:first-child {
+          color: #4b5563;
+        }
+
+        span:last-child {
+          font-weight: 500;
+          color: #454c54;
+        }
+      }
+    }
+  }
+}
+
+.placesList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}

@@ -10,6 +10,7 @@ import star from '../../../../../public/assets/images/star.svg';
 import star2 from '../../../../../public/assets/images/star2.svg';
 import star3 from '../../../../../public/assets/images/star3.svg';
 import lamp from '../../../../../public/assets/images/lamp.svg';
+import AboutCards from '@/components/ui/cards/about_cards/AboutCards';
 
 const AboutSection = () => {
 	return (
@@ -34,7 +35,7 @@ const AboutSection = () => {
 									blandit
 								</p>
 
-								<Image
+								{/* <Image
 									className={scss.star}
 									src={star}
 									alt='star'
@@ -52,7 +53,7 @@ const AboutSection = () => {
 									height={80}
 									quality={70}
 									priority
-								/>
+								/> */}
 							</div>
 							<button>узнать больше</button>
 
@@ -69,7 +70,7 @@ const AboutSection = () => {
 							</div>
 						</div>
 						<div className={scss.about_video}>
-							<Image
+							{/* <Image
 								className={scss.star3}
 								src={star3}
 								alt='star3'
@@ -77,7 +78,7 @@ const AboutSection = () => {
 								height={110}
 								quality={70}
 								priority
-							/>
+							/> */}
 
 							<div className={scss.video_container}>
 								<iframe
@@ -93,88 +94,7 @@ const AboutSection = () => {
 						</div>
 					</div>
 					<div className={scss.about_bottom}>
-						<div className={scss.about_cards}>
-							<div className={scss.card1}>
-								<div className={scss.card_top}>
-									<Image
-										src={card1}
-										alt='Card_1'
-										priority
-										quality={70}
-										width={45}
-										height={45}
-									/>
-									<h2>10 лет опыта и доверия</h2>
-								</div>
-								<hr />
-								<p>
-									Уже 10 лет мы помогаем клиентам отправляться в духовные
-									путешествия
-								</p>
-								<Image
-									className={scss.emblem_card}
-									src={emblemCard}
-									alt='emblema'
-									width={700}
-									quality={70}
-									height={500}
-								/>
-							</div>
-							<div className={scss.card2}>
-								<div className={scss.card_top}>
-									<Image
-										src={card2}
-										alt='Card_1'
-										priority
-										quality={70}
-										width={45}
-										height={45}
-									/>
-									<h2>3000+ довольных клиентов</h2>
-								</div>
-								<hr />
-								<p>
-									Уже 3000+ человек доверили нам организацию своих путешествий в
-									Умру. Мы обеспечиваем комфорт, надежность и внимание к каждой
-									детали.
-								</p>
-								<Image
-									className={scss.emblem_card}
-									src={emblemCard}
-									alt='emblema'
-									width={700}
-									quality={70}
-									height={500}
-								/>
-							</div>
-							<div className={scss.card3}>
-								<div className={scss.card_top}>
-									<Image
-										src={card3}
-										alt='Card_1'
-										priority
-										quality={70}
-										width={45}
-										height={45}
-									/>
-									<h2>50+ успешных туров</h2>
-								</div>
-								<hr />
-								<p>
-									Уже 50+ раз мы организовали духовные поездки для наших
-									клиентов по всему миру. Мы обеспечиваем комфорт, надежность и
-									внимание к каждой детали.
-								</p>
-								<Image
-									className={scss.emblem_card}
-									src={emblemCard}
-									alt='emblema'
-									width={700}
-									quality={70}
-									height={500}
-								/>
-							</div>
-						</div>
+						<AboutCards />
 					</div>
 					<Image
 						className={scss.bg_ornament}

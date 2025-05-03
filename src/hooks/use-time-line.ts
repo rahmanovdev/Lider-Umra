@@ -38,7 +38,10 @@ export const useTimeLine = () => {
 		offset: ['start 20%', 'end 50%']
 	});
 
-	const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
+	const maxHeight =
+		sectionOffsets.length > 0 ? sectionOffsets[sectionOffsets.length - 1] : 0;
+
+	const heightTransform = useTransform(scrollYProgress, [0, 1], [0, maxHeight]);
 
 	React.useEffect(() => {
 		return heightTransform.onChange(value => {
@@ -47,8 +50,9 @@ export const useTimeLine = () => {
 				.filter(index => index !== -1);
 
 			setActiveSections(newActiveSections);
+			
 		});
-	}, [heightTransform, sectionOffsets]);
+	}, [heightTransform, sectionOffsets, maxHeight]);
 
 	return {
 		heightTransform,

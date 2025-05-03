@@ -14,7 +14,7 @@ const AboutCards = () => {
 					<div className={scss.card1}>
 						<div className={scss.card_top}>
 							<Image
-								src={card1}
+								src={card1} 
 								alt='Card_1'
 								priority
 								quality={70}

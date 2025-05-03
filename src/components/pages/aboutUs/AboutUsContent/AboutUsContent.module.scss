@@ -1,7 +1,7 @@
 .AboutUsContent {
   display: flex;
   flex-direction: column;
-
+  
   .head_about {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)),
       url("../../../../../public/assets/images/Kaaba-in-Masjid-Al-Haram-in-Mecca-Islamic-Wallpaper-for-Wall-M.jpg");
@@ -13,23 +13,22 @@
     flex-direction: column;
     gap: 30px;
     padding: 90px 0 0 160px;
-
+    
     h1 {
       color: white;
       font-size: 32px;
     }
-
+    
     span {
       color: var(--color-primary);
     }
-
+    
     svg {
       width: 40px;
       height: 40px;
       cursor: pointer;
       fill: white;
       transition: all 0.3s ease;
-
       &:hover {
         fill: rgb(197, 211, 203);
       }
@@ -53,7 +52,7 @@
     .video_container {
       width: max-content;
       border-radius: 20px;
-
+      
       iframe {
         border-radius: 20px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -62,7 +61,109 @@
 
     .about_content {
       display: flex;
-      gap: 50px;
+      gap: 60px;
+      
+      .item {
+        font-size: 18px;
+        line-height: 1.8;
+      }
+    }
+  }
+}
+
+@media(max-width: 1120px) {
+  .AboutUsContent {
+    .head_about {
+      padding: 90px 0 0 35px;
+  
+      h1 {
+        font-size: 28px;
+      }
+  
+      svg {
+        width: 33px;
+        height: 33px;
+      }
+    }
+  
+    .content {
+      margin-top: 30px;
+      
+      .about_content {
+        flex-direction: column;
+        gap: 50px;
+        
+        .item {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 645px) {
+  .AboutUsContent {
+    .content {
+      .video_container {
+        iframe {
+          width: 400px;
+          height: 220px;
+          margin-bottom: -30px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 490px) {
+  .AboutUsContent {
+    .head_about {
+      height: 200px;
+      padding: 80px 0 0 35px;
+  
+      h1 {
+        font-size: 18px;
+        margin-bottom: -20px;
+      }
+  
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  
+    .content {
+      .video_container {
+        iframe {
+          width: 300px;
+          height: 150px;
+        }
+      }
+  
+      .about_content {
+        .item {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 380px) {
+  .AboutUsContent {
+    .content {
+      .video_container {
+        iframe {
+          width: 260px;
+          height: 130px;
+        }
+      }
+  
+      .about_content {
+        .item {
+          font-size: 9px;
+        }
+      }
     }
   }
 }

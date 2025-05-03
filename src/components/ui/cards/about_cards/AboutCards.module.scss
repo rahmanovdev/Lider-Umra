@@ -29,7 +29,7 @@
       background: white;
       color: black;
       opacity: 0.9;
-      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+      // box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
 
       .card_top {
         display: flex;
@@ -44,8 +44,6 @@
           text-align: left;
         }
       }
-
-
 
       p {
         font-size: 15px;
@@ -62,6 +60,134 @@
         bottom: -4px;
         right: -5px;
         opacity: 0.1;
+      }
+    }
+  }
+}
+
+
+
+@media(max-width: 1200px) {
+  .about_bottom {
+    .about_cards {
+      .divider {
+        width: 300px;
+      }
+      .card1,
+      .card2,
+      .card3 {
+        padding: 14px 16px;
+        width: 511px;
+        height: 221px;
+  
+        .card_top {
+          h2 {
+            font-size: 16px;
+          }
+        }
+        p {
+          font-size: 13px;
+        }
+        .emblem_card {
+          width: 102px;
+          height: 102px;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width: 1100px) {
+  .about_bottom {
+    .about_cards {
+      margin-top: -50px;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      flex-wrap: wrap;
+      .divider {
+        width: 100%;
+      }
+  
+      .card1,
+      .card2,
+      .card3 {
+        width: 100%;
+        height: 190px;
+        .card_top {
+          h2 {
+            font-size: 19px;
+          }
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width: 500px) {
+  .about_bottom {
+    .about_cards {
+      .card1,
+      .card2,
+      .card3 {
+        width: 100%;
+        height: 223px;
+        .card_top {
+          h2 {
+            font-size: 17px;
+          }
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width: 420px) {
+  .about_bottom {
+    .about_cards {
+      .card1,
+      .card2,
+      .card3 {
+        width: 100%;
+        height: 223px;
+        .card_top {
+          h2 {
+            font-size: 12px;
+            line-height: 25px;
+            margin-left: -10px;
+          }
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 340px) {
+  .about_bottom {
+    .about_cards {
+      .card1,
+      .card2,
+      .card3 {
+        .card_top {
+          h2 {
+            font-size: 11px;
+          }
+        }
+        p {
+          font-size: 10px;
+        }
       }
     }
   }

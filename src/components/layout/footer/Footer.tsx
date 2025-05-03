@@ -17,7 +17,7 @@ const Footer = () => {
             <Image
               src={liderUmrahLogo}
               alt="liderUmrah_logo"
-              height={300}
+              height={300} 
               width={700}
             />
             <p>
