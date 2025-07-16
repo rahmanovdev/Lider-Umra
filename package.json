@@ -1,5 +1,5 @@
 {
-   "name": "lider-umrah",
+   "name": "lider-umra",
    "version": "0.1.0",
    "private": true,
    "scripts": {
@@ -13,7 +13,7 @@
       "clsx": "^2.1.1",
       "framer-motion": "^12.5.0",
       "js-cookie": "^3.0.5",
-      "next": "15.1.4",
+      "next": "^15.4.1",
       "next-intl": "^3.26.5",
       "react": "^19.0.0",
       "react-dom": "^19.0.0",

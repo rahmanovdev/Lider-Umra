@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
    devIndicators: {
       appIsrStatus: false,
    },
+   output: 'standalone',
 };
 
 export default withNextIntl(nextConfig);
