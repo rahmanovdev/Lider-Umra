@@ -1,0 +1,165 @@
+.contactPage {
+   padding: 2rem 1.25rem; /* 80px 20px -> rem бирдиктери менен */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   @media (max-width: 768px) {
+      padding: 2rem 1rem; /* Мобилдик экрандар үчүн кичирээк padding */
+   }
+}
+
+.buttonContainer {
+   display: flex;
+   gap: 1rem;
+   margin-bottom: 1.5rem;
+   justify-content: center;
+}
+
+.button {
+   padding: 0.75rem 1.5rem;
+   border: none;
+   border-radius: 1.5rem;
+   font-size: 1rem;
+   cursor: pointer;
+   transition: background-color 0.3s, transform 0.2s;
+
+   &:hover {
+      transform: scale(1.05);
+   }
+}
+
+.primary {
+   background-color: #e9ecef;
+   color: #333;
+
+   &.active {
+      background-color: #0056b3;
+      color: white;
+   }
+}
+
+.contentWrapper {
+   display: flex;
+   gap: 1.25rem; /* 20px */
+   flex-wrap: wrap; /* Кичине экрандарда элементтер ылдый түшөт */
+
+   @media (max-width: 1024px) {
+      flex-direction: column; /* Планшет жана андан кичине экрандарда тик болот */
+   }
+}
+
+.mapCard {
+   flex: 1;
+   border-radius: 0.625rem; /* 10px */
+   overflow: hidden;
+   width: 100%;
+   min-width: 0; /* Flex элементтеринин туура иштеши үчүн */
+   height: auto;
+
+   @media (min-width: 1024px) {
+      width: 50%; /* Чоң экрандарда 50% туурасы */
+   }
+}
+
+.iframe {
+   width: 100%;
+   border: none;
+   height: 100%; /* useSize хук менен динамикалык бийиктик */
+   min-height: 300px; /* Минималдуу бийиктик */
+}
+
+.contactInfo {
+   flex: 1;
+   width: 100%;
+   padding: 2.1875rem; /* 35px */
+   border-radius: 0.625rem; /* 10px */
+   background: var(--color-bg);
+
+   @media (min-width: 1024px) {
+      width: 50%; /* Чоң экрандарда 50% туурасы */
+   }
+
+   @media (max-width: 768px) {
+      padding: 1.5rem; /* Мобилдик экрандарда кичирээк padding */
+   }
+
+   p {
+      font-size: 1.0625rem; /* 17px */
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 1.875rem; /* 30px */
+      max-width: 100%; /* Чоң экрандардагы 80% чектөө алынып, адаптивдүү болду */
+
+      @media (max-width: 500px) {
+         font-size: 0.9375rem; /* 15px - мобилдик экрандарда окууга ыңгайлуу */
+      }
+   }
+}
+
+.title {
+   font-size: 2.25rem; /* 36px */
+   font-weight: bold;
+   margin-bottom: 0.625rem; /* 10px */
+
+   @media (max-width: 768px) {
+      font-size: 1.75rem; /* 28px - планшет жана мобилдик экрандарда */
+   }
+}
+
+.cards {
+   display: grid;
+   grid-template-columns: repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+   ); /* Адаптивдүү grid */
+   gap: 0.9375rem; /* 15px */
+
+   @media (max-width: 500px) {
+      grid-template-columns: 1fr; /* Кичине экрандарда бир колонка */
+   }
+}
+
+.card {
+   display: flex;
+   align-items: flex-start;
+   gap: 0.9375rem; /* 15px */
+
+   svg {
+      font-size: 1.75rem; /* 28px */
+      color: var(--color-primary);
+
+      @media (max-width: 500px) {
+         font-size: 1.5rem; /* 24px - мобилдик экрандарда */
+      }
+   }
+}
+
+.column {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+
+   h5 {
+      font-size: 1.4375rem; /* 23px */
+      font-weight: bold;
+
+      @media (max-width: 768px) {
+         font-size: 1.25rem; /* 20px */
+      }
+
+      @media (max-width: 500px) {
+         font-size: 1.125rem; /* 18px */
+      }
+   }
+
+   p {
+      font-size: 1rem; /* 16px */
+      color: #555;
+      margin: 0; /* Башка p элементтери менен бирдей болушу үчүн */
+
+      @media (max-width: 500px) {
+         font-size: 0.875rem; /* 14px */
+      }
+   }
+}

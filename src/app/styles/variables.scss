@@ -1,0 +1,30 @@
+:root {
+   --angel-primary-gradient: 145deg;
+   --color-primary: #12abcd;
+   --color-secondary: #2c67f2;
+   --color-primary-gradient: var(--color-primary) 30%, var(--color-secondary);
+   --default-primary-gradient: linear-gradient(
+      var(--angel-primary-gradient),
+      var(--color-primary-gradient)
+   );
+   --color-bg: #ebf9fa;
+   --color-bg-hover: #d8e5e7;
+   --color-text: #333;
+   --color-background: rgba(0, 0, 0, 0.111);
+   --color-border: #ccc;
+   --font-family: 'Inter', Arial, Helvetica, sans-serif;
+   --font-size-base: 16px;
+   --line-height: 1.6;
+   --container-max-width: 1280px;
+   --container-padding: 0 20px;
+
+   @media (max-width: 1400px) {
+      --container-max-width: 97%;
+      --container-padding: 0 15px;
+   }
+
+   @media (max-width: 710px) {
+      --container-max-width: 98%;
+      --container-padding: 0 10px;
+   }
+}

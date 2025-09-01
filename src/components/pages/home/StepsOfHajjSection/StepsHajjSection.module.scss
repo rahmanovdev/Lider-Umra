@@ -1,90 +1,141 @@
 .Main {
-	width: 100%;
-	overflow: hidden;
-	position: relative;
-	padding: 50px 0;
-	background: var(--color-bg);
+   width: 100%;
+   position: relative;
+   padding: 50px 0;
+   background: var(--color-bg);
 
-	.bg {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		transition: all 0.25s;
-	}
+   .pre_main {
+      position: relative;
+      border-radius: 20px;
 
-	.pre_main {
-		position: relative;
-		border-radius: 20px;
-		transition: all 0.45s;
+      .content {
+         padding: 40px 0;
 
-		.content {
-			padding: 40px 0;
+         h1 {
+            color: rgb(24, 74, 46);
+            font-size: 35px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding: 0 15px;
+         }
 
-			h1 {
-				color: rgb(24, 74, 46);
-				font-size: 35px;
-				font-weight: 700;
-				margin-bottom: 30px;
-			}
+         .block_content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow-x: auto;
+            padding: 20px 15px;
+            gap: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
 
-			.block_content {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
+            &::-webkit-scrollbar {
+               display: none;
+            }
 
-				.block.active {
-					opacity: 1;
-					transform: scale(1.05);
-				}
+            .block {
+               flex: 0 0 auto;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               flex-direction: column;
+               min-width: 220px;
+               height: 320px;
+               padding: 30px 0;
+               transition: transform 0.25s ease, opacity 0.25s ease;
+               border-radius: 24px;
 
-				.block.inactive {
-					opacity: 0.6;
-				}
+               &.active {
+                  opacity: 1;
+                  transform: scale(1.05);
+               }
 
-				.block {
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					flex-direction: column;
-					position: relative;
-					width: 220px;
-					height: 320px;
-					padding: 30px 0;
-					transition: all 0.25s;
+               &.inactive {
+                  opacity: 0.6;
+               }
 
-					border: 1.28px solid rgba(1, 82, 36, 0.5);
-					border-radius: 24px;
+               h2 {
+                  color: rgb(20, 35, 61);
+                  font-size: 17px;
+                  font-weight: 700;
+                  text-align: center;
+                  padding: 0 10px;
+               }
 
-					h2 {
-						color: rgb(20, 35, 61);
-						font-size: 17px;
-						font-weight: 700;
-						text-align: center;
-					}
+               .image {
+                  width: 130px;
+                  height: 130px;
+                  object-fit: contain;
+               }
+            }
+         }
+      }
+   }
 
-					img {
-						width: 130px;
-						height: 130px;
-					}
+   @media (max-width: 780px) {
+      padding: 30px 0;
 
-					p {
-						color: rgb(24, 74, 46);
-						font-size: 13px;
-						font-weight: 400;
-						text-align: center;
-					}
-				}
-			}
-		}
-	}
-}
+      .pre_main {
+         .content {
+            h1 {
+               font-size: 16px;
+               margin-bottom: 16px;
+            }
 
-.progressDot {
-	position: absolute;
-	bottom: 0;
-	width: 20px;
-	height: 20px;
-	background-color: rgb(0, 123, 255);
-	border-radius: 50%;
-	transition: left 0.5s ease-in-out;
+            .block_content {
+               padding: 10px;
+               gap: 15px;
+
+               .block {
+                  min-width: 170px;
+                  height: 217px;
+                  padding: 19px 10px;
+
+                  h2 {
+                     font-size: 13px;
+                     font-weight: 600;
+                  }
+
+                  .image {
+                     width: 100px;
+                     height: 100px;
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   @media (min-width: 781px) and (max-width: 1111px) {
+      padding: 40px 0;
+
+      .pre_main {
+         .content {
+            h1 {
+               font-size: 26px;
+               margin-bottom: 21px;
+            }
+
+            .block_content {
+               gap: 20px;
+               padding: 15px;
+
+               .block {
+                  min-width: 207px;
+                  height: 280px;
+                  padding: 25px 0;
+
+                  h2 {
+                     font-size: 15px;
+                  }
+
+                  .image {
+                     width: 110px;
+                     height: 110px;
+                  }
+               }
+            }
+         }
+      }
+   }
 }

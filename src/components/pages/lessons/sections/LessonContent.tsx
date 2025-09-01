@@ -1,0 +1,129 @@
+'use client';
+import CImage from '@/components/ui/cimage/CImage';
+import Failed from '@/components/ui/failed/Failed';
+import Loading from '@/components/ui/loading/Loading';
+import { useGetLessonsQuery } from '@/redux/api/lessons';
+import clsx from 'clsx';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useLocale } from 'next-intl';
+import Link from 'next/link';
+import { memo, useCallback, useMemo, useState } from 'react';
+import scss from './LessonsContent.module.scss';
+import { LESSONS } from '@/redux/api/lessons/types';
+import EmptyState from '@/components/ui/empty-state/EmptyState';
+
+const getYouTubeThumbnail = (url: string) => {
+   const videoIdMatch = url.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/,
+   );
+   const videoId = videoIdMatch ? videoIdMatch[1] : null;
+   return videoId
+      ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+      : '';
+};
+
+const LessonItem = memo<{ item: LESSONS.ITEM }>(({ item }) => {
+   const embedUrl = useMemo(
+      () => getYouTubeThumbnail(item.video_url),
+      [item.video_url],
+   );
+
+   return (
+      <Link href={item.video_url} target='_blank' className={scss.item}>
+         <CImage
+            src={embedUrl}
+            alt='Alt'
+            width={260}
+            height={260}
+            title={item.title}
+            className={scss.image}
+         />
+         <div className={scss.playOverlay}>
+            <svg
+               width='48'
+               height='48'
+               viewBox='0 0 24 24'
+               fill='none'
+               xmlns='http://www.w3.org/2000/svg'
+            >
+               <circle cx='12' cy='12' r='10' fill='#FF0000' opacity='0.8' />
+               <polygon points='10 8 16 12 10 16' fill='#FFFFFF' />
+            </svg>
+         </div>
+         <p className={scss.imageTitle}>{item.title}</p>
+      </Link>
+   );
+});
+LessonItem.displayName = 'LessonItem';
+
+const LessonsContent = memo(() => {
+   const { data: lessons = [], isLoading, error } = useGetLessonsQuery();
+   const locale = useLocale();
+   const [visibleCount, setVisibleCount] = useState(9);
+
+   const title = useMemo(
+      () => (locale === 'ru' ? 'Видео' : 'Видеолор'),
+      [locale],
+   );
+   const containerClass = useMemo(() => clsx(scss.content, 'container'), []);
+
+   const visibleLessons = useMemo(
+      () => lessons.slice(0, visibleCount),
+      [lessons, visibleCount],
+   );
+   const hasMore = visibleCount < lessons.length;
+
+   const handleShowMore = useCallback(() => {
+      setVisibleCount(prev => prev + 9);
+   }, []);
+
+   const renderLoading = useCallback(() => <Loading />, []);
+   const renderError = useCallback(() => <Failed error={error} />, [error]);
+   const renderContent = useCallback(
+      () => (
+         <div key='videos' className={scss.grid}>
+            {visibleLessons.map((lesson, index) => (
+               <LessonItem key={`lesson-id-${index}`} item={lesson} />
+            ))}
+         </div>
+      ),
+      [visibleLessons],
+   );
+
+   return (
+      <motion.div
+         className={scss.LessonsContent}
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         transition={{ duration: 0.2 }}
+      >
+         <div className={containerClass}>
+            <h4 className={scss.title}>{title}</h4>
+            <AnimatePresence mode='wait'>
+               {isLoading ? (
+                  renderLoading()
+               ) : error ? (
+                  renderError()
+               ) : lessons.length ? (
+                  <>
+                     {renderContent()}
+                     {hasMore && (
+                        <button
+                           onClick={handleShowMore}
+                           className={scss.showMoreButton}
+                        >
+                           {locale === 'ru' ? 'Показать еще' : 'Дагы көрсөтүү'}
+                        </button>
+                     )}
+                  </>
+               ) : (
+                  <EmptyState />
+               )}
+            </AnimatePresence>
+         </div>
+      </motion.div>
+   );
+});
+
+LessonsContent.displayName = 'LessonsContent';
+export default LessonsContent;

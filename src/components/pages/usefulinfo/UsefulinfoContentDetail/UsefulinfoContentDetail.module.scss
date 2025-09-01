@@ -1,134 +1,268 @@
-.pageContainer {
-	gap: 4rem;
-	min-height: 100vh;
-	max-width: var(--container-max-width);
-	padding: var(--container-padding);
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
+.useFullInfoContentDetail {
+   --gap: 4rem;
+   --title-font-size: 40px;
+   --img-card-width: 280px;
+   --img-card-height: 240px;
+   --content-padding: 20px 0;
+   --timeline-line-left: 1.45rem;
+   --timeline-line-width: 4px;
 
-	.title {
-		font-size: 40px;
-		font-weight: bold;
-		line-height: auto;
-		margin: 0 auto;
-		margin-top: 81px;
-		margin-bottom: 43px;
-	}
-}
+   gap: var(--gap);
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 100px;
+   align-items: flex-start;
 
-.content {
-	display: flex;
-	align-items: flex-start;
-	gap: 50px;
-}
+   .title {
+      font-size: var(--title-font-size);
+      font-weight: bold;
+      margin: 40px auto 43px;
+   }
 
-.img-card {
-	min-width: 350px;
-	height: 350px;
-	background-color: #8e7777;
-	border-radius: 25px;
-}
+   .img-card {
+      max-width: var(--img-card-width);
+      min-width: var(--img-card-width);
+      height: var(--img-card-height);
+      
+      img {
+         width: 100%;
+         height: 100%;
+         border-radius: 25px;
+         object-fit: cover;
+         transition: transform 0.3s ease;
 
-.wrapper {
-	width: 100%;
-	font-family: sans-serif;
-	overflow: hidden;
-}
+         &:hover {
+            transform: scale(1.05);
+         }
+      }
+   }
 
-.timelineContainer {
-	position: relative;
-	margin: 0 auto;
-	padding-bottom: 5rem;
-}
+   .timelineContainer {
+      position: relative;
+      margin: 0 auto;
+   }
 
-.timelineEntry {
-	display: flex;
-	justify-content: flex-start;
+   .timelineEntry {
+      display: flex;
+      justify-content: flex-start;
 
-	&:not(.isFirst) {
-		margin-top: 10rem;
-	}
-}
+      &:not(.isFirst) {
+         margin-top: 4rem;
+      }
+   }
 
-.timelineMark {
-	position: sticky;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	top: 0;
-	align-self: flex-start;
-	z-index: 40;
-}
+   .content {
+      font-size: 1.3em;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      color: #333;
+      padding: var(--content-padding);
+      max-width: 800px;
+   }
 
-.markCircleOuter {
-	height: 2.75rem;
-	width: 2.75rem;
-	position: absolute;
-	left: 0;
-	color: black;
-	background-color: #ebf9fa;
-	border-radius: 9999px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.2em;
+   .contentWrapper {
+      padding-left: 4rem;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+   }
 
-	&.active {
-		background: var(--color-primary);
-		color: white;
-	}
-}
+   .timelineLine {
+      position: absolute;
+      left: var(--timeline-line-left);
+      top: 0;
+      width: var(--timeline-line-width);
+      background: linear-gradient(
+         to bottom,
+         #e5e5e5 10%,
+         #e5e5e5 90%,
+         transparent 100%
+      );
+      mask-image: linear-gradient(to bottom, black 10%, black 90%);
+   }
 
-.markTitle {
-	display: block;
-	font-size: 2rem;
-	line-height: auto;
-	margin-bottom: 1.1rem;
-	text-align: left;
-	font-weight: 600;
-	color: #000;
-}
+   .timelineProgress {
+      position: absolute;
+      top: 0;
+      width: var(--timeline-line-width);
+      background: linear-gradient(
+         to top,
+         var(--color-primary) 0%,
+         var(--color-primary) 10%,
+         transparent 100%
+      );
+      border-radius: 9999px;
+   }
 
-.contentWrapper {
-	position: relative;
-	padding-left: 5rem;
-	width: 100%;
-}
+   @media (max-width: 1240px) {
+      --gap: 3rem;
+      --title-font-size: 36px;
+      --img-card-width: 240px;
+      --img-card-height: 200px;
+      --content-padding: 18px 0;
+      --timeline-line-left: 1.3rem;
+      --timeline-line-width: 3.5px;
+      .title {
+         margin: 35px auto 38px;
+      }
+      .img-card {
+         border-radius: 22px;
+      }
+      .timelineEntry:not(.isFirst) {
+         margin-top: 3.5rem;
+      }
+      .content {
+         font-size: 1.2em; // 1.2em ≈ 19.2px
+         line-height: 1.55; // 19.2px * 1.55 ≈ 29.8px
+         margin-bottom: 1.4rem;
+      }
+      .contentWrapper {
+         padding-left: 3.5rem;
+         gap: 25px;
+      }
+   }
 
-.timelineLine {
-	position: absolute;
-	left: 1.3rem;
-	top: 0;
-	overflow: hidden;
-	width: 4px;
-	background: linear-gradient(to bottom,
-			var(--line-color) 10%,
-			var(--line-color) 90%,
-			transparent 100%);
-	mask-image: linear-gradient(to bottom, black 10%, black 90%);
-}
+   @media (max-width: 1024px) {
+      --gap: 2.5rem;
+      --title-font-size: 32px;
+      --img-card-width: 220px;
+      --img-card-height: 180px;
+      --content-padding: 16px 0;
+      --timeline-line-left: 1.2rem;
+      --timeline-line-width: 3px;
+      .title {
+         margin: 30px auto 33px;
+      }
+      .img-card {
+         border-radius: 20px;
+      }
+      .timelineEntry:not(.isFirst) {
+         margin-top: 3rem;
+      }
+      .content {
+         font-size: 1.1em; // 1.1em ≈ 17.6px
+         line-height: 1.6; // 17.6px * 1.6 ≈ 28.2px
+         margin-bottom: 1.3rem;
+      }
+      .contentWrapper {
+         padding-left: 3rem;
+         gap: 20px;
+      }
+   }
 
-.timelineProgress {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	width: 4px;
-	background: linear-gradient(to top,
-			var(--progress-from) 0%,
-			var(--progress-via) 10%,
-			transparent 100%);
-	border-radius: 9999px;
-}
+   @media (max-width: 768px) {
+      --gap: 2rem;
+      --title-font-size: 28px;
+      --img-card-width: 80%;
+      --img-card-height: auto;
+      --content-padding: 14px 0;
+      --timeline-line-left: 1rem;
+      --timeline-line-width: 2.5px;
+      .title {
+         margin: 25px auto 28px;
+      }
+      .img-card {
+         border-radius: 18px;
+      }
+      .timelineEntry:not(.isFirst) {
+         margin-top: 2.5rem;
+      }
+      .content {
+         font-size: 1em; // 1em ≈ 16px
+         line-height: 1.65; // 16px * 1.65 ≈ 26.4px
+         margin-bottom: 1.2rem;
+      }
+      .contentWrapper {
+         padding-left: 2.5rem;
+         gap: 15px;
+         flex-direction: column;
+         align-items: flex-start;
+      }
+   }
 
-:root {
-	--bg-primary: #ffffff;
-	--text-primary: #000000;
-	--text-secondary: #404040;
-	--circle-bg: #e5e5e5;
-	--circle-border: #d4d4d4;
-	--line-color: #e5e5e5;
-	--progress-from: var(--color-primary);
-	--progress-via: var(--color-primary);
+   @media (max-width: 500px) {
+      --gap: 1.5rem;
+      --title-font-size: 24px;
+      --img-card-width: 100%;
+      --img-card-height: auto;
+      --content-padding: 12px 0;
+      --timeline-line-left: 0.8rem;
+      --timeline-line-width: 2px;
+      .title {
+         margin: 20px auto 23px;
+      }
+      .img-card {
+         border-radius: 15px;
+      }
+      .timelineEntry:not(.isFirst) {
+         margin-top: 2rem;
+      }
+      .content {
+         font-size: 0.9em; // 0.9em ≈ 14.4px
+         line-height: 1.7; // 14.4px * 1.7 ≈ 24.5px
+         margin-bottom: 1rem;
+      }
+      .contentWrapper {
+         padding-left: 2rem;
+         gap: 10px;
+      }
+   }
+
+   @media (max-width: 400px) {
+      --gap: 1rem;
+      --title-font-size: 20px;
+      --img-card-width: 100%;
+      --img-card-height: auto;
+      --content-padding: 10px 0;
+      --timeline-line-left: 0.7rem;
+      --timeline-line-width: 1.5px;
+      .title {
+         margin: 15px auto 18px;
+      }
+      .img-card {
+         border-radius: 12px;
+      }
+      .timelineEntry:not(.isFirst) {
+         margin-top: 1.5rem;
+      }
+      .content {
+         font-size: 0.8em; // 0.8em ≈ 12.8px
+         line-height: 1.75; // 12.8px * 1.75 ≈ 22.4px
+         margin-bottom: 0.9rem;
+      }
+      .contentWrapper {
+         padding-left: 1.5rem;
+         gap: 8px;
+      }
+   }
+
+   @media (max-width: 320px) {
+      --gap: 0.8rem;
+      --title-font-size: 18px;
+      --img-card-width: 100%;
+      --img-card-height: auto;
+      --content-padding: 8px 0;
+      --timeline-line-left: 0.6rem;
+      --timeline-line-width: 1px;
+      .title {
+         margin: 12px auto 15px;
+      }
+      .img-card {
+         border-radius: 10px;
+      }
+      .timelineEntry:not(.isFirst) {
+         margin-top: 1rem;
+      }
+      .content {
+         font-size: 0.7em; // 0.7em ≈ 11.2px
+         line-height: 1.8; // 11.2px * 1.8 ≈ 20.2px
+         margin-bottom: 0.8rem;
+      }
+      .contentWrapper {
+         padding-left: 1rem;
+         gap: 6px;
+      }
+   }
 }

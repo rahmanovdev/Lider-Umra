@@ -1,0 +1,50 @@
+a,
+button {
+   cursor: pointer;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+}
+
+html {
+   scroll-behavior: smooth;
+   font-size: var(--font-size-base);
+   scrollbar-width: none;
+   height: 100%;
+}
+
+body {
+   width: 100%;
+   min-height: 100dvh;
+   font-family: var(--font-family);
+   font-size: 1rem;
+   line-height: var(--line-height);
+   color: var(--color-text);
+}
+
+#__next,
+#root {
+   min-height: 100dvh;
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+main {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+}
+
+li {
+   list-style: none;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+}

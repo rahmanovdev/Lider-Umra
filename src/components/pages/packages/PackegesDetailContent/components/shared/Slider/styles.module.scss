@@ -1,0 +1,143 @@
+.slider {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   .swiper {
+      width: 100%;
+      height: 100%;
+      border-radius: clamp(8px, 1vw, var(--border-radius));
+      --swiper-navigation-size: 30px;
+      --swiper-navigation-color: #fff;
+      [class*='swiper-button'] {
+         z-index: 30;
+      }
+   }
+
+   .slide {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      cursor: zoom-in;
+
+      .slide {
+         width: 100%;
+         height: 100%;
+         img {
+            object-fit: cover;
+         }
+      }
+
+      .imageOverlay {
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background: rgba(0, 0, 0, 0.3);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         opacity: 0;
+
+         span {
+            color: white;
+            font-size: clamp(12px, 2vw, 16px);
+            padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: clamp(3px, 0.5vw, 4px);
+         }
+      }
+
+      &:hover .imageOverlay {
+         opacity: 1;
+      }
+   }
+
+   .swiper-pagination {
+      position: absolute;
+      bottom: clamp(8px, 1.5vw, 16px);
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: clamp(6px, 1vw, 8px);
+      z-index: 20;
+
+      .swiper-pagination-bullet {
+         width: clamp(6px, 1vw, 8px);
+         height: clamp(6px, 1vw, 8px);
+         border-radius: 50%;
+         background: rgba(255, 255, 255, 0.5);
+         border: none;
+         padding: 0;
+         cursor: pointer;
+
+         &:hover {
+            background: rgba(255, 255, 255, 0.8);
+         }
+
+         &.swiper-pagination-bullet-active {
+            background: white;
+            transform: scale(1.2);
+         }
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   .slider {
+      .swiper {
+         border-radius: clamp(6px, 1vw, 8px);
+         --swiper-navigation-size: 26px;
+      }
+
+      .swiper-pagination {
+         bottom: clamp(6px, 1vw, 8px);
+         gap: clamp(4px, 0.8vw, 6px);
+
+         .swiper-pagination-bullet {
+            width: clamp(4px, 0.8vw, 6px);
+            height: clamp(4px, 0.8vw, 6px);
+         }
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   .slider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(20px, 3vw, 40px);
+
+      .swiper-pagination {
+         position: static;
+         margin-top: clamp(10px, 2vw, 20px);
+      }
+   }
+}
+
+@media (max-width: 500px) {
+   .slider {
+      .sliderButton {
+         top: 28%;
+      }
+   }
+}
+
+@media (max-width: 320px) {
+   .slider {
+      .swiper {
+         border-radius: clamp(4px, 0.8vw, 6px);
+      }
+
+      .swiper-pagination {
+         bottom: clamp(4px, 0.8vw, 6px);
+         gap: clamp(3px, 0.5vw, 4px);
+
+         .swiper-pagination-bullet {
+            width: clamp(3px, 0.6vw, 4px);
+         }
+      }
+   }
+}

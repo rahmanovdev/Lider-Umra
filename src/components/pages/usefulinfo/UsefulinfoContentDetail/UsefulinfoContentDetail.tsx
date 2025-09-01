@@ -1,73 +1,94 @@
 'use client';
-import React from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import scss from './UsefulinfoContentDetail.module.scss';
 import { motion } from 'framer-motion';
 import { useTimeLine } from '@/hooks/use-time-line';
+import { useGetBlogByIdQuery } from '@/redux/api/blogs';
+import { useParams } from 'next/navigation';
+import Loading from '@/components/ui/loading/Loading';
+import Failed from '@/components/ui/failed/Failed';
+import CImage from '@/components/ui/cimage/CImage';
 
-const packages = Array.from({ length: 5 }, (_, i) => ({
-	title: `Lorem ipsum dolor sit amet consectetur.`,
-	id: `section-${i}`,
-	content: (
-		<div className={scss.content}>
-			<div className={scss['img-card']}></div>
-			Lorem ipsum dolor sit amet consectetur. Non commodo a in vitae rhoncus
-			sit. Sed ultrices nunc ultrices scelerisque quis eget. Elementum aliquam
-			fringilla turpis aliquet aenean enim. Eget elit cras egestas adipiscing
-			eget consectetur diam vulputate. A quisque lorem turpis viverra semper
-			orci. Tempor enim libero sit nec mattis dictum. Gravida eleifend sagittis
-			feugiat lorem massa augue. Ultricies augue sollicitudin consectetur mauris
-			massa. Senectus mauris tempor elementum velit a imperdiet aliquam eu. Et
-			sem morbi scelerisque accumsan. Massa habitasse pretium in faucibus et
-			aenean vel dui. Libero at urna id nisi placerat malesuada sed est nunc.
-			Mattis leo vitae iaculis lectus tempus pellentesque sed sit dolor. Nulla
-			vestibulum urna augue turpis tempus iaculis felis. Et sem morbi
-			scelerisque accumsan. Massa habitasse pretium in faucibus et aenean vel
-			dui. Libero at urna id nisi placerat malesuada sed est nunc. Mattis leo
-			vitae iaculis lectus tempus pellentesque sed sit dolor. Nulla vestibulum
-			urna augue turpis tempus iaculis felis.
-		</div>
-	)
-}));
+const TimelineEntry = memo<{ item: BLOG.DetailDescription; isFirst: boolean }>(
+   ({ item, isFirst }) => {
+      const entryClass = useMemo(
+         () =>
+            [scss.timelineEntry, isFirst && scss.isFirst]
+               .filter(Boolean)
+               .join(' '),
+         [isFirst],
+      );
 
-const UsefulinfoContentDetail = () => {
-	const { containerRef, height, heightTransform, ref, activeSections } =
-		useTimeLine();
+      return (
+         <div className={entryClass}>
+            <div className={scss.timelineMark} data-timeline-mark />
+            <div className={scss.contentWrapper}>
+               <figure className={scss['img-card']}>
+                  <CImage
+                     src={item.image}
+                     alt={item.text.slice(0, 50)}
+                     width={350}
+                     height={350}
+                     sizes='(max-width: 768px) 100vw, 350px'
+                  />
+               </figure>
+               <div
+                  className={scss.content}
+                  dangerouslySetInnerHTML={{ __html: item.text }}
+               />
+            </div>
+         </div>
+      );
+   },
+);
+TimelineEntry.displayName = 'TimelineEntry';
 
-	return (
-		<div className={scss.pageContainer}>
-			<h4 className={scss.title}>Полезные информации</h4>
-			<div className={scss.wrapper} ref={containerRef}>
-				<div ref={ref} className={scss.timelineContainer}>
-					{packages.map((item, index) => (
-						<div
-							key={index}
-							className={`${index === 0 && scss.isFirst} ${scss.timelineEntry}`}
-						>
-							<div data-timeline-mark className={scss.timelineMark}>
-								<div
-									className={`${scss.markCircleOuter} ${
-										activeSections.includes(index) ? scss.active : ''
-									}`}
-								>
-									{index + 1}
-								</div>
-							</div>
-							<div className={scss.contentWrapper}>
-								<h3 className={scss.markTitle}>{item.title}</h3>
-								{item.content}
-							</div>
-						</div>
-					))}
-					<div style={{ height: height + 'px' }} className={scss.timelineLine}>
-						<motion.div
-							style={{ height: heightTransform }}
-							className={scss.timelineProgress}
-						/>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-};
+const UsefulinfoContentDetail = memo(() => {
+   const params = useParams();
+   const {
+      data: blog,
+      isLoading,
+      error,
+   } = useGetBlogByIdQuery(Number(params.id));
+   const { containerRef, height, heightTransform, ref } = useTimeLine(false, [
+      isLoading,
+   ]);
 
+   const wrapperClass = useMemo(() => scss.useFullInfoContentDetail, []);
+   const containerClass = useMemo(() => `${scss.container} container`, []);
+   const renderLoading = useCallback(() => <Loading />, []);
+   const renderError = useCallback(() => <Failed error={error} />, [error]);
+   const renderTimeline = useCallback(
+      () =>
+         blog?.desc_blogs.map((item, index) => (
+            <TimelineEntry key={item.id} item={item} isFirst={index === 0} />
+         )),
+      [blog],
+   );
+
+   if (isLoading) return renderLoading();
+   if (error) return renderError();
+   if (!blog) return null;
+
+   return (
+      <div className={wrapperClass}>
+         <div className={containerClass}>
+            <h4 className={scss.title}>{blog.title}</h4>
+            <div className={scss.wrapper} ref={containerRef}>
+               <div ref={ref} className={scss.timelineContainer}>
+                  {renderTimeline()}
+                  <div style={{ height }} className={scss.timelineLine}>
+                     <motion.div
+                        style={{ height: heightTransform }}
+                        className={scss.timelineProgress}
+                     />
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   );
+});
+
+UsefulinfoContentDetail.displayName = 'UsefulinfoContentDetail';
 export default UsefulinfoContentDetail;

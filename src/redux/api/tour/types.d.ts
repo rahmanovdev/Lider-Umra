@@ -1,0 +1,38 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+namespace TOURS {
+   interface IAjy {
+      id: number;
+      name: string;
+      bio: string;
+      image: string;
+   }
+
+   interface ICategory {
+      id: number;
+      name: string;
+      category: string;
+      stars: number;
+   }
+
+   interface ITourDate {
+      id: number;
+      start_tour: string;
+      end_tour: string;
+      duration: number;
+   }
+
+   interface ITourPackages {
+      ajy: IAjy;
+      place: 'Osh' | 'Bishek';
+      available_seats: number;
+      category: ICategory;
+      description: string;
+      id: number;
+      image: string;
+      is_active: boolean;
+      title: string;
+      tour_date: ITourDate;
+   }
+
+   type GetTourPackagesResponse = ITourPackages[];
+}

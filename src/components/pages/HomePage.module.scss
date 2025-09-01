@@ -1,4 +1,15 @@
 .HomePage {
-  display: flex;
-  flex-direction: column;
+   display: flex;
+   flex-direction: column;
+
+   .more {
+      margin-left: auto;
+      margin-bottom: 18px;
+      gap: 8px;
+      justify-content: flex-end;
+      svg {
+         color: var(--color-secondary);
+         font-size: 20px;
+      }
+   }
 }

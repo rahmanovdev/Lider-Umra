@@ -1,0 +1,65 @@
+import React, { useCallback } from 'react';
+import styles from './styles.module.scss';
+import { IoClose } from 'react-icons/io5';
+
+interface IProps {
+   state: 'mecca' | 'medina';
+   onClose: () => void;
+}
+
+const MapModal: React.FC<IProps> = ({ state, onClose }) => {
+   const handleOverlayClick = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+         if (e.target === e.currentTarget) {
+            onClose();
+         }
+      },
+      [onClose],
+   );
+
+   const getMapIframe = () => {
+      switch (state) {
+         case 'mecca':
+            return (
+               <iframe
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1176.5390514879646!2d39.816195919453726!3d21.40931591226072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c205f09c965271%3A0x9721e2d8b9680507!2svoco%20Makkah%2C%20an%20IHG%20Hotel!5e0!3m2!1sen!2skg!4v1742291130733!5m2!1sen!2skg'
+                  width='600'
+                  height='450'
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading='lazy'
+                  referrerPolicy='no-referrer-when-downgrade'
+               ></iframe>
+            );
+         case 'medina':
+            return (
+               <iframe
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.608797262149!2d39.60807618652689!3d24.46435440477214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15bdbf00045894e7%3A0x49b42e7dcf3c747!2sView%20Al%20Madinah%20Hotel!5e0!3m2!1sen!2skg!4v1742293909180!5m2!1sen!2skg'
+                  width='600'
+                  height='450'
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading='lazy'
+                  referrerPolicy='no-referrer-when-downgrade'
+               ></iframe>
+            );
+         default:
+            return null;
+      }
+   };
+
+   return (
+      <div className={styles.mapModal} onClick={handleOverlayClick}>
+         <div className={styles.mapContainer}>
+            {getMapIframe()}
+            <button className={styles.closeButton} onClick={onClose}>
+               <IoClose />
+            </button>
+         </div>
+      </div>
+   );
+};
+
+MapModal.displayName = 'MapModal';
+
+export default React.memo(MapModal);
